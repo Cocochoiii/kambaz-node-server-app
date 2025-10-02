@@ -1,0 +1,93 @@
+export default [
+    {
+        "_id": "5610",
+        "name": "CS5610 Web Development",
+        "number": "CS5610",
+        "startDate": "2025-01-10",
+        "endDate": "2025-05-15",
+        "department": "Computer Science",
+        "credits": 4,
+        "term": "Spring 2025",
+        "semester": "Full Term",
+        "description": "Hands-on full-stack web with HTML/CSS/JS, React/Next.js, Node/Express, and MongoDB. Build modern web applications using industry-standard tools and frameworks.",
+        "image": "course1.jpg"
+    },
+    {
+        "_id": "5520",
+        "name": "CS5520 Mobile Application Development",
+        "number": "CS5520",
+        "startDate": "2025-01-10",
+        "endDate": "2025-05-15",
+        "department": "Computer Science",
+        "credits": 4,
+        "term": "Spring 2025",
+        "semester": "Full Term",
+        "description": "Design and build mobile apps with modern UI patterns, data, networking, and device APIs. Create cross-platform applications for iOS and Android.",
+        "image": "course2.jpg"
+    },
+    {
+        "_id": "5004",
+        "name": "CS5004 Object-Oriented Design",
+        "number": "CS5004",
+        "startDate": "2025-01-10",
+        "endDate": "2025-05-15",
+        "department": "Computer Science",
+        "credits": 4,
+        "term": "Spring 2025",
+        "semester": "Full Term",
+        "description": "Deep dive into OOP design in Java: principles, patterns, and rigorous testing. Master SOLID principles and design patterns for scalable software.",
+        "image": "course3.jpg"
+    },
+    {
+        "_id": "5200",
+        "name": "CS5200 Database Management Systems",
+        "number": "CS5200",
+        "startDate": "2025-01-10",
+        "endDate": "2025-05-15",
+        "department": "Computer Science",
+        "credits": 4,
+        "term": "Spring 2025",
+        "semester": "Full Term",
+        "description": "Relational modeling, SQL, transactions, and performance tuning for real systems. Design and implement efficient database solutions.",
+        "image": "course4.jpg"
+    },
+    {
+        "_id": "5800",
+        "name": "CS5800 Algorithms",
+        "number": "CS5800",
+        "startDate": "2025-01-10",
+        "endDate": "2025-05-15",
+        "department": "Computer Science",
+        "credits": 4,
+        "term": "Fall 2024",
+        "semester": "Full Term",
+        "description": "Core algorithms, complexity, and problem solving with proofs and analysis. Master fundamental algorithms and data structures.",
+        "image": "course5.jpg"
+    },
+    {
+        "_id": "6620",
+        "name": "CS6620 Fundamentals of Cloud Computing",
+        "number": "CS6620",
+        "startDate": "2025-01-10",
+        "endDate": "2025-05-15",
+        "department": "Computer Science",
+        "credits": 4,
+        "term": "Spring 2025",
+        "semester": "Full Term",
+        "description": "Cloud foundations: virtualization, distributed storage, platforms, and data systems. Build scalable cloud-native applications.",
+        "image": "course6.jpg"
+    },
+    {
+        "_id": "6510",
+        "name": "CS6510 Advanced Software Development",
+        "number": "CS6510",
+        "startDate": "2025-01-10",
+        "endDate": "2025-05-15",
+        "department": "Computer Science",
+        "credits": 4,
+        "term": "Fall 2024",
+        "semester": "Full Term",
+        "description": "Team-based product development: planning, architecture, quality, and delivery. Work on large-scale software projects.",
+        "image": "course7.jpg"
+    }
+];
