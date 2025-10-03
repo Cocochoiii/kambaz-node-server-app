@@ -1,32 +1,24 @@
-import Database from "../Database/index.js";
+import model from "./model.js";
 import { v4 as uuidv4 } from "uuid";
 
-export function findAllCourses() {
-    return Database.courses;
-}
+/*
+ * Data access functions for the courses collection. Provide CRUD
+ * operations implemented in terms of the Mongoose model. All
+ * functions return promises to allow the caller to await completion.
+ */
 
-export function findCoursesForEnrolledUser(userId) {
-    const { courses, enrollments } = Database;
-    return courses.filter((course) =>
-                              enrollments.some((enr) => enr.user === userId && enr.course === course._id)
-    );
-}
+export const findAllCourses = () => model.find();
 
-export function createCourse(course) {
-    const newCourse = { ...course, _id: uuidv4() };
-    Database.courses = [...Database.courses, newCourse];
-    return newCourse;
-}
+export const findCourseById = (courseId) => model.findById(courseId);
 
-export function deleteCourse(courseId) {
-    const { courses, enrollments } = Database;
-    Database.courses = courses.filter((c) => c._id !== courseId);
-    Database.enrollments = enrollments.filter((e) => e.course !== courseId);
-    return true;
-}
+export const createCourse = async (course) => {
+  const newCourse = { ...course };
+  if (!newCourse._id) newCourse._id = uuidv4();
+  const inserted = await model.create(newCourse);
+  return inserted;
+};
 
-export function updateCourse(courseId, courseUpdates) {
-    const c = Database.courses.find((c) => c._id === courseId);
-    Object.assign(c, courseUpdates);
-    return c;
-}
+export const updateCourse = (courseId, courseUpdates) =>
+  model.updateOne({ _id: courseId }, { $set: courseUpdates });
+
+export const deleteCourse = (courseId) => model.deleteOne({ _id: courseId });

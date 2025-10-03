@@ -1,34 +1,55 @@
-import db from "../Database/index.js";
+import model from "./model.js";
 import { v4 as uuidv4 } from "uuid";
 
-let { users } = db;
-
-export const createUser = (user) => {
-    const newUser = { ...user, _id: uuidv4() };
-    users = [...users, newUser];
-    db.users = users;
-    return newUser;
+export const createUser = async (user) => {
+  const newUser = { ...user };
+  if (!newUser._id) newUser._id = uuidv4();
+  const inserted = await model.create(newUser);
+  return inserted.toObject();
 };
 
-export const findAllUsers = () => users;
-
-export const findUserById = (userId) =>
-    users.find((u) => u._id === userId);
-
-export const findUserByUsername = (username) =>
-    users.find((u) => u.username === username);
-
-export const findUserByCredentials = (username, password) =>
-    users.find((u) => u.username === username && u.password === password);
-
-export const updateUser = (userId, user) => {
-    users = users.map((u) => (u._id === userId ? { ...u, ...user } : u));
-    db.users = users;
-    return true;
+export const findAllUsers = async () => {
+  const users = await model.find();
+  return users.map(u => u.toObject());
 };
 
-export const deleteUser = (userId) => {
-    users = users.filter((u) => u._id !== userId);
-    db.users = users;
-    return true;
+export const findUsersByRole = async (role) => {
+  const users = await model.find({ role });
+  return users.map(u => u.toObject());
+};
+
+export const findUsersByPartialName = async (partialName) => {
+  const regex = new RegExp(partialName, "i");
+  const users = await model.find({
+                                   $or: [
+                                     { firstName: { $regex: regex } },
+                                     { lastName: { $regex: regex } },
+                                   ],
+                                 });
+  return users.map(u => u.toObject());
+};
+
+export const findUserById = async (userId) => {
+  const user = await model.findById(userId);
+  return user ? user.toObject() : null;
+};
+
+export const findUserByUsername = async (username) => {
+  const user = await model.findOne({ username });
+  return user ? user.toObject() : null;
+};
+
+export const findUserByCredentials = async (username, password) => {
+  const user = await model.findOne({ username, password });
+  return user ? user.toObject() : null;
+};
+
+export const updateUser = async (userId, updates) => {
+  await model.updateOne({ _id: userId }, { $set: updates });
+  const updated = await model.findById(userId);
+  return updated ? updated.toObject() : null;
+};
+
+export const deleteUser = async (userId) => {
+  return model.deleteOne({ _id: userId });
 };

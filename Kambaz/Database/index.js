@@ -5,6 +5,8 @@ import assignments from "./assignments.js";
 import users from "./users.js";
 import grades from "./grades.js";
 import enrollments from "./enrollments.js";
+import quizzes from "./quizzes.js";
+
 
 /**
  * Export a SINGLE default object so callers can do:
@@ -17,6 +19,7 @@ const db = {
     users,
     grades,
     enrollments,
+    quizzes
 };
 
 export default db;

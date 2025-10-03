@@ -1,71 +1,154 @@
 import * as dao from "./dao.js";
 import * as courseDao from "../Courses/dao.js";
+import * as enrollmentsDao from "../Enrollments/dao.js";
 
 export default function UserRoutes(app) {
-    // CRUD (admin-like)
-    app.post("/api/users", (req, res) => res.json(dao.createUser(req.body)));
-    app.get("/api/users", (req, res) => res.json(dao.findAllUsers()));
-    app.get("/api/users/:userId", (req, res) => res.json(dao.findUserById(req.params.userId)));
-    app.put("/api/users/:userId", (req, res) => {
-        dao.updateUser(req.params.userId, req.body);
-        const updated = dao.findUserById(req.params.userId);
-        if (req.session?.currentUser && req.session.currentUser._id === req.params.userId) {
-            req.session.currentUser = updated;
-        }
-        res.json(updated);
-    });
-    app.delete("/api/users/:userId", (req, res) => {
-        dao.deleteUser(req.params.userId);
-        res.sendStatus(200);
-    });
+  // Create user
+  app.post("/api/users", async (req, res) => {
+    const user = await dao.createUser(req.body);
+    res.json(user);
+  });
 
-    // auth
-    app.post("/api/users/signup", (req, res) => {
-        const exists = dao.findUserByUsername(req.body.username);
-        if (exists) return res.status(400).json({ message: "Username already in use" });
-        const currentUser = dao.createUser(req.body);
-        req.session.currentUser = currentUser;
-        res.json(currentUser);
-    });
+  // Read users (filters)
+  app.get("/api/users", async (req, res) => {
+    const { role, name } = req.query;
+    if (role) return res.json(await dao.findUsersByRole(role));
+    if (name) return res.json(await dao.findUsersByPartialName(name));
+    res.json(await dao.findAllUsers());
+  });
 
-    app.post("/api/users/signin", (req, res) => {
-        const { username, password } = req.body;
-        const currentUser = dao.findUserByCredentials(username, password);
-        if (!currentUser) return res.status(401).json({ message: "Unable to login. Try again later." });
-        req.session.currentUser = currentUser;
-        res.json(currentUser);
-    });
+  // Single user
+  app.get("/api/users/:userId", async (req, res) => {
+    res.json(await dao.findUserById(req.params.userId));
+  });
 
-    app.post("/api/users/profile", (req, res) => {
-        const currentUser = req.session.currentUser;
-        if (!currentUser) return res.sendStatus(401);
-        res.json(currentUser);
-    });
+  // Update user (+ refresh session user if same)
+  app.put("/api/users/:userId", async (req, res) => {
+    const { userId } = req.params;
+    await dao.updateUser(userId, req.body);
+    const updated = await dao.findUserById(userId);
 
-    app.post("/api/users/signout", (req, res) => {
-        req.session.destroy(() => res.sendStatus(200));
-    });
+    if (req.session.currentUser && req.session.currentUser._id === userId) {
+      req.session.currentUser = updated;
+      await new Promise((resolve) => req.session.save(resolve));
+    }
 
-    // current user's courses
-    app.get("/api/users/:userId/courses", (req, res) => {
-        let { userId } = req.params;
-        if (userId === "current") {
-            const currentUser = req.session.currentUser;
-            if (!currentUser) return res.sendStatus(401);
-            userId = currentUser._id;
-        }
-        const courses = courseDao.findCoursesForEnrolledUser(userId);
-        res.json(courses);
-    });
+    res.json(updated);
+  });
 
-    // create course owned by current user and auto-enroll
-    app.post("/api/users/current/courses", async (req, res) => {
-        const currentUser = req.session.currentUser;
-        if (!currentUser) return res.sendStatus(401);
-        const {createCourse} = await import("../Courses/dao.js");
-        const {enrollUserInCourse} = await import("../Enrollments/dao.js");
-        const newCourse = createCourse(req.body);
-        enrollUserInCourse(currentUser._id, newCourse._id);
-        res.json(newCourse);
+  // Delete user
+  app.delete("/api/users/:userId", async (req, res) => {
+    await dao.deleteUser(req.params.userId);
+    res.sendStatus(200);
+  });
+
+  // Signup -> set session
+  app.post("/api/users/signup", async (req, res) => {
+    try {
+      const existing = await dao.findUserByUsername(req.body.username);
+      if (existing) return res.status(400).json({ message: "Username already taken" });
+
+      const currentUser = await dao.createUser(req.body);
+      req.session.currentUser = currentUser;
+      await new Promise((resolve, reject) =>
+                            req.session.save((err) => (err ? reject(err) : resolve()))
+      );
+
+      console.log("✅ User signed up and session saved:", currentUser.username);
+      res.json(currentUser);
+    } catch (err) {
+      console.error("Signup error:", err);
+      res.status(500).json({ message: "Signup failed" });
+    }
+  });
+
+  // Signin -> set session
+  app.post("/api/users/signin", async (req, res) => {
+    try {
+      const { username, password } = req.body;
+      const currentUser = await dao.findUserByCredentials(username, password);
+      if (!currentUser) return res.status(401).json({ message: "Invalid credentials" });
+
+      req.session.currentUser = currentUser;
+      await new Promise((resolve, reject) =>
+                            req.session.save((err) => (err ? reject(err) : resolve()))
+      );
+
+      console.log("✅ User signed in and session saved:", currentUser.username, "Role:", currentUser.role);
+      res.json(currentUser);
+    } catch (err) {
+      console.error("Signin error:", err);
+      res.status(500).json({ message: "Signin failed" });
+    }
+  });
+
+  /** Session helpers */
+  // POST profile (already used by your frontend)
+  app.post("/api/users/profile", (req, res) => {
+    const currentUser = req.session.currentUser;
+    if (!currentUser) return res.sendStatus(401);
+    res.json(currentUser);
+  });
+
+  // GET profile (optional convenience)
+  app.get("/api/users/me", (req, res) => {
+    const me = req.session?.currentUser || null;
+    if (!me) return res.status(401).json({ error: "Not signed in" });
+    res.json(me);
+  });
+
+  // Debug: inspect session quickly from browser
+  app.get("/api/debug/session", (req, res) => {
+    res.json({
+               hasCookieHeader: Boolean(req.headers.cookie),
+               sessionID: req.sessionID,
+               currentUser: req.session?.currentUser || null,
+               origin: req.headers.origin || null,
+             });
+  });
+
+  // Signout -> destroy session
+  app.post("/api/users/signout", (req, res) => {
+    req.session.destroy((err) => {
+      if (err) console.error("Signout error:", err);
+      res.sendStatus(200);
     });
+  });
+
+  /** Courses for user (uses session when :uid = current) */
+  app.get("/api/users/:uid/courses", async (req, res) => {
+    let { uid } = req.params;
+    const currentUser = req.session.currentUser;
+
+    if (uid === "current") {
+      if (!currentUser) return res.sendStatus(401);
+      uid = currentUser._id;
+    }
+
+    if (currentUser && currentUser.role === "ADMIN") {
+      return res.json(await courseDao.findAllCourses());
+    }
+
+    res.json(await enrollmentsDao.findCoursesForUser(uid));
+  });
+
+  app.post("/api/users/:uid/courses/:cid", async (req, res) => {
+    let { uid, cid } = req.params;
+    const currentUser = req.session.currentUser;
+    if (!currentUser) return res.sendStatus(401);
+
+    if (uid === "current") uid = currentUser._id;
+    if (cid === "current") cid = req.body.courseId || "";
+    res.json(await enrollmentsDao.enrollUserInCourse(uid, cid));
+  });
+
+  app.delete("/api/users/:uid/courses/:cid", async (req, res) => {
+    let { uid, cid } = req.params;
+    const currentUser = req.session.currentUser;
+    if (!currentUser) return res.sendStatus(401);
+
+    if (uid === "current") uid = currentUser._id;
+    if (cid === "current") cid = req.body.courseId || "";
+    res.json(await enrollmentsDao.unenrollUserFromCourse(uid, cid));
+  });
 }
