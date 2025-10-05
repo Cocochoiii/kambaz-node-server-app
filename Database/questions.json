@@ -1,0 +1,439 @@
+[
+  {
+    "_id": "Q5610-1-Q1",
+    "quiz": "Q5610-1",
+    "title": "HTML Document Structure",
+    "points": 5,
+    "prompt": "An HTML <strong>label</strong> element can be associated with an HTML <strong>input</strong> element by setting their id attributes to the same value.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5610-1-Q2",
+    "quiz": "Q5610-1",
+    "title": "HTML Elements",
+    "points": 4,
+    "prompt": "Which of the following HTML elements is used to create a hyperlink?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      { "_id": "c1", "text": "<link>", "correct": false },
+      { "_id": "c2", "text": "<a>", "correct": true },
+      { "_id": "c3", "text": "<href>", "correct": false },
+      { "_id": "c4", "text": "<url>", "correct": false }
+    ]
+  },
+  {
+    "_id": "Q5610-1-Q3",
+    "quiz": "Q5610-1",
+    "title": "Semantic HTML",
+    "points": 5,
+    "prompt": "What is the correct HTML element for the largest heading?",
+    "type": "FILL_BLANK",
+    "correctAnswers": ["h1", "<h1>", "H1", "<H1>"]
+  },
+  {
+    "_id": "Q5610-1-Q4",
+    "quiz": "Q5610-1",
+    "title": "HTML Forms",
+    "points": 5,
+    "prompt": "Which input type is used to create a password field in HTML?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      { "_id": "c1", "text": "type=\"text\"", "correct": false },
+      { "_id": "c2", "text": "type=\"password\"", "correct": true },
+      { "_id": "c3", "text": "type=\"secure\"", "correct": false },
+      { "_id": "c4", "text": "type=\"hidden\"", "correct": false }
+    ]
+  },
+  {
+    "_id": "Q5610-1-Q5",
+    "quiz": "Q5610-1",
+    "title": "HTML5 Features",
+    "points": 5,
+    "prompt": "The HTML5 <strong>&lt;canvas&gt;</strong> element is used to draw graphics via JavaScript.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5610-1-Q6",
+    "quiz": "Q5610-1",
+    "title": "HTML Lists",
+    "points": 5,
+    "prompt": "What HTML tag is used to define an unordered list?",
+    "type": "FILL_BLANK",
+    "correctAnswers": ["ul", "<ul>", "UL", "<UL>"]
+  },
+
+  {
+    "_id": "Q5610-2-Q1",
+    "quiz": "Q5610-2",
+    "title": "CSS Selectors",
+    "points": 5,
+    "prompt": "Which CSS selector targets all paragraph elements with the class 'highlight'?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      { "_id": "c1", "text": "p.highlight", "correct": true },
+      { "_id": "c2", "text": "#highlight p", "correct": false },
+      { "_id": "c3", "text": ".highlight > p", "correct": false },
+      { "_id": "c4", "text": "p #highlight", "correct": false }
+    ]
+  },
+  {
+    "_id": "Q5610-2-Q2",
+    "quiz": "Q5610-2",
+    "title": "CSS Box Model",
+    "points": 6,
+    "prompt": "The CSS box model consists of content, padding, border, and margin.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5610-2-Q3",
+    "quiz": "Q5610-2",
+    "title": "Flexbox",
+    "points": 7,
+    "prompt": "Which CSS property is used to change the direction of flex items?",
+    "type": "FILL_BLANK",
+    "correctAnswers": ["flex-direction", "flexDirection"]
+  },
+  {
+    "_id": "Q5610-2-Q4",
+    "quiz": "Q5610-2",
+    "title": "CSS Grid",
+    "points": 7,
+    "prompt": "In CSS Grid, which property defines the columns of the grid?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      { "_id": "c1", "text": "grid-columns", "correct": false },
+      { "_id": "c2", "text": "grid-template-columns", "correct": true },
+      { "_id": "c3", "text": "column-template", "correct": false },
+      { "_id": "c4", "text": "grid-col", "correct": false }
+    ]
+  },
+  {
+    "_id": "Q5610-2-Q5",
+    "quiz": "Q5610-2",
+    "title": "CSS Positioning",
+    "points": 7,
+    "prompt": "The CSS property 'position: fixed' removes an element from the normal document flow.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+
+  {
+    "_id": "Q5520-1-Q1",
+    "quiz": "Q5520-1",
+    "title": "React Native Components",
+    "points": 5,
+    "prompt": "Which component is used to display text in React Native?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      { "_id": "c1", "text": "<Text>", "correct": true },
+      { "_id": "c2", "text": "<Label>", "correct": false },
+      { "_id": "c3", "text": "<Paragraph>", "correct": false },
+      { "_id": "c4", "text": "<String>", "correct": false }
+    ]
+  },
+  {
+    "_id": "Q5520-1-Q2",
+    "quiz": "Q5520-1",
+    "title": "React Native Styling",
+    "points": 5,
+    "prompt": "React Native uses CSS for styling components.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5520-1-Q3",
+    "quiz": "Q5520-1",
+    "title": "React Native Views",
+    "points": 5,
+    "prompt": "What is the basic container component in React Native?",
+    "type": "FILL_BLANK",
+    "correctAnswers": ["View", "<View>", "view"]
+  },
+  {
+    "_id": "Q5520-1-Q4",
+    "quiz": "Q5520-1",
+    "title": "React Native Lists",
+    "points": 5,
+    "prompt": "Which component is optimized for displaying large lists in React Native?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      { "_id": "c1", "text": "ScrollView", "correct": false },
+      { "_id": "c2", "text": "ListView", "correct": false },
+      { "_id": "c3", "text": "FlatList", "correct": true },
+      { "_id": "c4", "text": "MapView", "correct": false }
+    ]
+  },
+  {
+    "_id": "Q5520-1-Q5",
+    "quiz": "Q5520-1",
+    "title": "React Native Platform",
+    "points": 5,
+    "prompt": "React Native can be used to build apps for both iOS and Android from a single codebase.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+
+  {
+    "_id": "Q5004-1-Q1",
+    "quiz": "Q5004-1",
+    "title": "OOP Concepts",
+    "points": 4,
+    "prompt": "Which of the following is NOT a pillar of Object-Oriented Programming?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      { "_id": "c1", "text": "Encapsulation", "correct": false },
+      { "_id": "c2", "text": "Compilation", "correct": true },
+      { "_id": "c3", "text": "Inheritance", "correct": false },
+      { "_id": "c4", "text": "Polymorphism", "correct": false }
+    ]
+  },
+  {
+    "_id": "Q5004-1-Q2",
+    "quiz": "Q5004-1",
+    "title": "Java Classes",
+    "points": 4,
+    "prompt": "In Java, a class can extend multiple classes.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5004-1-Q3",
+    "quiz": "Q5004-1",
+    "title": "Access Modifiers",
+    "points": 4,
+    "prompt": "Which access modifier makes a member accessible only within the same package?",
+    "type": "FILL_BLANK",
+    "correctAnswers": ["default", "package-private", "package"]
+  },
+  {
+    "_id": "Q5004-1-Q4",
+    "quiz": "Q5004-1",
+    "title": "Interfaces",
+    "points": 4,
+    "prompt": "A Java class can implement multiple interfaces.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5004-1-Q5",
+    "quiz": "Q5004-1",
+    "title": "Abstract Classes",
+    "points": 4,
+    "prompt": "What keyword is used to declare an abstract class in Java?",
+    "type": "FILL_BLANK",
+    "correctAnswers": ["abstract", "ABSTRACT", "Abstract"]
+  },
+
+  {
+    "_id": "Q5200-1-Q1",
+    "quiz": "Q5200-1",
+    "title": "SQL Basics",
+    "points": 5,
+    "prompt": "Which SQL statement is used to extract data from a database?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      { "_id": "c1", "text": "GET", "correct": false },
+      { "_id": "c2", "text": "SELECT", "correct": true },
+      { "_id": "c3", "text": "EXTRACT", "correct": false },
+      { "_id": "c4", "text": "PULL", "correct": false }
+    ]
+  },
+  {
+    "_id": "Q5200-1-Q2",
+    "quiz": "Q5200-1",
+    "title": "SQL Joins",
+    "points": 5,
+    "prompt": "An INNER JOIN returns all rows from both tables regardless of matching conditions.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5200-1-Q3",
+    "quiz": "Q5200-1",
+    "title": "SQL Commands",
+    "points": 5,
+    "prompt": "Which SQL keyword is used to sort the result set?",
+    "type": "FILL_BLANK",
+    "correctAnswers": ["ORDER BY", "order by", "ORDER", "ORDERBY"]
+  },
+  {
+    "_id": "Q5200-1-Q4",
+    "quiz": "Q5200-1",
+    "title": "SQL Aggregation",
+    "points": 5,
+    "prompt": "Which SQL function is used to count the number of rows?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      { "_id": "c1", "text": "COUNT()", "correct": true },
+      { "_id": "c2", "text": "SUM()", "correct": false },
+      { "_id": "c3", "text": "TOTAL()", "correct": false },
+      { "_id": "c4", "text": "NUMBER()", "correct": false }
+    ]
+  },
+  {
+    "_id": "Q5200-1-Q5",
+    "quiz": "Q5200-1",
+    "title": "SQL Tables",
+    "points": 5,
+    "prompt": "The PRIMARY KEY constraint uniquely identifies each record in a table.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+
+  {
+    "_id": "Q5800-1-Q1",
+    "quiz": "Q5800-1",
+    "title": "Big O Notation",
+    "points": 5,
+    "prompt": "What is the time complexity of accessing an element in an array by index?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      { "_id": "c1", "text": "O(1)", "correct": true },
+      { "_id": "c2", "text": "O(n)", "correct": false },
+      { "_id": "c3", "text": "O(log n)", "correct": false },
+      { "_id": "c4", "text": "O(n²)", "correct": false }
+    ]
+  },
+  {
+    "_id": "Q5800-1-Q2",
+    "quiz": "Q5800-1",
+    "title": "Algorithm Analysis",
+    "points": 5,
+    "prompt": "Binary search has a time complexity of O(n).",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5800-1-Q3",
+    "quiz": "Q5800-1",
+    "title": "Sorting Complexity",
+    "points": 5,
+    "prompt": "What is the average time complexity of QuickSort?",
+    "type": "FILL_BLANK",
+    "correctAnswers": ["O(n log n)", "O(nlogn)", "n log n", "nlogn"]
+  },
+  {
+    "_id": "Q5800-1-Q4",
+    "quiz": "Q5800-1",
+    "title": "Data Structures",
+    "points": 5,
+    "prompt": "A stack follows the LIFO (Last In First Out) principle.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+
+  {
+    "_id": "Q6620-1-Q1",
+    "quiz": "Q6620-1",
+    "title": "Cloud Services",
+    "points": 5,
+    "prompt": "Which AWS service is used for object storage?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      { "_id": "c1", "text": "EC2", "correct": false },
+      { "_id": "c2", "text": "S3", "correct": true },
+      { "_id": "c3", "text": "RDS", "correct": false },
+      { "_id": "c4", "text": "Lambda", "correct": false }
+    ]
+  },
+  {
+    "_id": "Q6620-1-Q2",
+    "quiz": "Q6620-1",
+    "title": "Cloud Models",
+    "points": 5,
+    "prompt": "IaaS stands for Infrastructure as a Service.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q6620-1-Q3",
+    "quiz": "Q6620-1",
+    "title": "AWS Compute",
+    "points": 5,
+    "prompt": "What is the name of AWS's primary compute service?",
+    "type": "FILL_BLANK",
+    "correctAnswers": ["EC2", "Elastic Compute Cloud", "Amazon EC2"]
+  },
+  {
+    "_id": "Q6620-1-Q4",
+    "quiz": "Q6620-1",
+    "title": "Cloud Benefits",
+    "points": 5,
+    "prompt": "Which of the following is NOT a benefit of cloud computing?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      { "_id": "c1", "text": "Scalability", "correct": false },
+      { "_id": "c2", "text": "Pay-as-you-go pricing", "correct": false },
+      { "_id": "c3", "text": "Increased capital expenditure", "correct": true },
+      { "_id": "c4", "text": "Global reach", "correct": false }
+    ]
+  },
+  {
+    "_id": "Q6620-1-Q5",
+    "quiz": "Q6620-1",
+    "title": "Virtualization",
+    "points": 5,
+    "prompt": "Containers are lighter weight than virtual machines.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+
+  {
+    "_id": "Q6510-1-Q1",
+    "quiz": "Q6510-1",
+    "title": "Agile Methodology",
+    "points": 4,
+    "prompt": "What is the typical duration of a Sprint in Scrum?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      { "_id": "c1", "text": "1 week", "correct": false },
+      { "_id": "c2", "text": "2-4 weeks", "correct": true },
+      { "_id": "c3", "text": "2 months", "correct": false },
+      { "_id": "c4", "text": "6 months", "correct": false }
+    ]
+  },
+  {
+    "_id": "Q6510-1-Q2",
+    "quiz": "Q6510-1",
+    "title": "Software Development",
+    "points": 4,
+    "prompt": "The Waterfall model is an iterative development methodology.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q6510-1-Q3",
+    "quiz": "Q6510-1",
+    "title": "Version Control",
+    "points": 4,
+    "prompt": "What command is used to create a new branch in Git?",
+    "type": "FILL_BLANK",
+    "correctAnswers": ["git branch", "branch", "git checkout -b"]
+  },
+  {
+    "_id": "Q6510-1-Q4",
+    "quiz": "Q6510-1",
+    "title": "Scrum Roles",
+    "points": 4,
+    "prompt": "Who is responsible for maximizing the value of the product in Scrum?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      { "_id": "c1", "text": "Scrum Master", "correct": false },
+      { "_id": "c2", "text": "Product Owner", "correct": true },
+      { "_id": "c3", "text": "Development Team", "correct": false },
+      { "_id": "c4", "text": "Stakeholders", "correct": false }
+    ]
+  },
+  {
+    "_id": "Q6510-1-Q5",
+    "quiz": "Q6510-1",
+    "title": "Testing",
+    "points": 4,
+    "prompt": "Unit testing focuses on testing individual components in isolation.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  }
+]

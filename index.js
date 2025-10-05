@@ -8,6 +8,8 @@ import UserRoutes from "./Kambaz/Users/routes.js";
 import CourseRoutes from "./Kambaz/Courses/routes.js";
 import EnrollmentRoutes from "./Kambaz/Enrollments/routes.js";
 import QuizRoutes from "./Kambaz/Quizzes/routes.js";
+import Lab5 from "./Lab5/index.js";
+import PazzaRoutes from "./Kambaz/Server/Routes/pazzaRoutes.js";  // ✅ FIXED PATH
 
 const app = express();
 
@@ -65,6 +67,10 @@ UserRoutes(app);
 CourseRoutes(app);
 EnrollmentRoutes(app);
 QuizRoutes(app);
+Lab5(app);
+
+// Pazza routes under /api prefix
+app.use("/api", PazzaRoutes);
 
 /** Server */
 const PORT = 4000;
