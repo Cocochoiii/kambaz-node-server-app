@@ -2,438 +2,5097 @@
   {
     "_id": "Q5610-1-Q1",
     "quiz": "Q5610-1",
-    "title": "HTML Document Structure",
+    "title": "HTML Foundations \u2014 Statement Check",
     "points": 5,
-    "prompt": "An HTML <strong>label</strong> element can be associated with an HTML <strong>input</strong> element by setting their id attributes to the same value.",
+    "prompt": "True or False: HTML Foundations is a core topic covered in this course.",
     "type": "TRUE_FALSE",
-    "correctAnswer": false
+    "correctAnswer": true
   },
   {
     "_id": "Q5610-1-Q2",
     "quiz": "Q5610-1",
-    "title": "HTML Elements",
-    "points": 4,
-    "prompt": "Which of the following HTML elements is used to create a hyperlink?",
+    "title": "HTML Foundations \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to HTML Foundations?",
     "type": "MULTIPLE_CHOICE",
     "choices": [
-      { "_id": "c1", "text": "<link>", "correct": false },
-      { "_id": "c2", "text": "<a>", "correct": true },
-      { "_id": "c3", "text": "<href>", "correct": false },
-      { "_id": "c4", "text": "<url>", "correct": false }
+      {
+        "_id": "c1",
+        "text": "HTML Foundations",
+        "correct": true
+      },
+      {
+        "_id": "c2",
+        "text": "HTML Foundations?",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Not HTML Foundations",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "None of the above",
+        "correct": false
+      }
     ]
   },
   {
     "_id": "Q5610-1-Q3",
     "quiz": "Q5610-1",
-    "title": "Semantic HTML",
+    "title": "HTML Foundations \u2014 Keyword",
     "points": 5,
-    "prompt": "What is the correct HTML element for the largest heading?",
+    "prompt": "Fill in the primary keyword associated with HTML Foundations.",
     "type": "FILL_BLANK",
-    "correctAnswers": ["h1", "<h1>", "H1", "<H1>"]
+    "correctAnswers": [
+      "HTML",
+      "html",
+      "HTML"
+    ]
   },
   {
     "_id": "Q5610-1-Q4",
     "quiz": "Q5610-1",
-    "title": "HTML Forms",
+    "title": "HTML Foundations \u2014 Best Practice",
     "points": 5,
-    "prompt": "Which input type is used to create a password field in HTML?",
+    "prompt": "For HTML Foundations, which is usually considered a good practice?",
     "type": "MULTIPLE_CHOICE",
     "choices": [
-      { "_id": "c1", "text": "type=\"text\"", "correct": false },
-      { "_id": "c2", "text": "type=\"password\"", "correct": true },
-      { "_id": "c3", "text": "type=\"secure\"", "correct": false },
-      { "_id": "c4", "text": "type=\"hidden\"", "correct": false }
+      {
+        "_id": "c1",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "Hardcode everything",
+        "correct": false
+      }
     ]
   },
   {
     "_id": "Q5610-1-Q5",
     "quiz": "Q5610-1",
-    "title": "HTML5 Features",
+    "title": "HTML Foundations \u2014 Nuance",
     "points": 5,
-    "prompt": "The HTML5 <strong>&lt;canvas&gt;</strong> element is used to draw graphics via JavaScript.",
+    "prompt": "True or False: There is only one universally correct way to implement HTML Foundations.",
     "type": "TRUE_FALSE",
-    "correctAnswer": true
+    "correctAnswer": false
   },
   {
     "_id": "Q5610-1-Q6",
     "quiz": "Q5610-1",
-    "title": "HTML Lists",
+    "title": "HTML Foundations \u2014 Secondary Term",
     "points": 5,
-    "prompt": "What HTML tag is used to define an unordered list?",
+    "prompt": "Name a term closely associated with HTML Foundations.",
     "type": "FILL_BLANK",
-    "correctAnswers": ["ul", "<ul>", "UL", "<UL>"]
-  },
-
-  {
-    "_id": "Q5610-2-Q1",
-    "quiz": "Q5610-2",
-    "title": "CSS Selectors",
-    "points": 5,
-    "prompt": "Which CSS selector targets all paragraph elements with the class 'highlight'?",
-    "type": "MULTIPLE_CHOICE",
-    "choices": [
-      { "_id": "c1", "text": "p.highlight", "correct": true },
-      { "_id": "c2", "text": "#highlight p", "correct": false },
-      { "_id": "c3", "text": ".highlight > p", "correct": false },
-      { "_id": "c4", "text": "p #highlight", "correct": false }
+    "correctAnswers": [
+      "Foundations",
+      "foundations",
+      "FOUNDATIONS"
     ]
   },
   {
-    "_id": "Q5610-2-Q2",
+    "_id": "Q5610-2-Q1",
     "quiz": "Q5610-2",
-    "title": "CSS Box Model",
-    "points": 6,
-    "prompt": "The CSS box model consists of content, padding, border, and margin.",
+    "title": "CSS Selectors & Box Model \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: CSS Selectors & Box Model is a core topic covered in this course.",
     "type": "TRUE_FALSE",
     "correctAnswer": true
   },
   {
+    "_id": "Q5610-2-Q2",
+    "quiz": "Q5610-2",
+    "title": "CSS Selectors & Box Model \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to CSS Selectors & Box Model?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "CSS Selectors & Box Model?",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Not CSS Selectors & Box Model",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "CSS Selectors & Box Model",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "None of the above",
+        "correct": false
+      }
+    ]
+  },
+  {
     "_id": "Q5610-2-Q3",
     "quiz": "Q5610-2",
-    "title": "Flexbox",
-    "points": 7,
-    "prompt": "Which CSS property is used to change the direction of flex items?",
+    "title": "CSS Selectors & Box Model \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with CSS Selectors & Box Model.",
     "type": "FILL_BLANK",
-    "correctAnswers": ["flex-direction", "flexDirection"]
+    "correctAnswers": [
+      "CSS",
+      "css",
+      "CSS"
+    ]
   },
   {
     "_id": "Q5610-2-Q4",
     "quiz": "Q5610-2",
-    "title": "CSS Grid",
-    "points": 7,
-    "prompt": "In CSS Grid, which property defines the columns of the grid?",
+    "title": "CSS Selectors & Box Model \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For CSS Selectors & Box Model, which is usually considered a good practice?",
     "type": "MULTIPLE_CHOICE",
     "choices": [
-      { "_id": "c1", "text": "grid-columns", "correct": false },
-      { "_id": "c2", "text": "grid-template-columns", "correct": true },
-      { "_id": "c3", "text": "column-template", "correct": false },
-      { "_id": "c4", "text": "grid-col", "correct": false }
+      {
+        "_id": "c1",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c2",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Ignore errors",
+        "correct": false
+      }
     ]
   },
   {
     "_id": "Q5610-2-Q5",
     "quiz": "Q5610-2",
-    "title": "CSS Positioning",
-    "points": 7,
-    "prompt": "The CSS property 'position: fixed' removes an element from the normal document flow.",
-    "type": "TRUE_FALSE",
-    "correctAnswer": true
-  },
-
-  {
-    "_id": "Q5520-1-Q1",
-    "quiz": "Q5520-1",
-    "title": "React Native Components",
+    "title": "CSS Selectors & Box Model \u2014 Nuance",
     "points": 5,
-    "prompt": "Which component is used to display text in React Native?",
-    "type": "MULTIPLE_CHOICE",
-    "choices": [
-      { "_id": "c1", "text": "<Text>", "correct": true },
-      { "_id": "c2", "text": "<Label>", "correct": false },
-      { "_id": "c3", "text": "<Paragraph>", "correct": false },
-      { "_id": "c4", "text": "<String>", "correct": false }
-    ]
-  },
-  {
-    "_id": "Q5520-1-Q2",
-    "quiz": "Q5520-1",
-    "title": "React Native Styling",
-    "points": 5,
-    "prompt": "React Native uses CSS for styling components.",
+    "prompt": "True or False: There is only one universally correct way to implement CSS Selectors & Box Model.",
     "type": "TRUE_FALSE",
     "correctAnswer": false
   },
   {
+    "_id": "Q5610-2-Q6",
+    "quiz": "Q5610-2",
+    "title": "CSS Selectors & Box Model \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with CSS Selectors & Box Model.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Model",
+      "model",
+      "MODEL"
+    ]
+  },
+  {
+    "_id": "Q5610-3-Q1",
+    "quiz": "Q5610-3",
+    "title": "Flexbox & Grid \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Flexbox & Grid is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5610-3-Q2",
+    "quiz": "Q5610-3",
+    "title": "Flexbox & Grid \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Flexbox & Grid?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Not Flexbox & Grid",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Flexbox & Grid?",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Flexbox & Grid",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "_id": "Q5610-3-Q3",
+    "quiz": "Q5610-3",
+    "title": "Flexbox & Grid \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Flexbox & Grid.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Flexbox",
+      "flexbox",
+      "FLEXBOX"
+    ]
+  },
+  {
+    "_id": "Q5610-3-Q4",
+    "quiz": "Q5610-3",
+    "title": "Flexbox & Grid \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Flexbox & Grid, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c3",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Ignore errors",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5610-3-Q5",
+    "quiz": "Q5610-3",
+    "title": "Flexbox & Grid \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Flexbox & Grid.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5610-3-Q6",
+    "quiz": "Q5610-3",
+    "title": "Flexbox & Grid \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Flexbox & Grid.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Grid",
+      "grid",
+      "GRID"
+    ]
+  },
+  {
+    "_id": "Q5610-4-Q1",
+    "quiz": "Q5610-4",
+    "title": "JavaScript & ES6 \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: JavaScript & ES6 is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5610-4-Q2",
+    "quiz": "Q5610-4",
+    "title": "JavaScript & ES6 \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to JavaScript & ES6?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "JavaScript & ES6?",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "JavaScript & ES6",
+        "correct": true
+      },
+      {
+        "_id": "c3",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Not JavaScript & ES6",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5610-4-Q3",
+    "quiz": "Q5610-4",
+    "title": "JavaScript & ES6 \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with JavaScript & ES6.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "JavaScript",
+      "javascript",
+      "JAVASCRIPT"
+    ]
+  },
+  {
+    "_id": "Q5610-4-Q4",
+    "quiz": "Q5610-4",
+    "title": "JavaScript & ES6 \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For JavaScript & ES6, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c2",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Ignore errors",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5610-4-Q5",
+    "quiz": "Q5610-4",
+    "title": "JavaScript & ES6 \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement JavaScript & ES6.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5610-4-Q6",
+    "quiz": "Q5610-4",
+    "title": "JavaScript & ES6 \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with JavaScript & ES6.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "ES6",
+      "es6",
+      "ES6"
+    ]
+  },
+  {
+    "_id": "Q5610-5-Q1",
+    "quiz": "Q5610-5",
+    "title": "HTTP & Fetch \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: HTTP & Fetch is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5610-5-Q2",
+    "quiz": "Q5610-5",
+    "title": "HTTP & Fetch \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to HTTP & Fetch?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "HTTP & Fetch?",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Not HTTP & Fetch",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "HTTP & Fetch",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "_id": "Q5610-5-Q3",
+    "quiz": "Q5610-5",
+    "title": "HTTP & Fetch \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with HTTP & Fetch.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "HTTP",
+      "http",
+      "HTTP"
+    ]
+  },
+  {
+    "_id": "Q5610-5-Q4",
+    "quiz": "Q5610-5",
+    "title": "HTTP & Fetch \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For HTTP & Fetch, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c3",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Hardcode everything",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5610-5-Q5",
+    "quiz": "Q5610-5",
+    "title": "HTTP & Fetch \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement HTTP & Fetch.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5610-5-Q6",
+    "quiz": "Q5610-5",
+    "title": "HTTP & Fetch \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with HTTP & Fetch.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Fetch",
+      "fetch",
+      "FETCH"
+    ]
+  },
+  {
+    "_id": "Q5610-6-Q1",
+    "quiz": "Q5610-6",
+    "title": "Node & Express \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Node & Express is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5610-6-Q2",
+    "quiz": "Q5610-6",
+    "title": "Node & Express \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Node & Express?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Node & Express",
+        "correct": true
+      },
+      {
+        "_id": "c2",
+        "text": "Not Node & Express",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Node & Express?",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "None of the above",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5610-6-Q3",
+    "quiz": "Q5610-6",
+    "title": "Node & Express \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Node & Express.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Node",
+      "node",
+      "NODE"
+    ]
+  },
+  {
+    "_id": "Q5610-6-Q4",
+    "quiz": "Q5610-6",
+    "title": "Node & Express \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Node & Express, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c2",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Hardcode everything",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5610-6-Q5",
+    "quiz": "Q5610-6",
+    "title": "Node & Express \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Node & Express.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5610-6-Q6",
+    "quiz": "Q5610-6",
+    "title": "Node & Express \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Node & Express.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Express",
+      "express",
+      "EXPRESS"
+    ]
+  },
+  {
+    "_id": "Q5610-7-Q1",
+    "quiz": "Q5610-7",
+    "title": "MongoDB & Mongoose \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: MongoDB & Mongoose is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5610-7-Q2",
+    "quiz": "Q5610-7",
+    "title": "MongoDB & Mongoose \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to MongoDB & Mongoose?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "MongoDB & Mongoose",
+        "correct": true
+      },
+      {
+        "_id": "c2",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Not MongoDB & Mongoose",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "MongoDB & Mongoose?",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5610-7-Q3",
+    "quiz": "Q5610-7",
+    "title": "MongoDB & Mongoose \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with MongoDB & Mongoose.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "MongoDB",
+      "mongodb",
+      "MONGODB"
+    ]
+  },
+  {
+    "_id": "Q5610-7-Q4",
+    "quiz": "Q5610-7",
+    "title": "MongoDB & Mongoose \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For MongoDB & Mongoose, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c3",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Global state everywhere",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5610-7-Q5",
+    "quiz": "Q5610-7",
+    "title": "MongoDB & Mongoose \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement MongoDB & Mongoose.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5610-7-Q6",
+    "quiz": "Q5610-7",
+    "title": "MongoDB & Mongoose \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with MongoDB & Mongoose.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Mongoose",
+      "mongoose",
+      "MONGOOSE"
+    ]
+  },
+  {
+    "_id": "Q5520-1-Q1",
+    "quiz": "Q5520-1",
+    "title": "React Native Basics \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: React Native Basics is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5520-1-Q2",
+    "quiz": "Q5520-1",
+    "title": "React Native Basics \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to React Native Basics?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "React Native Basics?",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "React Native Basics",
+        "correct": true
+      },
+      {
+        "_id": "c3",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Not React Native Basics",
+        "correct": false
+      }
+    ]
+  },
+  {
     "_id": "Q5520-1-Q3",
     "quiz": "Q5520-1",
-    "title": "React Native Views",
+    "title": "React Native Basics \u2014 Keyword",
     "points": 5,
-    "prompt": "What is the basic container component in React Native?",
+    "prompt": "Fill in the primary keyword associated with React Native Basics.",
     "type": "FILL_BLANK",
-    "correctAnswers": ["View", "<View>", "view"]
+    "correctAnswers": [
+      "React",
+      "react",
+      "REACT"
+    ]
   },
   {
     "_id": "Q5520-1-Q4",
     "quiz": "Q5520-1",
-    "title": "React Native Lists",
+    "title": "React Native Basics \u2014 Best Practice",
     "points": 5,
-    "prompt": "Which component is optimized for displaying large lists in React Native?",
+    "prompt": "For React Native Basics, which is usually considered a good practice?",
     "type": "MULTIPLE_CHOICE",
     "choices": [
-      { "_id": "c1", "text": "ScrollView", "correct": false },
-      { "_id": "c2", "text": "ListView", "correct": false },
-      { "_id": "c3", "text": "FlatList", "correct": true },
-      { "_id": "c4", "text": "MapView", "correct": false }
+      {
+        "_id": "c1",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      }
     ]
   },
   {
     "_id": "Q5520-1-Q5",
     "quiz": "Q5520-1",
-    "title": "React Native Platform",
+    "title": "React Native Basics \u2014 Nuance",
     "points": 5,
-    "prompt": "React Native can be used to build apps for both iOS and Android from a single codebase.",
+    "prompt": "True or False: There is only one universally correct way to implement React Native Basics.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5520-1-Q6",
+    "quiz": "Q5520-1",
+    "title": "React Native Basics \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with React Native Basics.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Basics",
+      "basics",
+      "BASICS"
+    ]
+  },
+  {
+    "_id": "Q5520-2-Q1",
+    "quiz": "Q5520-2",
+    "title": "Navigation & State \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Navigation & State is a core topic covered in this course.",
     "type": "TRUE_FALSE",
     "correctAnswer": true
   },
-
+  {
+    "_id": "Q5520-2-Q2",
+    "quiz": "Q5520-2",
+    "title": "Navigation & State \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Navigation & State?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Not Navigation & State",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Navigation & State",
+        "correct": true
+      },
+      {
+        "_id": "c3",
+        "text": "Navigation & State?",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "None of the above",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5520-2-Q3",
+    "quiz": "Q5520-2",
+    "title": "Navigation & State \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Navigation & State.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Navigation",
+      "navigation",
+      "NAVIGATION"
+    ]
+  },
+  {
+    "_id": "Q5520-2-Q4",
+    "quiz": "Q5520-2",
+    "title": "Navigation & State \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Navigation & State, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c2",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Global state everywhere",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5520-2-Q5",
+    "quiz": "Q5520-2",
+    "title": "Navigation & State \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Navigation & State.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5520-2-Q6",
+    "quiz": "Q5520-2",
+    "title": "Navigation & State \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Navigation & State.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "State",
+      "state",
+      "STATE"
+    ]
+  },
+  {
+    "_id": "Q5520-3-Q1",
+    "quiz": "Q5520-3",
+    "title": "Networking & Data \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Networking & Data is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5520-3-Q2",
+    "quiz": "Q5520-3",
+    "title": "Networking & Data \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Networking & Data?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Networking & Data",
+        "correct": true
+      },
+      {
+        "_id": "c2",
+        "text": "Not Networking & Data",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Networking & Data?",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5520-3-Q3",
+    "quiz": "Q5520-3",
+    "title": "Networking & Data \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Networking & Data.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Networking",
+      "networking",
+      "NETWORKING"
+    ]
+  },
+  {
+    "_id": "Q5520-3-Q4",
+    "quiz": "Q5520-3",
+    "title": "Networking & Data \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Networking & Data, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c2",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Hardcode everything",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5520-3-Q5",
+    "quiz": "Q5520-3",
+    "title": "Networking & Data \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Networking & Data.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5520-3-Q6",
+    "quiz": "Q5520-3",
+    "title": "Networking & Data \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Networking & Data.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Data",
+      "data",
+      "DATA"
+    ]
+  },
+  {
+    "_id": "Q5520-4-Q1",
+    "quiz": "Q5520-4",
+    "title": "Local Data & Storage \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Local Data & Storage is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5520-4-Q2",
+    "quiz": "Q5520-4",
+    "title": "Local Data & Storage \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Local Data & Storage?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Not Local Data & Storage",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Local Data & Storage?",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Local Data & Storage",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "_id": "Q5520-4-Q3",
+    "quiz": "Q5520-4",
+    "title": "Local Data & Storage \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Local Data & Storage.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Local",
+      "local",
+      "LOCAL"
+    ]
+  },
+  {
+    "_id": "Q5520-4-Q4",
+    "quiz": "Q5520-4",
+    "title": "Local Data & Storage \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Local Data & Storage, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "Global state everywhere",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5520-4-Q5",
+    "quiz": "Q5520-4",
+    "title": "Local Data & Storage \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Local Data & Storage.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5520-4-Q6",
+    "quiz": "Q5520-4",
+    "title": "Local Data & Storage \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Local Data & Storage.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Storage",
+      "storage",
+      "STORAGE"
+    ]
+  },
+  {
+    "_id": "Q5520-5-Q1",
+    "quiz": "Q5520-5",
+    "title": "Auth & Security \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Auth & Security is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5520-5-Q2",
+    "quiz": "Q5520-5",
+    "title": "Auth & Security \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Auth & Security?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Auth & Security",
+        "correct": true
+      },
+      {
+        "_id": "c2",
+        "text": "Auth & Security?",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Not Auth & Security",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5520-5-Q3",
+    "quiz": "Q5520-5",
+    "title": "Auth & Security \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Auth & Security.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Auth",
+      "auth",
+      "AUTH"
+    ]
+  },
+  {
+    "_id": "Q5520-5-Q4",
+    "quiz": "Q5520-5",
+    "title": "Auth & Security \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Auth & Security, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "Ignore errors",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5520-5-Q5",
+    "quiz": "Q5520-5",
+    "title": "Auth & Security \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Auth & Security.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5520-5-Q6",
+    "quiz": "Q5520-5",
+    "title": "Auth & Security \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Auth & Security.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Security",
+      "security",
+      "SECURITY"
+    ]
+  },
+  {
+    "_id": "Q5520-6-Q1",
+    "quiz": "Q5520-6",
+    "title": "Background Tasks & Notifications \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Background Tasks & Notifications is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5520-6-Q2",
+    "quiz": "Q5520-6",
+    "title": "Background Tasks & Notifications \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Background Tasks & Notifications?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Not Background Tasks & Notifications",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Background Tasks & Notifications?",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Background Tasks & Notifications",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "_id": "Q5520-6-Q3",
+    "quiz": "Q5520-6",
+    "title": "Background Tasks & Notifications \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Background Tasks & Notifications.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Background",
+      "background",
+      "BACKGROUND"
+    ]
+  },
+  {
+    "_id": "Q5520-6-Q4",
+    "quiz": "Q5520-6",
+    "title": "Background Tasks & Notifications \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Background Tasks & Notifications, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c2",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Hardcode everything",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5520-6-Q5",
+    "quiz": "Q5520-6",
+    "title": "Background Tasks & Notifications \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Background Tasks & Notifications.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5520-6-Q6",
+    "quiz": "Q5520-6",
+    "title": "Background Tasks & Notifications \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Background Tasks & Notifications.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Notifications",
+      "notifications",
+      "NOTIFICATIONS"
+    ]
+  },
+  {
+    "_id": "Q5520-7-Q1",
+    "quiz": "Q5520-7",
+    "title": "Performance & Accessibility \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Performance & Accessibility is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5520-7-Q2",
+    "quiz": "Q5520-7",
+    "title": "Performance & Accessibility \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Performance & Accessibility?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Not Performance & Accessibility",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Performance & Accessibility?",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Performance & Accessibility",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "None of the above",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5520-7-Q3",
+    "quiz": "Q5520-7",
+    "title": "Performance & Accessibility \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Performance & Accessibility.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Performance",
+      "performance",
+      "PERFORMANCE"
+    ]
+  },
+  {
+    "_id": "Q5520-7-Q4",
+    "quiz": "Q5520-7",
+    "title": "Performance & Accessibility \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Performance & Accessibility, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "_id": "Q5520-7-Q5",
+    "quiz": "Q5520-7",
+    "title": "Performance & Accessibility \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Performance & Accessibility.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5520-7-Q6",
+    "quiz": "Q5520-7",
+    "title": "Performance & Accessibility \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Performance & Accessibility.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Accessibility",
+      "accessibility",
+      "ACCESSIBILITY"
+    ]
+  },
   {
     "_id": "Q5004-1-Q1",
     "quiz": "Q5004-1",
-    "title": "OOP Concepts",
-    "points": 4,
-    "prompt": "Which of the following is NOT a pillar of Object-Oriented Programming?",
-    "type": "MULTIPLE_CHOICE",
-    "choices": [
-      { "_id": "c1", "text": "Encapsulation", "correct": false },
-      { "_id": "c2", "text": "Compilation", "correct": true },
-      { "_id": "c3", "text": "Inheritance", "correct": false },
-      { "_id": "c4", "text": "Polymorphism", "correct": false }
-    ]
+    "title": "OOP Fundamentals \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: OOP Fundamentals is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
   },
   {
     "_id": "Q5004-1-Q2",
     "quiz": "Q5004-1",
-    "title": "Java Classes",
-    "points": 4,
-    "prompt": "In Java, a class can extend multiple classes.",
-    "type": "TRUE_FALSE",
-    "correctAnswer": false
+    "title": "OOP Fundamentals \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to OOP Fundamentals?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "OOP Fundamentals?",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "OOP Fundamentals",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "Not OOP Fundamentals",
+        "correct": false
+      }
+    ]
   },
   {
     "_id": "Q5004-1-Q3",
     "quiz": "Q5004-1",
-    "title": "Access Modifiers",
-    "points": 4,
-    "prompt": "Which access modifier makes a member accessible only within the same package?",
+    "title": "OOP Fundamentals \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with OOP Fundamentals.",
     "type": "FILL_BLANK",
-    "correctAnswers": ["default", "package-private", "package"]
+    "correctAnswers": [
+      "OOP",
+      "oop",
+      "OOP"
+    ]
   },
   {
     "_id": "Q5004-1-Q4",
     "quiz": "Q5004-1",
-    "title": "Interfaces",
-    "points": 4,
-    "prompt": "A Java class can implement multiple interfaces.",
-    "type": "TRUE_FALSE",
-    "correctAnswer": true
+    "title": "OOP Fundamentals \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For OOP Fundamentals, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      }
+    ]
   },
   {
     "_id": "Q5004-1-Q5",
     "quiz": "Q5004-1",
-    "title": "Abstract Classes",
-    "points": 4,
-    "prompt": "What keyword is used to declare an abstract class in Java?",
-    "type": "FILL_BLANK",
-    "correctAnswers": ["abstract", "ABSTRACT", "Abstract"]
-  },
-
-  {
-    "_id": "Q5200-1-Q1",
-    "quiz": "Q5200-1",
-    "title": "SQL Basics",
+    "title": "OOP Fundamentals \u2014 Nuance",
     "points": 5,
-    "prompt": "Which SQL statement is used to extract data from a database?",
-    "type": "MULTIPLE_CHOICE",
-    "choices": [
-      { "_id": "c1", "text": "GET", "correct": false },
-      { "_id": "c2", "text": "SELECT", "correct": true },
-      { "_id": "c3", "text": "EXTRACT", "correct": false },
-      { "_id": "c4", "text": "PULL", "correct": false }
-    ]
-  },
-  {
-    "_id": "Q5200-1-Q2",
-    "quiz": "Q5200-1",
-    "title": "SQL Joins",
-    "points": 5,
-    "prompt": "An INNER JOIN returns all rows from both tables regardless of matching conditions.",
+    "prompt": "True or False: There is only one universally correct way to implement OOP Fundamentals.",
     "type": "TRUE_FALSE",
     "correctAnswer": false
   },
   {
+    "_id": "Q5004-1-Q6",
+    "quiz": "Q5004-1",
+    "title": "OOP Fundamentals \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with OOP Fundamentals.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Fundamentals",
+      "fundamentals",
+      "FUNDAMENTALS"
+    ]
+  },
+  {
+    "_id": "Q5004-2-Q1",
+    "quiz": "Q5004-2",
+    "title": "UML & Class Design \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: UML & Class Design is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5004-2-Q2",
+    "quiz": "Q5004-2",
+    "title": "UML & Class Design \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to UML & Class Design?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "UML & Class Design",
+        "correct": true
+      },
+      {
+        "_id": "c2",
+        "text": "UML & Class Design?",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Not UML & Class Design",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5004-2-Q3",
+    "quiz": "Q5004-2",
+    "title": "UML & Class Design \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with UML & Class Design.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "UML",
+      "uml",
+      "UML"
+    ]
+  },
+  {
+    "_id": "Q5004-2-Q4",
+    "quiz": "Q5004-2",
+    "title": "UML & Class Design \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For UML & Class Design, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "_id": "Q5004-2-Q5",
+    "quiz": "Q5004-2",
+    "title": "UML & Class Design \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement UML & Class Design.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5004-2-Q6",
+    "quiz": "Q5004-2",
+    "title": "UML & Class Design \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with UML & Class Design.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Design",
+      "design",
+      "DESIGN"
+    ]
+  },
+  {
+    "_id": "Q5004-3-Q1",
+    "quiz": "Q5004-3",
+    "title": "SOLID Principles \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: SOLID Principles is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5004-3-Q2",
+    "quiz": "Q5004-3",
+    "title": "SOLID Principles \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to SOLID Principles?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "SOLID Principles",
+        "correct": true
+      },
+      {
+        "_id": "c2",
+        "text": "SOLID Principles?",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Not SOLID Principles",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "None of the above",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5004-3-Q3",
+    "quiz": "Q5004-3",
+    "title": "SOLID Principles \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with SOLID Principles.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "SOLID",
+      "solid",
+      "SOLID"
+    ]
+  },
+  {
+    "_id": "Q5004-3-Q4",
+    "quiz": "Q5004-3",
+    "title": "SOLID Principles \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For SOLID Principles, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c3",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Global state everywhere",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5004-3-Q5",
+    "quiz": "Q5004-3",
+    "title": "SOLID Principles \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement SOLID Principles.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5004-3-Q6",
+    "quiz": "Q5004-3",
+    "title": "SOLID Principles \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with SOLID Principles.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Principles",
+      "principles",
+      "PRINCIPLES"
+    ]
+  },
+  {
+    "_id": "Q5004-4-Q1",
+    "quiz": "Q5004-4",
+    "title": "Design Patterns I \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Design Patterns I is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5004-4-Q2",
+    "quiz": "Q5004-4",
+    "title": "Design Patterns I \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Design Patterns I?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Design Patterns I?",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Not Design Patterns I",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Design Patterns I",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "_id": "Q5004-4-Q3",
+    "quiz": "Q5004-4",
+    "title": "Design Patterns I \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Design Patterns I.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Design",
+      "design",
+      "DESIGN"
+    ]
+  },
+  {
+    "_id": "Q5004-4-Q4",
+    "quiz": "Q5004-4",
+    "title": "Design Patterns I \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Design Patterns I, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c3",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Global state everywhere",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5004-4-Q5",
+    "quiz": "Q5004-4",
+    "title": "Design Patterns I \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Design Patterns I.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5004-4-Q6",
+    "quiz": "Q5004-4",
+    "title": "Design Patterns I \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Design Patterns I.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "I",
+      "i",
+      "I"
+    ]
+  },
+  {
+    "_id": "Q5004-5-Q1",
+    "quiz": "Q5004-5",
+    "title": "Design Patterns II \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Design Patterns II is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5004-5-Q2",
+    "quiz": "Q5004-5",
+    "title": "Design Patterns II \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Design Patterns II?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Not Design Patterns II",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Design Patterns II?",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Design Patterns II",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "_id": "Q5004-5-Q3",
+    "quiz": "Q5004-5",
+    "title": "Design Patterns II \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Design Patterns II.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Design",
+      "design",
+      "DESIGN"
+    ]
+  },
+  {
+    "_id": "Q5004-5-Q4",
+    "quiz": "Q5004-5",
+    "title": "Design Patterns II \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Design Patterns II, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "Hardcode everything",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5004-5-Q5",
+    "quiz": "Q5004-5",
+    "title": "Design Patterns II \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Design Patterns II.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5004-5-Q6",
+    "quiz": "Q5004-5",
+    "title": "Design Patterns II \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Design Patterns II.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "II",
+      "ii",
+      "II"
+    ]
+  },
+  {
+    "_id": "Q5004-6-Q1",
+    "quiz": "Q5004-6",
+    "title": "Testing & TDD \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Testing & TDD is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5004-6-Q2",
+    "quiz": "Q5004-6",
+    "title": "Testing & TDD \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Testing & TDD?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Not Testing & TDD",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Testing & TDD?",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Testing & TDD",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "_id": "Q5004-6-Q3",
+    "quiz": "Q5004-6",
+    "title": "Testing & TDD \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Testing & TDD.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Testing",
+      "testing",
+      "TESTING"
+    ]
+  },
+  {
+    "_id": "Q5004-6-Q4",
+    "quiz": "Q5004-6",
+    "title": "Testing & TDD \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Testing & TDD, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "Ignore errors",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5004-6-Q5",
+    "quiz": "Q5004-6",
+    "title": "Testing & TDD \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Testing & TDD.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5004-6-Q6",
+    "quiz": "Q5004-6",
+    "title": "Testing & TDD \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Testing & TDD.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "TDD",
+      "tdd",
+      "TDD"
+    ]
+  },
+  {
+    "_id": "Q5004-7-Q1",
+    "quiz": "Q5004-7",
+    "title": "Refactoring & Code Smells \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Refactoring & Code Smells is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5004-7-Q2",
+    "quiz": "Q5004-7",
+    "title": "Refactoring & Code Smells \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Refactoring & Code Smells?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Not Refactoring & Code Smells",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Refactoring & Code Smells?",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Refactoring & Code Smells",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "_id": "Q5004-7-Q3",
+    "quiz": "Q5004-7",
+    "title": "Refactoring & Code Smells \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Refactoring & Code Smells.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Refactoring",
+      "refactoring",
+      "REFACTORING"
+    ]
+  },
+  {
+    "_id": "Q5004-7-Q4",
+    "quiz": "Q5004-7",
+    "title": "Refactoring & Code Smells \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Refactoring & Code Smells, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c2",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Ignore errors",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5004-7-Q5",
+    "quiz": "Q5004-7",
+    "title": "Refactoring & Code Smells \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Refactoring & Code Smells.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5004-7-Q6",
+    "quiz": "Q5004-7",
+    "title": "Refactoring & Code Smells \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Refactoring & Code Smells.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Smells",
+      "smells",
+      "SMELLS"
+    ]
+  },
+  {
+    "_id": "Q5200-1-Q1",
+    "quiz": "Q5200-1",
+    "title": "ER & Relational \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: ER & Relational is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5200-1-Q2",
+    "quiz": "Q5200-1",
+    "title": "ER & Relational \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to ER & Relational?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "ER & Relational",
+        "correct": true
+      },
+      {
+        "_id": "c2",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Not ER & Relational",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "ER & Relational?",
+        "correct": false
+      }
+    ]
+  },
+  {
     "_id": "Q5200-1-Q3",
     "quiz": "Q5200-1",
-    "title": "SQL Commands",
+    "title": "ER & Relational \u2014 Keyword",
     "points": 5,
-    "prompt": "Which SQL keyword is used to sort the result set?",
+    "prompt": "Fill in the primary keyword associated with ER & Relational.",
     "type": "FILL_BLANK",
-    "correctAnswers": ["ORDER BY", "order by", "ORDER", "ORDERBY"]
+    "correctAnswers": [
+      "ER",
+      "er",
+      "ER"
+    ]
   },
   {
     "_id": "Q5200-1-Q4",
     "quiz": "Q5200-1",
-    "title": "SQL Aggregation",
+    "title": "ER & Relational \u2014 Best Practice",
     "points": 5,
-    "prompt": "Which SQL function is used to count the number of rows?",
+    "prompt": "For ER & Relational, which is usually considered a good practice?",
     "type": "MULTIPLE_CHOICE",
     "choices": [
-      { "_id": "c1", "text": "COUNT()", "correct": true },
-      { "_id": "c2", "text": "SUM()", "correct": false },
-      { "_id": "c3", "text": "TOTAL()", "correct": false },
-      { "_id": "c4", "text": "NUMBER()", "correct": false }
+      {
+        "_id": "c1",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c3",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Ignore errors",
+        "correct": false
+      }
     ]
   },
   {
     "_id": "Q5200-1-Q5",
     "quiz": "Q5200-1",
-    "title": "SQL Tables",
+    "title": "ER & Relational \u2014 Nuance",
     "points": 5,
-    "prompt": "The PRIMARY KEY constraint uniquely identifies each record in a table.",
-    "type": "TRUE_FALSE",
-    "correctAnswer": true
-  },
-
-  {
-    "_id": "Q5800-1-Q1",
-    "quiz": "Q5800-1",
-    "title": "Big O Notation",
-    "points": 5,
-    "prompt": "What is the time complexity of accessing an element in an array by index?",
-    "type": "MULTIPLE_CHOICE",
-    "choices": [
-      { "_id": "c1", "text": "O(1)", "correct": true },
-      { "_id": "c2", "text": "O(n)", "correct": false },
-      { "_id": "c3", "text": "O(log n)", "correct": false },
-      { "_id": "c4", "text": "O(n²)", "correct": false }
-    ]
-  },
-  {
-    "_id": "Q5800-1-Q2",
-    "quiz": "Q5800-1",
-    "title": "Algorithm Analysis",
-    "points": 5,
-    "prompt": "Binary search has a time complexity of O(n).",
+    "prompt": "True or False: There is only one universally correct way to implement ER & Relational.",
     "type": "TRUE_FALSE",
     "correctAnswer": false
   },
   {
+    "_id": "Q5200-1-Q6",
+    "quiz": "Q5200-1",
+    "title": "ER & Relational \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with ER & Relational.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Relational",
+      "relational",
+      "RELATIONAL"
+    ]
+  },
+  {
+    "_id": "Q5200-2-Q1",
+    "quiz": "Q5200-2",
+    "title": "SQL Basics \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: SQL Basics is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5200-2-Q2",
+    "quiz": "Q5200-2",
+    "title": "SQL Basics \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to SQL Basics?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Not SQL Basics",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "SQL Basics",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "SQL Basics?",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5200-2-Q3",
+    "quiz": "Q5200-2",
+    "title": "SQL Basics \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with SQL Basics.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "SQL",
+      "sql",
+      "SQL"
+    ]
+  },
+  {
+    "_id": "Q5200-2-Q4",
+    "quiz": "Q5200-2",
+    "title": "SQL Basics \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For SQL Basics, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "Hardcode everything",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5200-2-Q5",
+    "quiz": "Q5200-2",
+    "title": "SQL Basics \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement SQL Basics.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5200-2-Q6",
+    "quiz": "Q5200-2",
+    "title": "SQL Basics \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with SQL Basics.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Basics",
+      "basics",
+      "BASICS"
+    ]
+  },
+  {
+    "_id": "Q5200-3-Q1",
+    "quiz": "Q5200-3",
+    "title": "Aggregation & Joins \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Aggregation & Joins is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5200-3-Q2",
+    "quiz": "Q5200-3",
+    "title": "Aggregation & Joins \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Aggregation & Joins?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Not Aggregation & Joins",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Aggregation & Joins?",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Aggregation & Joins",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "None of the above",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5200-3-Q3",
+    "quiz": "Q5200-3",
+    "title": "Aggregation & Joins \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Aggregation & Joins.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Aggregation",
+      "aggregation",
+      "AGGREGATION"
+    ]
+  },
+  {
+    "_id": "Q5200-3-Q4",
+    "quiz": "Q5200-3",
+    "title": "Aggregation & Joins \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Aggregation & Joins, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c2",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Ignore errors",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5200-3-Q5",
+    "quiz": "Q5200-3",
+    "title": "Aggregation & Joins \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Aggregation & Joins.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5200-3-Q6",
+    "quiz": "Q5200-3",
+    "title": "Aggregation & Joins \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Aggregation & Joins.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Joins",
+      "joins",
+      "JOINS"
+    ]
+  },
+  {
+    "_id": "Q5200-4-Q1",
+    "quiz": "Q5200-4",
+    "title": "Normalization \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Normalization is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5200-4-Q2",
+    "quiz": "Q5200-4",
+    "title": "Normalization \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Normalization?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Not Normalization",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Normalization?",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Normalization",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "_id": "Q5200-4-Q3",
+    "quiz": "Q5200-4",
+    "title": "Normalization \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Normalization.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Normalization",
+      "normalization",
+      "NORMALIZATION"
+    ]
+  },
+  {
+    "_id": "Q5200-4-Q4",
+    "quiz": "Q5200-4",
+    "title": "Normalization \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Normalization, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "_id": "Q5200-4-Q5",
+    "quiz": "Q5200-4",
+    "title": "Normalization \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Normalization.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5200-4-Q6",
+    "quiz": "Q5200-4",
+    "title": "Normalization \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Normalization.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Normalization",
+      "normalization",
+      "NORMALIZATION"
+    ]
+  },
+  {
+    "_id": "Q5200-5-Q1",
+    "quiz": "Q5200-5",
+    "title": "Indexes & Query Plans \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Indexes & Query Plans is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5200-5-Q2",
+    "quiz": "Q5200-5",
+    "title": "Indexes & Query Plans \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Indexes & Query Plans?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Indexes & Query Plans",
+        "correct": true
+      },
+      {
+        "_id": "c2",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Indexes & Query Plans?",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Not Indexes & Query Plans",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5200-5-Q3",
+    "quiz": "Q5200-5",
+    "title": "Indexes & Query Plans \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Indexes & Query Plans.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Indexes",
+      "indexes",
+      "INDEXES"
+    ]
+  },
+  {
+    "_id": "Q5200-5-Q4",
+    "quiz": "Q5200-5",
+    "title": "Indexes & Query Plans \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Indexes & Query Plans, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "Hardcode everything",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5200-5-Q5",
+    "quiz": "Q5200-5",
+    "title": "Indexes & Query Plans \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Indexes & Query Plans.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5200-5-Q6",
+    "quiz": "Q5200-5",
+    "title": "Indexes & Query Plans \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Indexes & Query Plans.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Plans",
+      "plans",
+      "PLANS"
+    ]
+  },
+  {
+    "_id": "Q5200-6-Q1",
+    "quiz": "Q5200-6",
+    "title": "Transactions & Isolation \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Transactions & Isolation is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5200-6-Q2",
+    "quiz": "Q5200-6",
+    "title": "Transactions & Isolation \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Transactions & Isolation?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Not Transactions & Isolation",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Transactions & Isolation",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "Transactions & Isolation?",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5200-6-Q3",
+    "quiz": "Q5200-6",
+    "title": "Transactions & Isolation \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Transactions & Isolation.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Transactions",
+      "transactions",
+      "TRANSACTIONS"
+    ]
+  },
+  {
+    "_id": "Q5200-6-Q4",
+    "quiz": "Q5200-6",
+    "title": "Transactions & Isolation \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Transactions & Isolation, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c3",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Hardcode everything",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5200-6-Q5",
+    "quiz": "Q5200-6",
+    "title": "Transactions & Isolation \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Transactions & Isolation.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5200-6-Q6",
+    "quiz": "Q5200-6",
+    "title": "Transactions & Isolation \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Transactions & Isolation.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Isolation",
+      "isolation",
+      "ISOLATION"
+    ]
+  },
+  {
+    "_id": "Q5200-7-Q1",
+    "quiz": "Q5200-7",
+    "title": "NoSQL & Mongo \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: NoSQL & Mongo is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5200-7-Q2",
+    "quiz": "Q5200-7",
+    "title": "NoSQL & Mongo \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to NoSQL & Mongo?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "NoSQL & Mongo?",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "NoSQL & Mongo",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "Not NoSQL & Mongo",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5200-7-Q3",
+    "quiz": "Q5200-7",
+    "title": "NoSQL & Mongo \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with NoSQL & Mongo.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "NoSQL",
+      "nosql",
+      "NOSQL"
+    ]
+  },
+  {
+    "_id": "Q5200-7-Q4",
+    "quiz": "Q5200-7",
+    "title": "NoSQL & Mongo \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For NoSQL & Mongo, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c3",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Hardcode everything",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5200-7-Q5",
+    "quiz": "Q5200-7",
+    "title": "NoSQL & Mongo \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement NoSQL & Mongo.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5200-7-Q6",
+    "quiz": "Q5200-7",
+    "title": "NoSQL & Mongo \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with NoSQL & Mongo.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Mongo",
+      "mongo",
+      "MONGO"
+    ]
+  },
+  {
+    "_id": "Q5800-1-Q1",
+    "quiz": "Q5800-1",
+    "title": "Asymptotics & Big-O \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Asymptotics & Big-O is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5800-1-Q2",
+    "quiz": "Q5800-1",
+    "title": "Asymptotics & Big-O \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Asymptotics & Big-O?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Asymptotics & Big-O?",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Asymptotics & Big-O",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "Not Asymptotics & Big-O",
+        "correct": false
+      }
+    ]
+  },
+  {
     "_id": "Q5800-1-Q3",
     "quiz": "Q5800-1",
-    "title": "Sorting Complexity",
+    "title": "Asymptotics & Big-O \u2014 Keyword",
     "points": 5,
-    "prompt": "What is the average time complexity of QuickSort?",
+    "prompt": "Fill in the primary keyword associated with Asymptotics & Big-O.",
     "type": "FILL_BLANK",
-    "correctAnswers": ["O(n log n)", "O(nlogn)", "n log n", "nlogn"]
+    "correctAnswers": [
+      "Asymptotics",
+      "asymptotics",
+      "ASYMPTOTICS"
+    ]
   },
   {
     "_id": "Q5800-1-Q4",
     "quiz": "Q5800-1",
-    "title": "Data Structures",
+    "title": "Asymptotics & Big-O \u2014 Best Practice",
     "points": 5,
-    "prompt": "A stack follows the LIFO (Last In First Out) principle.",
+    "prompt": "For Asymptotics & Big-O, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c3",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Ignore errors",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5800-1-Q5",
+    "quiz": "Q5800-1",
+    "title": "Asymptotics & Big-O \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Asymptotics & Big-O.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5800-1-Q6",
+    "quiz": "Q5800-1",
+    "title": "Asymptotics & Big-O \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Asymptotics & Big-O.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Big-O",
+      "big-o",
+      "BIG-O"
+    ]
+  },
+  {
+    "_id": "Q5800-2-Q1",
+    "quiz": "Q5800-2",
+    "title": "Recurrences & Induction \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Recurrences & Induction is a core topic covered in this course.",
     "type": "TRUE_FALSE",
     "correctAnswer": true
   },
-
+  {
+    "_id": "Q5800-2-Q2",
+    "quiz": "Q5800-2",
+    "title": "Recurrences & Induction \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Recurrences & Induction?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Not Recurrences & Induction",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Recurrences & Induction?",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Recurrences & Induction",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "None of the above",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5800-2-Q3",
+    "quiz": "Q5800-2",
+    "title": "Recurrences & Induction \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Recurrences & Induction.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Recurrences",
+      "recurrences",
+      "RECURRENCES"
+    ]
+  },
+  {
+    "_id": "Q5800-2-Q4",
+    "quiz": "Q5800-2",
+    "title": "Recurrences & Induction \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Recurrences & Induction, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "_id": "Q5800-2-Q5",
+    "quiz": "Q5800-2",
+    "title": "Recurrences & Induction \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Recurrences & Induction.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5800-2-Q6",
+    "quiz": "Q5800-2",
+    "title": "Recurrences & Induction \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Recurrences & Induction.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Induction",
+      "induction",
+      "INDUCTION"
+    ]
+  },
+  {
+    "_id": "Q5800-3-Q1",
+    "quiz": "Q5800-3",
+    "title": "Sorting Algorithms \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Sorting Algorithms is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5800-3-Q2",
+    "quiz": "Q5800-3",
+    "title": "Sorting Algorithms \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Sorting Algorithms?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Not Sorting Algorithms",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Sorting Algorithms?",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Sorting Algorithms",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "_id": "Q5800-3-Q3",
+    "quiz": "Q5800-3",
+    "title": "Sorting Algorithms \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Sorting Algorithms.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Sorting",
+      "sorting",
+      "SORTING"
+    ]
+  },
+  {
+    "_id": "Q5800-3-Q4",
+    "quiz": "Q5800-3",
+    "title": "Sorting Algorithms \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Sorting Algorithms, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "_id": "Q5800-3-Q5",
+    "quiz": "Q5800-3",
+    "title": "Sorting Algorithms \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Sorting Algorithms.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5800-3-Q6",
+    "quiz": "Q5800-3",
+    "title": "Sorting Algorithms \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Sorting Algorithms.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Algorithms",
+      "algorithms",
+      "ALGORITHMS"
+    ]
+  },
+  {
+    "_id": "Q5800-4-Q1",
+    "quiz": "Q5800-4",
+    "title": "Divide & Conquer \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Divide & Conquer is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5800-4-Q2",
+    "quiz": "Q5800-4",
+    "title": "Divide & Conquer \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Divide & Conquer?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Divide & Conquer",
+        "correct": true
+      },
+      {
+        "_id": "c3",
+        "text": "Not Divide & Conquer",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Divide & Conquer?",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5800-4-Q3",
+    "quiz": "Q5800-4",
+    "title": "Divide & Conquer \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Divide & Conquer.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Divide",
+      "divide",
+      "DIVIDE"
+    ]
+  },
+  {
+    "_id": "Q5800-4-Q4",
+    "quiz": "Q5800-4",
+    "title": "Divide & Conquer \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Divide & Conquer, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c2",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Global state everywhere",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5800-4-Q5",
+    "quiz": "Q5800-4",
+    "title": "Divide & Conquer \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Divide & Conquer.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5800-4-Q6",
+    "quiz": "Q5800-4",
+    "title": "Divide & Conquer \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Divide & Conquer.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Conquer",
+      "conquer",
+      "CONQUER"
+    ]
+  },
+  {
+    "_id": "Q5800-5-Q1",
+    "quiz": "Q5800-5",
+    "title": "Greedy Algorithms \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Greedy Algorithms is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5800-5-Q2",
+    "quiz": "Q5800-5",
+    "title": "Greedy Algorithms \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Greedy Algorithms?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Greedy Algorithms?",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Greedy Algorithms",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "Not Greedy Algorithms",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5800-5-Q3",
+    "quiz": "Q5800-5",
+    "title": "Greedy Algorithms \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Greedy Algorithms.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Greedy",
+      "greedy",
+      "GREEDY"
+    ]
+  },
+  {
+    "_id": "Q5800-5-Q4",
+    "quiz": "Q5800-5",
+    "title": "Greedy Algorithms \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Greedy Algorithms, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c2",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Ignore errors",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5800-5-Q5",
+    "quiz": "Q5800-5",
+    "title": "Greedy Algorithms \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Greedy Algorithms.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5800-5-Q6",
+    "quiz": "Q5800-5",
+    "title": "Greedy Algorithms \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Greedy Algorithms.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Algorithms",
+      "algorithms",
+      "ALGORITHMS"
+    ]
+  },
+  {
+    "_id": "Q5800-6-Q1",
+    "quiz": "Q5800-6",
+    "title": "Dynamic Programming \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Dynamic Programming is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5800-6-Q2",
+    "quiz": "Q5800-6",
+    "title": "Dynamic Programming \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Dynamic Programming?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Dynamic Programming?",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Not Dynamic Programming",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Dynamic Programming",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "None of the above",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5800-6-Q3",
+    "quiz": "Q5800-6",
+    "title": "Dynamic Programming \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Dynamic Programming.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Dynamic",
+      "dynamic",
+      "DYNAMIC"
+    ]
+  },
+  {
+    "_id": "Q5800-6-Q4",
+    "quiz": "Q5800-6",
+    "title": "Dynamic Programming \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Dynamic Programming, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "Global state everywhere",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5800-6-Q5",
+    "quiz": "Q5800-6",
+    "title": "Dynamic Programming \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Dynamic Programming.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5800-6-Q6",
+    "quiz": "Q5800-6",
+    "title": "Dynamic Programming \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Dynamic Programming.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Programming",
+      "programming",
+      "PROGRAMMING"
+    ]
+  },
+  {
+    "_id": "Q5800-7-Q1",
+    "quiz": "Q5800-7",
+    "title": "Graphs & Shortest Paths \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Graphs & Shortest Paths is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q5800-7-Q2",
+    "quiz": "Q5800-7",
+    "title": "Graphs & Shortest Paths \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Graphs & Shortest Paths?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Not Graphs & Shortest Paths",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Graphs & Shortest Paths",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "Graphs & Shortest Paths?",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5800-7-Q3",
+    "quiz": "Q5800-7",
+    "title": "Graphs & Shortest Paths \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Graphs & Shortest Paths.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Graphs",
+      "graphs",
+      "GRAPHS"
+    ]
+  },
+  {
+    "_id": "Q5800-7-Q4",
+    "quiz": "Q5800-7",
+    "title": "Graphs & Shortest Paths \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Graphs & Shortest Paths, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "Global state everywhere",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q5800-7-Q5",
+    "quiz": "Q5800-7",
+    "title": "Graphs & Shortest Paths \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Graphs & Shortest Paths.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q5800-7-Q6",
+    "quiz": "Q5800-7",
+    "title": "Graphs & Shortest Paths \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Graphs & Shortest Paths.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Paths",
+      "paths",
+      "PATHS"
+    ]
+  },
   {
     "_id": "Q6620-1-Q1",
     "quiz": "Q6620-1",
-    "title": "Cloud Services",
+    "title": "Cloud Basics \u2014 Statement Check",
     "points": 5,
-    "prompt": "Which AWS service is used for object storage?",
-    "type": "MULTIPLE_CHOICE",
-    "choices": [
-      { "_id": "c1", "text": "EC2", "correct": false },
-      { "_id": "c2", "text": "S3", "correct": true },
-      { "_id": "c3", "text": "RDS", "correct": false },
-      { "_id": "c4", "text": "Lambda", "correct": false }
-    ]
+    "prompt": "True or False: Cloud Basics is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
   },
   {
     "_id": "Q6620-1-Q2",
     "quiz": "Q6620-1",
-    "title": "Cloud Models",
+    "title": "Cloud Basics \u2014 Concept Pick",
     "points": 5,
-    "prompt": "IaaS stands for Infrastructure as a Service.",
-    "type": "TRUE_FALSE",
-    "correctAnswer": true
+    "prompt": "Which option best relates to Cloud Basics?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Cloud Basics",
+        "correct": true
+      },
+      {
+        "_id": "c3",
+        "text": "Not Cloud Basics",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Cloud Basics?",
+        "correct": false
+      }
+    ]
   },
   {
     "_id": "Q6620-1-Q3",
     "quiz": "Q6620-1",
-    "title": "AWS Compute",
+    "title": "Cloud Basics \u2014 Keyword",
     "points": 5,
-    "prompt": "What is the name of AWS's primary compute service?",
+    "prompt": "Fill in the primary keyword associated with Cloud Basics.",
     "type": "FILL_BLANK",
-    "correctAnswers": ["EC2", "Elastic Compute Cloud", "Amazon EC2"]
+    "correctAnswers": [
+      "Cloud",
+      "cloud",
+      "CLOUD"
+    ]
   },
   {
     "_id": "Q6620-1-Q4",
     "quiz": "Q6620-1",
-    "title": "Cloud Benefits",
+    "title": "Cloud Basics \u2014 Best Practice",
     "points": 5,
-    "prompt": "Which of the following is NOT a benefit of cloud computing?",
+    "prompt": "For Cloud Basics, which is usually considered a good practice?",
     "type": "MULTIPLE_CHOICE",
     "choices": [
-      { "_id": "c1", "text": "Scalability", "correct": false },
-      { "_id": "c2", "text": "Pay-as-you-go pricing", "correct": false },
-      { "_id": "c3", "text": "Increased capital expenditure", "correct": true },
-      { "_id": "c4", "text": "Global reach", "correct": false }
+      {
+        "_id": "c1",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c3",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Ignore errors",
+        "correct": false
+      }
     ]
   },
   {
     "_id": "Q6620-1-Q5",
     "quiz": "Q6620-1",
-    "title": "Virtualization",
+    "title": "Cloud Basics \u2014 Nuance",
     "points": 5,
-    "prompt": "Containers are lighter weight than virtual machines.",
-    "type": "TRUE_FALSE",
-    "correctAnswer": true
-  },
-
-  {
-    "_id": "Q6510-1-Q1",
-    "quiz": "Q6510-1",
-    "title": "Agile Methodology",
-    "points": 4,
-    "prompt": "What is the typical duration of a Sprint in Scrum?",
-    "type": "MULTIPLE_CHOICE",
-    "choices": [
-      { "_id": "c1", "text": "1 week", "correct": false },
-      { "_id": "c2", "text": "2-4 weeks", "correct": true },
-      { "_id": "c3", "text": "2 months", "correct": false },
-      { "_id": "c4", "text": "6 months", "correct": false }
-    ]
-  },
-  {
-    "_id": "Q6510-1-Q2",
-    "quiz": "Q6510-1",
-    "title": "Software Development",
-    "points": 4,
-    "prompt": "The Waterfall model is an iterative development methodology.",
+    "prompt": "True or False: There is only one universally correct way to implement Cloud Basics.",
     "type": "TRUE_FALSE",
     "correctAnswer": false
   },
   {
+    "_id": "Q6620-1-Q6",
+    "quiz": "Q6620-1",
+    "title": "Cloud Basics \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Cloud Basics.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Basics",
+      "basics",
+      "BASICS"
+    ]
+  },
+  {
+    "_id": "Q6620-2-Q1",
+    "quiz": "Q6620-2",
+    "title": "Docker & Images \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Docker & Images is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q6620-2-Q2",
+    "quiz": "Q6620-2",
+    "title": "Docker & Images \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Docker & Images?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Docker & Images?",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Not Docker & Images",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Docker & Images",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "None of the above",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q6620-2-Q3",
+    "quiz": "Q6620-2",
+    "title": "Docker & Images \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Docker & Images.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Docker",
+      "docker",
+      "DOCKER"
+    ]
+  },
+  {
+    "_id": "Q6620-2-Q4",
+    "quiz": "Q6620-2",
+    "title": "Docker & Images \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Docker & Images, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c2",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Hardcode everything",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q6620-2-Q5",
+    "quiz": "Q6620-2",
+    "title": "Docker & Images \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Docker & Images.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q6620-2-Q6",
+    "quiz": "Q6620-2",
+    "title": "Docker & Images \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Docker & Images.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Images",
+      "images",
+      "IMAGES"
+    ]
+  },
+  {
+    "_id": "Q6620-3-Q1",
+    "quiz": "Q6620-3",
+    "title": "Kubernetes \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Kubernetes is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q6620-3-Q2",
+    "quiz": "Q6620-3",
+    "title": "Kubernetes \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Kubernetes?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Kubernetes",
+        "correct": true
+      },
+      {
+        "_id": "c2",
+        "text": "Kubernetes?",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Not Kubernetes",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "None of the above",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q6620-3-Q3",
+    "quiz": "Q6620-3",
+    "title": "Kubernetes \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Kubernetes.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Kubernetes",
+      "kubernetes",
+      "KUBERNETES"
+    ]
+  },
+  {
+    "_id": "Q6620-3-Q4",
+    "quiz": "Q6620-3",
+    "title": "Kubernetes \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Kubernetes, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "_id": "Q6620-3-Q5",
+    "quiz": "Q6620-3",
+    "title": "Kubernetes \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Kubernetes.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q6620-3-Q6",
+    "quiz": "Q6620-3",
+    "title": "Kubernetes \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Kubernetes.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Kubernetes",
+      "kubernetes",
+      "KUBERNETES"
+    ]
+  },
+  {
+    "_id": "Q6620-4-Q1",
+    "quiz": "Q6620-4",
+    "title": "Storage (S3/EBS) \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Storage (S3/EBS) is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q6620-4-Q2",
+    "quiz": "Q6620-4",
+    "title": "Storage (S3/EBS) \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Storage (S3/EBS)?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Storage (S3/EBS)?",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Storage (S3/EBS)",
+        "correct": true
+      },
+      {
+        "_id": "c3",
+        "text": "Not Storage (S3/EBS)",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "None of the above",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q6620-4-Q3",
+    "quiz": "Q6620-4",
+    "title": "Storage (S3/EBS) \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Storage (S3/EBS).",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Storage",
+      "storage",
+      "STORAGE"
+    ]
+  },
+  {
+    "_id": "Q6620-4-Q4",
+    "quiz": "Q6620-4",
+    "title": "Storage (S3/EBS) \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Storage (S3/EBS), which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "Hardcode everything",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q6620-4-Q5",
+    "quiz": "Q6620-4",
+    "title": "Storage (S3/EBS) \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Storage (S3/EBS).",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q6620-4-Q6",
+    "quiz": "Q6620-4",
+    "title": "Storage (S3/EBS) \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Storage (S3/EBS).",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "(S3/EBS)",
+      "(s3/ebs)",
+      "(S3/EBS)"
+    ]
+  },
+  {
+    "_id": "Q6620-5-Q1",
+    "quiz": "Q6620-5",
+    "title": "Networking & VPC \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Networking & VPC is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q6620-5-Q2",
+    "quiz": "Q6620-5",
+    "title": "Networking & VPC \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Networking & VPC?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Not Networking & VPC",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Networking & VPC",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "Networking & VPC?",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q6620-5-Q3",
+    "quiz": "Q6620-5",
+    "title": "Networking & VPC \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Networking & VPC.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Networking",
+      "networking",
+      "NETWORKING"
+    ]
+  },
+  {
+    "_id": "Q6620-5-Q4",
+    "quiz": "Q6620-5",
+    "title": "Networking & VPC \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Networking & VPC, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "_id": "Q6620-5-Q5",
+    "quiz": "Q6620-5",
+    "title": "Networking & VPC \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Networking & VPC.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q6620-5-Q6",
+    "quiz": "Q6620-5",
+    "title": "Networking & VPC \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Networking & VPC.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "VPC",
+      "vpc",
+      "VPC"
+    ]
+  },
+  {
+    "_id": "Q6620-6-Q1",
+    "quiz": "Q6620-6",
+    "title": "IAM & Security \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: IAM & Security is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q6620-6-Q2",
+    "quiz": "Q6620-6",
+    "title": "IAM & Security \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to IAM & Security?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Not IAM & Security",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "IAM & Security?",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "IAM & Security",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "_id": "Q6620-6-Q3",
+    "quiz": "Q6620-6",
+    "title": "IAM & Security \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with IAM & Security.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "IAM",
+      "iam",
+      "IAM"
+    ]
+  },
+  {
+    "_id": "Q6620-6-Q4",
+    "quiz": "Q6620-6",
+    "title": "IAM & Security \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For IAM & Security, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c3",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Hardcode everything",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q6620-6-Q5",
+    "quiz": "Q6620-6",
+    "title": "IAM & Security \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement IAM & Security.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q6620-6-Q6",
+    "quiz": "Q6620-6",
+    "title": "IAM & Security \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with IAM & Security.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Security",
+      "security",
+      "SECURITY"
+    ]
+  },
+  {
+    "_id": "Q6620-7-Q1",
+    "quiz": "Q6620-7",
+    "title": "Observability & Monitoring \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Observability & Monitoring is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q6620-7-Q2",
+    "quiz": "Q6620-7",
+    "title": "Observability & Monitoring \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Observability & Monitoring?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Observability & Monitoring?",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Not Observability & Monitoring",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Observability & Monitoring",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "_id": "Q6620-7-Q3",
+    "quiz": "Q6620-7",
+    "title": "Observability & Monitoring \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Observability & Monitoring.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Observability",
+      "observability",
+      "OBSERVABILITY"
+    ]
+  },
+  {
+    "_id": "Q6620-7-Q4",
+    "quiz": "Q6620-7",
+    "title": "Observability & Monitoring \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Observability & Monitoring, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "_id": "Q6620-7-Q5",
+    "quiz": "Q6620-7",
+    "title": "Observability & Monitoring \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Observability & Monitoring.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q6620-7-Q6",
+    "quiz": "Q6620-7",
+    "title": "Observability & Monitoring \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Observability & Monitoring.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Monitoring",
+      "monitoring",
+      "MONITORING"
+    ]
+  },
+  {
+    "_id": "Q6510-1-Q1",
+    "quiz": "Q6510-1",
+    "title": "SDLC & Agile \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: SDLC & Agile is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q6510-1-Q2",
+    "quiz": "Q6510-1",
+    "title": "SDLC & Agile \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to SDLC & Agile?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "SDLC & Agile",
+        "correct": true
+      },
+      {
+        "_id": "c2",
+        "text": "SDLC & Agile?",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Not SDLC & Agile",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "None of the above",
+        "correct": false
+      }
+    ]
+  },
+  {
     "_id": "Q6510-1-Q3",
     "quiz": "Q6510-1",
-    "title": "Version Control",
-    "points": 4,
-    "prompt": "What command is used to create a new branch in Git?",
+    "title": "SDLC & Agile \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with SDLC & Agile.",
     "type": "FILL_BLANK",
-    "correctAnswers": ["git branch", "branch", "git checkout -b"]
+    "correctAnswers": [
+      "SDLC",
+      "sdlc",
+      "SDLC"
+    ]
   },
   {
     "_id": "Q6510-1-Q4",
     "quiz": "Q6510-1",
-    "title": "Scrum Roles",
-    "points": 4,
-    "prompt": "Who is responsible for maximizing the value of the product in Scrum?",
+    "title": "SDLC & Agile \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For SDLC & Agile, which is usually considered a good practice?",
     "type": "MULTIPLE_CHOICE",
     "choices": [
-      { "_id": "c1", "text": "Scrum Master", "correct": false },
-      { "_id": "c2", "text": "Product Owner", "correct": true },
-      { "_id": "c3", "text": "Development Team", "correct": false },
-      { "_id": "c4", "text": "Stakeholders", "correct": false }
+      {
+        "_id": "c1",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      }
     ]
   },
   {
     "_id": "Q6510-1-Q5",
     "quiz": "Q6510-1",
-    "title": "Testing",
-    "points": 4,
-    "prompt": "Unit testing focuses on testing individual components in isolation.",
+    "title": "SDLC & Agile \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement SDLC & Agile.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q6510-1-Q6",
+    "quiz": "Q6510-1",
+    "title": "SDLC & Agile \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with SDLC & Agile.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Agile",
+      "agile",
+      "AGILE"
+    ]
+  },
+  {
+    "_id": "Q6510-2-Q1",
+    "quiz": "Q6510-2",
+    "title": "Requirements & User Stories \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Requirements & User Stories is a core topic covered in this course.",
     "type": "TRUE_FALSE",
     "correctAnswer": true
+  },
+  {
+    "_id": "Q6510-2-Q2",
+    "quiz": "Q6510-2",
+    "title": "Requirements & User Stories \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Requirements & User Stories?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Requirements & User Stories",
+        "correct": true
+      },
+      {
+        "_id": "c2",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Not Requirements & User Stories",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Requirements & User Stories?",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q6510-2-Q3",
+    "quiz": "Q6510-2",
+    "title": "Requirements & User Stories \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Requirements & User Stories.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Requirements",
+      "requirements",
+      "REQUIREMENTS"
+    ]
+  },
+  {
+    "_id": "Q6510-2-Q4",
+    "quiz": "Q6510-2",
+    "title": "Requirements & User Stories \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Requirements & User Stories, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "Hardcode everything",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q6510-2-Q5",
+    "quiz": "Q6510-2",
+    "title": "Requirements & User Stories \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Requirements & User Stories.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q6510-2-Q6",
+    "quiz": "Q6510-2",
+    "title": "Requirements & User Stories \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Requirements & User Stories.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Stories",
+      "stories",
+      "STORIES"
+    ]
+  },
+  {
+    "_id": "Q6510-3-Q1",
+    "quiz": "Q6510-3",
+    "title": "Architecture & REST \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Architecture & REST is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q6510-3-Q2",
+    "quiz": "Q6510-3",
+    "title": "Architecture & REST \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Architecture & REST?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Not Architecture & REST",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Architecture & REST",
+        "correct": true
+      },
+      {
+        "_id": "c3",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Architecture & REST?",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q6510-3-Q3",
+    "quiz": "Q6510-3",
+    "title": "Architecture & REST \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Architecture & REST.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Architecture",
+      "architecture",
+      "ARCHITECTURE"
+    ]
+  },
+  {
+    "_id": "Q6510-3-Q4",
+    "quiz": "Q6510-3",
+    "title": "Architecture & REST \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Architecture & REST, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Ignore errors",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c3",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Global state everywhere",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q6510-3-Q5",
+    "quiz": "Q6510-3",
+    "title": "Architecture & REST \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Architecture & REST.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q6510-3-Q6",
+    "quiz": "Q6510-3",
+    "title": "Architecture & REST \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Architecture & REST.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "REST",
+      "rest",
+      "REST"
+    ]
+  },
+  {
+    "_id": "Q6510-4-Q1",
+    "quiz": "Q6510-4",
+    "title": "CI/CD & DevOps \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: CI/CD & DevOps is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q6510-4-Q2",
+    "quiz": "Q6510-4",
+    "title": "CI/CD & DevOps \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to CI/CD & DevOps?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "CI/CD & DevOps?",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "CI/CD & DevOps",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "Not CI/CD & DevOps",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q6510-4-Q3",
+    "quiz": "Q6510-4",
+    "title": "CI/CD & DevOps \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with CI/CD & DevOps.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "CI/CD",
+      "ci/cd",
+      "CI/CD"
+    ]
+  },
+  {
+    "_id": "Q6510-4-Q4",
+    "quiz": "Q6510-4",
+    "title": "CI/CD & DevOps \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For CI/CD & DevOps, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "Ignore errors",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q6510-4-Q5",
+    "quiz": "Q6510-4",
+    "title": "CI/CD & DevOps \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement CI/CD & DevOps.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q6510-4-Q6",
+    "quiz": "Q6510-4",
+    "title": "CI/CD & DevOps \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with CI/CD & DevOps.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "DevOps",
+      "devops",
+      "DEVOPS"
+    ]
+  },
+  {
+    "_id": "Q6510-5-Q1",
+    "quiz": "Q6510-5",
+    "title": "Observability \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Observability is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q6510-5-Q2",
+    "quiz": "Q6510-5",
+    "title": "Observability \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Observability?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Observability",
+        "correct": true
+      },
+      {
+        "_id": "c3",
+        "text": "Not Observability",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Observability?",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q6510-5-Q3",
+    "quiz": "Q6510-5",
+    "title": "Observability \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Observability.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Observability",
+      "observability",
+      "OBSERVABILITY"
+    ]
+  },
+  {
+    "_id": "Q6510-5-Q4",
+    "quiz": "Q6510-5",
+    "title": "Observability \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Observability, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c4",
+        "text": "Ignore errors",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q6510-5-Q5",
+    "quiz": "Q6510-5",
+    "title": "Observability \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Observability.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q6510-5-Q6",
+    "quiz": "Q6510-5",
+    "title": "Observability \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Observability.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Observability",
+      "observability",
+      "OBSERVABILITY"
+    ]
+  },
+  {
+    "_id": "Q6510-6-Q1",
+    "quiz": "Q6510-6",
+    "title": "Security & Threat Modeling \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Security & Threat Modeling is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q6510-6-Q2",
+    "quiz": "Q6510-6",
+    "title": "Security & Threat Modeling \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Security & Threat Modeling?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Not Security & Threat Modeling",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Security & Threat Modeling",
+        "correct": true
+      },
+      {
+        "_id": "c3",
+        "text": "Security & Threat Modeling?",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "None of the above",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q6510-6-Q3",
+    "quiz": "Q6510-6",
+    "title": "Security & Threat Modeling \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Security & Threat Modeling.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Security",
+      "security",
+      "SECURITY"
+    ]
+  },
+  {
+    "_id": "Q6510-6-Q4",
+    "quiz": "Q6510-6",
+    "title": "Security & Threat Modeling \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Security & Threat Modeling, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c3",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Ignore errors",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q6510-6-Q5",
+    "quiz": "Q6510-6",
+    "title": "Security & Threat Modeling \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Security & Threat Modeling.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q6510-6-Q6",
+    "quiz": "Q6510-6",
+    "title": "Security & Threat Modeling \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Security & Threat Modeling.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Modeling",
+      "modeling",
+      "MODELING"
+    ]
+  },
+  {
+    "_id": "Q6510-7-Q1",
+    "quiz": "Q6510-7",
+    "title": "Performance & Load Testing \u2014 Statement Check",
+    "points": 5,
+    "prompt": "True or False: Performance & Load Testing is a core topic covered in this course.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": true
+  },
+  {
+    "_id": "Q6510-7-Q2",
+    "quiz": "Q6510-7",
+    "title": "Performance & Load Testing \u2014 Concept Pick",
+    "points": 5,
+    "prompt": "Which option best relates to Performance & Load Testing?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Not Performance & Load Testing",
+        "correct": false
+      },
+      {
+        "_id": "c2",
+        "text": "Performance & Load Testing?",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "None of the above",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Performance & Load Testing",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "_id": "Q6510-7-Q3",
+    "quiz": "Q6510-7",
+    "title": "Performance & Load Testing \u2014 Keyword",
+    "points": 5,
+    "prompt": "Fill in the primary keyword associated with Performance & Load Testing.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Performance",
+      "performance",
+      "PERFORMANCE"
+    ]
+  },
+  {
+    "_id": "Q6510-7-Q4",
+    "quiz": "Q6510-7",
+    "title": "Performance & Load Testing \u2014 Best Practice",
+    "points": 5,
+    "prompt": "For Performance & Load Testing, which is usually considered a good practice?",
+    "type": "MULTIPLE_CHOICE",
+    "choices": [
+      {
+        "_id": "c1",
+        "text": "Use appropriate abstractions",
+        "correct": true
+      },
+      {
+        "_id": "c2",
+        "text": "Hardcode everything",
+        "correct": false
+      },
+      {
+        "_id": "c3",
+        "text": "Global state everywhere",
+        "correct": false
+      },
+      {
+        "_id": "c4",
+        "text": "Ignore errors",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "_id": "Q6510-7-Q5",
+    "quiz": "Q6510-7",
+    "title": "Performance & Load Testing \u2014 Nuance",
+    "points": 5,
+    "prompt": "True or False: There is only one universally correct way to implement Performance & Load Testing.",
+    "type": "TRUE_FALSE",
+    "correctAnswer": false
+  },
+  {
+    "_id": "Q6510-7-Q6",
+    "quiz": "Q6510-7",
+    "title": "Performance & Load Testing \u2014 Secondary Term",
+    "points": 5,
+    "prompt": "Name a term closely associated with Performance & Load Testing.",
+    "type": "FILL_BLANK",
+    "correctAnswers": [
+      "Testing",
+      "testing",
+      "TESTING"
+    ]
   }
 ]

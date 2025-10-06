@@ -8,23 +8,10 @@ export async function findQuizzesForCourse(courseId, currentUser) {
   const baseQuery = { course: courseId };
 
   if (!currentUser || currentUser.role !== "FACULTY") {
+    // Students should see all published quizzes, even if Closed or Not yet available,
+    // so that the UI can display their status (Canvas behavior).
     baseQuery.published = true;
-    baseQuery.$and = [
-      {
-        $or: [
-          { availableDate: { $lte: now } },
-          { availableDate: { $exists: false } },
-          { availableDate: null },
-        ],
-      },
-      {
-        $or: [
-          { untilDate: { $gte: now } },
-          { untilDate: { $exists: false } },
-          { untilDate: null },
-        ],
-      },
-    ];
+    // no date gating here
   }
 
   const quizzes = await QuizModel.find(baseQuery).sort({ createdAt: -1 });

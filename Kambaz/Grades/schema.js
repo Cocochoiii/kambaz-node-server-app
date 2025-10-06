@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 const schema = new mongoose.Schema(
     {
-        _id: String,                       // string IDs across the app
+        _id: String, // string IDs across the app
         student: { type: String, ref: "UserModel", required: true },
         assignment: { type: String, ref: "AssignmentModel", required: true },
         course: { type: String, ref: "CourseModel", required: true },
@@ -11,8 +11,9 @@ const schema = new mongoose.Schema(
         submitted: { type: Date, default: null },
         released: { type: Boolean, default: false },
         type: {
+            // NOTE: allow midterm/final so your seed data works
             type: String,
-            enum: ["assignment", "quiz", "exam", "project", "other"],
+            enum: ["assignment", "quiz", "exam", "midterm", "final", "project", "other"],
             default: "assignment",
         },
         comment: { type: String, default: "" },
