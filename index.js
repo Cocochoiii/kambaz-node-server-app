@@ -9,7 +9,15 @@ import CourseRoutes from "./Kambaz/Courses/routes.js";
 import EnrollmentRoutes from "./Kambaz/Enrollments/routes.js";
 import QuizRoutes from "./Kambaz/Quizzes/routes.js";
 import Lab5 from "./Lab5/index.js";
-import PazzaRoutes from "./Kambaz/Server/Routes/pazzaRoutes.js";  // ✅ FIXED PATH
+import PazzaRoutes from "./Kambaz/Pazza/routes.js";
+import AnnouncementRoutes from "./Kambaz/Announcements/routes.js";
+import AssignmentRoutes from "./Kambaz/Assignments/routes.js";
+import GradeRoutes from "./Kambaz/Grades/routes.js";
+import HomeRoutes from "./Kambaz/Home/routes.js";
+import PeopleRoutes from "./Kambaz/People/routes.js";
+import ZoomRoutes from "./Kambaz/Zoom/routes.js";
+import InboxRoutes from "./Kambaz/Inbox/routes.js";
+import SettingsRoutes from "./Kambaz/Settings/routes.js";
 
 const app = express();
 
@@ -68,12 +76,24 @@ CourseRoutes(app);
 EnrollmentRoutes(app);
 QuizRoutes(app);
 Lab5(app);
+AnnouncementRoutes(app);
+AssignmentRoutes(app);
+GradeRoutes(app);
+HomeRoutes(app);
+PeopleRoutes(app);
+InboxRoutes(app);
+SettingsRoutes(app);
+
+
+
 
 // Pazza routes under /api prefix
 app.use("/api", PazzaRoutes);
+app.use("/api", ZoomRoutes);
 
 /** Server */
 const PORT = 4000;
 app.listen(PORT, () =>
     console.log(`🚀 Server running on http://localhost:${PORT}`)
 );
+

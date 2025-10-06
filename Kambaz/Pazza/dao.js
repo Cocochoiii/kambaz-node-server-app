@@ -1,369 +1,185 @@
 // Kambaz/Pazza/dao.js
-import mongoose from "mongoose";
-import pazzaSchemas, { pazzaSeedData } from "../Database/pazza.js";
-import { v4 as uuidv4 } from "uuid";
+// ❗️NOTE: from Kambaz/Pazza/* to Kambaz/Database/* is ONE directory up.
+import { pazzaSeedData } from "../Database/pazza.js";
+import { Folder, Post } from "./models.js";
 
-const PostModel = mongoose.model("pazzaPosts", pazzaSchemas.posts);
-const FolderModel = mongoose.model("pazzaFolders", pazzaSchemas.folders);
-
-// Initialize default folders for a course
-export const initializeCourseData = async (courseId) => {
-    const existingFolders = await FolderModel.find({ course: courseId });
-    if (existingFolders.length === 0) {
-        const defaultFolders = pazzaSeedData.folders.filter(f => f.course === courseId);
-        await FolderModel.insertMany(defaultFolders);
+/** -------------- Seed once -------------- */
+export async function seedIfNeeded() {
+    // Folders
+    const folderCount = await Folder.countDocuments();
+    if (folderCount === 0) {
+        await Folder.insertMany(pazzaSeedData.folders);
     }
-};
 
-// Folder operations
-export const getFoldersByCourse = async (courseId) => {
-    await initializeCourseData(courseId);
-    return await FolderModel.find({ course: courseId }).sort({ name: 1 });
-};
+    // Posts + nested content
+    const postCount = await Post.countDocuments();
+    if (postCount === 0) {
+        const processed = pazzaSeedData.posts.map((p) => {
+            const post = { ...p };
 
-export const createFolder = async (courseId, folderData) => {
-    const folder = {
-        _id: `${courseId}-${folderData.name.replace(/\s+/g, '_').toLowerCase()}`,
-        name: folderData.name,
-        course: courseId,
-        isDefault: false,
-        createdAt: new Date()
-    };
-    return await FolderModel.create(folder);
-};
+            const answers = pazzaSeedData.answers.filter((a) => a.postId === p._id);
+            post.studentAnswers = answers
+                .filter((a) => a.authorRole === "STUDENT")
+                .map((a) => ({
+                    _id: a._id,
+                    author: a.author,
+                    authorRole: a.authorRole,
+                    authorName: a.authorName,
+                    content: a.content,
+                    timestamp: new Date(a.createdAt),
+                    isGoodAnswer: !!a.isGoodAnswer,
+                }));
 
-export const updateFolder = async (folderId, updates) => {
-    return await FolderModel.findByIdAndUpdate(
-        folderId,
-        { name: updates.name },
-        { new: true }
-    );
-};
+            post.instructorAnswers = answers
+                .filter((a) => ["FACULTY", "TA", "INSTRUCTOR"].includes(a.authorRole))
+                .map((a) => ({
+                    _id: a._id,
+                    author: a.author,
+                    authorRole: a.authorRole,
+                    authorName: a.authorName,
+                    content: a.content,
+                    timestamp: new Date(a.createdAt),
+                    isGoodAnswer: !!a.isGoodAnswer,
+                }));
 
-export const deleteFolder = async (folderId) => {
-    // Remove folder from all posts first
-    await PostModel.updateMany(
-        { folders: folderId },
-        { $pull: { folders: folderId } }
-    );
-    return await FolderModel.findByIdAndDelete(folderId);
-};
+            const followups = pazzaSeedData.followups
+                .filter((f) => f.postId === p._id && !f.parentId)
+                .map((f) => {
+                    const replies = pazzaSeedData.followups
+                        .filter((r) => r.parentId === f._id)
+                        .map((r) => ({
+                            _id: r._id,
+                            author: r.author,
+                            authorRole: r.authorRole,
+                            authorName: r.authorName,
+                            content: r.content,
+                            timestamp: new Date(r.createdAt),
+                        }));
+                    return {
+                        _id: f._id,
+                        author: f.author,
+                        authorRole: f.authorRole,
+                        authorName: f.authorName,
+                        content: f.content,
+                        isResolved: !!f.isResolved,
+                        timestamp: new Date(f.createdAt),
+                        replies,
+                    };
+                });
 
-export const deleteFolders = async (folderIds) => {
-    // Remove folders from all posts first
-    await PostModel.updateMany(
-        { folders: { $in: folderIds } },
-        { $pull: { folders: { $in: folderIds } } }
-    );
-    return await FolderModel.deleteMany({ _id: { $in: folderIds } });
-};
+            post.followups = followups;
+            post.hasInstructorAnswer = post.instructorAnswers.length > 0;
+            post.hasStudentAnswer = post.studentAnswers.length > 0;
+            return post;
+        });
 
-// Post operations
-export const getPostsByCourse = async (courseId, userId, userRole) => {
-    const query = { course: courseId };
+        await Post.insertMany(processed);
+    }
+}
 
-    // Students can only see posts visible to entire class or specifically to them
-    if (userRole === 'STUDENT') {
-        query.$or = [
+/** -------------- Helpers -------------- */
+const visibleOr = (userId) =>
+    userId
+    ? [
             { postTo: "entire_class" },
-            { visibleTo: userId }
-        ];
-    }
-
-    return await PostModel.find(query)
-        .populate('author', 'username firstName lastName role')
-        .populate('studentAnswers.author', 'username firstName lastName role')
-        .populate('instructorAnswers.author', 'username firstName lastName role')
-        .populate('followups.author', 'username firstName lastName role')
-        .populate('followups.replies.author', 'username firstName lastName role')
-        .sort({ createdAt: -1 });
-};
-
-export const getPostsByCourseAndFolder = async (courseId, folderId, userId, userRole) => {
-    const query = {
-        course: courseId,
-        folders: folderId
-    };
-
-    if (userRole === 'STUDENT') {
-        query.$or = [
-            { postTo: "entire_class" },
-            { visibleTo: userId }
-        ];
-    }
-
-    return await PostModel.find(query)
-        .populate('author', 'username firstName lastName role')
-        .populate('studentAnswers.author', 'username firstName lastName role')
-        .populate('instructorAnswers.author', 'username firstName lastName role')
-        .populate('followups.author', 'username firstName lastName role')
-        .populate('followups.replies.author', 'username firstName lastName role')
-        .sort({ createdAt: -1 });
-};
-
-export const getPostById = async (postId) => {
-    const post = await PostModel.findById(postId)
-        .populate('author', 'username firstName lastName role')
-        .populate('studentAnswers.author', 'username firstName lastName role')
-        .populate('instructorAnswers.author', 'username firstName lastName role')
-        .populate('followups.author', 'username firstName lastName role')
-        .populate('followups.replies.author', 'username firstName lastName role');
-
-    // Increment view count
-    if (post) {
-        post.views = (post.views || 0) + 1;
-        await post.save();
-    }
-
-    return post;
-};
-
-export const createPost = async (courseId, postData, userId) => {
-    const post = {
-        _id: uuidv4(),
-        course: courseId,
-        type: postData.type || "question",
-        postTo: postData.postTo || "entire_class",
-        visibleTo: postData.visibleTo || [],
-        folders: postData.folders || [],
-        summary: postData.summary,
-        details: postData.details,
-        author: userId,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        views: 0,
-        studentAnswers: [],
-        instructorAnswers: [],
-        followups: []
-    };
-
-    const created = await PostModel.create(post);
-    return await getPostById(created._id);
-};
-
-export const updatePost = async (postId, updates) => {
-    updates.updatedAt = new Date();
-    return await PostModel.findByIdAndUpdate(
-        postId,
-        updates,
-        { new: true }
-    ).populate('author', 'username firstName lastName role');
-};
-
-export const deletePost = async (postId) => {
-    return await PostModel.findByIdAndDelete(postId);
-};
-
-export const searchPosts = async (courseId, searchTerm, userId, userRole) => {
-    const query = {
-        course: courseId,
-        $or: [
-            { summary: { $regex: searchTerm, $options: 'i' } },
-            { details: { $regex: searchTerm, $options: 'i' } }
+            { postTo: "individual", visibleTo: userId },
+            { author: userId },
         ]
-    };
+    : [{ postTo: "entire_class" }];
 
-    if (userRole === 'STUDENT') {
-        query.$and = [
-            {
-                $or: [
-                    { postTo: "entire_class" },
-                    { visibleTo: userId }
-                ]
-            }
+/** Folders */
+export const listFolders = (courseId) =>
+    Folder.find({ course: courseId }).sort({ order: 1 });
+
+export const createFolder = (courseId, name) =>
+    new Folder({
+                   _id: `${courseId}-${name.toLowerCase().replace(/\s+/g, "-")}`,
+                   name,
+                   course: courseId,
+                   isDefault: false,
+                   order: 100,
+               }).save();
+
+export const renameFolder = (folderId, name) =>
+    Folder.findByIdAndUpdate(folderId, { name }, { new: true });
+
+export async function removeFolder(folderId) {
+    const f = await Folder.findById(folderId);
+    if (!f) return null;
+    if (f.isDefault) throw new Error("Cannot delete default folder");
+    await Folder.findByIdAndDelete(folderId);
+    return { ok: true };
+}
+
+/** Posts */
+export function listPosts(courseId, { folder, search, userId }) {
+    const q = { course: courseId, $and: [{ $or: visibleOr(userId) }] };
+    if (folder) q.folders = folder;
+    if (search) {
+        q.$or = [
+            { summary: { $regex: search, $options: "i" } },
+            { details: { $regex: search, $options: "i" } },
         ];
     }
+    return Post.find(q).sort({ createdAt: -1 });
+}
 
-    return await PostModel.find(query)
-        .populate('author', 'username firstName lastName role')
-        .sort({ createdAt: -1 });
-};
+export function getPost(postId) {
+    return Post.findById(postId);
+}
 
-// Answer operations
-export const addAnswer = async (postId, answerData, userId, userRole) => {
-    const answer = {
-        _id: uuidv4(),
-        author: userId,
-        content: answerData.content,
-        timestamp: new Date(),
-        isInstructorAnswer: userRole === 'FACULTY' || userRole === 'TA'
-    };
+export function savePost(courseId, payload, sessionUser) {
+    const { type, postTo, visibleTo, folders, summary, details, title } = payload;
+    return new Post({
+                        _id: `${courseId}-post-${Date.now()}`,
+                        course: courseId,
+                        type,
+                        postTo,
+                        visibleTo: postTo === "individual" ? visibleTo || [] : [],
+                        folders,
+                        summary: summary || title,
+                        details,
+                        author: sessionUser?._id || "current-user",
+                        authorRole: sessionUser?.role || "STUDENT",
+                        authorName: sessionUser
+                                    ? `${sessionUser.firstName} ${sessionUser.lastName}`
+                                    : "Anonymous",
+                        createdAt: new Date(),
+                        updatedAt: new Date(),
+                        views: 0,
+                        studentAnswers: [],
+                        instructorAnswers: [],
+                        followups: [],
+                    }).save();
+}
 
-    const updateField = answer.isInstructorAnswer ? 'instructorAnswers' : 'studentAnswers';
-
-    return await PostModel.findByIdAndUpdate(
-        postId,
-        {
-            $push: { [updateField]: answer },
-            updatedAt: new Date()
-        },
-        { new: true }
-    ).populate('author', 'username firstName lastName role')
-        .populate('studentAnswers.author', 'username firstName lastName role')
-        .populate('instructorAnswers.author', 'username firstName lastName role');
-};
-
-export const updateAnswer = async (postId, answerId, content, isInstructorAnswer) => {
-    const field = isInstructorAnswer ? 'instructorAnswers' : 'studentAnswers';
-    const arrayFilter = isInstructorAnswer ? 'instructorAnswer' : 'studentAnswer';
-
-    return await PostModel.findOneAndUpdate(
-        { _id: postId },
-        {
-            $set: {
-                [`${field}.$[${arrayFilter}].content`]: content,
-                updatedAt: new Date()
-            }
-        },
-        {
-            arrayFilters: [{ [`${arrayFilter}._id`]: answerId }],
-            new: true
-        }
-    ).populate('author', 'username firstName lastName role')
-        .populate('studentAnswers.author', 'username firstName lastName role')
-        .populate('instructorAnswers.author', 'username firstName lastName role');
-};
-
-export const deleteAnswer = async (postId, answerId, isInstructorAnswer) => {
-    const field = isInstructorAnswer ? 'instructorAnswers' : 'studentAnswers';
-
-    return await PostModel.findByIdAndUpdate(
-        postId,
-        {
-            $pull: { [field]: { _id: answerId } },
-            updatedAt: new Date()
-        },
-        { new: true }
-    ).populate('author', 'username firstName lastName role')
-        .populate('studentAnswers.author', 'username firstName lastName role')
-        .populate('instructorAnswers.author', 'username firstName lastName role');
-};
-
-// Followup operations
-export const addFollowup = async (postId, followupData, userId) => {
-    const followup = {
-        _id: uuidv4(),
-        author: userId,
-        content: followupData.content,
-        isResolved: false,
-        timestamp: new Date(),
-        replies: []
-    };
-
-    return await PostModel.findByIdAndUpdate(
-        postId,
-        {
-            $push: { followups: followup },
-            updatedAt: new Date()
-        },
-        { new: true }
-    ).populate('followups.author', 'username firstName lastName role');
-};
-
-export const updateFollowupStatus = async (postId, followupId, isResolved) => {
-    return await PostModel.findOneAndUpdate(
-        { _id: postId },
-        {
-            $set: {
-                'followups.$[followup].isResolved': isResolved,
-                updatedAt: new Date()
-            }
-        },
-        {
-            arrayFilters: [{ 'followup._id': followupId }],
-            new: true
-        }
-    ).populate('followups.author', 'username firstName lastName role');
-};
-
-export const deleteFollowup = async (postId, followupId) => {
-    return await PostModel.findByIdAndUpdate(
-        postId,
-        {
-            $pull: { followups: { _id: followupId } },
-            updatedAt: new Date()
-        },
-        { new: true }
-    ).populate('followups.author', 'username firstName lastName role');
-};
-
-// Reply operations
-export const addReply = async (postId, followupId, replyData, userId) => {
-    const reply = {
-        _id: uuidv4(),
-        author: userId,
-        content: replyData.content,
-        timestamp: new Date()
-    };
-
-    return await PostModel.findOneAndUpdate(
-        { _id: postId },
-        {
-            $push: { 'followups.$[followup].replies': reply },
-            updatedAt: new Date()
-        },
-        {
-            arrayFilters: [{ 'followup._id': followupId }],
-            new: true
-        }
-    ).populate('followups.author', 'username firstName lastName role')
-        .populate('followups.replies.author', 'username firstName lastName role');
-};
-
-export const deleteReply = async (postId, followupId, replyId) => {
-    return await PostModel.findOneAndUpdate(
-        { _id: postId },
-        {
-            $pull: { 'followups.$[followup].replies': { _id: replyId } },
-            updatedAt: new Date()
-        },
-        {
-            arrayFilters: [{ 'followup._id': followupId }],
-            new: true
-        }
-    ).populate('followups.author', 'username firstName lastName role')
-        .populate('followups.replies.author', 'username firstName lastName role');
-};
-
-// Statistics
-export const getCourseStatistics = async (courseId) => {
-    const posts = await PostModel.find({ course: courseId });
-
-    const unreadPosts = 0; // Would need user-specific tracking
-    const unansweredQuestions = posts.filter(p =>
-                                                 p.type === 'question' &&
-                                                 p.studentAnswers.length === 0 &&
-                                                 p.instructorAnswers.length === 0
-    ).length;
-
-    const unansweredFollowups = posts.reduce((count, post) => {
-        return count + post.followups.filter(f => !f.isResolved).length;
-    }, 0);
-
-    const totalPosts = posts.length;
-    const instructorResponses = posts.reduce((count, post) => {
-        return count + post.instructorAnswers.length;
-    }, 0);
-
-    const studentResponses = posts.reduce((count, post) => {
-        return count + post.studentAnswers.length;
-    }, 0);
-
-    const totalContributions = posts.reduce((count, post) => {
-        return count + 1 + // the post itself
-               post.studentAnswers.length +
-               post.instructorAnswers.length +
-               post.followups.length +
-               post.followups.reduce((fc, f) => fc + f.replies.length, 0);
-    }, 0);
-
+export async function computeStats(courseId) {
+    const posts = await Post.find({ course: courseId });
     return {
-        unreadPosts,
-        unansweredQuestions,
-        unansweredFollowups,
-        totalPosts,
-        instructorResponses,
-        studentResponses,
-        totalContributions
+        totalPosts: posts.length,
+        unreadPosts: 0,
+        unansweredQuestions: posts.filter(
+            (p) =>
+                p.type === "question" &&
+                p.studentAnswers.length === 0 &&
+                p.instructorAnswers.length === 0
+        ).length,
+        unansweredFollowups: posts.reduce(
+            (acc, p) => acc + p.followups.filter((f) => !f.isResolved).length,
+            0
+        ),
+        instructorResponses: posts.reduce(
+            (acc, p) => acc + p.instructorAnswers.length,
+            0
+        ),
+        studentResponses: posts.reduce(
+            (acc, p) => acc + p.studentAnswers.length,
+            0
+        ),
+        totalContributions: posts.reduce(
+            (acc, p) =>
+                acc + p.studentAnswers.length + p.instructorAnswers.length + p.followups.length,
+            0
+        ),
     };
-};
+}
