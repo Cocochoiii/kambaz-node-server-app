@@ -88,6 +88,70 @@ export default function HomeRoutes(app) {
             asgCount = asg.length;
         }
 
+        /**
+         * GET /api/courses/:cid/progress
+         * ?studentId=abc (optional)
+         *
+         * Returns: { overallPercent, modules: [{ _id, title, completed, total, percent, status, remainingCount }] }
+         */
+        app.get("/api/courses/:cid/progress", async (req, res) => {
+            const { cid } = req.params;
+            const studentId = req.query?.studentId || null;
+
+            const mods = await modulesDao.findModulesForCourse(cid);
+
+            // Helper: derive counts (replace with your real signals later)
+            const calcCounts = (m, idx, prevPct) => {
+                const lessons = Array.isArray(m.lessons) ? m.lessons : [];
+                const total = lessons.length || 6; // default if module has no lessons array yet
+
+                // Fake per-student variation: hash by ids for demo realism
+                const seed = (studentId ? String(studentId) : "x") + (m._id ?? idx);
+                const hash = Array.from(seed).reduce((a, c) => (a + c.charCodeAt(0)) % 97, 0);
+                const fraction = (hash % 10) / 10; // 0.0..0.9
+
+                // completion model: earlier modules more complete than later ones
+                const bias = Math.max(0, 0.8 - idx * 0.1);
+                const pct = Math.min(1, bias + fraction * 0.2);
+
+                let completed = Math.round(total * pct);
+                if (completed > total) completed = total;
+                const percent = total ? (completed / total) * 100 : 0;
+
+                // Canvas-like status based on prerequisite (previous module)
+                let status = "Unlocked";
+                if (percent >= 100) status = "Complete";
+                else if (percent > 0) status = "In Progress";
+                else if (idx > 0 && prevPct < 80) status = "Locked";
+
+                const remainingCount = Math.max(0, total - completed);
+
+                return { total, completed, percent: Number(percent.toFixed(1)), status, remainingCount };
+            };
+
+            const out = [];
+            let prevPct = 100;
+            (mods || []).forEach((m, idx) => {
+                const counts = calcCounts(m, idx, prevPct);
+                out.push({
+                             _id: m._id?.toString?.() ?? String(m._id ?? idx),
+                             title: m.name || `Module ${idx + 1}`,
+                             ...counts,
+                             updatedAt: m.updatedAt || m.createdAt || new Date().toISOString(),
+                         });
+                prevPct = counts.percent;
+            });
+
+            const overall = out.length ? out.reduce((a, x) => a + x.percent, 0) / out.length : 0;
+
+            res.json({
+                         overallPercent: Number(overall.toFixed(1)),
+                         modules: out,
+                     });
+        });
+
+
+
         const announcements = await announcementsDao.listForCourse(cid);
 
         res.json({
