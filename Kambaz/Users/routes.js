@@ -14,6 +14,14 @@ const sanitize = (u) => {
 const isBcryptHash = (val) =>
     typeof val === "string" && /^\$2[aby]\$[0-9]{2}\$[./A-Za-z0-9]{53}$/.test(val);
 
+/** Role helper to match schema enum (uppercase) */
+const normalizeRole = (r) => {
+  const allowed = ["STUDENT", "TA", "FACULTY", "ADMIN", "USER"];
+  let role = (r || "STUDENT").toString().toUpperCase();
+  if (!allowed.includes(role)) role = "STUDENT";
+  return role;
+};
+
 export default function UserRoutes(app) {
   // Create user (admin endpoint)
   app.post("/api/users", async (req, res) => {
@@ -69,6 +77,11 @@ export default function UserRoutes(app) {
       }
 
       const updates = { ...req.body };
+
+      // Normalize role if present in update payload
+      if (typeof updates.role !== "undefined") {
+        updates.role = normalizeRole(updates.role);
+      }
 
       // If password is being changed, hash it (backwards-compatible)
       if (typeof updates.password === "string" && updates.password.length > 0) {
@@ -135,11 +148,11 @@ export default function UserRoutes(app) {
 
       const userData = {
         username,
-        password: hash, // store hash in the same "password" field your schema uses
+        password: hash,
         email: email || "",
         firstName: firstName || "",
         lastName: lastName || "",
-        role: role || "STUDENT",
+        role: normalizeRole(role),
       };
 
       const created = await dao.createUser(userData);
@@ -154,9 +167,8 @@ export default function UserRoutes(app) {
       });
 
       console.log("✅ User signed up and session saved:", safe.username);
-      res.json(safe); // keep your original 200 + body shape
+      res.json(safe);
     } catch (err) {
-      // Normalize duplicate key errors
       if (err?.code === 11000) {
         return res.status(400).json({ message: "Username or email already exists" });
       }
@@ -174,9 +186,6 @@ export default function UserRoutes(app) {
         return res.status(400).json({ message: "Username and password are required" });
       }
 
-      // Use username lookup, then verify:
-      //  - if stored password is bcrypt, compare with bcrypt
-      //  - else, fall back to legacy plain-text equality (backward compatible)
       const found = await dao.findUserByUsername(username);
       if (!found) {
         return res.status(401).json({ message: "Invalid username or password" });
@@ -218,7 +227,6 @@ export default function UserRoutes(app) {
         return res.status(401).json({ message: "Not authenticated" });
       }
 
-      // Refresh user from DB
       const freshUser = await dao.findUserById(currentUser._id);
       if (!freshUser) {
         req.session.destroy(() => {});

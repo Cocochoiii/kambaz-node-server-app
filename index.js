@@ -5,7 +5,7 @@ import MongoStore from "connect-mongo";
 import cors from "cors";
 import "dotenv/config";
 
-// Import all routes
+// Routes
 import UserRoutes from "./Kambaz/Users/routes.js";
 import CourseRoutes from "./Kambaz/Courses/routes.js";
 import EnrollmentRoutes from "./Kambaz/Enrollments/routes.js";
@@ -23,55 +23,69 @@ import SettingsRoutes from "./Kambaz/Settings/routes.js";
 
 const app = express();
 
-// Environment Configuration
+// ---------- Environment ----------
 const isProd = process.env.NODE_ENV === "production" || !!process.env.VERCEL;
-const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || "https://kambaz-next-js-final2.vercel.app";
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/kambaz";
-const SESSION_SECRET = process.env.SESSION_SECRET || "super_secret_session_key_change_in_production";
+const FRONTEND_ORIGIN =
+    process.env.FRONTEND_ORIGIN || "https://kambaz-next-js-final2.vercel.app";
+const MONGODB_URI =
+    process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/kambaz";
+const SESSION_SECRET =
+    process.env.SESSION_SECRET || "super_secret_session_key_change_in_production";
 const PORT = process.env.PORT || 4000;
 
 console.log("🔧 Starting server configuration...");
 console.log(`📝 Environment: ${isProd ? "production" : "development"}`);
 console.log(`🔗 Frontend origin: ${FRONTEND_ORIGIN}`);
-console.log(`🗄️ MongoDB URI: ${MONGODB_URI.replace(/\/\/([^:]+):([^@]+)@/, '//***:***@')}`);
+console.log(
+    `🗄️ MongoDB URI: ${MONGODB_URI.replace(/\/\/([^:]+):([^@]+)@/, "//***:***@")}`
+);
 
-// Trust proxy for Vercel/Heroku/etc
+// Required for secure cookies behind Vercel/Proxies
 app.set("trust proxy", 1);
 
-// CORS Configuration - CRITICAL for cross-origin cookies
+// ---------- CORS (must be before parsers & routes) ----------
 const corsOptions = {
-    origin: function (origin, callback) {
+    origin(origin, callback) {
         const allowedOrigins = isProd
                                ? [FRONTEND_ORIGIN, "https://kambaz-next-js-final2.vercel.app"]
                                : ["http://localhost:3000", "http://127.0.0.1:3000"];
 
-        // Allow requests with no origin (Postman, server-to-server, etc)
-        if (!origin) {
-            return callback(null, true);
-        }
+        // Allow tools like curl/Postman (no origin header)
+        if (!origin) return callback(null, true);
 
-        if (allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            console.warn(`⚠️ CORS blocked origin: ${origin}`);
-            callback(new Error("Not allowed by CORS"));
-        }
+        if (allowedOrigins.includes(origin)) return callback(null, true);
+
+        console.warn(`⚠️ CORS blocked origin: ${origin}`);
+        return callback(new Error("Not allowed by CORS"));
     },
-    credentials: true, // Allow cookies
+    credentials: true, // allow cookies
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
-    allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
+    allowedHeaders: [
+        "Content-Type",
+        "Authorization",
+        "Cookie",
+        "X-Requested-With",
+    ],
     exposedHeaders: ["set-cookie"],
-    maxAge: 86400, // Cache preflight for 24 hours
+    maxAge: 86400, // cache preflight
+    optionsSuccessStatus: 204, // some browsers expect 204
 };
 
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); // <-- handle preflight globally
+// Ensure the creds header is always present for all responses
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Credentials", "true");
+    next();
+});
 
-// Body parsing middleware
+app.use(cors(corsOptions));
+// Handle preflight explicitly under /api (tighter than "*")
+app.options("/api/*", cors(corsOptions));
+
+// ---------- Parsers ----------
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Connect to MongoDB BEFORE setting up sessions
+// ---------- Mongo ----------
 mongoose
     .connect(MONGODB_URI)
     .then(() => console.log("✅ Connected to MongoDB"))
@@ -80,46 +94,44 @@ mongoose
         process.exit(1);
     });
 
-// Session Configuration with MongoDB store
+// ---------- Session (Mongo store) ----------
 const sessionConfig = {
-    name: "kambaz_sid", // Cookie name
+    name: "kambaz_sid",
     secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
                                  mongoUrl: MONGODB_URI,
-                                 ttl: 24 * 60 * 60, // 1 day TTL
-                                 touchAfter: 3600, // Only update session once per hour
+                                 ttl: 24 * 60 * 60, // 1 day
+                                 touchAfter: 3600, // reduce write frequency
                                  crypto: { secret: SESSION_SECRET },
                              }),
     cookie: {
         httpOnly: true,
-        secure: isProd, // HTTPS only in production
-        sameSite: isProd ? "none" : "lax", // Cross-site cookies in production
-        maxAge: 24 * 60 * 60 * 1000, // 24 hours
-        // Do NOT set domain - let browser handle it
+        secure: isProd, // HTTPS only in prod
+        sameSite: isProd ? "none" : "lax", // cross-site cookies in prod
+        maxAge: 24 * 60 * 60 * 1000, // 24h
+        // no domain => let browser infer
     },
 };
 
 app.use(session(sessionConfig));
 
-// Request logging middleware
+// ---------- Request log ----------
 app.use((req, res, next) => {
-    const timestamp = new Date().toISOString();
+    const ts = new Date().toISOString();
     const origin = req.headers.origin || "no-origin";
     const user = req.session?.currentUser?.username || "anonymous";
-
-    console.log(`[${timestamp}] ${req.method} ${req.path}`);
-    console.log(`  Origin: ${origin} | User: ${user} | Session: ${req.sessionID?.substring(0, 8)}...`);
-
-    if (!isProd && req.headers.cookie) {
-        console.log(`  Cookies: ${req.headers.cookie.substring(0, 50)}...`);
-    }
-
+    console.log(`[${ts}] ${req.method} ${req.path}`);
+    console.log(
+        `  Origin: ${origin} | User: ${user} | Session: ${String(
+            req.sessionID || ""
+        ).slice(0, 8)}...`
+    );
     next();
 });
 
-// Health check endpoint
+// ---------- Health ----------
 app.get("/", (req, res) => {
     res.json({
                  status: "ok",
@@ -130,7 +142,6 @@ app.get("/", (req, res) => {
              });
 });
 
-// API health check
 app.get("/api", (req, res) => {
     res.json({
                  status: "ok",
@@ -139,7 +150,7 @@ app.get("/api", (req, res) => {
              });
 });
 
-// Mount all routes
+// ---------- Routes ----------
 UserRoutes(app);
 CourseRoutes(app);
 EnrollmentRoutes(app);
@@ -153,29 +164,26 @@ PeopleRoutes(app);
 InboxRoutes(app);
 SettingsRoutes(app);
 
-// Mount router-based routes
+// Router-based
 app.use("/api", PazzaRoutes);
 app.use("/api", ZoomRoutes);
 
-// Error handling middleware
+// ---------- Errors ----------
 app.use((err, req, res, next) => {
     console.error("❌ Error:", err.message || err);
-    console.error(err.stack);
-
     if (err.message === "Not allowed by CORS") {
         return res.status(403).json({
                                         message: "CORS policy violation",
                                         origin: req.headers.origin,
                                     });
     }
-
     res.status(err.status || 500).json({
                                            message: err.message || "Internal server error",
-                                           ...(isProd ? {} : { error: err.toString(), stack: err.stack }),
+                                           ...(isProd ? {} : { error: String(err), stack: err.stack }),
                                        });
 });
 
-// 404 handler
+// ---------- 404 ----------
 app.use((req, res) => {
     console.warn(`⚠️ 404: ${req.method} ${req.path}`);
     res.status(404).json({
@@ -194,20 +202,18 @@ app.use((req, res) => {
                          });
 });
 
-// Start server only if not on Vercel
+// ---------- Local start ----------
 if (!process.env.VERCEL) {
     const server = app.listen(PORT, () => {
         console.log(`🚀 Server running on http://localhost:${PORT}`);
         console.log(`📝 Environment: ${isProd ? "production" : "development"}`);
         console.log(`🔗 Frontend origin: ${FRONTEND_ORIGIN}`);
-        console.log(`🍪 Session store: MongoDB`);
+        console.log("🍪 Session store: MongoDB");
     });
 
-    // Graceful shutdown
     process.on("SIGTERM", () => {
-        console.log("SIGTERM signal received: closing HTTP server");
+        console.log("SIGTERM: closing HTTP server");
         server.close(() => {
-            console.log("HTTP server closed");
             mongoose.connection.close(false, () => {
                 console.log("MongoDB connection closed");
                 process.exit(0);
