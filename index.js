@@ -56,8 +56,11 @@ const corsOptions = {
             return callback(null, true);
         }
 
-        // Allow any Vercel preview deployment for your project
-        if (isProd && origin.includes("kambaz-next-js-final2") && origin.includes(".vercel.app")) {
+        // IMPORTANT: Allow ANY Vercel preview deployment for your project
+        if (isProd && origin.includes("vercel.app") &&
+            (origin.includes("kambaz-next-js-final2") ||
+             origin.includes("cocos-projects"))) {
+            console.log(`✅ Allowing Vercel preview: ${origin}`);
             return callback(null, true);
         }
 
@@ -161,6 +164,20 @@ app.get("/api", (req, res) => {
              });
 });
 
+// ---------- TEST CORS Endpoint ----------
+// Add this debug endpoint to test CORS and sessions
+app.post("/api/test-cors", (req, res) => {
+    console.log("Test CORS - Origin:", req.headers.origin);
+    console.log("Test CORS - Cookie:", req.headers.cookie ? "present" : "none");
+    res.json({
+                 origin: req.headers.origin,
+                 hasCookie: Boolean(req.headers.cookie),
+                 sessionExists: Boolean(req.session),
+                 sessionID: req.sessionID || "none",
+                 timestamp: new Date().toISOString()
+             });
+});
+
 // ---------- API Routes ----------
 UserRoutes(app);
 CourseRoutes(app);
@@ -179,7 +196,7 @@ SettingsRoutes(app);
 app.use("/api", PazzaRoutes);
 app.use("/api", ZoomRoutes);
 
-// ---------- Debug Endpoint (dev only) ----------
+// ---------- Debug Endpoint ----------
 app.get("/api/debug/session", (req, res) => {
     if (process.env.NODE_ENV === "production" && !req.query.secret) {
         return res.status(404).json({ message: "Not found" });
