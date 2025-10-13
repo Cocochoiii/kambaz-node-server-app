@@ -21,11 +21,27 @@ import SettingsRoutes from "./Kambaz/Settings/routes.js";
 
 const app = express();
 
-/** ✅ CORS: allow credentials from localhost (and 127.0.0.1 if you use it) */
+/* ----------------------------- ENV & MODES ----------------------------- */
+const isProd = process.env.NODE_ENV === "production" || !!process.env.VERCEL;
+
+// Frontend origins: localhost (dev) + your deployed Next site (prod)
+const FRONTEND_ORIGIN =
+    process.env.FRONTEND_ORIGIN || "https://kambaz-next-js-final.vercel.app";
+
+// Mongo: use cloud URI in prod, fallback to local in dev
+const MONGO_URI =
+    process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/kambaz";
+
+// Port only used when running locally
+const PORT = process.env.PORT || 4000;
+
+/* --------------------------------- CORS -------------------------------- */
 app.use(
     cors({
              credentials: true,
-             origin: ["http://localhost:3000", "http://127.0.0.1:3000"],
+             origin: isProd
+                     ? FRONTEND_ORIGIN
+                     : ["http://localhost:3000", "http://127.0.0.1:3000"],
              methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
              allowedHeaders: ["Content-Type", "Authorization"],
          })
@@ -33,10 +49,11 @@ app.use(
 
 app.use(express.json());
 
-/** ✅ Trust proxy for dev setups */
+/* --------------------------- PROXY / COOKIES --------------------------- */
+// Required so set-cookie works behind Vercel/HTTPS
 app.set("trust proxy", 1);
 
-/** ✅ Session cookies for localhost (NO domain!) */
+// Session cookie flags differ between dev and prod (cross-site on Vercel)
 app.use(
     session({
                 name: "kambaz.sid",
@@ -45,32 +62,33 @@ app.use(
                 saveUninitialized: false,
                 proxy: true,
                 cookie: {
-                    secure: false,       // http in dev
-                    httpOnly: true,      // not readable by JS
-                    sameSite: "lax",
+                    httpOnly: true,
                     maxAge: 24 * 60 * 60 * 1000,
+                    secure: isProd,            // must be true on Vercel/HTTPS
+                    sameSite: isProd ? "none" : "lax", // cross-site cookie on Vercel
+                    // DO NOT set domain; let the browser infer it
                 },
             })
 );
 
-/** Debug: see user attached to session */
+/* ----------------------------- DEBUG LOG ------------------------------- */
 app.use((req, _res, next) => {
     console.log(
-        `${req.method} ${req.path} - Origin: ${req.headers.origin || "n/a"} - User: ${
+        `${req.method} ${req.path} | Origin: ${req.headers.origin || "n/a"} | User: ${
             req.session?.currentUser?.username || "none"
         }`
     );
     next();
 });
 
-/** Mongo */
-const CONNECTION_STRING = "mongodb://127.0.0.1:27017/kambaz";
+/* ------------------------------ DATABASE ------------------------------- */
 mongoose
-    .connect(CONNECTION_STRING)
+    .connect(MONGO_URI)
     .then(() => console.log("✅ Connected to MongoDB"))
     .catch((err) => console.error("❌ MongoDB error:", err));
 
-/** Routes */
+/* -------------------------------- ROUTES ------------------------------- */
+// (keep your existing paths & implementations)
 UserRoutes(app);
 CourseRoutes(app);
 EnrollmentRoutes(app);
@@ -84,16 +102,16 @@ PeopleRoutes(app);
 InboxRoutes(app);
 SettingsRoutes(app);
 
-
-
-
-// Pazza routes under /api prefix
+// Routers already exported as express.Router() — mounted under /api
 app.use("/api", PazzaRoutes);
 app.use("/api", ZoomRoutes);
 
-/** Server */
-const PORT = 4000;
-app.listen(PORT, () =>
-    console.log(`🚀 Server running on http://localhost:${PORT}`)
-);
+/* ---------------------------- SERVER EXPORT ---------------------------- */
+// Run a server locally; export the app for Vercel serverless.
+if (!process.env.VERCEL) {
+    app.listen(PORT, () =>
+        console.log(`🚀 Server running on http://localhost:${PORT}`)
+    );
+}
 
+export default app;
