@@ -37,30 +37,43 @@ console.log(`🔗 Frontend origin: ${FRONTEND_ORIGIN}`);
 // IMPORTANT: Trust proxy MUST come first before any middleware
 app.set("trust proxy", 1);
 
-// ---------- CORS Configuration ----------
+// ---------- Enhanced CORS Configuration ----------
 const corsOptions = {
     origin: function(origin, callback) {
-        // Allowed origins
-        const allowedOrigins = isProd
-                               ? [
-                "https://kambaz-next-js-final2.vercel.app",
-                "https://kambaz-next-js-final2-git-final2-cocos-projects-e10dec21.vercel.app",
-                "https://kambaz-next-js-final2-ko970vqw5-cocos-projects-e10dec21.vercel.app"
-            ]
-                               : ["http://localhost:3000", "http://127.0.0.1:3000"];
+        console.log(`🔍 CORS Check - Origin: ${origin || 'no-origin'}`);
 
         // Allow requests with no origin (mobile apps, curl, postman)
-        if (!origin) return callback(null, true);
-
-        if (allowedOrigins.includes(origin)) {
+        if (!origin) {
+            console.log("✅ Allowing request with no origin header");
             return callback(null, true);
         }
 
-        // IMPORTANT: Allow ANY Vercel preview deployment for your project
-        if (isProd && origin.includes("vercel.app") &&
-            (origin.includes("kambaz-next-js-final2") ||
-             origin.includes("cocos-projects"))) {
-            console.log(`✅ Allowing Vercel preview: ${origin}`);
+        // Development origins
+        if (!isProd) {
+            const devOrigins = ["http://localhost:3000", "http://127.0.0.1:3000"];
+            if (devOrigins.includes(origin)) {
+                console.log("✅ Allowing development origin:", origin);
+                return callback(null, true);
+            }
+        }
+
+        // Production: Allow ANY Vercel deployment that contains our project name
+        if (isProd && origin.includes(".vercel.app")) {
+            // Check if it's one of our projects
+            const isOurProject =
+                origin.includes("kambaz-next-js") ||
+                origin.includes("kambaz-node") ||
+                origin.includes("cocos-projects");
+
+            if (isOurProject) {
+                console.log(`✅ Allowing Vercel deployment: ${origin}`);
+                return callback(null, true);
+            }
+        }
+
+        // Allow the main production URL
+        if (origin === FRONTEND_ORIGIN) {
+            console.log("✅ Allowing main frontend origin:", origin);
             return callback(null, true);
         }
 
@@ -69,16 +82,27 @@ const corsOptions = {
     },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
-    allowedHeaders: ["Content-Type", "Authorization", "Cookie", "X-Requested-With"],
+    allowedHeaders: ["Content-Type", "Authorization", "Cookie", "X-Requested-With", "Accept"],
     exposedHeaders: ["set-cookie"],
     maxAge: 86400,
-    optionsSuccessStatus: 204
+    optionsSuccessStatus: 204,
+    preflightContinue: false
 };
 
 app.use(cors(corsOptions));
 
-// Handle OPTIONS preflight requests
+// Handle OPTIONS preflight requests explicitly
 app.options("*", cors(corsOptions));
+
+// Add additional CORS headers for extra safety
+app.use((req, res, next) => {
+    const origin = req.headers.origin;
+    if (origin && (origin.includes(".vercel.app") || origin === FRONTEND_ORIGIN)) {
+        res.header("Access-Control-Allow-Origin", origin);
+        res.header("Access-Control-Allow-Credentials", "true");
+    }
+    next();
+});
 
 // ---------- Body Parsers ----------
 app.use(express.json());
@@ -94,7 +118,6 @@ mongoose
     .catch((err) => {
         console.error("❌ MongoDB connection error:", err);
         if (process.env.VERCEL) {
-            // Don't exit in Vercel, let it handle the error
             console.error("MongoDB connection failed but continuing for Vercel");
         } else {
             process.exit(1);
@@ -119,7 +142,7 @@ const sessionConfig = {
         sameSite: isProd ? "none" : "lax", // 'none' for cross-origin in production
         maxAge: 24 * 60 * 60 * 1000, // 24 hours
         path: "/",
-        // No domain restriction - let browser handle it
+        domain: undefined // Let browser handle domain
     },
     proxy: isProd // Trust the proxy in production
 };
@@ -135,9 +158,10 @@ app.use((req, res, next) => {
     console.log(`[${timestamp}] ${req.method} ${req.path}`);
     console.log(`  Origin: ${origin} | User: ${user} | Session: ${req.sessionID?.slice(0, 8)}...`);
 
-    // Debug cookies in production
-    if (isProd && req.path.includes("/users/")) {
+    // Debug cookies and headers in production for auth endpoints
+    if (isProd && (req.path.includes("/users/") || req.path.includes("/test"))) {
         console.log("  Cookies:", req.headers.cookie ? "present" : "none");
+        console.log("  User-Agent:", req.headers['user-agent']?.slice(0, 50));
     }
 
     next();
@@ -165,16 +189,41 @@ app.get("/api", (req, res) => {
 });
 
 // ---------- TEST CORS Endpoint ----------
-// Add this debug endpoint to test CORS and sessions
 app.post("/api/test-cors", (req, res) => {
-    console.log("Test CORS - Origin:", req.headers.origin);
-    console.log("Test CORS - Cookie:", req.headers.cookie ? "present" : "none");
+    console.log("🧪 Test CORS endpoint hit");
+    console.log("  Origin:", req.headers.origin || "no-origin");
+    console.log("  Cookie:", req.headers.cookie ? "present" : "none");
+    console.log("  Session exists:", Boolean(req.session));
+    console.log("  Session ID:", req.sessionID || "none");
+
     res.json({
-                 origin: req.headers.origin,
+                 origin: req.headers.origin || "no-origin",
                  hasCookie: Boolean(req.headers.cookie),
                  sessionExists: Boolean(req.session),
                  sessionID: req.sessionID || "none",
-                 timestamp: new Date().toISOString()
+                 currentUser: req.session?.currentUser || null,
+                 timestamp: new Date().toISOString(),
+                 headers: {
+                     host: req.headers.host,
+                     userAgent: req.headers['user-agent']?.slice(0, 50)
+                 }
+             });
+});
+
+// ---------- Test Session Endpoint ----------
+app.post("/api/test-session", (req, res) => {
+    console.log("🧪 Test Session endpoint");
+
+    // Set a test value in session
+    req.session.testValue = req.session.testValue ? req.session.testValue + 1 : 1;
+    req.session.testTime = new Date().toISOString();
+
+    res.json({
+                 sessionID: req.sessionID,
+                 testValue: req.session.testValue,
+                 testTime: req.session.testTime,
+                 currentUser: req.session?.currentUser || null,
+                 message: "Session test successful"
              });
 });
 
@@ -247,7 +296,9 @@ app.use((req, res) => {
                                  "/api/announcements/*",
                                  "/api/assignments/*",
                                  "/api/grades/*",
-                                 "/api/zoom/*"
+                                 "/api/zoom/*",
+                                 "/api/test-cors",
+                                 "/api/test-session"
                              ]
                          });
 });
