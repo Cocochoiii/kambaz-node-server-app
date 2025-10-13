@@ -1,13 +1,25 @@
 import * as dao from "./dao.js";
 import * as courseDao from "../Courses/dao.js";
 import * as enrollmentsDao from "../Enrollments/dao.js";
+import bcrypt from "bcryptjs";
+
+/** Remove sensitive fields before sending to client */
+const sanitize = (u) => {
+  if (!u) return u;
+  const { password, ...rest } = u;
+  return rest;
+};
+
+/** Detect if a stored password looks like a bcrypt hash */
+const isBcryptHash = (val) =>
+    typeof val === "string" && /^\$2[aby]\$[0-9]{2}\$[./A-Za-z0-9]{53}$/.test(val);
 
 export default function UserRoutes(app) {
   // Create user (admin endpoint)
   app.post("/api/users", async (req, res) => {
     try {
       const user = await dao.createUser(req.body);
-      res.json(user);
+      res.json(sanitize(user));
     } catch (error) {
       console.error("Create user error:", error);
       res.status(500).json({ message: "Failed to create user" });
@@ -18,9 +30,9 @@ export default function UserRoutes(app) {
   app.get("/api/users", async (req, res) => {
     try {
       const { role, name } = req.query;
-      if (role) return res.json(await dao.findUsersByRole(role));
-      if (name) return res.json(await dao.findUsersByPartialName(name));
-      res.json(await dao.findAllUsers());
+      if (role) return res.json((await dao.findUsersByRole(role)).map(sanitize));
+      if (name) return res.json((await dao.findUsersByPartialName(name)).map(sanitize));
+      res.json((await dao.findAllUsers()).map(sanitize));
     } catch (error) {
       console.error("Get users error:", error);
       res.status(500).json({ message: "Failed to fetch users" });
@@ -34,7 +46,7 @@ export default function UserRoutes(app) {
       if (!user) {
         return res.status(404).json({ message: "User not found" });
       }
-      res.json(user);
+      res.json(sanitize(user));
     } catch (error) {
       console.error("Get user error:", error);
       res.status(500).json({ message: "Failed to fetch user" });
@@ -56,26 +68,29 @@ export default function UserRoutes(app) {
         return res.status(403).json({ message: "Not authorized to update this user" });
       }
 
-      await dao.updateUser(userId, req.body);
+      const updates = { ...req.body };
+
+      // If password is being changed, hash it (backwards-compatible)
+      if (typeof updates.password === "string" && updates.password.length > 0) {
+        const salt = await bcrypt.genSalt(10);
+        updates.password = await bcrypt.hash(updates.password, salt);
+      } else {
+        delete updates.password; // avoid accidentally nulling it out
+      }
+
+      await dao.updateUser(userId, updates);
       const updated = await dao.findUserById(userId);
 
       // Update session if user updated their own profile
       if (currentUser._id === userId) {
-        req.session.currentUser = updated;
+        req.session.currentUser = sanitize(updated);
         await new Promise((resolve, reject) => {
-          req.session.save((err) => {
-            if (err) {
-              console.error("Session save error:", err);
-              reject(err);
-            } else {
-              console.log("✅ Session updated for user:", updated.username);
-              resolve();
-            }
-          });
+          req.session.save((err) => (err ? reject(err) : resolve()));
         });
+        console.log("✅ Session updated for user:", updated?.username);
       }
 
-      res.json(updated);
+      res.json(sanitize(updated));
     } catch (error) {
       console.error("Update user error:", error);
       res.status(500).json({ message: "Failed to update user" });
@@ -101,7 +116,7 @@ export default function UserRoutes(app) {
   // SIGNUP - Create account and establish session
   app.post("/api/users/signup", async (req, res) => {
     try {
-      const { username, password, email, firstName, lastName, role } = req.body;
+      const { username, password, email, firstName, lastName, role } = req.body || {};
 
       // Validation
       if (!username || !password) {
@@ -114,36 +129,37 @@ export default function UserRoutes(app) {
         return res.status(400).json({ message: "Username already taken" });
       }
 
-      // Create user with defaults
+      // Hash password and create user
+      const salt = await bcrypt.genSalt(10);
+      const hash = await bcrypt.hash(password, salt);
+
       const userData = {
         username,
-        password, // In production, hash this!
+        password: hash, // store hash in the same "password" field your schema uses
         email: email || "",
         firstName: firstName || "",
         lastName: lastName || "",
         role: role || "STUDENT",
       };
 
-      const currentUser = await dao.createUser(userData);
+      const created = await dao.createUser(userData);
+      const safe = sanitize(created);
 
       // Set session
-      req.session.currentUser = currentUser;
+      req.session.currentUser = safe;
 
       // Ensure session is saved before responding
       await new Promise((resolve, reject) => {
-        req.session.save((err) => {
-          if (err) {
-            console.error("Session save error during signup:", err);
-            reject(err);
-          } else {
-            console.log("✅ User signed up and session saved:", currentUser.username);
-            resolve();
-          }
-        });
+        req.session.save((err) => (err ? reject(err) : resolve()));
       });
 
-      res.json(currentUser);
+      console.log("✅ User signed up and session saved:", safe.username);
+      res.json(safe); // keep your original 200 + body shape
     } catch (err) {
+      // Normalize duplicate key errors
+      if (err?.code === 11000) {
+        return res.status(400).json({ message: "Username or email already exists" });
+      }
       console.error("Signup error:", err);
       res.status(500).json({ message: "Signup failed. Please try again." });
     }
@@ -152,36 +168,41 @@ export default function UserRoutes(app) {
   // SIGNIN - Authenticate and establish session
   app.post("/api/users/signin", async (req, res) => {
     try {
-      const { username, password } = req.body;
+      const { username, password } = req.body || {};
 
-      // Validation
       if (!username || !password) {
         return res.status(400).json({ message: "Username and password are required" });
       }
 
-      // Find and verify user
-      const currentUser = await dao.findUserByCredentials(username, password);
-      if (!currentUser) {
+      // Use username lookup, then verify:
+      //  - if stored password is bcrypt, compare with bcrypt
+      //  - else, fall back to legacy plain-text equality (backward compatible)
+      const found = await dao.findUserByUsername(username);
+      if (!found) {
         return res.status(401).json({ message: "Invalid username or password" });
       }
 
-      // Set session
-      req.session.currentUser = currentUser;
+      const stored = found.password || "";
+      let ok = false;
+      if (isBcryptHash(stored)) {
+        ok = await bcrypt.compare(password, stored);
+      } else {
+        ok = stored === password; // legacy users created before hashing
+      }
 
-      // Ensure session is saved before responding
+      if (!ok) {
+        return res.status(401).json({ message: "Invalid username or password" });
+      }
+
+      const safe = sanitize(found);
+      req.session.currentUser = safe;
+
       await new Promise((resolve, reject) => {
-        req.session.save((err) => {
-          if (err) {
-            console.error("Session save error during signin:", err);
-            reject(err);
-          } else {
-            console.log("✅ User signed in and session saved:", currentUser.username, "| Role:", currentUser.role);
-            resolve();
-          }
-        });
+        req.session.save((err) => (err ? reject(err) : resolve()));
       });
 
-      res.json(currentUser);
+      console.log("✅ User signed in and session saved:", safe.username, "| Role:", safe.role);
+      res.json(safe);
     } catch (err) {
       console.error("Signin error:", err);
       res.status(500).json({ message: "Signin failed. Please try again." });
@@ -197,21 +218,20 @@ export default function UserRoutes(app) {
         return res.status(401).json({ message: "Not authenticated" });
       }
 
-      // Optional: Refresh user data from database
+      // Refresh user from DB
       const freshUser = await dao.findUserById(currentUser._id);
       if (!freshUser) {
-        // User was deleted
-        req.session.destroy();
+        req.session.destroy(() => {});
         return res.status(401).json({ message: "User no longer exists" });
       }
 
-      // Update session with fresh data
-      if (JSON.stringify(currentUser) !== JSON.stringify(freshUser)) {
-        req.session.currentUser = freshUser;
+      const safe = sanitize(freshUser);
+      if (JSON.stringify(currentUser) !== JSON.stringify(safe)) {
+        req.session.currentUser = safe;
         await new Promise((resolve) => req.session.save(resolve));
       }
 
-      res.json(freshUser);
+      res.json(safe);
     } catch (error) {
       console.error("Profile error:", error);
       res.status(500).json({ message: "Failed to fetch profile" });

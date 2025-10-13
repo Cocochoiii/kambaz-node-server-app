@@ -25,7 +25,7 @@ const app = express();
 
 // Environment Configuration
 const isProd = process.env.NODE_ENV === "production" || !!process.env.VERCEL;
-const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || "https://kambaz-next-js-final.vercel.app";
+const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || "https://kambaz-next-js-final2.vercel.app";
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/kambaz";
 const SESSION_SECRET = process.env.SESSION_SECRET || "super_secret_session_key_change_in_production";
 const PORT = process.env.PORT || 4000;
@@ -42,7 +42,7 @@ app.set("trust proxy", 1);
 const corsOptions = {
     origin: function (origin, callback) {
         const allowedOrigins = isProd
-                               ? [FRONTEND_ORIGIN, "https://kambaz-next-js-final.vercel.app"]
+                               ? [FRONTEND_ORIGIN, "https://kambaz-next-js-final2.vercel.app"]
                                : ["http://localhost:3000", "http://127.0.0.1:3000"];
 
         // Allow requests with no origin (Postman, server-to-server, etc)
