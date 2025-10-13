@@ -54,10 +54,10 @@ const corsOptions = {
             callback(null, true);
         } else {
             console.warn(`⚠️ CORS blocked origin: ${origin}`);
-            callback(new Error('Not allowed by CORS'));
+            callback(new Error("Not allowed by CORS"));
         }
     },
-    credentials: true, // CRITICAL: Allow cookies
+    credentials: true, // Allow cookies
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
     exposedHeaders: ["set-cookie"],
@@ -65,6 +65,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // <-- handle preflight globally
 
 // Body parsing middleware
 app.use(express.json());
@@ -89,9 +90,7 @@ const sessionConfig = {
                                  mongoUrl: MONGODB_URI,
                                  ttl: 24 * 60 * 60, // 1 day TTL
                                  touchAfter: 3600, // Only update session once per hour
-                                 crypto: {
-                                     secret: SESSION_SECRET
-                                 }
+                                 crypto: { secret: SESSION_SECRET },
                              }),
     cookie: {
         httpOnly: true,
@@ -113,7 +112,6 @@ app.use((req, res, next) => {
     console.log(`[${timestamp}] ${req.method} ${req.path}`);
     console.log(`  Origin: ${origin} | User: ${user} | Session: ${req.sessionID?.substring(0, 8)}...`);
 
-    // Log cookies in dev mode for debugging
     if (!isProd && req.headers.cookie) {
         console.log(`  Cookies: ${req.headers.cookie.substring(0, 50)}...`);
     }
@@ -128,7 +126,7 @@ app.get("/", (req, res) => {
                  environment: isProd ? "production" : "development",
                  timestamp: new Date().toISOString(),
                  sessionConfigured: true,
-                 mongoConnected: mongoose.connection.readyState === 1
+                 mongoConnected: mongoose.connection.readyState === 1,
              });
 });
 
@@ -137,7 +135,7 @@ app.get("/api", (req, res) => {
     res.json({
                  status: "ok",
                  message: "Kambaz API is running",
-                 version: "1.0.0"
+                 version: "1.0.0",
              });
 });
 
@@ -164,17 +162,16 @@ app.use((err, req, res, next) => {
     console.error("❌ Error:", err.message || err);
     console.error(err.stack);
 
-    // CORS errors
-    if (err.message === 'Not allowed by CORS') {
+    if (err.message === "Not allowed by CORS") {
         return res.status(403).json({
                                         message: "CORS policy violation",
-                                        origin: req.headers.origin
+                                        origin: req.headers.origin,
                                     });
     }
 
     res.status(err.status || 500).json({
                                            message: err.message || "Internal server error",
-                                           ...(isProd ? {} : { error: err.toString(), stack: err.stack })
+                                           ...(isProd ? {} : { error: err.toString(), stack: err.stack }),
                                        });
 });
 
@@ -192,8 +189,8 @@ app.use((req, res) => {
                                  "/api/announcements/*",
                                  "/api/assignments/*",
                                  "/api/grades/*",
-                                 "/api/zoom/*"
-                             ]
+                                 "/api/zoom/*",
+                             ],
                          });
 });
 
@@ -207,12 +204,12 @@ if (!process.env.VERCEL) {
     });
 
     // Graceful shutdown
-    process.on('SIGTERM', () => {
-        console.log('SIGTERM signal received: closing HTTP server');
+    process.on("SIGTERM", () => {
+        console.log("SIGTERM signal received: closing HTTP server");
         server.close(() => {
-            console.log('HTTP server closed');
+            console.log("HTTP server closed");
             mongoose.connection.close(false, () => {
-                console.log('MongoDB connection closed');
+                console.log("MongoDB connection closed");
                 process.exit(0);
             });
         });
