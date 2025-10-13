@@ -14,29 +14,30 @@ const sanitize = (u) => {
 const isBcryptHash = (val) =>
     typeof val === "string" && /^\$2[aby]\$[0-9]{2}\$[./A-Za-z0-9]{53}$/.test(val);
 
-/** Normalize role from UI labels to schema enum */
+/** Normalize incoming role strings to match schema enum */
 const normalizeRole = (role) => {
-  const allowed = ["STUDENT", "TA", "FACULTY", "ADMIN", "USER"];
-  const upper = (role || "STUDENT").toString().toUpperCase();
-  return allowed.includes(upper) ? upper : "STUDENT";
+  if (!role) return "STUDENT";
+  const map = {
+    student: "STUDENT",
+    ta: "TA",
+    faculty: "FACULTY",
+    admin: "ADMIN",
+    user: "USER",
+  };
+  const key = String(role).trim().toLowerCase();
+  return map[key] || "STUDENT";
 };
 
 export default function UserRoutes(app) {
   // Create user (admin endpoint)
   app.post("/api/users", async (req, res) => {
     try {
-      const data = { ...req.body };
-      if (data.role) data.role = normalizeRole(data.role);
-      const user = await dao.createUser(data);
+      const payload = { ...req.body };
+      if (payload.role) payload.role = normalizeRole(payload.role);
+      const user = await dao.createUser(payload);
       res.json(sanitize(user));
     } catch (error) {
       console.error("Create user error:", error);
-      if (error?.code === 11000) {
-        return res.status(400).json({ message: "Username or email already exists" });
-      }
-      if (error?.name === "ValidationError") {
-        return res.status(400).json({ message: "Invalid user data", details: error.message });
-      }
       res.status(500).json({ message: "Failed to create user" });
     }
   });
@@ -45,7 +46,7 @@ export default function UserRoutes(app) {
   app.get("/api/users", async (req, res) => {
     try {
       const { role, name } = req.query;
-      if (role) return res.json((await dao.findUsersByRole(normalizeRole(role))).map(sanitize));
+      if (role) return res.json((await dao.findUsersByRole(role)).map(sanitize));
       if (name) return res.json((await dao.findUsersByPartialName(name)).map(sanitize));
       res.json((await dao.findAllUsers()).map(sanitize));
     } catch (error) {
@@ -58,9 +59,7 @@ export default function UserRoutes(app) {
   app.get("/api/users/:userId", async (req, res) => {
     try {
       const user = await dao.findUserById(req.params.userId);
-      if (!user) {
-        return res.status(404).json({ message: "User not found" });
-      }
+      if (!user) return res.status(404).json({ message: "User not found" });
       res.json(sanitize(user));
     } catch (error) {
       console.error("Get user error:", error);
@@ -72,49 +71,36 @@ export default function UserRoutes(app) {
   app.put("/api/users/:userId", async (req, res) => {
     try {
       const { userId } = req.params;
-
-      // Security check: users can only update their own profile unless admin
       const currentUser = req.session?.currentUser;
-      if (!currentUser) {
-        return res.status(401).json({ message: "Not authenticated" });
-      }
+      if (!currentUser) return res.status(401).json({ message: "Not authenticated" });
       if (currentUser._id !== userId && currentUser.role !== "ADMIN") {
         return res.status(403).json({ message: "Not authorized to update this user" });
       }
 
       const updates = { ...req.body };
+      if (updates.role) updates.role = normalizeRole(updates.role);
 
-      // Normalize role if provided
-      if (typeof updates.role !== "undefined") {
-        updates.role = normalizeRole(updates.role);
-      }
-
-      // If password is being changed, hash it (backwards-compatible)
       if (typeof updates.password === "string" && updates.password.length > 0) {
         const salt = await bcrypt.genSalt(10);
         updates.password = await bcrypt.hash(updates.password, salt);
       } else {
-        delete updates.password; // avoid accidentally nulling it out
+        delete updates.password;
       }
 
       await dao.updateUser(userId, updates);
       const updated = await dao.findUserById(userId);
 
-      // Update session if user updated their own profile
       if (currentUser._id === userId) {
         req.session.currentUser = sanitize(updated);
-        await new Promise((resolve, reject) => {
-          req.session.save((err) => (err ? reject(err) : resolve()));
-        });
+        await new Promise((resolve, reject) =>
+                              req.session.save((err) => (err ? reject(err) : resolve()))
+        );
         console.log("✅ Session updated for user:", updated?.username);
       }
 
       res.json(sanitize(updated));
     } catch (error) {
       console.error("Update user error:", error);
-      if (error?.name === "ValidationError") {
-        return res.status(400).json({ message: "Invalid user data", details: error.message });
-      }
       res.status(500).json({ message: "Failed to update user" });
     }
   });
@@ -138,17 +124,13 @@ export default function UserRoutes(app) {
   app.post("/api/users/signup", async (req, res) => {
     try {
       const { username, password, email, firstName, lastName, role } = req.body || {};
-
       if (!username || !password) {
         return res.status(400).json({ message: "Username and password are required" });
       }
 
       const existing = await dao.findUserByUsername(username);
-      if (existing) {
-        return res.status(400).json({ message: "Username already taken" });
-      }
+      if (existing) return res.status(400).json({ message: "Username already taken" });
 
-      // Hash password and create user
       const salt = await bcrypt.genSalt(10);
       const hash = await bcrypt.hash(password, salt);
 
@@ -163,11 +145,10 @@ export default function UserRoutes(app) {
 
       const created = await dao.createUser(userData);
       const safe = sanitize(created);
-
       req.session.currentUser = safe;
-      await new Promise((resolve, reject) => {
-        req.session.save((err) => (err ? reject(err) : resolve()));
-      });
+      await new Promise((resolve, reject) =>
+                            req.session.save((err) => (err ? reject(err) : resolve()))
+      );
 
       console.log("✅ User signed up and session saved:", safe.username);
       res.json(safe);
@@ -175,15 +156,16 @@ export default function UserRoutes(app) {
       if (err?.code === 11000) {
         return res.status(400).json({ message: "Username or email already exists" });
       }
+      // Role enum/validation or other mongoose errors:
       if (err?.name === "ValidationError") {
-        return res.status(400).json({ message: "Invalid signup data", details: err.message });
+        return res.status(400).json({ message: "Invalid data", detail: err.message });
       }
       console.error("Signup error:", err);
       res.status(500).json({ message: "Signup failed. Please try again." });
     }
   });
 
-  // SIGNIN - Authenticate and establish session
+  // SIGNIN
   app.post("/api/users/signin", async (req, res) => {
     try {
       const { username, password } = req.body || {};
@@ -192,26 +174,17 @@ export default function UserRoutes(app) {
       }
 
       const found = await dao.findUserByUsername(username);
-      if (!found) {
-        return res.status(401).json({ message: "Invalid username or password" });
-      }
+      if (!found) return res.status(401).json({ message: "Invalid username or password" });
 
       const stored = found.password || "";
-      let ok = false;
-      if (isBcryptHash(stored)) {
-        ok = await bcrypt.compare(password, stored);
-      } else {
-        ok = stored === password; // legacy users
-      }
-      if (!ok) {
-        return res.status(401).json({ message: "Invalid username or password" });
-      }
+      const ok = isBcryptHash(stored) ? await bcrypt.compare(password, stored) : stored === password;
+      if (!ok) return res.status(401).json({ message: "Invalid username or password" });
 
       const safe = sanitize(found);
       req.session.currentUser = safe;
-      await new Promise((resolve, reject) => {
-        req.session.save((err) => (err ? reject(err) : resolve()));
-      });
+      await new Promise((resolve, reject) =>
+                            req.session.save((err) => (err ? reject(err) : resolve()))
+      );
 
       console.log("✅ User signed in and session saved:", safe.username, "| Role:", safe.role);
       res.json(safe);
@@ -221,13 +194,11 @@ export default function UserRoutes(app) {
     }
   });
 
-  // PROFILE - Get current user from session (POST for compatibility)
+  // PROFILE (POST)
   app.post("/api/users/profile", async (req, res) => {
     try {
       const currentUser = req.session?.currentUser;
-      if (!currentUser) {
-        return res.status(401).json({ message: "Not authenticated" });
-      }
+      if (!currentUser) return res.status(401).json({ message: "Not authenticated" });
 
       const freshUser = await dao.findUserById(currentUser._id);
       if (!freshUser) {
@@ -248,25 +219,21 @@ export default function UserRoutes(app) {
     }
   });
 
-  // PROFILE - GET endpoint for convenience
+  // PROFILE (GET)
   app.get("/api/users/profile", (req, res) => {
     const currentUser = req.session?.currentUser;
-    if (!currentUser) {
-      return res.status(401).json({ message: "Not authenticated" });
-    }
+    if (!currentUser) return res.status(401).json({ message: "Not authenticated" });
     res.json(currentUser);
   });
 
   // Alternative profile endpoint
   app.get("/api/users/me", (req, res) => {
     const me = req.session?.currentUser;
-    if (!me) {
-      return res.status(401).json({ message: "Not signed in" });
-    }
+    if (!me) return res.status(401).json({ message: "Not signed in" });
     res.json(me);
   });
 
-  // DEBUG endpoint - Check session status (dev only)
+  // DEBUG (dev only)
   app.get("/api/debug/session", (req, res) => {
     if (process.env.NODE_ENV === "production") {
       return res.status(404).json({ message: "Not found" });
@@ -282,7 +249,7 @@ export default function UserRoutes(app) {
              });
   });
 
-  // SIGNOUT - Destroy session
+  // SIGNOUT
   app.post("/api/users/signout", (req, res) => {
     const username = req.session?.currentUser?.username;
     req.session.destroy((err) => {
@@ -296,23 +263,18 @@ export default function UserRoutes(app) {
     });
   });
 
-  // Get courses for a user
+  // Courses for a user
   app.get("/api/users/:uid/courses", async (req, res) => {
     try {
       let { uid } = req.params;
       const currentUser = req.session?.currentUser;
-
       if (uid === "current") {
-        if (!currentUser) {
-          return res.status(401).json({ message: "Not authenticated" });
-        }
+        if (!currentUser) return res.status(401).json({ message: "Not authenticated" });
         uid = currentUser._id;
       }
-
       if (currentUser && currentUser.role === "ADMIN") {
         return res.json(await courseDao.findAllCourses());
       }
-
       res.json(await enrollmentsDao.findCoursesForUser(uid));
     } catch (error) {
       console.error("Get user courses error:", error);
@@ -320,19 +282,14 @@ export default function UserRoutes(app) {
     }
   });
 
-  // Enroll user in course
+  // Enroll
   app.post("/api/users/:uid/courses/:cid", async (req, res) => {
     try {
       let { uid, cid } = req.params;
       const currentUser = req.session?.currentUser;
-
-      if (!currentUser) {
-        return res.status(401).json({ message: "Not authenticated" });
-      }
-
+      if (!currentUser) return res.status(401).json({ message: "Not authenticated" });
       if (uid === "current") uid = currentUser._id;
       if (cid === "current") cid = req.body.courseId || "";
-
       res.json(await enrollmentsDao.enrollUserInCourse(uid, cid));
     } catch (error) {
       console.error("Enroll error:", error);
@@ -340,19 +297,14 @@ export default function UserRoutes(app) {
     }
   });
 
-  // Unenroll user from course
+  // Unenroll
   app.delete("/api/users/:uid/courses/:cid", async (req, res) => {
     try {
       let { uid, cid } = req.params;
       const currentUser = req.session?.currentUser;
-
-      if (!currentUser) {
-        return res.status(401).json({ message: "Not authenticated" });
-      }
-
+      if (!currentUser) return res.status(401).json({ message: "Not authenticated" });
       if (uid === "current") uid = currentUser._id;
       if (cid === "current") cid = req.body.courseId || "";
-
       res.json(await enrollmentsDao.unenrollUserFromCourse(uid, cid));
     } catch (error) {
       console.error("Unenroll error:", error);
