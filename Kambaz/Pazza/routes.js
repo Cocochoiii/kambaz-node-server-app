@@ -1,110 +1,10 @@
 // Kambaz/Pazza/routes.js
 import express from 'express';
 import { Folder, Post } from './models.js';
-import { pazzaSeedData } from '../Database/pazza.js';
 
 const router = express.Router();
 
-// ======================= Initialization =======================
-let initialized = false;
-
-async function ensureInitialized() {
-    if (initialized) return;
-
-    try {
-        const existingFolders = await Folder.countDocuments().catch(() => 0);
-        if (existingFolders === 0 && pazzaSeedData?.folders) {
-            console.log('Initializing Pazza folders...');
-            await Folder.insertMany(pazzaSeedData.folders);
-            console.log(`✅ Initialized ${pazzaSeedData.folders.length} folders`);
-        }
-
-        const existingPosts = await Post.countDocuments().catch(() => 0);
-        if (existingPosts === 0 && pazzaSeedData?.posts) {
-            console.log('Initializing Pazza posts...');
-
-            const processedPosts = pazzaSeedData.posts.map(post => {
-                const postCopy = { ...post };
-
-                const postAnswers = pazzaSeedData.answers?.filter(a => a.postId === post._id) || [];
-                postCopy.studentAnswers = postAnswers
-                    .filter(a => a.authorRole === 'STUDENT')
-                    .map(a => ({
-                        _id: a._id,
-                        author: a.author,
-                        authorRole: a.authorRole,
-                        authorName: a.authorName,
-                        content: a.content,
-                        timestamp: new Date(a.createdAt),
-                        isGoodAnswer: a.isGoodAnswer || false
-                    }));
-
-                postCopy.instructorAnswers = postAnswers
-                    .filter(a => ['FACULTY', 'TA', 'INSTRUCTOR'].includes(a.authorRole))
-                    .map(a => ({
-                        _id: a._id,
-                        author: a.author,
-                        authorRole: a.authorRole,
-                        authorName: a.authorName,
-                        content: a.content,
-                        timestamp: new Date(a.createdAt),
-                        isGoodAnswer: a.isGoodAnswer || false
-                    }));
-
-                const postFollowups = (pazzaSeedData.followups || [])
-                    .filter(f => f.postId === post._id && !f.parentId)
-                    .map(f => {
-                        const replies = (pazzaSeedData.followups || [])
-                            .filter(r => r.parentId === f._id)
-                            .map(r => ({
-                                _id: r._id,
-                                author: r.author,
-                                authorRole: r.authorRole,
-                                authorName: r.authorName,
-                                content: r.content,
-                                timestamp: new Date(r.createdAt)
-                            }));
-
-                        return {
-                            _id: f._id,
-                            author: f.author,
-                            authorRole: f.authorRole,
-                            authorName: f.authorName,
-                            content: f.content,
-                            isResolved: f.isResolved || false,
-                            timestamp: new Date(f.createdAt),
-                            replies
-                        };
-                    });
-
-                postCopy.followups = postFollowups;
-                postCopy.hasInstructorAnswer = postCopy.instructorAnswers.length > 0;
-                postCopy.hasStudentAnswer = postCopy.studentAnswers.length > 0;
-                postCopy.createdAt = new Date(postCopy.createdAt);
-                postCopy.updatedAt = new Date(postCopy.updatedAt);
-
-                return postCopy;
-            });
-
-            await Post.insertMany(processedPosts);
-            console.log(`✅ Initialized ${processedPosts.length} posts`);
-        }
-
-        initialized = true;
-    } catch (error) {
-        console.error('Error initializing Pazza data:', error);
-    }
-}
-
-// ======================= Middleware =======================
-router.use(async (req, res, next) => {
-    try {
-        await ensureInitialized();
-    } catch (error) {
-        console.error("Pazza init error:", error);
-    }
-    next();
-});
+// Remove automatic initialization - data should be seeded manually
 
 // ======================= Helper Functions =======================
 function buildVisibilityFilter(userId) {
@@ -235,7 +135,7 @@ router.post('/courses/:courseId/pazza/folders', async (req, res) => {
         const { name } = req.body;
 
         const newFolder = new Folder({
-                                         _id: `${courseId}-${name.toLowerCase().replace(/\s+/g, '-')}`,
+                                         _id: `${courseId}-${name.toLowerCase().replace(/\s+/g, '-')}-${Date.now()}`,
                                          name,
                                          course: courseId,
                                          isDefault: false,
@@ -293,15 +193,19 @@ router.post('/courses/:courseId/pazza/posts', async (req, res) => {
         const { courseId } = req.params;
         const { type, postTo, visibleTo, folders, summary, details, title } = req.body;
 
+        // Debug log
+        console.log('Creating post with session:', req.session);
+        console.log('Current user:', req.session?.currentUser);
+
         const newPost = new Post({
                                      _id: `${courseId}-post-${Date.now()}`,
                                      course: courseId,
-                                     type,
-                                     postTo,
+                                     type: type || 'note',
+                                     postTo: postTo || 'entire_class',
                                      visibleTo: postTo === 'individual' ? (visibleTo || []) : [],
-                                     folders,
-                                     summary: summary || title,
-                                     details,
+                                     folders: folders || [],
+                                     summary: summary || title || 'New Post',
+                                     details: details || '',
                                      author: req.session?.currentUser?._id || "current-user",
                                      authorRole: req.session?.currentUser?.role || "STUDENT",
                                      authorName: req.session?.currentUser
@@ -312,13 +216,86 @@ router.post('/courses/:courseId/pazza/posts', async (req, res) => {
                                      views: 0,
                                      studentAnswers: [],
                                      instructorAnswers: [],
-                                     followups: []
+                                     followups: [],
+                                     hasInstructorAnswer: false,
+                                     hasStudentAnswer: false,
+                                     isPinned: false,
+                                     isInstructorEndorsed: false
                                  });
 
         await newPost.save();
+        console.log('Post created successfully:', newPost._id);
         res.json(newPost);
     } catch (error) {
         console.error('Error creating post:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Add answer to post
+router.post('/courses/:courseId/pazza/posts/:postId/answers', async (req, res) => {
+    try {
+        const { postId } = req.params;
+        const { content } = req.body;
+
+        const post = await Post.findById(postId);
+        if (!post) return res.status(404).json({ error: 'Post not found' });
+
+        const answer = {
+            _id: `answer-${Date.now()}`,
+            author: req.session?.currentUser?._id || "current-user",
+            authorRole: req.session?.currentUser?.role || "STUDENT",
+            authorName: req.session?.currentUser
+                        ? `${req.session.currentUser.firstName} ${req.session.currentUser.lastName}`
+                        : "Anonymous",
+            content,
+            timestamp: new Date(),
+            isGoodAnswer: false
+        };
+
+        if (answer.authorRole === 'FACULTY' || answer.authorRole === 'TA') {
+            post.instructorAnswers.push(answer);
+            post.hasInstructorAnswer = true;
+        } else {
+            post.studentAnswers.push(answer);
+            post.hasStudentAnswer = true;
+        }
+
+        await post.save();
+        res.json(post);
+    } catch (error) {
+        console.error('Error adding answer:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Add followup to post
+router.post('/courses/:courseId/pazza/posts/:postId/followups', async (req, res) => {
+    try {
+        const { postId } = req.params;
+        const { content } = req.body;
+
+        const post = await Post.findById(postId);
+        if (!post) return res.status(404).json({ error: 'Post not found' });
+
+        const followup = {
+            _id: `followup-${Date.now()}`,
+            author: req.session?.currentUser?._id || "current-user",
+            authorRole: req.session?.currentUser?.role || "STUDENT",
+            authorName: req.session?.currentUser
+                        ? `${req.session.currentUser.firstName} ${req.session.currentUser.lastName}`
+                        : "Anonymous",
+            content,
+            isResolved: false,
+            timestamp: new Date(),
+            replies: []
+        };
+
+        post.followups.push(followup);
+        await post.save();
+        res.json(post);
+    } catch (error) {
+        console.error('Error adding followup:', error);
         res.status(500).json({ error: error.message });
     }
 });
