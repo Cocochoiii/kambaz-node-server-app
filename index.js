@@ -21,6 +21,7 @@ import PeopleRoutes from "./Kambaz/People/routes.js";
 import ZoomRoutes from "./Kambaz/Zoom/routes.js";
 import InboxRoutes from "./Kambaz/Inbox/routes.js";
 import SettingsRoutes from "./Kambaz/Settings/routes.js";
+import SeedRoutes from "./Kambaz/Seed/routes.js";
 
 const app = express();
 
@@ -119,7 +120,7 @@ const sessionConfig = {
     name: "kambaz_sid",
     secret: SESSION_SECRET,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     store: MongoStore.create({
                                  mongoUrl: MONGODB_URI,
                                  ttl: 24 * 60 * 60,
@@ -131,7 +132,8 @@ const sessionConfig = {
         secure: isProd,
         sameSite: isProd ? "none" : "lax",
         maxAge: 24 * 60 * 60 * 1000,
-        path: "/"
+        path: "/",
+        domain: isProd ? undefined : undefined
     },
     proxy: isProd
 };
@@ -194,6 +196,7 @@ HomeRoutes(app);
 PeopleRoutes(app);
 InboxRoutes(app);
 SettingsRoutes(app);
+SeedRoutes(app);
 
 // Router-based routes
 app.use("/api", PazzaRoutes);
