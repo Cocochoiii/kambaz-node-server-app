@@ -23,106 +23,102 @@ import SettingsRoutes from "./Kambaz/Settings/routes.js";
 
 const app = express();
 
-// ---------- Environment ----------
+// ---------- Environment Configuration ----------
 const isProd = process.env.NODE_ENV === "production" || !!process.env.VERCEL;
 const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || "https://kambaz-next-js-final2.vercel.app";
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/kambaz";
 const SESSION_SECRET = process.env.SESSION_SECRET || "super_secret_session_key_change_in_production";
 const PORT = process.env.PORT || 4000;
 
-console.log("🔧 Starting server configuration...");
+console.log("🔧 Server initialization...");
 console.log(`📝 Environment: ${isProd ? "production" : "development"}`);
-console.log(`🔗 Frontend origin: ${FRONTEND_ORIGIN}`);
 
-// IMPORTANT: Trust proxy MUST come first before any middleware
+// Trust proxy MUST come first
 app.set("trust proxy", 1);
 
-// ---------- Enhanced CORS Configuration ----------
+// ---------- CORS Configuration ----------
 const corsOptions = {
     origin: function(origin, callback) {
-        console.log(`🔍 CORS Check - Origin: ${origin || 'no-origin'}`);
+        // Allow requests with no origin (server-to-server, Postman)
+        if (!origin) return callback(null, true);
 
-        // Allow requests with no origin (mobile apps, curl, postman)
-        if (!origin) {
-            console.log("✅ Allowing request with no origin header");
+        // Allow localhost in development
+        if (!isProd && (origin.includes("localhost") || origin.includes("127.0.0.1"))) {
             return callback(null, true);
         }
 
-        // Development origins
-        if (!isProd) {
-            const devOrigins = ["http://localhost:3000", "http://127.0.0.1:3000"];
-            if (devOrigins.includes(origin)) {
-                console.log("✅ Allowing development origin:", origin);
-                return callback(null, true);
-            }
+        // Allow any Vercel deployment
+        if (origin.includes(".vercel.app")) {
+            return callback(null, true);
         }
 
-        // Production: Allow ANY Vercel deployment that contains our project name
-        if (isProd && origin.includes(".vercel.app")) {
-            // Check if it's one of our projects
-            const isOurProject =
-                origin.includes("kambaz-next-js") ||
-                origin.includes("kambaz-node") ||
-                origin.includes("cocos-projects");
-
-            if (isOurProject) {
-                console.log(`✅ Allowing Vercel deployment: ${origin}`);
-                return callback(null, true);
-            }
-        }
-
-        // Allow the main production URL
+        // Allow configured frontend
         if (origin === FRONTEND_ORIGIN) {
-            console.log("✅ Allowing main frontend origin:", origin);
             return callback(null, true);
         }
 
-        console.warn(`⚠️ CORS blocked origin: ${origin}`);
-        return callback(new Error("Not allowed by CORS"));
+        callback(new Error("Not allowed by CORS"));
     },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization", "Cookie", "X-Requested-With", "Accept"],
     exposedHeaders: ["set-cookie"],
     maxAge: 86400,
-    optionsSuccessStatus: 204,
-    preflightContinue: false
+    optionsSuccessStatus: 204
 };
 
 app.use(cors(corsOptions));
-
-// Handle OPTIONS preflight requests explicitly
 app.options("*", cors(corsOptions));
-
-// Add additional CORS headers for extra safety
-app.use((req, res, next) => {
-    const origin = req.headers.origin;
-    if (origin && (origin.includes(".vercel.app") || origin === FRONTEND_ORIGIN)) {
-        res.header("Access-Control-Allow-Origin", origin);
-        res.header("Access-Control-Allow-Credentials", "true");
-    }
-    next();
-});
 
 // ---------- Body Parsers ----------
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ---------- MongoDB Connection ----------
-mongoose
-    .connect(MONGODB_URI, {
-        serverSelectionTimeoutMS: 5000,
-        socketTimeoutMS: 45000,
-    })
-    .then(() => console.log("✅ Connected to MongoDB"))
-    .catch((err) => {
-        console.error("❌ MongoDB connection error:", err);
-        if (process.env.VERCEL) {
-            console.error("MongoDB connection failed but continuing for Vercel");
-        } else {
-            process.exit(1);
-        }
-    });
+// ---------- MongoDB Connection with Serverless Optimization ----------
+const mongooseOptions = {
+    serverSelectionTimeoutMS: 15000, // Increased for Vercel cold starts
+    socketTimeoutMS: 45000,
+    maxPoolSize: 10,
+    minPoolSize: 1,
+    retryWrites: true,
+    w: "majority"
+};
+
+// Global promise to prevent multiple connections
+let cached = global.mongoose;
+if (!cached) {
+    cached = global.mongoose = { conn: null, promise: null };
+}
+
+async function connectDB() {
+    if (cached.conn) {
+        return cached.conn;
+    }
+
+    if (!cached.promise) {
+        const opts = {
+            bufferCommands: false,
+            ...mongooseOptions
+        };
+
+        cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
+            return mongoose;
+        });
+    }
+
+    try {
+        cached.conn = await cached.promise;
+        return cached.conn;
+    } catch (e) {
+        cached.promise = null;
+        throw e;
+    }
+}
+
+// Initial connection attempt
+connectDB().catch(err => {
+    console.error("❌ Initial MongoDB connection failed:", err.message);
+});
 
 // ---------- Session Configuration ----------
 const sessionConfig = {
@@ -132,98 +128,62 @@ const sessionConfig = {
     saveUninitialized: false,
     store: MongoStore.create({
                                  mongoUrl: MONGODB_URI,
-                                 ttl: 24 * 60 * 60, // 1 day
-                                 touchAfter: 3600, // 1 hour
-                                 crypto: { secret: SESSION_SECRET }
+                                 ttl: 24 * 60 * 60,
+                                 touchAfter: 3600,
+                                 mongoOptions: mongooseOptions
                              }),
     cookie: {
         httpOnly: true,
-        secure: isProd, // HTTPS only in production
-        sameSite: isProd ? "none" : "lax", // 'none' for cross-origin in production
-        maxAge: 24 * 60 * 60 * 1000, // 24 hours
-        path: "/",
-        domain: undefined // Let browser handle domain
+        secure: isProd,
+        sameSite: isProd ? "none" : "lax",
+        maxAge: 24 * 60 * 60 * 1000,
+        path: "/"
     },
-    proxy: isProd // Trust the proxy in production
+    proxy: isProd
 };
 
 app.use(session(sessionConfig));
 
-// ---------- Request Logging ----------
-app.use((req, res, next) => {
-    const timestamp = new Date().toISOString();
-    const origin = req.headers.origin || "no-origin";
-    const user = req.session?.currentUser?.username || "anonymous";
-
-    console.log(`[${timestamp}] ${req.method} ${req.path}`);
-    console.log(`  Origin: ${origin} | User: ${user} | Session: ${req.sessionID?.slice(0, 8)}...`);
-
-    // Debug cookies and headers in production for auth endpoints
-    if (isProd && (req.path.includes("/users/") || req.path.includes("/test"))) {
-        console.log("  Cookies:", req.headers.cookie ? "present" : "none");
-        console.log("  User-Agent:", req.headers['user-agent']?.slice(0, 50));
+// ---------- Database Connection Middleware ----------
+app.use(async (req, res, next) => {
+    try {
+        await connectDB();
+        next();
+    } catch (error) {
+        console.error("DB Connection Error:", error.message);
+        next(); // Continue anyway for health checks
     }
-
-    next();
 });
 
 // ---------- Health Check Endpoints ----------
 app.get("/", (req, res) => {
     res.json({
-                 status: "ok",
+                 status: "healthy",
                  environment: isProd ? "production" : "development",
-                 timestamp: new Date().toISOString(),
-                 mongoConnected: mongoose.connection.readyState === 1,
-                 sessionConfigured: true,
-                 corsEnabled: true
+                 timestamp: new Date().toISOString()
              });
 });
 
-app.get("/api", (req, res) => {
+app.get("/api/health", async (req, res) => {
+    const dbState = mongoose.connection.readyState;
+    const dbStatus = ["disconnected", "connected", "connecting", "disconnecting"][dbState];
+
     res.json({
-                 status: "ok",
-                 message: "Kambaz API is running",
-                 version: "1.0.0",
-                 environment: isProd ? "production" : "development"
+                 status: dbState === 1 ? "healthy" : "degraded",
+                 database: dbStatus,
+                 environment: isProd ? "production" : "development",
+                 timestamp: new Date().toISOString()
              });
 });
 
-// ---------- TEST CORS Endpoint ----------
+// ---------- Test Endpoints ----------
 app.post("/api/test-cors", (req, res) => {
-    console.log("🧪 Test CORS endpoint hit");
-    console.log("  Origin:", req.headers.origin || "no-origin");
-    console.log("  Cookie:", req.headers.cookie ? "present" : "none");
-    console.log("  Session exists:", Boolean(req.session));
-    console.log("  Session ID:", req.sessionID || "none");
-
     res.json({
+                 success: true,
                  origin: req.headers.origin || "no-origin",
-                 hasCookie: Boolean(req.headers.cookie),
-                 sessionExists: Boolean(req.session),
-                 sessionID: req.sessionID || "none",
-                 currentUser: req.session?.currentUser || null,
-                 timestamp: new Date().toISOString(),
-                 headers: {
-                     host: req.headers.host,
-                     userAgent: req.headers['user-agent']?.slice(0, 50)
-                 }
-             });
-});
-
-// ---------- Test Session Endpoint ----------
-app.post("/api/test-session", (req, res) => {
-    console.log("🧪 Test Session endpoint");
-
-    // Set a test value in session
-    req.session.testValue = req.session.testValue ? req.session.testValue + 1 : 1;
-    req.session.testTime = new Date().toISOString();
-
-    res.json({
-                 sessionID: req.sessionID,
-                 testValue: req.session.testValue,
-                 testTime: req.session.testTime,
-                 currentUser: req.session?.currentUser || null,
-                 message: "Session test successful"
+                 cookies: req.headers.cookie ? "present" : "none",
+                 session: Boolean(req.session),
+                 timestamp: new Date().toISOString()
              });
 });
 
@@ -245,82 +205,26 @@ SettingsRoutes(app);
 app.use("/api", PazzaRoutes);
 app.use("/api", ZoomRoutes);
 
-// ---------- Debug Endpoint ----------
-app.get("/api/debug/session", (req, res) => {
-    if (process.env.NODE_ENV === "production" && !req.query.secret) {
-        return res.status(404).json({ message: "Not found" });
-    }
-
-    res.json({
-                 environment: isProd ? "production" : "development",
-                 origin: req.headers.origin || null,
-                 hasCookie: Boolean(req.headers.cookie),
-                 cookieHeader: req.headers.cookie || "none",
-                 sessionID: req.sessionID || "none",
-                 sessionExists: Boolean(req.session),
-                 currentUser: req.session?.currentUser || null,
-                 trustProxy: app.get("trust proxy"),
-                 secure: req.secure,
-                 protocol: req.protocol
-             });
-});
-
 // ---------- Error Handler ----------
 app.use((err, req, res, next) => {
-    console.error("❌ Error:", err.message || err);
-
-    if (err.message === "Not allowed by CORS") {
-        return res.status(403).json({
-                                        message: "CORS policy violation",
-                                        origin: req.headers.origin
-                                    });
-    }
+    console.error("Error:", err.message);
 
     res.status(err.status || 500).json({
-                                           message: err.message || "Internal server error",
-                                           ...(isProd ? {} : { error: String(err), stack: err.stack })
+                                           message: err.message || "Internal server error"
                                        });
 });
 
 // ---------- 404 Handler ----------
 app.use((req, res) => {
-    console.warn(`⚠️ 404: ${req.method} ${req.path}`);
     res.status(404).json({
-                             message: `Route not found: ${req.method} ${req.path}`,
-                             availableRoutes: [
-                                 "/api/users/*",
-                                 "/api/courses/*",
-                                 "/api/enrollments/*",
-                                 "/api/quizzes/*",
-                                 "/api/pazza/*",
-                                 "/api/announcements/*",
-                                 "/api/assignments/*",
-                                 "/api/grades/*",
-                                 "/api/zoom/*",
-                                 "/api/test-cors",
-                                 "/api/test-session"
-                             ]
+                             message: `Route not found: ${req.method} ${req.path}`
                          });
 });
 
 // ---------- Server Startup ----------
 if (!process.env.VERCEL) {
-    const server = app.listen(PORT, () => {
-        console.log(`🚀 Server running on http://localhost:${PORT}`);
-        console.log(`📝 Environment: ${isProd ? "production" : "development"}`);
-        console.log(`🔗 Frontend origin: ${FRONTEND_ORIGIN}`);
-        console.log("🍪 Session store: MongoDB");
-    });
-
-    // Graceful shutdown
-    process.on("SIGTERM", () => {
-        console.log("SIGTERM: Closing HTTP server");
-        server.close(() => {
-            mongoose.connection.close(false, () => {
-                console.log("MongoDB connection closed");
-                process.exit(0);
-            });
-        });
+    app.listen(PORT, () => {
+        console.log(`🚀 Server running on port ${PORT}`);
     });
 }
 
