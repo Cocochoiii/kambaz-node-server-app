@@ -6,6 +6,10 @@ import MongoStore from "connect-mongo";
 import cors from "cors";
 import "dotenv/config";
 
+// Import initialization functions
+import { initializePazzaData } from "./Kambaz/Pazza/init.js";
+import { initializeQuizData } from "./Kambaz/Quizzes/init.js";
+
 // Routes
 import UserRoutes from "./Kambaz/Users/routes.js";
 import CourseRoutes from "./Kambaz/Courses/routes.js";
@@ -109,10 +113,34 @@ async function connectDB() {
     }
 }
 
-// Initial connection attempt
-connectDB().catch(err => {
-    console.error("❌ Initial MongoDB connection failed:", err.message);
-});
+// Data initialization function
+let dataInitialized = false;
+async function initializeData() {
+    if (dataInitialized) return;
+
+    try {
+        console.log("🔄 Checking data initialization...");
+
+        // Initialize Pazza data
+        await initializePazzaData();
+
+        // Initialize Quiz data
+        await initializeQuizData();
+
+        dataInitialized = true;
+        console.log("✅ Data initialization complete");
+    } catch (error) {
+        console.error("❌ Error during data initialization:", error);
+        // Don't throw - let the server continue
+    }
+}
+
+// Initial connection and data initialization
+connectDB()
+    .then(() => initializeData())
+    .catch(err => {
+        console.error("❌ Initial setup failed:", err.message);
+    });
 
 // Session Configuration
 const sessionConfig = {
@@ -142,6 +170,10 @@ app.use(session(sessionConfig));
 app.use(async (req, res, next) => {
     try {
         await connectDB();
+        // Ensure data is initialized on first request
+        if (!dataInitialized) {
+            await initializeData();
+        }
         next();
     } catch (error) {
         console.error("DB Connection Error:", error.message);
@@ -158,6 +190,8 @@ app.get("/", (req, res) => {
              });
 });
 
+
+
 app.get("/api/health", async (req, res) => {
     const dbState = mongoose.connection.readyState;
     const dbStatus = ["disconnected", "connected", "connecting", "disconnecting"][dbState];
@@ -168,6 +202,44 @@ app.get("/api/health", async (req, res) => {
                  environment: isProd ? "production" : "development",
                  timestamp: new Date().toISOString()
              });
+});
+
+// Add this endpoint to index.js after the health check endpoints
+
+// Manual initialization endpoint (for debugging/forcing re-initialization)
+app.post("/api/init-data", async (req, res) => {
+    try {
+        console.log("🔄 Manual data initialization requested...");
+
+        // Force re-initialization
+        dataInitialized = false;
+        await initializeData();
+
+        // Get counts to verify
+        const { Folder, Post } = await import("./Kambaz/Pazza/models.js");
+        const QuizModel = await import("./Kambaz/Quizzes/model.js").then(m => m.default);
+        const QuestionModel = await import("./Kambaz/Quizzes/questionModel.js").then(m => m.default);
+
+        const counts = {
+            pazzaFolders: await Folder.countDocuments(),
+            pazzaPosts: await Post.countDocuments(),
+            quizzes: await QuizModel.countDocuments(),
+            questions: await QuestionModel.countDocuments()
+        };
+
+        res.json({
+                     success: true,
+                     message: "Data initialization completed",
+                     counts,
+                     timestamp: new Date().toISOString()
+                 });
+    } catch (error) {
+        console.error("Manual initialization error:", error);
+        res.status(500).json({
+                                 success: false,
+                                 error: error.message
+                             });
+    }
 });
 
 // Test Endpoints

@@ -9,14 +9,17 @@ import { initializeQuizData } from "./init.js";
 let initialized = false;
 async function ensureInitialized() {
   if (!initialized) {
-    await initializeQuizData();
-    initialized = true;
+    try {
+      await initializeQuizData();
+      initialized = true;
+    } catch (error) {
+      console.error("Failed to initialize quiz data:", error);
+    }
   }
 }
 
 export async function findQuizzesForCourse(courseId, currentUser) {
   await ensureInitialized();
-  const now = new Date();
   const baseQuery = { course: courseId };
 
   if (!currentUser || currentUser.role !== "FACULTY") {

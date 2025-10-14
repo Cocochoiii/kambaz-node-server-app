@@ -8,7 +8,8 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "echo \"no tests\" && exit 0",
-    "seed:quizzes": "node seedQuizzes.js"
+    "seed:quizzes": "node seedQuizzes.js",
+    "seed:production": "node seed-production.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

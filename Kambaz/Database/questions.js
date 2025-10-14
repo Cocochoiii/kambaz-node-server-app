@@ -1,4 +1,4 @@
-export default [
+const questionsSeed = [
     { "_id": "Q5610-1-1", "quiz": "Q5610-1", "title": "Most important heading tag", "type": "MC", "points": 1, "choices": ["<head>", "<h1>", "<header>", "<title>"], "answer": "<h1>", "explanation": "Headings use h1..h6; h1 is the highest level." },
     { "_id": "Q5610-1-2", "quiz": "Q5610-1", "title": "Best tag for a nav area", "type": "MC", "points": 1, "choices": ["<menu>", "<navigation>", "<nav>", "<dir>"], "answer": "<nav>" },
     { "_id": "Q5610-1-3", "quiz": "Q5610-1", "title": "Semantic HTML improves accessibility.", "type": "TF", "points": 1, "answer": "True" },
@@ -56,3 +56,4 @@ export default [
     { "_id": "Q6620-10-2", "quiz": "Q6620-10", "title": "SLO measures", "type": "MC", "points": 1, "choices": ["Business OKRs", "Service targets like latency", "CapEx", "Ticket count only"], "answer": "Service targets like latency" },
     { "_id": "Q6620-10-3", "quiz": "Q6620-10", "title": "Secrets in repo are safe", "type": "TF", "points": 1, "answer": "False" }
 ];
+export { questionsSeed };

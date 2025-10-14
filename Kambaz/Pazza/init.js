@@ -1,28 +1,32 @@
 // Kambaz/Pazza/init.js
 import mongoose from "mongoose";
 import { pazzaSeedData } from "../Database/pazza.js";
-
-// Use the models from models.js to avoid duplication
 import { Folder, Post } from "./models.js";
 
 export async function initializePazzaData() {
     try {
-        // Check if we already have data
+        // Don't use initTracker - check actual data instead
         const existingFolders = await Folder.countDocuments();
-        if (existingFolders === 0) {
+        const existingPosts = await Post.countDocuments();
+
+        console.log(`📊 Pazza data check: ${existingFolders} folders, ${existingPosts} posts`);
+
+        // Initialize folders if none exist
+        if (existingFolders === 0 && pazzaSeedData?.folders) {
             console.log('Inserting Pazza folders...');
             await Folder.insertMany(pazzaSeedData.folders);
             console.log(`✅ Inserted ${pazzaSeedData.folders.length} folders`);
         }
 
-        const existingPosts = await Post.countDocuments();
-        if (existingPosts === 0) {
+        // Initialize posts if none exist
+        if (existingPosts === 0 && pazzaSeedData?.posts) {
             console.log('Inserting Pazza posts...');
 
             const processedPosts = pazzaSeedData.posts.map(post => {
                 const postCopy = { ...post };
 
-                const postAnswers = pazzaSeedData.answers.filter(a => a.postId === post._id);
+                // Process answers
+                const postAnswers = pazzaSeedData.answers?.filter(a => a.postId === post._id) || [];
                 postCopy.studentAnswers = postAnswers
                     .filter(a => a.authorRole === 'STUDENT')
                     .map(a => ({
@@ -32,7 +36,7 @@ export async function initializePazzaData() {
                         authorName: a.authorName,
                         content: a.content,
                         timestamp: new Date(a.createdAt),
-                        isGoodAnswer: a.isGoodAnswer
+                        isGoodAnswer: a.isGoodAnswer || false
                     }));
 
                 postCopy.instructorAnswers = postAnswers
@@ -44,13 +48,14 @@ export async function initializePazzaData() {
                         authorName: a.authorName,
                         content: a.content,
                         timestamp: new Date(a.createdAt),
-                        isGoodAnswer: a.isGoodAnswer
+                        isGoodAnswer: a.isGoodAnswer || false
                     }));
 
-                const postFollowups = pazzaSeedData.followups
+                // Process followups
+                const postFollowups = (pazzaSeedData.followups || [])
                     .filter(f => f.postId === post._id && !f.parentId)
                     .map(f => {
-                        const replies = pazzaSeedData.followups
+                        const replies = (pazzaSeedData.followups || [])
                             .filter(r => r.parentId === f._id)
                             .map(r => ({
                                 _id: r._id,
@@ -67,7 +72,7 @@ export async function initializePazzaData() {
                             authorRole: f.authorRole,
                             authorName: f.authorName,
                             content: f.content,
-                            isResolved: f.isResolved,
+                            isResolved: f.isResolved || false,
                             timestamp: new Date(f.createdAt),
                             replies
                         };
@@ -77,14 +82,22 @@ export async function initializePazzaData() {
                 postCopy.hasInstructorAnswer = postCopy.instructorAnswers.length > 0;
                 postCopy.hasStudentAnswer = postCopy.studentAnswers.length > 0;
 
+                // Ensure dates are Date objects
+                postCopy.createdAt = new Date(postCopy.createdAt);
+                postCopy.updatedAt = new Date(postCopy.updatedAt);
+
                 return postCopy;
             });
 
             await Post.insertMany(processedPosts);
-            console.log(`✅ Inserted ${processedPosts.length} posts with answers and followups`);
+            console.log(`✅ Inserted ${processedPosts.length} posts`);
         }
+
+        console.log("✅ Pazza initialization check complete");
+        return true;
+
     } catch (error) {
-        console.error('Error initializing Pazza data:', error);
-        // Don't throw - let the server continue
+        console.error('❌ Error initializing Pazza data:', error);
+        return false;
     }
 }

@@ -1,35 +1,27 @@
 // Kambaz/Quizzes/init.js
-import mongoose from "mongoose";
-import { readFileSync } from "fs";
-import { fileURLToPath } from "url";
-import { dirname, join } from "path";
 import QuizModel from "./model.js";
 import QuestionModel from "./questionModel.js";
-
-// Get current directory
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-// Read JSON files
-const quizzesSeed = JSON.parse(
-    readFileSync(join(__dirname, "../Database/quizzes.json"), "utf-8")
-);
-const questionsSeed = JSON.parse(
-    readFileSync(join(__dirname, "../Database/questions.json"), "utf-8")
-);
+import { quizzesSeed } from "../Database/quizzes.js";
+import { questionsSeed } from "../Database/questions.js";
 
 export async function initializeQuizData() {
     try {
-        // Check if we already have data
+        // Don't use initTracker - check actual data instead
         const existingQuizzes = await QuizModel.countDocuments();
-        if (existingQuizzes === 0) {
-            console.log('Inserting quiz data...');
+        const existingQuestions = await QuestionModel.countDocuments();
 
-            // Insert quizzes
+        console.log(`📊 Quiz data check: ${existingQuizzes} quizzes, ${existingQuestions} questions`);
+
+        // Initialize quizzes if none exist
+        if (existingQuizzes === 0 && quizzesSeed && quizzesSeed.length > 0) {
+            console.log('Inserting quiz data...');
             await QuizModel.insertMany(quizzesSeed);
             console.log(`✅ Inserted ${quizzesSeed.length} quizzes`);
+        }
 
-            // Insert questions
+        // Initialize questions if none exist
+        if (existingQuestions === 0 && questionsSeed && questionsSeed.length > 0) {
+            console.log('Inserting question data...');
             await QuestionModel.insertMany(questionsSeed);
             console.log(`✅ Inserted ${questionsSeed.length} questions`);
 
@@ -44,11 +36,13 @@ export async function initializeQuizData() {
                 );
             }
             console.log("✅ Updated quiz points");
-        } else {
-            console.log(`✅ Quiz data already exists (${existingQuizzes} quizzes)`);
         }
+
+        console.log("✅ Quiz initialization check complete");
+        return true;
+
     } catch (error) {
-        console.error('Error initializing Quiz data:', error);
-        // Don't throw - let the server continue
+        console.error('❌ Error initializing Quiz data:', error);
+        return false;
     }
 }

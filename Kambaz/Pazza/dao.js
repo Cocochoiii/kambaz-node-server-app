@@ -1,119 +1,39 @@
 // Kambaz/Pazza/dao.js
-import { pazzaSeedData } from "../Database/pazza.js";
 import { Folder, Post } from "./models.js";
+import { initializePazzaData } from "./init.js";
 
-/** -------------- Seed once -------------- */
-export async function seedIfNeeded() {
-    try {
-        // Check and seed folders
-        const folderCount = await Folder.countDocuments();
-        if (folderCount === 0) {
-            console.log("Seeding Pazza folders...");
-            await Folder.insertMany(pazzaSeedData.folders);
-            console.log(`✅ Seeded ${pazzaSeedData.folders.length} folders`);
-        }
-
-        // Check and seed posts with nested content
-        const postCount = await Post.countDocuments();
-        if (postCount === 0) {
-            console.log("Seeding Pazza posts...");
-            const processed = pazzaSeedData.posts.map((p) => {
-                const post = { ...p };
-
-                const answers = pazzaSeedData.answers.filter((a) => a.postId === p._id);
-                post.studentAnswers = answers
-                    .filter((a) => a.authorRole === "STUDENT")
-                    .map((a) => ({
-                        _id: a._id,
-                        author: a.author,
-                        authorRole: a.authorRole,
-                        authorName: a.authorName,
-                        content: a.content,
-                        timestamp: new Date(a.createdAt),
-                        isGoodAnswer: !!a.isGoodAnswer,
-                    }));
-
-                post.instructorAnswers = answers
-                    .filter((a) => ["FACULTY", "TA", "INSTRUCTOR"].includes(a.authorRole))
-                    .map((a) => ({
-                        _id: a._id,
-                        author: a.author,
-                        authorRole: a.authorRole,
-                        authorName: a.authorName,
-                        content: a.content,
-                        timestamp: new Date(a.createdAt),
-                        isGoodAnswer: !!a.isGoodAnswer,
-                    }));
-
-                const followups = pazzaSeedData.followups
-                    .filter((f) => f.postId === p._id && !f.parentId)
-                    .map((f) => {
-                        const replies = pazzaSeedData.followups
-                            .filter((r) => r.parentId === f._id)
-                            .map((r) => ({
-                                _id: r._id,
-                                author: r.author,
-                                authorRole: r.authorRole,
-                                authorName: r.authorName,
-                                content: r.content,
-                                timestamp: new Date(r.createdAt),
-                            }));
-                        return {
-                            _id: f._id,
-                            author: f.author,
-                            authorRole: f.authorRole,
-                            authorName: f.authorName,
-                            content: f.content,
-                            isResolved: !!f.isResolved,
-                            timestamp: new Date(f.createdAt),
-                            replies,
-                        };
-                    });
-
-                post.followups = followups;
-                post.hasInstructorAnswer = post.instructorAnswers.length > 0;
-                post.hasStudentAnswer = post.studentAnswers.length > 0;
-                return post;
-            });
-
-            await Post.insertMany(processed);
-            console.log(`✅ Seeded ${processed.length} posts`);
-        }
-    } catch (error) {
-        console.error("Error in seedIfNeeded:", error);
-        // Don't throw - let the server continue
+// Initialize data on first call
+let initialized = false;
+async function ensureInitialized() {
+    if (!initialized) {
+        await initializePazzaData();
+        initialized = true;
     }
 }
 
-/** -------------- Helpers -------------- */
-const visibleOr = (userId) =>
-    userId
-    ? [
-            { postTo: "entire_class" },
-            { postTo: "individual", visibleTo: userId },
-            { author: userId },
-        ]
-    : [{ postTo: "entire_class" }];
-
-/** Folders */
 export const listFolders = async (courseId) => {
-    await seedIfNeeded(); // Ensure data exists
+    await ensureInitialized();
     return Folder.find({ course: courseId }).sort({ order: 1 });
 };
 
-export const createFolder = (courseId, name) =>
-    new Folder({
-                   _id: `${courseId}-${name.toLowerCase().replace(/\s+/g, "-")}`,
-                   name,
-                   course: courseId,
-                   isDefault: false,
-                   order: 100,
-               }).save();
+export const createFolder = async (courseId, name) => {
+    await ensureInitialized();
+    return new Folder({
+                          _id: `${courseId}-${name.toLowerCase().replace(/\s+/g, "-")}`,
+                          name,
+                          course: courseId,
+                          isDefault: false,
+                          order: 100,
+                      }).save();
+};
 
-export const renameFolder = (folderId, name) =>
-    Folder.findByIdAndUpdate(folderId, { name }, { new: true });
+export const renameFolder = async (folderId, name) => {
+    await ensureInitialized();
+    return Folder.findByIdAndUpdate(folderId, { name }, { new: true });
+};
 
 export async function removeFolder(folderId) {
+    await ensureInitialized();
     const f = await Folder.findById(folderId);
     if (!f) return null;
     if (f.isDefault) throw new Error("Cannot delete default folder");
@@ -121,10 +41,17 @@ export async function removeFolder(folderId) {
     return { ok: true };
 }
 
-/** Posts */
 export async function listPosts(courseId, { folder, search, userId }) {
-    await seedIfNeeded(); // Ensure data exists
-    const q = { course: courseId, $and: [{ $or: visibleOr(userId) }] };
+    await ensureInitialized();
+    const visibleOr = userId
+                      ? [
+            { postTo: "entire_class" },
+            { postTo: "individual", visibleTo: userId },
+            { author: userId },
+        ]
+                      : [{ postTo: "entire_class" }];
+
+    const q = { course: courseId, $and: [{ $or: visibleOr }] };
     if (folder) q.folders = folder;
     if (search) {
         q.$or = [
@@ -136,11 +63,12 @@ export async function listPosts(courseId, { folder, search, userId }) {
 }
 
 export async function getPost(postId) {
-    await seedIfNeeded(); // Ensure data exists
+    await ensureInitialized();
     return Post.findById(postId);
 }
 
-export function savePost(courseId, payload, sessionUser) {
+export async function savePost(courseId, payload, sessionUser) {
+    await ensureInitialized();
     const { type, postTo, visibleTo, folders, summary, details, title } = payload;
     return new Post({
                         _id: `${courseId}-post-${Date.now()}`,
@@ -166,7 +94,7 @@ export function savePost(courseId, payload, sessionUser) {
 }
 
 export async function computeStats(courseId) {
-    await seedIfNeeded(); // Ensure data exists
+    await ensureInitialized();
     const posts = await Post.find({ course: courseId });
     return {
         totalPosts: posts.length,

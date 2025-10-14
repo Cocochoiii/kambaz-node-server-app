@@ -1,7 +1,7 @@
 // Kambaz/Database/pazza.js
 
 // Simple seed data that matches your routes structure
-export const pazzaSeedData = {
+const pazzaSeedData  = {
     folders: [
         // CS5610 folders
         { _id: "5610-hw1", name: "hw1", course: "5610", isDefault: true, order: 1 },
@@ -1423,3 +1423,4 @@ export const pazzaSeedData = {
         }
     ]
 };
+export { pazzaSeedData };

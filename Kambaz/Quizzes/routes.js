@@ -1,13 +1,9 @@
 // Kambaz/Quizzes/routes.js
 import mongoose from "mongoose";
 import { v4 as uuidv4 } from "uuid";
-import { readFileSync } from "fs";
-import { fileURLToPath } from "url";
-import { dirname, join } from "path";
-
-// Get current directory
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// Import seed data as JS modules, not JSON files
+import { quizzesSeed } from "../Database/quizzes.js";
+import { questionsSeed } from "../Database/questions.js";
 
 // Define schemas
 const quizSchema = new mongoose.Schema(
@@ -92,71 +88,61 @@ const attemptSchema = new mongoose.Schema(
     { collection: "attempts" }
 );
 
-// Use existing models if available
+// Register models properly for serverless
 const QuizModel = mongoose.models.QuizModel || mongoose.model("QuizModel", quizSchema);
 const QuestionModel = mongoose.models.QuestionModel || mongoose.model("QuestionModel", questionSchema);
 const AttemptModel = mongoose.models.AttemptModel || mongoose.model("AttemptModel", attemptSchema);
 
-// Load seed data
-let quizzesSeed = [];
-let questionsSeed = [];
-
-try {
-  quizzesSeed = JSON.parse(readFileSync(join(__dirname, "../Database/quizzes.json"), "utf-8"));
-  questionsSeed = JSON.parse(readFileSync(join(__dirname, "../Database/questions.json"), "utf-8"));
-} catch (error) {
-  console.error("Error loading quiz seed data:", error);
-}
-
-// Initialize data
-let initialized = false;
-
-async function ensureInitialized() {
-  if (initialized || mongoose.connection.readyState !== 1) return;
-
+// Initialize data function
+async function initializeQuizData() {
   try {
-    const existingQuizzes = await QuizModel.countDocuments();
-    if (existingQuizzes === 0 && quizzesSeed.length > 0) {
+    if (mongoose.connection.readyState !== 1) {
+      console.log("MongoDB not connected, skipping quiz initialization");
+      return;
+    }
+
+    const existingQuizzes = await QuizModel.countDocuments().catch(() => 0);
+
+    if (existingQuizzes === 0 && quizzesSeed && quizzesSeed.length > 0) {
       console.log('Initializing quiz data...');
+
+      // Insert quizzes
       await QuizModel.insertMany(quizzesSeed);
       console.log(`✅ Initialized ${quizzesSeed.length} quizzes`);
 
-      await QuestionModel.insertMany(questionsSeed);
-      console.log(`✅ Initialized ${questionsSeed.length} questions`);
+      // Insert questions
+      if (questionsSeed && questionsSeed.length > 0) {
+        await QuestionModel.insertMany(questionsSeed);
+        console.log(`✅ Initialized ${questionsSeed.length} questions`);
 
-      // Update quiz points
-      const quizIds = [...new Set(questionsSeed.map(q => q.quiz))];
-      for (const quizId of quizIds) {
-        const questions = questionsSeed.filter(q => q.quiz === quizId);
-        const totalPoints = questions.reduce((sum, q) => sum + (q.points || 0), 0);
-        await QuizModel.updateOne(
-            { _id: quizId },
-            { $set: { points: totalPoints } }
-        );
+        // Update quiz points
+        const quizIds = [...new Set(questionsSeed.map(q => q.quiz))];
+        for (const quizId of quizIds) {
+          const questions = questionsSeed.filter(q => q.quiz === quizId);
+          const totalPoints = questions.reduce((sum, q) => sum + (q.points || 0), 0);
+          await QuizModel.updateOne(
+              { _id: quizId },
+              { $set: { points: totalPoints } }
+          );
+        }
+        console.log("✅ Updated quiz points");
       }
-      console.log("✅ Updated quiz points");
     }
-    initialized = true;
   } catch (error) {
-    console.error('Error initializing Quiz data:', error);
+    console.error('Error initializing quiz data:', error);
   }
 }
 
 export default function QuizRoutes(app) {
   console.log("✅ Quiz routes loaded");
 
-  // Middleware for all quiz routes
-  app.use("/api/courses/:courseId/quizzes", async (req, res, next) => {
-    await ensureInitialized();
+  // Initialize on each request if needed (serverless friendly)
+  const ensureInit = async (req, res, next) => {
+    await initializeQuizData();
     next();
-  });
+  };
 
-  app.use("/api/quizzes", async (req, res, next) => {
-    await ensureInitialized();
-    next();
-  });
-
-  app.get("/api/courses/:courseId/quizzes", async (req, res) => {
+  app.get("/api/courses/:courseId/quizzes", ensureInit, async (req, res) => {
     try {
       const { courseId } = req.params;
       const currentUser = req.session?.currentUser;
@@ -187,7 +173,7 @@ export default function QuizRoutes(app) {
     }
   });
 
-  app.post("/api/courses/:courseId/quizzes", async (req, res) => {
+  app.post("/api/courses/:courseId/quizzes", ensureInit, async (req, res) => {
     try {
       const { courseId } = req.params;
       const quiz = {
@@ -205,13 +191,13 @@ export default function QuizRoutes(app) {
     }
   });
 
-  app.get("/api/quizzes/:qid", async (req, res) => {
+  app.get("/api/quizzes/:qid", ensureInit, async (req, res) => {
     try {
       const { qid } = req.params;
       const currentUser = req.session?.currentUser;
 
       const quiz = await QuizModel.findById(qid);
-      if (!quiz) return res.status(404).json({ error: "Not found" });
+      if (!quiz) return res.status(404).json({ error: "Quiz not found" });
 
       const questions = await QuestionModel.find({ quiz: qid });
       let questionsObj = questions.map(q => q.toObject());
@@ -235,7 +221,7 @@ export default function QuizRoutes(app) {
     }
   });
 
-  app.put("/api/quizzes/:qid", async (req, res) => {
+  app.put("/api/quizzes/:qid", ensureInit, async (req, res) => {
     try {
       const { _id, course, ...updates } = req.body;
       await QuizModel.updateOne({ _id: req.params.qid }, { $set: updates });
@@ -247,7 +233,7 @@ export default function QuizRoutes(app) {
     }
   });
 
-  app.delete("/api/quizzes/:qid", async (req, res) => {
+  app.delete("/api/quizzes/:qid", ensureInit, async (req, res) => {
     try {
       await QuestionModel.deleteMany({ quiz: req.params.qid });
       await AttemptModel.deleteMany({ quiz: req.params.qid });
@@ -259,7 +245,7 @@ export default function QuizRoutes(app) {
     }
   });
 
-  app.put("/api/quizzes/:qid/publish", async (req, res) => {
+  app.put("/api/quizzes/:qid/publish", ensureInit, async (req, res) => {
     try {
       await QuizModel.updateOne(
           { _id: req.params.qid },
@@ -273,7 +259,7 @@ export default function QuizRoutes(app) {
     }
   });
 
-  app.post("/api/quizzes/:qid/questions", async (req, res) => {
+  app.post("/api/quizzes/:qid/questions", ensureInit, async (req, res) => {
     try {
       const question = {
         ...req.body,
@@ -290,7 +276,6 @@ export default function QuizRoutes(app) {
 
       const created = await QuestionModel.create(question);
 
-      // Update quiz points
       const quiz = await QuizModel.findById(req.params.qid);
       if (quiz) {
         const newPoints = (quiz.points || 0) + (question.points || 0);
@@ -307,7 +292,7 @@ export default function QuizRoutes(app) {
     }
   });
 
-  app.put("/api/quizzes/:qid/questions/:questionId", async (req, res) => {
+  app.put("/api/quizzes/:qid/questions/:questionId", ensureInit, async (req, res) => {
     try {
       const { questionId, qid } = req.params;
       const { _id, quiz, ...updates } = req.body;
@@ -336,7 +321,7 @@ export default function QuizRoutes(app) {
     }
   });
 
-  app.delete("/api/quizzes/:qid/questions/:questionId", async (req, res) => {
+  app.delete("/api/quizzes/:qid/questions/:questionId", ensureInit, async (req, res) => {
     try {
       const { questionId, qid } = req.params;
 
@@ -356,11 +341,16 @@ export default function QuizRoutes(app) {
     }
   });
 
-  app.post("/api/quizzes/:qid/attempts", async (req, res) => {
+  app.post("/api/quizzes/:qid/attempts", ensureInit, async (req, res) => {
     try {
       const currentUser = req.session?.currentUser;
 
+      console.log("=== SUBMIT ATTEMPT ===");
+      console.log("Session:", req.session);
+      console.log("Current User:", currentUser);
+
       if (!currentUser) {
+        console.log("No user in session - returning 401");
         return res.status(401).json({ error: "Login required" });
       }
 
@@ -443,12 +433,12 @@ export default function QuizRoutes(app) {
                  })),
                });
     } catch (err) {
-      console.error("Error recording attempt:", err);
+      console.error("Error in submit attempt:", err);
       res.status(500).json({ error: err.message });
     }
   });
 
-  app.get("/api/quizzes/:qid/attempts/last", async (req, res) => {
+  app.get("/api/quizzes/:qid/attempts/last", ensureInit, async (req, res) => {
     try {
       const currentUser = req.session?.currentUser;
       if (!currentUser) return res.status(401).json({ error: "Login required" });
@@ -471,7 +461,6 @@ export default function QuizRoutes(app) {
                  })),
                });
     } catch (err) {
-      console.error("Error fetching last attempt:", err);
       res.status(500).json({ error: err.message });
     }
   });
