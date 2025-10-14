@@ -1,23 +1,12 @@
 // Kambaz/Quizzes/dao.js
 import { v4 as uuidv4 } from "uuid";
-import { QuizModel, QuestionModel, AttemptModel } from "./models.js";
-import { initializeQuizData } from "./init.js";
+import QuizModel from "./model.js";
+import QuestionModel from "./questionModel.js";
+import AttemptModel from "./attemptModel.js";
 
-// Ensure data is initialized
-let initialized = false;
-async function ensureInitialized() {
-  if (!initialized) {
-    try {
-      await initializeQuizData();
-      initialized = true;
-    } catch (error) {
-      console.error("Failed to initialize quiz data:", error);
-    }
-  }
-}
+// Remove initialization from DAO - let routes handle it
 
 export async function findQuizzesForCourse(courseId, currentUser) {
-  await ensureInitialized();
   const baseQuery = { course: courseId };
 
   if (!currentUser || currentUser.role !== "FACULTY") {
@@ -29,7 +18,6 @@ export async function findQuizzesForCourse(courseId, currentUser) {
 }
 
 export async function countQuestionsForQuizzes(quizIds) {
-  await ensureInitialized();
   const counts = await QuestionModel.aggregate([
                                                  { $match: { quiz: { $in: quizIds } } },
                                                  { $group: { _id: "$quiz", count: { $sum: 1 } } },
@@ -39,7 +27,6 @@ export async function countQuestionsForQuizzes(quizIds) {
 }
 
 export async function createQuiz(courseId, quiz) {
-  await ensureInitialized();
   const _id = uuidv4();
   const newQuiz = {
     ...quiz,
@@ -53,13 +40,11 @@ export async function createQuiz(courseId, quiz) {
 }
 
 export async function findQuizById(qid) {
-  await ensureInitialized();
   const quiz = await QuizModel.findById(qid);
   return quiz ? quiz.toObject() : null;
 }
 
 export async function updateQuiz(qid, updates) {
-  await ensureInitialized();
   const { _id, course, ...rest } = updates;
   await QuizModel.updateOne({ _id: qid }, { $set: rest });
   const updated = await QuizModel.findById(qid);
@@ -67,7 +52,6 @@ export async function updateQuiz(qid, updates) {
 }
 
 export async function deleteQuiz(qid) {
-  await ensureInitialized();
   await QuestionModel.deleteMany({ quiz: qid });
   await AttemptModel.deleteMany({ quiz: qid });
   await QuizModel.deleteOne({ _id: qid });
@@ -75,14 +59,12 @@ export async function deleteQuiz(qid) {
 }
 
 export async function publishQuiz(qid, published) {
-  await ensureInitialized();
   await QuizModel.updateOne({ _id: qid }, { $set: { published } });
   const updated = await QuizModel.findById(qid);
   return updated ? updated.toObject() : null;
 }
 
 export async function addQuestion(qid, question) {
-  await ensureInitialized();
   const _id = uuidv4();
   const newQuestion = { ...question, _id, quiz: qid };
 
@@ -103,7 +85,6 @@ export async function addQuestion(qid, question) {
 }
 
 export async function updateQuestion(qid, questionId, updates) {
-  await ensureInitialized();
   const question = await QuestionModel.findById(questionId);
   if (!question) return null;
 
@@ -127,7 +108,6 @@ export async function updateQuestion(qid, questionId, updates) {
 }
 
 export async function deleteQuestion(qid, questionId) {
-  await ensureInitialized();
   const question = await QuestionModel.findById(questionId);
   if (question) {
     await QuizModel.updateOne(
@@ -140,7 +120,6 @@ export async function deleteQuestion(qid, questionId) {
 }
 
 export async function findQuestionsForQuiz(qid) {
-  await ensureInitialized();
   const questions = await QuestionModel.find({ quiz: qid });
   return questions.map((q) => q.toObject());
 }
@@ -178,7 +157,6 @@ async function computeScore(qid, answers) {
 }
 
 export async function recordAttempt(qid, userId, answers) {
-  await ensureInitialized();
   const quiz = await QuizModel.findById(qid);
   if (!quiz) return null;
 
@@ -216,7 +194,6 @@ export async function recordAttempt(qid, userId, answers) {
 }
 
 export async function lastAttempt(qid, userId) {
-  await ensureInitialized();
   const attempt = await AttemptModel.findOne({ quiz: qid, user: userId }).sort({
                                                                                  attemptNumber: -1,
                                                                                });

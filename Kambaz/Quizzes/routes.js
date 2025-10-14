@@ -1,6 +1,8 @@
 // Kambaz/Quizzes/routes.js
 import { v4 as uuidv4 } from "uuid";
-import { QuizModel, QuestionModel, AttemptModel } from "./models.js";
+import QuizModel from "./model.js";
+import QuestionModel from "./questionModel.js";
+import AttemptModel from "./attemptModel.js";
 import { quizzesSeed } from "../Database/quizzes.js";
 import { questionsSeed } from "../Database/questions.js";
 
