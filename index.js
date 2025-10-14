@@ -1,4 +1,4 @@
-// index.js - Remove the initialization imports and calls
+// index.js
 import express from "express";
 import mongoose from "mongoose";
 import session from "express-session";
@@ -6,7 +6,7 @@ import MongoStore from "connect-mongo";
 import cors from "cors";
 import "dotenv/config";
 
-// Routes (keep all your route imports as they are)
+// Routes
 import UserRoutes from "./Kambaz/Users/routes.js";
 import CourseRoutes from "./Kambaz/Courses/routes.js";
 import EnrollmentRoutes from "./Kambaz/Enrollments/routes.js";
@@ -22,13 +22,9 @@ import ZoomRoutes from "./Kambaz/Zoom/routes.js";
 import InboxRoutes from "./Kambaz/Inbox/routes.js";
 import SettingsRoutes from "./Kambaz/Settings/routes.js";
 
-// REMOVE THESE IMPORTS:
-// import { initializePazzaData } from "./Kambaz/Pazza/init.js";
-// import { initializeQuizData } from "./Kambaz/Quizzes/init.js";
-
 const app = express();
 
-// Keep all your environment configuration as is...
+// Environment Configuration
 const isProd = process.env.NODE_ENV === "production" || !!process.env.VERCEL;
 const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || "https://kambaz-next-js-final2.vercel.app";
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/kambaz";
@@ -41,7 +37,7 @@ console.log(`📝 Environment: ${isProd ? "production" : "development"}`);
 // Trust proxy MUST come first
 app.set("trust proxy", 1);
 
-// Keep all your CORS configuration as is...
+// CORS Configuration
 const corsOptions = {
     origin: function(origin, callback) {
         if (!origin) return callback(null, true);
@@ -71,7 +67,7 @@ app.options("*", cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// MongoDB Connection (simplified)
+// MongoDB Connection
 const mongooseOptions = {
     serverSelectionTimeoutMS: 15000,
     socketTimeoutMS: 45000,
@@ -113,14 +109,12 @@ async function connectDB() {
     }
 }
 
-// REMOVE the initializeData function and its call
-
 // Initial connection attempt
 connectDB().catch(err => {
     console.error("❌ Initial MongoDB connection failed:", err.message);
 });
 
-// Keep all your session configuration as is...
+// Session Configuration
 const sessionConfig = {
     name: "kambaz_sid",
     secret: SESSION_SECRET,
@@ -155,7 +149,6 @@ app.use(async (req, res, next) => {
     }
 });
 
-// Keep all your routes and error handlers as they are...
 // Health Check Endpoints
 app.get("/", (req, res) => {
     res.json({

@@ -1,3 +1,4 @@
+// Kambaz/Pazza/routes.js
 import express from 'express';
 import mongoose from 'mongoose';
 import { pazzaSeedData } from '../Database/pazza.js';
@@ -19,12 +20,12 @@ const postSchema = new mongoose.Schema({
                                            course: String,
                                            type: { type: String, enum: ["question", "note"] },
                                            postTo: { type: String, enum: ["entire_class", "individual"] },
-                                           visibleTo: [String],          // array of user _id strings
-                                           folders: [String],            // folder names
+                                           visibleTo: [String],
+                                           folders: [String],
                                            summary: String,
                                            details: String,
-                                           author: String,               // user _id string
-                                           authorRole: String,           // "STUDENT" | "TA" | "FACULTY" | "INSTRUCTOR"
+                                           author: String,
+                                           authorRole: String,
                                            authorName: String,
                                            createdAt: Date,
                                            updatedAt: Date,
@@ -70,31 +71,32 @@ const postSchema = new mongoose.Schema({
                                            }]
                                        });
 
-const Folder = mongoose.model('PazzaFolder', folderSchema);
-const Post = mongoose.model('PazzaPost', postSchema);
+// Use existing models if available
+const Folder = mongoose.models.PazzaFolder || mongoose.model('PazzaFolder', folderSchema);
+const Post = mongoose.models.PazzaPost || mongoose.model('PazzaPost', postSchema);
 
-// ======================= Seed =======================
-async function initializeDatabase() {
+// ======================= Initialization =======================
+let initialized = false;
+
+async function ensureInitialized() {
+    if (initialized || mongoose.connection.readyState !== 1) return;
+
     try {
-        console.log('Checking Pazza initialization...');
-
         const existingFolders = await Folder.countDocuments();
-        if (existingFolders === 0) {
-            console.log('Inserting Pazza folders...');
+        if (existingFolders === 0 && pazzaSeedData?.folders) {
+            console.log('Initializing Pazza folders...');
             await Folder.insertMany(pazzaSeedData.folders);
-            console.log(`✅ Inserted ${pazzaSeedData.folders.length} folders`);
-        } else {
-            console.log(`✅ Found ${existingFolders} existing folders`);
+            console.log(`✅ Initialized ${pazzaSeedData.folders.length} folders`);
         }
 
         const existingPosts = await Post.countDocuments();
-        if (existingPosts === 0) {
-            console.log('Inserting Pazza posts...');
+        if (existingPosts === 0 && pazzaSeedData?.posts) {
+            console.log('Initializing Pazza posts...');
 
             const processedPosts = pazzaSeedData.posts.map(post => {
                 const postCopy = { ...post };
 
-                const postAnswers = pazzaSeedData.answers.filter(a => a.postId === post._id);
+                const postAnswers = pazzaSeedData.answers?.filter(a => a.postId === post._id) || [];
                 postCopy.studentAnswers = postAnswers
                     .filter(a => a.authorRole === 'STUDENT')
                     .map(a => ({
@@ -103,24 +105,26 @@ async function initializeDatabase() {
                         authorRole: a.authorRole,
                         authorName: a.authorName,
                         content: a.content,
-                        timestamp: new Date(a.createdAt)
+                        timestamp: new Date(a.createdAt),
+                        isGoodAnswer: a.isGoodAnswer
                     }));
 
                 postCopy.instructorAnswers = postAnswers
-                    .filter(a => ['FACULTY', 'TA'].includes(a.authorRole))
+                    .filter(a => ['FACULTY', 'TA', 'INSTRUCTOR'].includes(a.authorRole))
                     .map(a => ({
                         _id: a._id,
                         author: a.author,
                         authorRole: a.authorRole,
                         authorName: a.authorName,
                         content: a.content,
-                        timestamp: new Date(a.createdAt)
+                        timestamp: new Date(a.createdAt),
+                        isGoodAnswer: a.isGoodAnswer
                     }));
 
-                const postFollowups = pazzaSeedData.followups
+                const postFollowups = (pazzaSeedData.followups || [])
                     .filter(f => f.postId === post._id && !f.parentId)
                     .map(f => {
-                        const replies = pazzaSeedData.followups
+                        const replies = (pazzaSeedData.followups || [])
                             .filter(r => r.parentId === f._id)
                             .map(r => ({
                                 _id: r._id,
@@ -145,21 +149,36 @@ async function initializeDatabase() {
 
                 postCopy.followups = postFollowups;
                 postCopy.hasInstructorAnswer = postCopy.instructorAnswers.length > 0;
-                postCopy.hasStudentAnswer  = postCopy.studentAnswers.length > 0;
+                postCopy.hasStudentAnswer = postCopy.studentAnswers.length > 0;
 
                 return postCopy;
             });
 
             await Post.insertMany(processedPosts);
-            console.log(`✅ Inserted ${processedPosts.length} posts with answers and followups`);
-        } else {
-            console.log(`✅ Found ${existingPosts} existing posts`);
+            console.log(`✅ Initialized ${processedPosts.length} posts`);
         }
+
+        initialized = true;
     } catch (error) {
-        console.error('❌ Error initializing Pazza data:', error);
+        console.error('Error initializing Pazza data:', error);
     }
 }
-setTimeout(initializeDatabase, 1000);
+
+// ======================= Middleware =======================
+router.use(async (req, res, next) => {
+    await ensureInitialized();
+    next();
+});
+
+// ======================= Helper Functions =======================
+function buildVisibilityFilter(userId) {
+    if (!userId) return [{ postTo: 'entire_class' }];
+    return [
+        { postTo: 'entire_class' },
+        { postTo: 'individual', visibleTo: userId },
+        { author: userId }
+    ];
+}
 
 // ======================= Routes =======================
 
@@ -170,27 +189,16 @@ router.get('/courses/:courseId/pazza/folders', async (req, res) => {
         const folders = await Folder.find({ course: courseId }).sort({ order: 1 });
         res.json(folders);
     } catch (error) {
+        console.error('Error fetching folders:', error);
         res.status(500).json({ error: error.message });
     }
 });
 
-// ---- VISIBILITY HELPER (keeps paths/structures intact) ----
-function buildVisibilityFilter(userId) {
-    // visible if: entire class OR (individual & viewer included) OR viewer is the author
-    if (!userId) return [{ postTo: 'entire_class' }];
-    return [
-        { postTo: 'entire_class' },
-        { postTo: 'individual', visibleTo: userId },
-        { author: userId }
-    ];
-}
-
-// Get posts for a course (filtered by viewer visibility)
+// Get posts for a course
 router.get('/courses/:courseId/pazza/posts', async (req, res) => {
     try {
         const { courseId } = req.params;
         const { folder, search } = req.query;
-
         const userId = req.session?.currentUser?._id || null;
 
         const query = { course: courseId };
@@ -204,7 +212,6 @@ router.get('/courses/:courseId/pazza/posts', async (req, res) => {
             ];
         }
 
-        // apply visibility
         query.$and = [{ $or: buildVisibilityFilter(userId) }];
 
         const posts = await Post.find(query).sort({ createdAt: -1 });
@@ -215,7 +222,7 @@ router.get('/courses/:courseId/pazza/posts', async (req, res) => {
     }
 });
 
-// Get post details (with visibility enforcement)
+// Get post details
 router.get('/courses/:courseId/pazza/posts/:postId', async (req, res) => {
     try {
         const { postId } = req.params;
@@ -224,7 +231,6 @@ router.get('/courses/:courseId/pazza/posts/:postId', async (req, res) => {
         const post = await Post.findById(postId);
         if (!post) return res.status(404).json({ error: 'Post not found' });
 
-        // enforce the same visibility rule as list
         const canSee =
             post.postTo === 'entire_class' ||
             (userId && (post.visibleTo || []).includes(userId)) ||
@@ -234,24 +240,21 @@ router.get('/courses/:courseId/pazza/posts/:postId', async (req, res) => {
             return res.status(403).json({ error: 'Not authorized to view this post' });
         }
 
-        // increment view count
         post.views = (post.views || 0) + 1;
         await post.save();
 
-        // answers payload (flattened)
         const answers = [
             ...post.studentAnswers.map(a => ({
-                ...a.toObject(),
+                ...a.toObject ? a.toObject() : a,
                 createdAt: a.timestamp
             })),
             ...post.instructorAnswers.map(a => ({
-                ...a.toObject(),
+                ...a.toObject ? a.toObject() : a,
                 createdAt: a.timestamp,
                 isInstructorAnswer: true
             }))
         ];
 
-        // followups payload (flattened)
         const allFollowups = [];
         post.followups.forEach(f => {
             allFollowups.push({
@@ -278,7 +281,11 @@ router.get('/courses/:courseId/pazza/posts/:postId', async (req, res) => {
             }
         });
 
-        res.json({ post: post.toObject(), answers, followups: allFollowups });
+        res.json({
+                     post: post.toObject ? post.toObject() : post,
+                     answers,
+                     followups: allFollowups
+                 });
     } catch (error) {
         console.error('Error fetching post details:', error);
         res.status(500).json({ error: error.message });
@@ -302,6 +309,7 @@ router.post('/courses/:courseId/pazza/folders', async (req, res) => {
         await newFolder.save();
         res.json(newFolder);
     } catch (error) {
+        console.error('Error creating folder:', error);
         res.status(500).json({ error: error.message });
     }
 });
@@ -320,6 +328,7 @@ router.put('/courses/:courseId/pazza/folders/:folderId', async (req, res) => {
 
         res.json(folder);
     } catch (error) {
+        console.error('Error updating folder:', error);
         res.status(500).json({ error: error.message });
     }
 });
@@ -337,6 +346,7 @@ router.delete('/courses/:courseId/pazza/folders/:folderId', async (req, res) => 
             res.status(400).json({ error: 'Cannot delete default folder' });
         }
     } catch (error) {
+        console.error('Error deleting folder:', error);
         res.status(500).json({ error: error.message });
     }
 });
@@ -352,7 +362,7 @@ router.post('/courses/:courseId/pazza/posts', async (req, res) => {
                                      course: courseId,
                                      type,
                                      postTo,
-                                     visibleTo: postTo === 'individual' ? (visibleTo || []) : [], // normalize
+                                     visibleTo: postTo === 'individual' ? (visibleTo || []) : [],
                                      folders,
                                      summary: summary || title,
                                      details,
@@ -372,11 +382,12 @@ router.post('/courses/:courseId/pazza/posts', async (req, res) => {
         await newPost.save();
         res.json(newPost);
     } catch (error) {
+        console.error('Error creating post:', error);
         res.status(500).json({ error: error.message });
     }
 });
 
-// Get stats (kept course-wide to match your UI)
+// Get stats
 router.get('/courses/:courseId/pazza/stats', async (req, res) => {
     try {
         const { courseId } = req.params;
@@ -406,9 +417,9 @@ router.get('/courses/:courseId/pazza/stats', async (req, res) => {
 
         res.json(stats);
     } catch (error) {
+        console.error('Error fetching stats:', error);
         res.status(500).json({ error: error.message });
     }
 });
 
-// (Other CRUD for answers/followups can remain in your existing files)
 export default router;
