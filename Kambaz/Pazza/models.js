@@ -75,5 +75,6 @@ const postSchema = new mongoose.Schema({
                                            followups: [followupSub],
                                        });
 
-export const Folder = mongoose.model("PazzaFolder", folderSchema);
-export const Post = mongoose.model("PazzaPost", postSchema);
+// Use existing models if available (important for serverless)
+export const Folder = mongoose.models.PazzaFolder || mongoose.model("PazzaFolder", folderSchema);
+export const Post = mongoose.models.PazzaPost || mongoose.model("PazzaPost", postSchema);

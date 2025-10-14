@@ -1,4 +1,4 @@
-// index.js - Updated with proper initialization
+// index.js - Remove the initialization imports and calls
 import express from "express";
 import mongoose from "mongoose";
 import session from "express-session";
@@ -6,7 +6,7 @@ import MongoStore from "connect-mongo";
 import cors from "cors";
 import "dotenv/config";
 
-// Routes
+// Routes (keep all your route imports as they are)
 import UserRoutes from "./Kambaz/Users/routes.js";
 import CourseRoutes from "./Kambaz/Courses/routes.js";
 import EnrollmentRoutes from "./Kambaz/Enrollments/routes.js";
@@ -22,13 +22,13 @@ import ZoomRoutes from "./Kambaz/Zoom/routes.js";
 import InboxRoutes from "./Kambaz/Inbox/routes.js";
 import SettingsRoutes from "./Kambaz/Settings/routes.js";
 
-// Import initialization functions
-import { initializePazzaData } from "./Kambaz/Pazza/init.js";
-import { initializeQuizData } from "./Kambaz/Quizzes/init.js";
+// REMOVE THESE IMPORTS:
+// import { initializePazzaData } from "./Kambaz/Pazza/init.js";
+// import { initializeQuizData } from "./Kambaz/Quizzes/init.js";
 
 const app = express();
 
-// ---------- Environment Configuration ----------
+// Keep all your environment configuration as is...
 const isProd = process.env.NODE_ENV === "production" || !!process.env.VERCEL;
 const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || "https://kambaz-next-js-final2.vercel.app";
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/kambaz";
@@ -41,7 +41,7 @@ console.log(`📝 Environment: ${isProd ? "production" : "development"}`);
 // Trust proxy MUST come first
 app.set("trust proxy", 1);
 
-// ---------- CORS Configuration ----------
+// Keep all your CORS configuration as is...
 const corsOptions = {
     origin: function(origin, callback) {
         if (!origin) return callback(null, true);
@@ -67,11 +67,11 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions));
 
-// ---------- Body Parsers ----------
+// Body Parsers
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ---------- MongoDB Connection ----------
+// MongoDB Connection (simplified)
 const mongooseOptions = {
     serverSelectionTimeoutMS: 15000,
     socketTimeoutMS: 45000,
@@ -105,13 +105,7 @@ async function connectDB() {
 
     try {
         cached.conn = await cached.promise;
-
-        // Initialize data after successful connection
-        if (cached.conn) {
-            console.log("✅ MongoDB connected, initializing data...");
-            await initializeData();
-        }
-
+        console.log("✅ MongoDB connected");
         return cached.conn;
     } catch (e) {
         cached.promise = null;
@@ -119,28 +113,14 @@ async function connectDB() {
     }
 }
 
-// Data initialization function
-async function initializeData() {
-    try {
-        // Initialize Pazza data
-        await initializePazzaData();
-        console.log("✅ Pazza data initialized");
-
-        // Initialize Quiz data
-        await initializeQuizData();
-        console.log("✅ Quiz data initialized");
-    } catch (error) {
-        console.error("❌ Error initializing data:", error.message);
-        // Don't throw - allow server to continue even if initialization fails
-    }
-}
+// REMOVE the initializeData function and its call
 
 // Initial connection attempt
 connectDB().catch(err => {
     console.error("❌ Initial MongoDB connection failed:", err.message);
 });
 
-// ---------- Session Configuration ----------
+// Keep all your session configuration as is...
 const sessionConfig = {
     name: "kambaz_sid",
     secret: SESSION_SECRET,
@@ -164,7 +144,7 @@ const sessionConfig = {
 
 app.use(session(sessionConfig));
 
-// ---------- Database Connection Middleware ----------
+// Database Connection Middleware
 app.use(async (req, res, next) => {
     try {
         await connectDB();
@@ -175,7 +155,8 @@ app.use(async (req, res, next) => {
     }
 });
 
-// ---------- Health Check Endpoints ----------
+// Keep all your routes and error handlers as they are...
+// Health Check Endpoints
 app.get("/", (req, res) => {
     res.json({
                  status: "healthy",
@@ -196,7 +177,7 @@ app.get("/api/health", async (req, res) => {
              });
 });
 
-// ---------- Test Endpoints ----------
+// Test Endpoints
 app.post("/api/test-cors", (req, res) => {
     res.json({
                  success: true,
@@ -207,7 +188,7 @@ app.post("/api/test-cors", (req, res) => {
              });
 });
 
-// ---------- API Routes ----------
+// API Routes
 UserRoutes(app);
 CourseRoutes(app);
 EnrollmentRoutes(app);
@@ -225,7 +206,7 @@ SettingsRoutes(app);
 app.use("/api", PazzaRoutes);
 app.use("/api", ZoomRoutes);
 
-// ---------- Error Handler ----------
+// Error Handler
 app.use((err, req, res, next) => {
     console.error("Error:", err.message);
     res.status(err.status || 500).json({
@@ -233,14 +214,14 @@ app.use((err, req, res, next) => {
                                        });
 });
 
-// ---------- 404 Handler ----------
+// 404 Handler
 app.use((req, res) => {
     res.status(404).json({
                              message: `Route not found: ${req.method} ${req.path}`
                          });
 });
 
-// ---------- Server Startup ----------
+// Server Startup
 if (!process.env.VERCEL) {
     app.listen(PORT, () => {
         console.log(`🚀 Server running on port ${PORT}`);

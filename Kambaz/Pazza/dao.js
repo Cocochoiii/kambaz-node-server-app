@@ -1,79 +1,87 @@
 // Kambaz/Pazza/dao.js
-// ❗️NOTE: from Kambaz/Pazza/* to Kambaz/Database/* is ONE directory up.
 import { pazzaSeedData } from "../Database/pazza.js";
 import { Folder, Post } from "./models.js";
 
 /** -------------- Seed once -------------- */
 export async function seedIfNeeded() {
-    // Folders
-    const folderCount = await Folder.countDocuments();
-    if (folderCount === 0) {
-        await Folder.insertMany(pazzaSeedData.folders);
-    }
+    try {
+        // Check and seed folders
+        const folderCount = await Folder.countDocuments();
+        if (folderCount === 0) {
+            console.log("Seeding Pazza folders...");
+            await Folder.insertMany(pazzaSeedData.folders);
+            console.log(`✅ Seeded ${pazzaSeedData.folders.length} folders`);
+        }
 
-    // Posts + nested content
-    const postCount = await Post.countDocuments();
-    if (postCount === 0) {
-        const processed = pazzaSeedData.posts.map((p) => {
-            const post = { ...p };
+        // Check and seed posts with nested content
+        const postCount = await Post.countDocuments();
+        if (postCount === 0) {
+            console.log("Seeding Pazza posts...");
+            const processed = pazzaSeedData.posts.map((p) => {
+                const post = { ...p };
 
-            const answers = pazzaSeedData.answers.filter((a) => a.postId === p._id);
-            post.studentAnswers = answers
-                .filter((a) => a.authorRole === "STUDENT")
-                .map((a) => ({
-                    _id: a._id,
-                    author: a.author,
-                    authorRole: a.authorRole,
-                    authorName: a.authorName,
-                    content: a.content,
-                    timestamp: new Date(a.createdAt),
-                    isGoodAnswer: !!a.isGoodAnswer,
-                }));
+                const answers = pazzaSeedData.answers.filter((a) => a.postId === p._id);
+                post.studentAnswers = answers
+                    .filter((a) => a.authorRole === "STUDENT")
+                    .map((a) => ({
+                        _id: a._id,
+                        author: a.author,
+                        authorRole: a.authorRole,
+                        authorName: a.authorName,
+                        content: a.content,
+                        timestamp: new Date(a.createdAt),
+                        isGoodAnswer: !!a.isGoodAnswer,
+                    }));
 
-            post.instructorAnswers = answers
-                .filter((a) => ["FACULTY", "TA", "INSTRUCTOR"].includes(a.authorRole))
-                .map((a) => ({
-                    _id: a._id,
-                    author: a.author,
-                    authorRole: a.authorRole,
-                    authorName: a.authorName,
-                    content: a.content,
-                    timestamp: new Date(a.createdAt),
-                    isGoodAnswer: !!a.isGoodAnswer,
-                }));
+                post.instructorAnswers = answers
+                    .filter((a) => ["FACULTY", "TA", "INSTRUCTOR"].includes(a.authorRole))
+                    .map((a) => ({
+                        _id: a._id,
+                        author: a.author,
+                        authorRole: a.authorRole,
+                        authorName: a.authorName,
+                        content: a.content,
+                        timestamp: new Date(a.createdAt),
+                        isGoodAnswer: !!a.isGoodAnswer,
+                    }));
 
-            const followups = pazzaSeedData.followups
-                .filter((f) => f.postId === p._id && !f.parentId)
-                .map((f) => {
-                    const replies = pazzaSeedData.followups
-                        .filter((r) => r.parentId === f._id)
-                        .map((r) => ({
-                            _id: r._id,
-                            author: r.author,
-                            authorRole: r.authorRole,
-                            authorName: r.authorName,
-                            content: r.content,
-                            timestamp: new Date(r.createdAt),
-                        }));
-                    return {
-                        _id: f._id,
-                        author: f.author,
-                        authorRole: f.authorRole,
-                        authorName: f.authorName,
-                        content: f.content,
-                        isResolved: !!f.isResolved,
-                        timestamp: new Date(f.createdAt),
-                        replies,
-                    };
-                });
+                const followups = pazzaSeedData.followups
+                    .filter((f) => f.postId === p._id && !f.parentId)
+                    .map((f) => {
+                        const replies = pazzaSeedData.followups
+                            .filter((r) => r.parentId === f._id)
+                            .map((r) => ({
+                                _id: r._id,
+                                author: r.author,
+                                authorRole: r.authorRole,
+                                authorName: r.authorName,
+                                content: r.content,
+                                timestamp: new Date(r.createdAt),
+                            }));
+                        return {
+                            _id: f._id,
+                            author: f.author,
+                            authorRole: f.authorRole,
+                            authorName: f.authorName,
+                            content: f.content,
+                            isResolved: !!f.isResolved,
+                            timestamp: new Date(f.createdAt),
+                            replies,
+                        };
+                    });
 
-            post.followups = followups;
-            post.hasInstructorAnswer = post.instructorAnswers.length > 0;
-            post.hasStudentAnswer = post.studentAnswers.length > 0;
-            return post;
-        });
+                post.followups = followups;
+                post.hasInstructorAnswer = post.instructorAnswers.length > 0;
+                post.hasStudentAnswer = post.studentAnswers.length > 0;
+                return post;
+            });
 
-        await Post.insertMany(processed);
+            await Post.insertMany(processed);
+            console.log(`✅ Seeded ${processed.length} posts`);
+        }
+    } catch (error) {
+        console.error("Error in seedIfNeeded:", error);
+        // Don't throw - let the server continue
     }
 }
 
@@ -88,8 +96,10 @@ const visibleOr = (userId) =>
     : [{ postTo: "entire_class" }];
 
 /** Folders */
-export const listFolders = (courseId) =>
-    Folder.find({ course: courseId }).sort({ order: 1 });
+export const listFolders = async (courseId) => {
+    await seedIfNeeded(); // Ensure data exists
+    return Folder.find({ course: courseId }).sort({ order: 1 });
+};
 
 export const createFolder = (courseId, name) =>
     new Folder({
@@ -112,7 +122,8 @@ export async function removeFolder(folderId) {
 }
 
 /** Posts */
-export function listPosts(courseId, { folder, search, userId }) {
+export async function listPosts(courseId, { folder, search, userId }) {
+    await seedIfNeeded(); // Ensure data exists
     const q = { course: courseId, $and: [{ $or: visibleOr(userId) }] };
     if (folder) q.folders = folder;
     if (search) {
@@ -124,7 +135,8 @@ export function listPosts(courseId, { folder, search, userId }) {
     return Post.find(q).sort({ createdAt: -1 });
 }
 
-export function getPost(postId) {
+export async function getPost(postId) {
+    await seedIfNeeded(); // Ensure data exists
     return Post.findById(postId);
 }
 
@@ -154,6 +166,7 @@ export function savePost(courseId, payload, sessionUser) {
 }
 
 export async function computeStats(courseId) {
+    await seedIfNeeded(); // Ensure data exists
     const posts = await Post.find({ course: courseId });
     return {
         totalPosts: posts.length,

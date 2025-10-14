@@ -2,85 +2,20 @@
 import mongoose from "mongoose";
 import { pazzaSeedData } from "../Database/pazza.js";
 
-const folderSchema = new mongoose.Schema({
-                                             _id: String,
-                                             name: String,
-                                             course: String,
-                                             isDefault: Boolean,
-                                             order: Number,
-                                             createdAt: { type: Date, default: Date.now }
-                                         });
-
-const postSchema = new mongoose.Schema({
-                                           _id: String,
-                                           course: String,
-                                           type: { type: String, enum: ["question", "note"] },
-                                           postTo: { type: String, enum: ["entire_class", "individual"] },
-                                           visibleTo: [String],
-                                           folders: [String],
-                                           summary: String,
-                                           details: String,
-                                           author: String,
-                                           authorRole: String,
-                                           authorName: String,
-                                           createdAt: Date,
-                                           updatedAt: Date,
-                                           views: { type: Number, default: 0 },
-                                           hasInstructorAnswer: { type: Boolean, default: false },
-                                           hasStudentAnswer: { type: Boolean, default: false },
-                                           isPinned: { type: Boolean, default: false },
-                                           isInstructorEndorsed: { type: Boolean, default: false },
-                                           studentAnswers: [{
-                                               _id: String,
-                                               author: String,
-                                               authorRole: String,
-                                               authorName: String,
-                                               content: String,
-                                               timestamp: Date,
-                                               isGoodAnswer: Boolean
-                                           }],
-                                           instructorAnswers: [{
-                                               _id: String,
-                                               author: String,
-                                               authorRole: String,
-                                               authorName: String,
-                                               content: String,
-                                               timestamp: Date,
-                                               isGoodAnswer: Boolean
-                                           }],
-                                           followups: [{
-                                               _id: String,
-                                               author: String,
-                                               authorRole: String,
-                                               authorName: String,
-                                               content: String,
-                                               isResolved: Boolean,
-                                               timestamp: Date,
-                                               replies: [{
-                                                   _id: String,
-                                                   author: String,
-                                                   authorRole: String,
-                                                   authorName: String,
-                                                   content: String,
-                                                   timestamp: Date
-                                               }]
-                                           }]
-                                       });
-
-const PazzaFolder = mongoose.models.PazzaFolder || mongoose.model('PazzaFolder', folderSchema);
-const PazzaPost = mongoose.models.PazzaPost || mongoose.model('PazzaPost', postSchema);
+// Use the models from models.js to avoid duplication
+import { Folder, Post } from "./models.js";
 
 export async function initializePazzaData() {
     try {
         // Check if we already have data
-        const existingFolders = await PazzaFolder.countDocuments();
+        const existingFolders = await Folder.countDocuments();
         if (existingFolders === 0) {
             console.log('Inserting Pazza folders...');
-            await PazzaFolder.insertMany(pazzaSeedData.folders);
+            await Folder.insertMany(pazzaSeedData.folders);
             console.log(`✅ Inserted ${pazzaSeedData.folders.length} folders`);
         }
 
-        const existingPosts = await PazzaPost.countDocuments();
+        const existingPosts = await Post.countDocuments();
         if (existingPosts === 0) {
             console.log('Inserting Pazza posts...');
 
@@ -145,11 +80,11 @@ export async function initializePazzaData() {
                 return postCopy;
             });
 
-            await PazzaPost.insertMany(processedPosts);
+            await Post.insertMany(processedPosts);
             console.log(`✅ Inserted ${processedPosts.length} posts with answers and followups`);
         }
     } catch (error) {
         console.error('Error initializing Pazza data:', error);
-        throw error;
+        // Don't throw - let the server continue
     }
 }

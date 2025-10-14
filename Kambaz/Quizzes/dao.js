@@ -1,17 +1,26 @@
+// Kambaz/Quizzes/dao.js
 import { v4 as uuidv4 } from "uuid";
 import QuizModel from "./model.js";
 import QuestionModel from "./questionModel.js";
 import AttemptModel from "./attemptModel.js";
+import { initializeQuizData } from "./init.js";
+
+// Ensure data is initialized
+let initialized = false;
+async function ensureInitialized() {
+  if (!initialized) {
+    await initializeQuizData();
+    initialized = true;
+  }
+}
 
 export async function findQuizzesForCourse(courseId, currentUser) {
+  await ensureInitialized();
   const now = new Date();
   const baseQuery = { course: courseId };
 
   if (!currentUser || currentUser.role !== "FACULTY") {
-    // Students should see all published quizzes, even if Closed or Not yet available,
-    // so that the UI can display their status (Canvas behavior).
     baseQuery.published = true;
-    // no date gating here
   }
 
   const quizzes = await QuizModel.find(baseQuery).sort({ createdAt: -1 });
@@ -19,6 +28,7 @@ export async function findQuizzesForCourse(courseId, currentUser) {
 }
 
 export async function countQuestionsForQuizzes(quizIds) {
+  await ensureInitialized();
   const counts = await QuestionModel.aggregate([
                                                  { $match: { quiz: { $in: quizIds } } },
                                                  { $group: { _id: "$quiz", count: { $sum: 1 } } },
@@ -41,6 +51,7 @@ export async function createQuiz(courseId, quiz) {
 }
 
 export async function findQuizById(qid) {
+  await ensureInitialized();
   const quiz = await QuizModel.findById(qid);
   return quiz ? quiz.toObject() : null;
 }
@@ -121,6 +132,7 @@ export async function deleteQuestion(qid, questionId) {
 }
 
 export async function findQuestionsForQuiz(qid) {
+  await ensureInitialized();
   const questions = await QuestionModel.find({ quiz: qid });
   return questions.map((q) => q.toObject());
 }
@@ -195,6 +207,7 @@ export async function recordAttempt(qid, userId, answers) {
 }
 
 export async function lastAttempt(qid, userId) {
+  await ensureInitialized();
   const attempt = await AttemptModel.findOne({ quiz: qid, user: userId }).sort({
                                                                                  attemptNumber: -1,
                                                                                });
