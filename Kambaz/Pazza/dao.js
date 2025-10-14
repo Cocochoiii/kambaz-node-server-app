@@ -1,23 +1,13 @@
 // Kambaz/Pazza/dao.js
 import { Folder, Post } from "./models.js";
-import { initializePazzaData } from "./init.js";
+import { pazzaSeedData } from "../Database/pazza.js";
 
-// Initialize data on first call
-let initialized = false;
-async function ensureInitialized() {
-    if (!initialized) {
-        await initializePazzaData();
-        initialized = true;
-    }
-}
-
+// Remove initialization from DAO - let routes handle it
 export const listFolders = async (courseId) => {
-    await ensureInitialized();
     return Folder.find({ course: courseId }).sort({ order: 1 });
 };
 
 export const createFolder = async (courseId, name) => {
-    await ensureInitialized();
     return new Folder({
                           _id: `${courseId}-${name.toLowerCase().replace(/\s+/g, "-")}`,
                           name,
@@ -28,12 +18,10 @@ export const createFolder = async (courseId, name) => {
 };
 
 export const renameFolder = async (folderId, name) => {
-    await ensureInitialized();
     return Folder.findByIdAndUpdate(folderId, { name }, { new: true });
 };
 
 export async function removeFolder(folderId) {
-    await ensureInitialized();
     const f = await Folder.findById(folderId);
     if (!f) return null;
     if (f.isDefault) throw new Error("Cannot delete default folder");
@@ -42,7 +30,6 @@ export async function removeFolder(folderId) {
 }
 
 export async function listPosts(courseId, { folder, search, userId }) {
-    await ensureInitialized();
     const visibleOr = userId
                       ? [
             { postTo: "entire_class" },
@@ -63,12 +50,10 @@ export async function listPosts(courseId, { folder, search, userId }) {
 }
 
 export async function getPost(postId) {
-    await ensureInitialized();
     return Post.findById(postId);
 }
 
 export async function savePost(courseId, payload, sessionUser) {
-    await ensureInitialized();
     const { type, postTo, visibleTo, folders, summary, details, title } = payload;
     return new Post({
                         _id: `${courseId}-post-${Date.now()}`,
@@ -94,7 +79,6 @@ export async function savePost(courseId, payload, sessionUser) {
 }
 
 export async function computeStats(courseId) {
-    await ensureInitialized();
     const posts = await Post.find({ course: courseId });
     return {
         totalPosts: posts.length,
