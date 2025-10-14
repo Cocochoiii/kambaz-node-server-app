@@ -1,3 +1,4 @@
+// index.js - Updated with proper initialization
 import express from "express";
 import mongoose from "mongoose";
 import session from "express-session";
@@ -21,6 +22,10 @@ import ZoomRoutes from "./Kambaz/Zoom/routes.js";
 import InboxRoutes from "./Kambaz/Inbox/routes.js";
 import SettingsRoutes from "./Kambaz/Settings/routes.js";
 
+// Import initialization functions
+import { initializePazzaData } from "./Kambaz/Pazza/init.js";
+import { initializeQuizData } from "./Kambaz/Quizzes/init.js";
+
 const app = express();
 
 // ---------- Environment Configuration ----------
@@ -39,24 +44,16 @@ app.set("trust proxy", 1);
 // ---------- CORS Configuration ----------
 const corsOptions = {
     origin: function(origin, callback) {
-        // Allow requests with no origin (server-to-server, Postman)
         if (!origin) return callback(null, true);
-
-        // Allow localhost in development
         if (!isProd && (origin.includes("localhost") || origin.includes("127.0.0.1"))) {
             return callback(null, true);
         }
-
-        // Allow any Vercel deployment
         if (origin.includes(".vercel.app")) {
             return callback(null, true);
         }
-
-        // Allow configured frontend
         if (origin === FRONTEND_ORIGIN) {
             return callback(null, true);
         }
-
         callback(new Error("Not allowed by CORS"));
     },
     credentials: true,
@@ -74,9 +71,9 @@ app.options("*", cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ---------- MongoDB Connection with Serverless Optimization ----------
+// ---------- MongoDB Connection ----------
 const mongooseOptions = {
-    serverSelectionTimeoutMS: 15000, // Increased for Vercel cold starts
+    serverSelectionTimeoutMS: 15000,
     socketTimeoutMS: 45000,
     maxPoolSize: 10,
     minPoolSize: 1,
@@ -108,10 +105,33 @@ async function connectDB() {
 
     try {
         cached.conn = await cached.promise;
+
+        // Initialize data after successful connection
+        if (cached.conn) {
+            console.log("✅ MongoDB connected, initializing data...");
+            await initializeData();
+        }
+
         return cached.conn;
     } catch (e) {
         cached.promise = null;
         throw e;
+    }
+}
+
+// Data initialization function
+async function initializeData() {
+    try {
+        // Initialize Pazza data
+        await initializePazzaData();
+        console.log("✅ Pazza data initialized");
+
+        // Initialize Quiz data
+        await initializeQuizData();
+        console.log("✅ Quiz data initialized");
+    } catch (error) {
+        console.error("❌ Error initializing data:", error.message);
+        // Don't throw - allow server to continue even if initialization fails
     }
 }
 
@@ -151,7 +171,7 @@ app.use(async (req, res, next) => {
         next();
     } catch (error) {
         console.error("DB Connection Error:", error.message);
-        next(); // Continue anyway for health checks
+        next();
     }
 });
 
@@ -208,7 +228,6 @@ app.use("/api", ZoomRoutes);
 // ---------- Error Handler ----------
 app.use((err, req, res, next) => {
     console.error("Error:", err.message);
-
     res.status(err.status || 500).json({
                                            message: err.message || "Internal server error"
                                        });
