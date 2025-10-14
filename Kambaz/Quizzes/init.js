@@ -1,6 +1,5 @@
 // Kambaz/Quizzes/init.js
-import QuizModel from "./model.js";
-import QuestionModel from "./questionModel.js";
+import { QuizModel, QuestionModel } from "./models.js";
 import { quizzesSeed } from "../Database/quizzes.js";
 import { questionsSeed } from "../Database/questions.js";
 

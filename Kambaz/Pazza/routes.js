@@ -1,95 +1,25 @@
 // Kambaz/Pazza/routes.js
 import express from 'express';
-import mongoose from 'mongoose';
+import { Folder, Post } from './models.js';
 import { pazzaSeedData } from '../Database/pazza.js';
 
 const router = express.Router();
-
-// ======================= Schemas =======================
-const folderSchema = new mongoose.Schema({
-                                             _id: String,
-                                             name: String,
-                                             course: String,
-                                             isDefault: Boolean,
-                                             order: Number,
-                                             createdAt: { type: Date, default: Date.now }
-                                         });
-
-const postSchema = new mongoose.Schema({
-                                           _id: String,
-                                           course: String,
-                                           type: { type: String, enum: ["question", "note"] },
-                                           postTo: { type: String, enum: ["entire_class", "individual"] },
-                                           visibleTo: [String],
-                                           folders: [String],
-                                           summary: String,
-                                           details: String,
-                                           author: String,
-                                           authorRole: String,
-                                           authorName: String,
-                                           createdAt: Date,
-                                           updatedAt: Date,
-                                           views: { type: Number, default: 0 },
-                                           hasInstructorAnswer: { type: Boolean, default: false },
-                                           hasStudentAnswer: { type: Boolean, default: false },
-                                           isPinned: { type: Boolean, default: false },
-                                           isInstructorEndorsed: { type: Boolean, default: false },
-                                           studentAnswers: [{
-                                               _id: String,
-                                               author: String,
-                                               authorRole: String,
-                                               authorName: String,
-                                               content: String,
-                                               timestamp: Date,
-                                               isGoodAnswer: Boolean
-                                           }],
-                                           instructorAnswers: [{
-                                               _id: String,
-                                               author: String,
-                                               authorRole: String,
-                                               authorName: String,
-                                               content: String,
-                                               timestamp: Date,
-                                               isGoodAnswer: Boolean
-                                           }],
-                                           followups: [{
-                                               _id: String,
-                                               author: String,
-                                               authorRole: String,
-                                               authorName: String,
-                                               content: String,
-                                               isResolved: Boolean,
-                                               timestamp: Date,
-                                               replies: [{
-                                                   _id: String,
-                                                   author: String,
-                                                   authorRole: String,
-                                                   authorName: String,
-                                                   content: String,
-                                                   timestamp: Date
-                                               }]
-                                           }]
-                                       });
-
-// Use existing models if available
-const Folder = mongoose.models.PazzaFolder || mongoose.model('PazzaFolder', folderSchema);
-const Post = mongoose.models.PazzaPost || mongoose.model('PazzaPost', postSchema);
 
 // ======================= Initialization =======================
 let initialized = false;
 
 async function ensureInitialized() {
-    if (initialized || mongoose.connection.readyState !== 1) return;
+    if (initialized) return;
 
     try {
-        const existingFolders = await Folder.countDocuments();
+        const existingFolders = await Folder.countDocuments().catch(() => 0);
         if (existingFolders === 0 && pazzaSeedData?.folders) {
             console.log('Initializing Pazza folders...');
             await Folder.insertMany(pazzaSeedData.folders);
             console.log(`✅ Initialized ${pazzaSeedData.folders.length} folders`);
         }
 
-        const existingPosts = await Post.countDocuments();
+        const existingPosts = await Post.countDocuments().catch(() => 0);
         if (existingPosts === 0 && pazzaSeedData?.posts) {
             console.log('Initializing Pazza posts...');
 
@@ -106,7 +36,7 @@ async function ensureInitialized() {
                         authorName: a.authorName,
                         content: a.content,
                         timestamp: new Date(a.createdAt),
-                        isGoodAnswer: a.isGoodAnswer
+                        isGoodAnswer: a.isGoodAnswer || false
                     }));
 
                 postCopy.instructorAnswers = postAnswers
@@ -118,7 +48,7 @@ async function ensureInitialized() {
                         authorName: a.authorName,
                         content: a.content,
                         timestamp: new Date(a.createdAt),
-                        isGoodAnswer: a.isGoodAnswer
+                        isGoodAnswer: a.isGoodAnswer || false
                     }));
 
                 const postFollowups = (pazzaSeedData.followups || [])
@@ -141,7 +71,7 @@ async function ensureInitialized() {
                             authorRole: f.authorRole,
                             authorName: f.authorName,
                             content: f.content,
-                            isResolved: f.isResolved,
+                            isResolved: f.isResolved || false,
                             timestamp: new Date(f.createdAt),
                             replies
                         };
@@ -150,6 +80,8 @@ async function ensureInitialized() {
                 postCopy.followups = postFollowups;
                 postCopy.hasInstructorAnswer = postCopy.instructorAnswers.length > 0;
                 postCopy.hasStudentAnswer = postCopy.studentAnswers.length > 0;
+                postCopy.createdAt = new Date(postCopy.createdAt);
+                postCopy.updatedAt = new Date(postCopy.updatedAt);
 
                 return postCopy;
             });
@@ -166,7 +98,11 @@ async function ensureInitialized() {
 
 // ======================= Middleware =======================
 router.use(async (req, res, next) => {
-    await ensureInitialized();
+    try {
+        await ensureInitialized();
+    } catch (error) {
+        console.error("Pazza init error:", error);
+    }
     next();
 });
 

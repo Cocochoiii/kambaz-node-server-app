@@ -1,106 +1,12 @@
 // Kambaz/Quizzes/routes.js
-import mongoose from "mongoose";
 import { v4 as uuidv4 } from "uuid";
-// Import seed data as JS modules, not JSON files
+import { QuizModel, QuestionModel, AttemptModel } from "./models.js";
 import { quizzesSeed } from "../Database/quizzes.js";
 import { questionsSeed } from "../Database/questions.js";
-
-// Define schemas
-const quizSchema = new mongoose.Schema(
-    {
-      _id: { type: String, required: true },
-      course: { type: String, required: true },
-      title: { type: String, required: true },
-      description: { type: String, default: "" },
-      type: {
-        type: String,
-        enum: ["Graded Quiz", "Practice Quiz", "Graded Survey", "Ungraded Survey"],
-        default: "Graded Quiz",
-      },
-      points: { type: Number, default: 0 },
-      assignmentGroup: {
-        type: String,
-        enum: ["Quizzes", "Exams", "Assignments", "Project"],
-        default: "Quizzes",
-      },
-      shuffleAnswers: { type: Boolean, default: true },
-      timeLimit: { type: Number, default: 20 },
-      multipleAttempts: { type: Boolean, default: false },
-      allowedAttempts: { type: Number, default: 1 },
-      showCorrectAnswers: {
-        type: String,
-        enum: ["Immediately", "After Last Attempt", "Never"],
-        default: "Immediately",
-      },
-      accessCode: { type: String, default: "" },
-      oneQuestionAtATime: { type: Boolean, default: true },
-      webcamRequired: { type: Boolean, default: false },
-      lockQuestionsAfterAnswering: { type: Boolean, default: false },
-      dueDate: { type: Date },
-      availableDate: { type: Date },
-      untilDate: { type: Date },
-      published: { type: Boolean, default: false },
-      createdAt: { type: Date, default: Date.now },
-    },
-    { collection: "quizzes" }
-);
-
-const questionSchema = new mongoose.Schema(
-    {
-      _id: { type: String, required: true },
-      quiz: { type: String, required: true },
-      title: { type: String, required: true },
-      points: { type: Number, default: 1 },
-      prompt: { type: String, required: true },
-      type: {
-        type: String,
-        enum: ["MULTIPLE_CHOICE", "TRUE_FALSE", "FILL_BLANK"],
-        required: true,
-      },
-      choices: [
-        {
-          _id: String,
-          text: String,
-          correct: Boolean,
-        },
-      ],
-      correctAnswer: { type: Boolean },
-      correctAnswers: [String],
-    },
-    { collection: "questions" }
-);
-
-const attemptSchema = new mongoose.Schema(
-    {
-      _id: { type: String, required: true },
-      quiz: { type: String, required: true },
-      user: { type: String, required: true },
-      answers: [
-        {
-          question: { type: String },
-          answer: String,
-        },
-      ],
-      score: { type: Number, default: 0 },
-      attemptNumber: { type: Number, required: true },
-      createdAt: { type: Date, default: Date.now },
-    },
-    { collection: "attempts" }
-);
-
-// Register models properly for serverless
-const QuizModel = mongoose.models.QuizModel || mongoose.model("QuizModel", quizSchema);
-const QuestionModel = mongoose.models.QuestionModel || mongoose.model("QuestionModel", questionSchema);
-const AttemptModel = mongoose.models.AttemptModel || mongoose.model("AttemptModel", attemptSchema);
 
 // Initialize data function
 async function initializeQuizData() {
   try {
-    if (mongoose.connection.readyState !== 1) {
-      console.log("MongoDB not connected, skipping quiz initialization");
-      return;
-    }
-
     const existingQuizzes = await QuizModel.countDocuments().catch(() => 0);
 
     if (existingQuizzes === 0 && quizzesSeed && quizzesSeed.length > 0) {
@@ -138,7 +44,11 @@ export default function QuizRoutes(app) {
 
   // Initialize on each request if needed (serverless friendly)
   const ensureInit = async (req, res, next) => {
-    await initializeQuizData();
+    try {
+      await initializeQuizData();
+    } catch (error) {
+      console.error("Init error:", error);
+    }
     next();
   };
 
@@ -345,12 +255,7 @@ export default function QuizRoutes(app) {
     try {
       const currentUser = req.session?.currentUser;
 
-      console.log("=== SUBMIT ATTEMPT ===");
-      console.log("Session:", req.session);
-      console.log("Current User:", currentUser);
-
       if (!currentUser) {
-        console.log("No user in session - returning 401");
         return res.status(401).json({ error: "Login required" });
       }
 

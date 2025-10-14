@@ -1,8 +1,6 @@
 // Kambaz/Quizzes/dao.js
 import { v4 as uuidv4 } from "uuid";
-import QuizModel from "./model.js";
-import QuestionModel from "./questionModel.js";
-import AttemptModel from "./attemptModel.js";
+import { QuizModel, QuestionModel, AttemptModel } from "./models.js";
 import { initializeQuizData } from "./init.js";
 
 // Ensure data is initialized
@@ -41,6 +39,7 @@ export async function countQuestionsForQuizzes(quizIds) {
 }
 
 export async function createQuiz(courseId, quiz) {
+  await ensureInitialized();
   const _id = uuidv4();
   const newQuiz = {
     ...quiz,
@@ -60,6 +59,7 @@ export async function findQuizById(qid) {
 }
 
 export async function updateQuiz(qid, updates) {
+  await ensureInitialized();
   const { _id, course, ...rest } = updates;
   await QuizModel.updateOne({ _id: qid }, { $set: rest });
   const updated = await QuizModel.findById(qid);
@@ -67,6 +67,7 @@ export async function updateQuiz(qid, updates) {
 }
 
 export async function deleteQuiz(qid) {
+  await ensureInitialized();
   await QuestionModel.deleteMany({ quiz: qid });
   await AttemptModel.deleteMany({ quiz: qid });
   await QuizModel.deleteOne({ _id: qid });
@@ -74,12 +75,14 @@ export async function deleteQuiz(qid) {
 }
 
 export async function publishQuiz(qid, published) {
+  await ensureInitialized();
   await QuizModel.updateOne({ _id: qid }, { $set: { published } });
   const updated = await QuizModel.findById(qid);
   return updated ? updated.toObject() : null;
 }
 
 export async function addQuestion(qid, question) {
+  await ensureInitialized();
   const _id = uuidv4();
   const newQuestion = { ...question, _id, quiz: qid };
 
@@ -100,6 +103,7 @@ export async function addQuestion(qid, question) {
 }
 
 export async function updateQuestion(qid, questionId, updates) {
+  await ensureInitialized();
   const question = await QuestionModel.findById(questionId);
   if (!question) return null;
 
@@ -123,6 +127,7 @@ export async function updateQuestion(qid, questionId, updates) {
 }
 
 export async function deleteQuestion(qid, questionId) {
+  await ensureInitialized();
   const question = await QuestionModel.findById(questionId);
   if (question) {
     await QuizModel.updateOne(
@@ -173,6 +178,7 @@ async function computeScore(qid, answers) {
 }
 
 export async function recordAttempt(qid, userId, answers) {
+  await ensureInitialized();
   const quiz = await QuizModel.findById(qid);
   if (!quiz) return null;
 
