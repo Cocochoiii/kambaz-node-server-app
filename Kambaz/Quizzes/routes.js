@@ -4,8 +4,6 @@ import QuizModel from "./model.js";
 import QuestionModel from "./questionModel.js";
 import AttemptModel from "./attemptModel.js";
 
-// Remove automatic initialization - data should be seeded manually
-
 export default function QuizRoutes(app) {
   console.log("✅ Quiz routes loaded");
 
@@ -15,7 +13,6 @@ export default function QuizRoutes(app) {
       const currentUser = req.session?.currentUser;
 
       console.log('Fetching quizzes for course:', courseId);
-      console.log('Current user:', currentUser);
 
       const baseQuery = { course: courseId };
       if (!currentUser || currentUser.role !== "FACULTY") {
@@ -36,7 +33,6 @@ export default function QuizRoutes(app) {
         questionCount: countMap.get(q._id) || 0,
       }));
 
-      console.log(`Found ${withCounts.length} quizzes`);
       res.json(withCounts);
     } catch (err) {
       console.error("Error fetching quizzes:", err);
@@ -47,9 +43,11 @@ export default function QuizRoutes(app) {
   app.post("/api/courses/:courseId/quizzes", async (req, res) => {
     try {
       const { courseId } = req.params;
-      console.log('Creating quiz for course:', courseId);
-      console.log('Request body:', req.body);
-      console.log('Session:', req.session);
+      console.log('Creating quiz - Course ID:', courseId);
+      console.log('Session user:', req.session?.currentUser);
+
+      // Create quiz even without session for now
+      // In production, you should require authentication
 
       const quiz = {
         ...req.body,
@@ -58,15 +56,21 @@ export default function QuizRoutes(app) {
         published: false,
         createdAt: new Date(),
       };
+
       const created = await QuizModel.create(quiz);
-      console.log('Quiz created:', created._id);
+      console.log('✅ Quiz created successfully:', created._id);
+
       res.json(created.toObject());
     } catch (err) {
-      console.error("Error creating quiz:", err);
-      res.status(500).json({ error: err.message });
+      console.error("❌ Error creating quiz:", err);
+      res.status(500).json({
+                             error: err.message,
+                             details: err.stack
+                           });
     }
   });
 
+  // Keep all other routes exactly as they are...
   app.get("/api/quizzes/:qid", async (req, res) => {
     try {
       const { qid } = req.params;
@@ -243,7 +247,6 @@ export default function QuizRoutes(app) {
         return res.status(400).json({ error: "No more attempts allowed" });
       }
 
-      // Calculate score
       const answers = req.body.answers || [];
       let score = 0;
       const questions = await QuestionModel.find({ quiz: req.params.qid });
