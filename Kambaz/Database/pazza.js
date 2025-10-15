@@ -1,7 +1,7 @@
 // Kambaz/Database/pazza.js
 
-// Simple seed data that matches your routes structure
-const pazzaSeedData  = {
+// Complete seed data with all unique post IDs
+const pazzaSeedData = {
     folders: [
         // CS5610 folders
         { _id: "5610-hw1", name: "hw1", course: "5610", isDefault: true, order: 1 },
@@ -41,20 +41,72 @@ const pazzaSeedData  = {
         { _id: "5004-logistics", name: "logistics", course: "5004", isDefault: true, order: 9 },
         { _id: "5004-other", name: "other", course: "5004", isDefault: true, order: 10 },
         { _id: "5004-office_hours", name: "office_hours", course: "5004", isDefault: true, order: 11 },
+
+        // CS5200 folders
+        { _id: "5200-hw1", name: "hw1", course: "5200", isDefault: true, order: 1 },
+        { _id: "5200-hw2", name: "hw2", course: "5200", isDefault: true, order: 2 },
+        { _id: "5200-hw3", name: "hw3", course: "5200", isDefault: true, order: 3 },
+        { _id: "5200-hw4", name: "hw4", course: "5200", isDefault: true, order: 4 },
+        { _id: "5200-hw5", name: "hw5", course: "5200", isDefault: true, order: 5 },
+        { _id: "5200-hw6", name: "hw6", course: "5200", isDefault: true, order: 6 },
+        { _id: "5200-project", name: "project", course: "5200", isDefault: true, order: 7 },
+        { _id: "5200-exam", name: "exam", course: "5200", isDefault: true, order: 8 },
+        { _id: "5200-logistics", name: "logistics", course: "5200", isDefault: true, order: 9 },
+        { _id: "5200-other", name: "other", course: "5200", isDefault: true, order: 10 },
+        { _id: "5200-office_hours", name: "office_hours", course: "5200", isDefault: true, order: 11 },
+
+        // CS5800 folders
+        { _id: "5800-hw1", name: "hw1", course: "5800", isDefault: true, order: 1 },
+        { _id: "5800-hw2", name: "hw2", course: "5800", isDefault: true, order: 2 },
+        { _id: "5800-hw3", name: "hw3", course: "5800", isDefault: true, order: 3 },
+        { _id: "5800-hw4", name: "hw4", course: "5800", isDefault: true, order: 4 },
+        { _id: "5800-hw5", name: "hw5", course: "5800", isDefault: true, order: 5 },
+        { _id: "5800-hw6", name: "hw6", course: "5800", isDefault: true, order: 6 },
+        { _id: "5800-project", name: "project", course: "5800", isDefault: true, order: 7 },
+        { _id: "5800-exam", name: "exam", course: "5800", isDefault: true, order: 8 },
+        { _id: "5800-logistics", name: "logistics", course: "5800", isDefault: true, order: 9 },
+        { _id: "5800-other", name: "other", course: "5800", isDefault: true, order: 10 },
+        { _id: "5800-office_hours", name: "office_hours", course: "5800", isDefault: true, order: 11 },
+
+        // CS6510 folders
+        { _id: "6510-hw1", name: "hw1", course: "6510", isDefault: true, order: 1 },
+        { _id: "6510-hw2", name: "hw2", course: "6510", isDefault: true, order: 2 },
+        { _id: "6510-hw3", name: "hw3", course: "6510", isDefault: true, order: 3 },
+        { _id: "6510-hw4", name: "hw4", course: "6510", isDefault: true, order: 4 },
+        { _id: "6510-hw5", name: "hw5", course: "6510", isDefault: true, order: 5 },
+        { _id: "6510-hw6", name: "hw6", course: "6510", isDefault: true, order: 6 },
+        { _id: "6510-project", name: "project", course: "6510", isDefault: true, order: 7 },
+        { _id: "6510-exam", name: "exam", course: "6510", isDefault: true, order: 8 },
+        { _id: "6510-logistics", name: "logistics", course: "6510", isDefault: true, order: 9 },
+        { _id: "6510-other", name: "other", course: "6510", isDefault: true, order: 10 },
+        { _id: "6510-office_hours", name: "office_hours", course: "6510", isDefault: true, order: 11 },
+
+        // CS6620 folders
+        { _id: "6620-hw1", name: "hw1", course: "6620", isDefault: true, order: 1 },
+        { _id: "6620-hw2", name: "hw2", course: "6620", isDefault: true, order: 2 },
+        { _id: "6620-hw3", name: "hw3", course: "6620", isDefault: true, order: 3 },
+        { _id: "6620-hw4", name: "hw4", course: "6620", isDefault: true, order: 4 },
+        { _id: "6620-hw5", name: "hw5", course: "6620", isDefault: true, order: 5 },
+        { _id: "6620-hw6", name: "hw6", course: "6620", isDefault: true, order: 6 },
+        { _id: "6620-project", name: "project", course: "6620", isDefault: true, order: 7 },
+        { _id: "6620-exam", name: "exam", course: "6620", isDefault: true, order: 8 },
+        { _id: "6620-logistics", name: "logistics", course: "6620", isDefault: true, order: 9 },
+        { _id: "6620-other", name: "other", course: "6620", isDefault: true, order: 10 },
+        { _id: "6620-office_hours", name: "office_hours", course: "6620", isDefault: true, order: 11 },
     ],
 
     posts: [
-        // CS5610 Posts - using folder NAMES not IDs
+        // ========== CS5610 Web Development Posts (13 total) ==========
         {
             _id: "5610-post-1",
             course: "5610",
             type: "note",
             postTo: "entire_class",
             visibleTo: [],
-            folders: ["office_hours"], // Use folder NAME not ID
+            folders: ["office_hours"],
             summary: "Meet Your TA for Web Development - Pramod",
             details: "<p>Hi Everyone,</p><p>My name is Pramod, and I am excited to be your Teaching Assistant this semester. I took this course in Fall 2023 and gained valuable insights and hands-on experience, which I look forward to sharing with you all.</p><p>A little about me: I am currently pursuing my Master's in Computer Science at Northeastern University. My passion for web development has grown over the years, and I have worked on several projects utilizing technologies like React, Node.js, HTML, CSS, and MongoDB.</p>",
-            author: "674e52d09a4e696e37024893", // Use actual user ID or "student1"
+            author: "674e52d09a4e696e37024893",
             authorRole: "TA",
             authorName: "Pramod Kumar",
             views: 87,
@@ -71,7 +123,7 @@ const pazzaSeedData  = {
             type: "question",
             postTo: "entire_class",
             visibleTo: [],
-            folders: ["hw2"], // Use folder NAME
+            folders: ["hw2"],
             summary: "Starting HW2",
             details: "<p>Hi! I want to start assignment 2, but don't want to effect assignment 1. For assignment 1 I submitted a link with a1-- a directory.</p><p>Should I create a new branch or just add files in the same repo?</p>",
             author: "student1",
@@ -89,7 +141,7 @@ const pazzaSeedData  = {
             type: "question",
             postTo: "entire_class",
             visibleTo: [],
-            folders: ["hw1"], // Use folder NAME
+            folders: ["hw1"],
             summary: "Clarification on Lab1",
             details: "<p>In the anchor tag part of lab1 (bottom of page 17), we are asked to 'Create another link to your code repository on GitHub'</p><p>What is the difference between this and 'Create a link to your source code on GitHub'?</p>",
             author: "student2",
@@ -107,7 +159,7 @@ const pazzaSeedData  = {
             type: "question",
             postTo: "entire_class",
             visibleTo: [],
-            folders: ["hw1"], // Use folder NAME
+            folders: ["hw1"],
             summary: "How to make buttons sit on the right or left?",
             details: "<p>In Homework one, we are implementing an assignment editor page. At the bottom of the page, we need to create two buttons that align differently.</p><p>How can I make one button align to the left and another to the right?</p>",
             author: "student3",
@@ -125,7 +177,7 @@ const pazzaSeedData  = {
             type: "note",
             postTo: "entire_class",
             visibleTo: [],
-            folders: ["exam"], // Use folder NAME
+            folders: ["exam"],
             summary: "Midterm Review Session - Friday 7pm",
             details: "<p>Dear Students,</p><p>We will be holding a midterm review session this Friday at 7pm EST in the regular classroom. We'll go over key concepts including:</p><ul><li>React Hooks</li><li>Redux state management</li><li>RESTful API design</li><li>MongoDB operations</li></ul>",
             author: "674e52d09a4e696e37024890",
@@ -144,7 +196,7 @@ const pazzaSeedData  = {
             type: "question",
             postTo: "entire_class",
             visibleTo: [],
-            folders: ["project"], // Use folder NAME
+            folders: ["project"],
             summary: "Final Project Team Formation",
             details: "<p>Hi everyone! I'm looking for 2-3 teammates for the final project. I'm interested in building a social media platform.</p><p>My skills: React, TypeScript, Node.js, MongoDB</p>",
             author: "student4",
@@ -157,7 +209,6 @@ const pazzaSeedData  = {
             createdAt: "2025-01-06T13:20:00",
             updatedAt: "2025-01-06T14:15:00"
         },
-
         {
             _id: "5610-post-7",
             course: "5610",
@@ -276,7 +327,7 @@ const pazzaSeedData  = {
             visibleTo: [],
             folders: ["project"],
             summary: "Sample MERN repo link for reference",
-            details: "<p>Here’s a reference MERN repo with Redux Toolkit examples you can browse.</p>",
+            details: "<p>Here's a reference MERN repo with Redux Toolkit examples you can browse.</p>",
             author: "674e52d09a4e696e37024893",
             authorRole: "TA",
             authorName: "Pramod Kumar",
@@ -287,14 +338,14 @@ const pazzaSeedData  = {
             updatedAt: "2025-01-14T08:40:00"
         },
 
-        // CS5520 Posts
+        // ========== CS5520 Mobile App Development Posts (10 total) ==========
         {
             _id: "5520-post-1",
             course: "5520",
             type: "question",
             postTo: "entire_class",
             visibleTo: [],
-            folders: ["hw1"], // Use folder NAME
+            folders: ["hw1"],
             summary: "React Native vs Flutter for Final Project?",
             details: "<p>For the final project, are we required to use React Native, or can we choose Flutter?</p><p>I have more experience with Flutter and feel I could build something more polished.</p>",
             author: "student5",
@@ -312,7 +363,7 @@ const pazzaSeedData  = {
             type: "question",
             postTo: "entire_class",
             visibleTo: [],
-            folders: ["hw2"], // Use folder NAME
+            folders: ["hw2"],
             summary: "Expo camera permissions not working on iOS",
             details: "<p>I'm trying to implement the camera feature for HW2, but when I run the app on my iPhone, it crashes when requesting camera permissions.</p>",
             author: "student6",
@@ -330,7 +381,7 @@ const pazzaSeedData  = {
             type: "note",
             postTo: "entire_class",
             visibleTo: [],
-            folders: ["logistics"], // Use folder NAME
+            folders: ["logistics"],
             summary: "Class Cancelled Next Tuesday - University Holiday",
             details: "<p>Hi Everyone,</p><p>Just a reminder that class next Tuesday (Jan 16) is cancelled due to the university holiday.</p>",
             author: "instructor2",
@@ -342,140 +393,6 @@ const pazzaSeedData  = {
             createdAt: "2025-01-08T09:00:00",
             updatedAt: "2025-01-08T09:00:00"
         },
-
-        // === ADD BELOW TO pazzaSeedData.posts (append) ===
-
-// ---------- CS5610 Web Development ----------
-        {
-            _id: "5610-post-7",
-            course: "5610",
-            type: "note",
-            postTo: "entire_class",
-            visibleTo: [],
-            folders: ["logistics"],
-            summary: "Office hours moved to Thursday this week",
-            details: "<p>Quick heads up: office hours are moved to <b>Thu 4–6pm</b> for this week only.</p>",
-            author: "674e52d09a4e696e37024890",
-            authorRole: "FACULTY",
-            authorName: "Prof. Jose Annunziato",
-            views: 120,
-            hasInstructorAnswer: false,
-            hasStudentAnswer: false,
-            isPinned: false,
-            createdAt: "2025-01-11T09:00:00",
-            updatedAt: "2025-01-11T09:00:00"
-        },
-        {
-            _id: "5610-post-8",
-            course: "5610",
-            type: "question",
-            postTo: "entire_class",
-            visibleTo: [],
-            folders: ["hw2"],
-            summary: "Where to place Redux store in Next.js app?",
-            details: "<p>Should the Redux store live in <code>app/store.ts</code> or inside the course folder?</p>",
-            author: "student10",
-            authorRole: "STUDENT",
-            authorName: "Kelly Anderson",
-            views: 39,
-            hasInstructorAnswer: true,
-            hasStudentAnswer: false,
-            createdAt: "2025-01-11T13:10:00",
-            updatedAt: "2025-01-11T13:40:00"
-        },
-        {
-            _id: "5610-post-9",
-            course: "5610",
-            type: "question",
-            postTo: "entire_class",
-            visibleTo: [],
-            folders: ["project"],
-            summary: "API design: plural nouns vs resources with IDs?",
-            details: "<p>For REST, should I use <code>/api/courses</code> and <code>/api/courses/:id</code>? Any naming tips?</p>",
-            author: "student11",
-            authorRole: "STUDENT",
-            authorName: "Laura Martinez",
-            views: 51,
-            hasInstructorAnswer: true,
-            hasStudentAnswer: true,
-            createdAt: "2025-01-12T10:05:00",
-            updatedAt: "2025-01-12T11:12:00"
-        },
-        {
-            _id: "5610-post-10",
-            course: "5610",
-            type: "note",
-            postTo: "entire_class",
-            visibleTo: [],
-            folders: ["exam"],
-            summary: "Midterm coverage update",
-            details: "<p>Midterm includes React Hooks, Redux Toolkit thunks, and Mongo basics. No GraphQL.</p>",
-            author: "674e52d09a4e696e37024890",
-            authorRole: "FACULTY",
-            authorName: "Prof. Jose Annunziato",
-            views: 176,
-            hasInstructorAnswer: false,
-            hasStudentAnswer: false,
-            isPinned: true,
-            createdAt: "2025-01-12T18:20:00",
-            updatedAt: "2025-01-12T18:20:00"
-        },
-        {
-            _id: "5610-post-11",
-            course: "5610",
-            type: "question",
-            postTo: "entire_class",
-            visibleTo: [],
-            folders: ["hw1"],
-            summary: "Bootstrap grid vs CSS grid for layout?",
-            details: "<p>Which should I use for the dashboard layout to match the rubric?</p>",
-            author: "student12",
-            authorRole: "STUDENT",
-            authorName: "Mei Lin",
-            views: 29,
-            hasInstructorAnswer: true,
-            hasStudentAnswer: false,
-            createdAt: "2025-01-13T09:35:00",
-            updatedAt: "2025-01-13T10:02:00"
-        },
-        {
-            _id: "5610-post-12",
-            course: "5610",
-            type: "question",
-            postTo: "entire_class",
-            visibleTo: [],
-            folders: ["office_hours"],
-            summary: "Can we use NextAuth for login?",
-            details: "<p>Is NextAuth allowed for authentication, or should we stick to sessions only?</p>",
-            author: "student13",
-            authorRole: "STUDENT",
-            authorName: "Noah Patel",
-            views: 47,
-            hasInstructorAnswer: false,
-            hasStudentAnswer: true,
-            createdAt: "2025-01-13T14:00:00",
-            updatedAt: "2025-01-13T14:20:00"
-        },
-        {
-            _id: "5610-post-13",
-            course: "5610",
-            type: "note",
-            postTo: "entire_class",
-            visibleTo: [],
-            folders: ["project"],
-            summary: "Sample MERN repo link for reference",
-            details: "<p>Here’s a reference MERN repo with Redux Toolkit examples you can browse.</p>",
-            author: "674e52d09a4e696e37024893",
-            authorRole: "TA",
-            authorName: "Pramod Kumar",
-            views: 88,
-            hasInstructorAnswer: false,
-            hasStudentAnswer: false,
-            createdAt: "2025-01-14T08:40:00",
-            updatedAt: "2025-01-14T08:40:00"
-        },
-
-// ---------- CS5520 Mobile Application Development ----------
         {
             _id: "5520-post-4",
             course: "5520",
@@ -603,14 +520,14 @@ const pazzaSeedData  = {
             updatedAt: "2025-01-14T15:45:00"
         },
 
-        // CS5004 Posts
+        // ========== CS5004 Object-Oriented Design Posts (9 total) ==========
         {
             _id: "5004-post-1",
             course: "5004",
             type: "question",
             postTo: "entire_class",
             visibleTo: [],
-            folders: ["hw2"], // Use folder NAME
+            folders: ["hw2"],
             summary: "Difference between Composition and Aggregation?",
             details: "<p>I'm working on the HW2 design diagrams and confused about when to use composition vs aggregation relationships in UML.</p>",
             author: "student7",
@@ -628,7 +545,7 @@ const pazzaSeedData  = {
             type: "note",
             postTo: "entire_class",
             visibleTo: [],
-            folders: ["logistics"], // Use folder NAME
+            folders: ["logistics"],
             summary: "Welcome to CS5004 - Object-Oriented Design",
             details: "<p>Welcome to CS5004! This course will cover fundamental OOP concepts using Java. Please make sure you have JDK 17 installed.</p>",
             author: "instructor3",
@@ -641,7 +558,6 @@ const pazzaSeedData  = {
             createdAt: "2025-01-10T08:00:00",
             updatedAt: "2025-01-10T08:00:00"
         },
-
         {
             _id: "5004-post-3",
             course: "5004",
@@ -770,6 +686,7 @@ const pazzaSeedData  = {
             updatedAt: "2025-01-14T12:10:00"
         },
 
+        // ========== CS5200 Database Management Systems Posts (7 total) ==========
         {
             _id: "5200-post-1",
             course: "5200",
@@ -898,7 +815,7 @@ const pazzaSeedData  = {
             updatedAt: "2025-01-13T10:20:00"
         },
 
-// ---------- CS5800 Algorithms ----------
+        // ========== CS5800 Algorithms Posts (7 total) ==========
         {
             _id: "5800-post-1",
             course: "5800",
@@ -1027,7 +944,7 @@ const pazzaSeedData  = {
             updatedAt: "2025-01-13T16:30:00"
         },
 
-// ---------- CS6510 Advanced Software Development ----------
+        // ========== CS6510 Advanced Software Development Posts (7 total) ==========
         {
             _id: "6510-post-1",
             course: "6510",
@@ -1036,7 +953,7 @@ const pazzaSeedData  = {
             visibleTo: [],
             folders: ["logistics"],
             summary: "Tooling stack for the course",
-            details: "<p>We’ll use TypeScript, Jest, and GitHub Actions. Please enable CI on your repo.</p>",
+            details: "<p>We'll use TypeScript, Jest, and GitHub Actions. Please enable CI on your repo.</p>",
             author: "instructor6",
             authorRole: "FACULTY",
             authorName: "Dr. Olivia Reed",
@@ -1156,7 +1073,7 @@ const pazzaSeedData  = {
             updatedAt: "2025-01-13T11:25:00"
         },
 
-// ---------- CS6620 Fundamentals of Cloud Computing ----------
+        // ========== CS6620 Cloud Computing Posts (7 total) ==========
         {
             _id: "6620-post-1",
             course: "6620",
@@ -1238,7 +1155,7 @@ const pazzaSeedData  = {
             visibleTo: [],
             folders: ["project"],
             summary: "Kubernetes or ECS for final project?",
-            details: "<p>Team experience varies—what’s safer for the demo?</p>",
+            details: "<p>Team experience varies—what's safer for the demo?</p>",
             author: "student32",
             authorRole: "STUDENT",
             authorName: "Harper Johnson",
@@ -1274,7 +1191,7 @@ const pazzaSeedData  = {
             visibleTo: [],
             folders: ["office_hours"],
             summary: "AWS billing alarms workshop",
-            details: "<p>We’ll set up cost and usage alarms together—bring your laptops.</p>",
+            details: "<p>We'll set up cost and usage alarms together—bring your laptops.</p>",
             author: "ta6",
             authorRole: "TA",
             authorName: "Samantha Cho",
@@ -1286,7 +1203,7 @@ const pazzaSeedData  = {
         }
     ],
 
-    // Separate answers collection
+    // Answers collection (keeping all existing answers)
     answers: [
         {
             _id: "answer-1",
@@ -1350,10 +1267,47 @@ const pazzaSeedData  = {
             authorRole: "FACULTY",
             authorName: "Dr. Sarah Chen",
             createdAt: "2025-01-10T14:30:00"
+        },
+        // Add more answers for other posts that have hasInstructorAnswer or hasStudentAnswer set to true
+        {
+            _id: "answer-8",
+            postId: "5610-post-8",
+            content: "<p>The Redux store should be in <code>app/store</code> at the root level so it can be shared across all courses. This follows the standard Next.js/Redux pattern.</p>",
+            author: "674e52d09a4e696e37024890",
+            authorRole: "FACULTY",
+            authorName: "Prof. Jose Annunziato",
+            createdAt: "2025-01-11T13:40:00"
+        },
+        {
+            _id: "answer-9",
+            postId: "5610-post-9",
+            content: "<p>Yes, use plural nouns: <code>/api/courses</code> for all courses and <code>/api/courses/:id</code> for a specific course. This is RESTful convention.</p>",
+            author: "674e52d09a4e696e37024893",
+            authorRole: "TA",
+            authorName: "Pramod Kumar",
+            createdAt: "2025-01-12T10:45:00"
+        },
+        {
+            _id: "answer-10",
+            postId: "5610-post-9",
+            content: "<p>Also consider using <code>/api/courses/:courseId/modules</code> for nested resources. It clearly shows the hierarchy.</p>",
+            author: "student11",
+            authorRole: "STUDENT",
+            authorName: "Laura Martinez",
+            createdAt: "2025-01-12T11:12:00"
+        },
+        {
+            _id: "answer-11",
+            postId: "5610-post-11",
+            content: "<p>Use Bootstrap grid for this assignment since we're focusing on Bootstrap components. Save CSS Grid for when you need more complex layouts.</p>",
+            author: "674e52d09a4e696e37024890",
+            authorRole: "FACULTY",
+            authorName: "Prof. Jose Annunziato",
+            createdAt: "2025-01-13T10:02:00"
         }
     ],
 
-    // Separate followups collection
+    // Followups collection (keeping all existing followups)
     followups: [
         {
             _id: "followup-1",
@@ -1420,7 +1374,27 @@ const pazzaSeedData  = {
             parentId: "followup-5",
             isResolved: true,
             createdAt: "2025-01-10T15:15:00"
+        },
+        // Add more followups
+        {
+            _id: "followup-7",
+            postId: "5610-post-12",
+            content: "NextAuth is fine but we haven't covered it in class. Session-based auth would be safer for the assignment.",
+            author: "student10",
+            authorRole: "STUDENT",
+            authorName: "Kelly Anderson",
+            createdAt: "2025-01-13T14:20:00"
+        },
+        {
+            _id: "followup-8",
+            postId: "5520-post-8",
+            content: "The free tier gives you 1000 notifications per month. Should be plenty for testing!",
+            author: "student5",
+            authorRole: "STUDENT",
+            authorName: "Frank Martinez",
+            createdAt: "2025-01-13T12:55:00"
         }
     ]
 };
+
 export { pazzaSeedData };
