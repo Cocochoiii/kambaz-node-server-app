@@ -6,7 +6,7 @@ export function findModulesForCourse(courseId) {
 }
 
 export function createModule(module) {
-    const newModule = { ...module, _id: uuidv4() };
+    const newModule = { lessons: [], ...module, _id: uuidv4() };
     Database.modules = [...Database.modules, newModule];
     return newModule;
 }

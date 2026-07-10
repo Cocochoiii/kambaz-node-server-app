@@ -149,7 +149,6 @@ export default [
         "released": true,
         "type": "midterm"
     },
-
     {
         "_id": "G201",
         "student": "charlie",
@@ -240,7 +239,6 @@ export default [
         "released": true,
         "type": "final"
     },
-
     {
         "_id": "G301",
         "student": "charlie",
@@ -341,7 +339,6 @@ export default [
         "released": true,
         "type": "midterm"
     },
-
     {
         "_id": "G401",
         "student": "charlie",
@@ -422,7 +419,6 @@ export default [
         "released": false,
         "type": "assignment"
     },
-
     {
         "_id": "G501",
         "student": "charlie",
@@ -533,7 +529,6 @@ export default [
         "released": true,
         "type": "midterm"
     },
-
     {
         "_id": "G601",
         "student": "charlie",
@@ -614,7 +609,6 @@ export default [
         "released": true,
         "type": "final"
     },
-
     {
         "_id": "G701",
         "student": "charlie",

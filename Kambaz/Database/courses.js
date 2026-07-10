@@ -89,5 +89,57 @@ export default [
         "semester": "Full Term",
         "description": "Team-based product development: planning, architecture, quality, and delivery. Work on large-scale software projects.",
         "image": "course7.jpg"
+    },
+    {
+        "_id": "5700",
+        "name": "CS5700 Computer Networks",
+        "number": "CS5700",
+        "startDate": "2025-01-10",
+        "endDate": "2025-05-15",
+        "department": "Computer Science",
+        "credits": 4,
+        "term": "Spring 2025",
+        "semester": "Full Term",
+        "description": "Internet architecture, transport and routing, applications, and network security using sockets.",
+        "image": "course8.jpg"
+    },
+    {
+        "_id": "6140",
+        "name": "CS6140 Machine Learning",
+        "number": "CS6140",
+        "startDate": "2025-01-10",
+        "endDate": "2025-05-15",
+        "department": "Computer Science",
+        "credits": 4,
+        "term": "Spring 2025",
+        "semester": "Full Term",
+        "description": "Supervised and unsupervised machine learning: regression, classification, kernels, and clustering.",
+        "image": "course9.jpg"
+    },
+    {
+        "_id": "5100",
+        "name": "CS5100 Foundations of Artificial Intelligence",
+        "number": "CS5100",
+        "startDate": "2025-01-10",
+        "endDate": "2025-05-15",
+        "department": "Computer Science",
+        "credits": 4,
+        "term": "Spring 2025",
+        "semester": "Full Term",
+        "description": "Artificial intelligence: search, adversarial games, constraint satisfaction, MDPs, and logic.",
+        "image": "course10.jpg"
+    },
+    {
+        "_id": "6650",
+        "name": "CS6650 Building Scalable Distributed Systems",
+        "number": "CS6650",
+        "startDate": "2025-01-10",
+        "endDate": "2025-05-15",
+        "department": "Computer Science",
+        "credits": 4,
+        "term": "Spring 2025",
+        "semester": "Full Term",
+        "description": "Building scalable distributed systems: concurrency, RPC, messaging, and cloud deployment.",
+        "image": "course11.jpg"
     }
 ];

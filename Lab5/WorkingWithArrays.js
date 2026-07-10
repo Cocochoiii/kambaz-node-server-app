@@ -14,17 +14,17 @@ export default function WorkingWithArrays(app) {
         return res.json(todos.filter((t) => t.completed === completedBool));
     });
 
-    // GET by id
-    app.get("/lab5/todos/:id", (req, res) => {
-        const todo = todos.find((t) => t.id === parseInt(req.params.id));
-        res.json(todo);
-    });
-
-    // CREATE (legacy GET + proper POST)
+    // CREATE (legacy GET) - must be before "/:id" so "create" is not read as an id
     app.get("/lab5/todos/create", (req, res) => {
         const newTodo = { id: Date.now(), title: "New Task", completed: false };
         todos.push(newTodo);
         res.json(todos);
+    });
+
+    // GET by id
+    app.get("/lab5/todos/:id", (req, res) => {
+        const todo = todos.find((t) => t.id === parseInt(req.params.id));
+        res.json(todo);
     });
     app.post("/lab5/todos", (req, res) => {
         const newTodo = { ...req.body, id: Date.now() };
@@ -61,7 +61,7 @@ export default function WorkingWithArrays(app) {
         res.sendStatus(200);
     });
 
-    // extra “on your own” routes
+    // extra on-your-own routes
     app.get("/lab5/todos/:id/description/:description", (req, res) => {
         const todo = todos.find((t) => t.id === parseInt(req.params.id));
         if (todo) todo.description = req.params.description;
