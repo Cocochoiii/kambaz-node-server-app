@@ -7,10 +7,11 @@ const schema = new mongoose.Schema(
         assignment: String,
         course: String,
         score: Number,
-        submitted: Boolean,
+        submitted: String,
         released: Boolean,
         type: String,
     },
     { collection: "grades", strict: false }
 );
 export default schema;
+
