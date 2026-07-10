@@ -13,7 +13,6 @@ import AssignmentRoutes from "./Kambaz/Assignments/routes.js";
 import EnrollmentRoutes from "./Kambaz/Enrollments/routes.js";
 import AnnouncementRoutes from "./Kambaz/Announcements/routes.js";
 import QuizRoutes from "./Kambaz/Quizzes/routes.js";
-import GradeRoutes from "./Kambaz/Grades/routes.js";
 import SubmissionRoutes from "./Kambaz/Submissions/routes.js";
 
 // Connect to MongoDB (Atlas in production, local by default) then seed if empty.
@@ -66,7 +65,6 @@ AssignmentRoutes(app);
 EnrollmentRoutes(app);
 AnnouncementRoutes(app);
 QuizRoutes(app);
-GradeRoutes(app);
 SubmissionRoutes(app);
 
 const PORT = process.env.PORT || 4000;

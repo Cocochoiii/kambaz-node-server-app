@@ -8,6 +8,7 @@ const schema = new mongoose.Schema(
         assignment: String,
         course: String,
         user: String,
+        userName: String,
         title: String,
         points: Number,
         text: String,

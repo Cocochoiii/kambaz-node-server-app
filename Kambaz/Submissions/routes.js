@@ -14,6 +14,10 @@ export default function SubmissionRoutes(app) {
     app.get("/api/users/:userId/submissions", async (req, res) => {
         res.json(await dao.findSubmissionsForUser(req.params.userId));
     });
+    // All submissions in a course (gradebook).
+    app.get("/api/courses/:courseId/submissions", async (req, res) => {
+        res.json(await dao.findSubmissionsForCourse(req.params.courseId));
+    });
     // All submissions (faculty "to grade" queue filters this).
     app.get("/api/submissions", async (req, res) => {
         res.json(await dao.findAllSubmissions());

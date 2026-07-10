@@ -10,7 +10,7 @@ export const submitAssignment = async (assignmentId, submission) => {
         await model.updateOne(
             { _id: existing._id },
             { $set: { text: submission.text || "", course: submission.course,
-                      title: submission.title, points: submission.points,
+                      title: submission.title, points: submission.points, userName: submission.userName,
                       status: "submitted", submittedAt: now } }
         );
         return model.findById(existing._id);
@@ -20,6 +20,7 @@ export const submitAssignment = async (assignmentId, submission) => {
         assignment: assignmentId,
         course: submission.course,
         user: submission.user,
+        userName: submission.userName,
         title: submission.title,
         points: submission.points,
         text: submission.text || "",
@@ -30,6 +31,7 @@ export const submitAssignment = async (assignmentId, submission) => {
 
 export const findSubmissionsForAssignment = (assignmentId) => model.find({ assignment: assignmentId });
 export const findSubmissionsForUser = (userId) => model.find({ user: userId });
+export const findSubmissionsForCourse = (courseId) => model.find({ course: courseId });
 export const findAllSubmissions = () => model.find();
 
 // Faculty grades a submission.
