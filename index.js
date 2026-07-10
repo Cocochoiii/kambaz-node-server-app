@@ -2,6 +2,8 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import session from "express-session";
+import mongoose from "mongoose";
+import seedDatabase from "./Kambaz/Database/seed.js";
 
 import Lab5 from "./Lab5/index.js";
 import UserRoutes from "./Kambaz/Users/routes.js";
@@ -12,6 +14,17 @@ import EnrollmentRoutes from "./Kambaz/Enrollments/routes.js";
 import AnnouncementRoutes from "./Kambaz/Announcements/routes.js";
 import QuizRoutes from "./Kambaz/Quizzes/routes.js";
 import GradeRoutes from "./Kambaz/Grades/routes.js";
+
+// Connect to MongoDB (Atlas in production, local by default) then seed if empty.
+const CONNECTION_STRING =
+    process.env.MONGO_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kambaz";
+mongoose
+    .connect(CONNECTION_STRING)
+    .then(async () => {
+        console.log("Connected to MongoDB");
+        await seedDatabase();
+    })
+    .catch((err) => console.error("MongoDB connection error:", err));
 
 const app = express();
 

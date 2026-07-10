@@ -1,20 +1,22 @@
-import Database from "../Database/index.js";
+import model from "./model.js";
 import { v4 as uuidv4 } from "uuid";
 
-export function findAnnouncementsForCourse(courseId) {
-    return Database.announcements.filter((a) => a.course === courseId);
-}
-export function createAnnouncement(announcement) {
-    const newAnnouncement = { date: new Date().toISOString(), ...announcement, _id: uuidv4() };
-    Database.announcements = [...Database.announcements, newAnnouncement];
-    return newAnnouncement;
-}
-export function updateAnnouncement(announcementId, updates) {
-    const a = Database.announcements.find((a) => a._id === announcementId);
-    if (a) Object.assign(a, updates);
-    return a;
-}
-export function deleteAnnouncement(announcementId) {
-    Database.announcements = Database.announcements.filter((a) => a._id !== announcementId);
-    return true;
-}
+export const findAnnouncementsForCourse = (courseId) => model.find({ course: courseId });
+
+export const createAnnouncement = (announcement) => {
+    const newAnnouncement = {
+        date: new Date().toISOString(),
+        ...announcement,
+        _id: announcement._id || uuidv4(),
+    };
+    return model.create(newAnnouncement);
+};
+
+export const updateAnnouncement = async (announcementId, updates) => {
+    const { _id, ...rest } = updates;
+    await model.updateOne({ _id: announcementId }, { $set: rest });
+    return model.findById(announcementId);
+};
+
+export const deleteAnnouncement = (announcementId) =>
+    model.deleteOne({ _id: announcementId });

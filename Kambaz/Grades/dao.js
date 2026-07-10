@@ -1,34 +1,26 @@
-import Database from "../Database/index.js";
+import model from "./model.js";
 
-export function findGradesForCourse(courseId) {
-    return Database.grades.filter((g) => g.course === courseId);
-}
+export const findGradesForCourse = (courseId) => model.find({ course: courseId });
+
 // Upsert a single grade by (course, student, assignment).
-export function upsertGrade(courseId, { student, assignment, score, submitted }) {
-    let g = Database.grades.find(
-        (x) => x.course === courseId && x.student === student && x.assignment === assignment
-    );
-    if (g) {
-        g.score = score;
-        g.submitted = submitted;
-    } else {
-        g = {
-            _id: `G${Date.now()}`,
-            student,
-            assignment,
-            course: courseId,
-            score,
-            submitted,
-            released: false,
-            type: "assignment",
-        };
-        Database.grades.push(g);
+export const upsertGrade = async (courseId, { student, assignment, score, submitted }) => {
+    const existing = await model.findOne({ course: courseId, student, assignment });
+    if (existing) {
+        await model.updateOne({ _id: existing._id }, { $set: { score, submitted } });
+        return model.findById(existing._id);
     }
-    return g;
-}
-export function releaseGradesForCourse(courseId) {
-    Database.grades = Database.grades.map((g) =>
-        g.course === courseId ? { ...g, released: true } : g
-    );
-    return true;
-}
+    const newGrade = {
+        _id: `G${Date.now()}`,
+        student,
+        assignment,
+        course: courseId,
+        score,
+        submitted,
+        released: false,
+        type: "assignment",
+    };
+    return model.create(newGrade);
+};
+
+export const releaseGradesForCourse = (courseId) =>
+    model.updateMany({ course: courseId }, { $set: { released: true } });

@@ -1,23 +1,17 @@
-import Database from "../Database/index.js";
+import model from "./model.js";
 import { v4 as uuidv4 } from "uuid";
 
-export function findModulesForCourse(courseId) {
-    return Database.modules.filter((m) => m.course === courseId);
-}
+export const findModulesForCourse = (courseId) => model.find({ course: courseId });
 
-export function createModule(module) {
-    const newModule = { lessons: [], ...module, _id: uuidv4() };
-    Database.modules = [...Database.modules, newModule];
-    return newModule;
-}
+export const createModule = (module) => {
+    const newModule = { lessons: [], ...module, _id: module._id || uuidv4() };
+    return model.create(newModule);
+};
 
-export function deleteModule(moduleId) {
-    Database.modules = Database.modules.filter((m) => m._id !== moduleId);
-    return true;
-}
+export const deleteModule = (moduleId) => model.deleteOne({ _id: moduleId });
 
-export function updateModule(moduleId, moduleUpdates) {
-    const m = Database.modules.find((m) => m._id === moduleId);
-    Object.assign(m, moduleUpdates);
-    return m;
-}
+export const updateModule = async (moduleId, moduleUpdates) => {
+    const { _id, ...rest } = moduleUpdates;
+    await model.updateOne({ _id: moduleId }, { $set: rest });
+    return model.findById(moduleId);
+};
