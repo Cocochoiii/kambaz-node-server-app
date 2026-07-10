@@ -10,7 +10,8 @@ export default [
         "term": "Spring 2025",
         "semester": "Full Term",
         "description": "Hands-on full-stack web with HTML/CSS/JS, React/Next.js, Node/Express, and MongoDB. Build modern web applications using industry-standard tools and frameworks.",
-        "image": "course1.jpg"
+        "image": "course1.jpg",
+        "published": true
     },
     {
         "_id": "5520",
@@ -23,7 +24,8 @@ export default [
         "term": "Spring 2025",
         "semester": "Full Term",
         "description": "Design and build mobile apps with modern UI patterns, data, networking, and device APIs. Create cross-platform applications for iOS and Android.",
-        "image": "course2.jpg"
+        "image": "course2.jpg",
+        "published": true
     },
     {
         "_id": "5004",
@@ -36,7 +38,8 @@ export default [
         "term": "Spring 2025",
         "semester": "Full Term",
         "description": "Deep dive into OOP design in Java: principles, patterns, and rigorous testing. Master SOLID principles and design patterns for scalable software.",
-        "image": "course3.jpg"
+        "image": "course3.jpg",
+        "published": true
     },
     {
         "_id": "5200",
@@ -49,7 +52,8 @@ export default [
         "term": "Spring 2025",
         "semester": "Full Term",
         "description": "Relational modeling, SQL, transactions, and performance tuning for real systems. Design and implement efficient database solutions.",
-        "image": "course4.jpg"
+        "image": "course4.jpg",
+        "published": true
     },
     {
         "_id": "5800",
@@ -62,7 +66,8 @@ export default [
         "term": "Fall 2024",
         "semester": "Full Term",
         "description": "Core algorithms, complexity, and problem solving with proofs and analysis. Master fundamental algorithms and data structures.",
-        "image": "course5.jpg"
+        "image": "course5.jpg",
+        "published": true
     },
     {
         "_id": "6620",
@@ -75,7 +80,8 @@ export default [
         "term": "Spring 2025",
         "semester": "Full Term",
         "description": "Cloud foundations: virtualization, distributed storage, platforms, and data systems. Build scalable cloud-native applications.",
-        "image": "course6.jpg"
+        "image": "course6.jpg",
+        "published": true
     },
     {
         "_id": "6510",
@@ -88,7 +94,8 @@ export default [
         "term": "Fall 2024",
         "semester": "Full Term",
         "description": "Team-based product development: planning, architecture, quality, and delivery. Work on large-scale software projects.",
-        "image": "course7.jpg"
+        "image": "course7.jpg",
+        "published": true
     },
     {
         "_id": "5700",
@@ -101,7 +108,8 @@ export default [
         "term": "Spring 2025",
         "semester": "Full Term",
         "description": "Internet architecture, transport and routing, applications, and network security using sockets.",
-        "image": "course8.jpg"
+        "image": "course8.jpg",
+        "published": true
     },
     {
         "_id": "6140",
@@ -114,7 +122,8 @@ export default [
         "term": "Spring 2025",
         "semester": "Full Term",
         "description": "Supervised and unsupervised machine learning: regression, classification, kernels, and clustering.",
-        "image": "course9.jpg"
+        "image": "course9.jpg",
+        "published": true
     },
     {
         "_id": "5100",
@@ -127,7 +136,8 @@ export default [
         "term": "Spring 2025",
         "semester": "Full Term",
         "description": "Artificial intelligence: search, adversarial games, constraint satisfaction, MDPs, and logic.",
-        "image": "course10.jpg"
+        "image": "course10.jpg",
+        "published": true
     },
     {
         "_id": "6650",
@@ -140,6 +150,7 @@ export default [
         "term": "Spring 2025",
         "semester": "Full Term",
         "description": "Building scalable distributed systems: concurrency, RPC, messaging, and cloud deployment.",
-        "image": "course11.jpg"
+        "image": "course11.jpg",
+        "published": true
     }
 ];

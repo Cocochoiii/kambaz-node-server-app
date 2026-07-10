@@ -6,17 +6,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5610-01-1",
-                "name": "Dev environment & Node.js"
+                "name": "Dev environment & Node.js",
+                "published": true
             },
             {
                 "_id": "L-5610-01-2",
-                "name": "Git & GitHub workflow"
+                "name": "Git & GitHub workflow",
+                "published": true
             },
             {
                 "_id": "L-5610-01-3",
-                "name": "HTTP & the browser"
+                "name": "HTTP & the browser",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5610-02",
@@ -25,17 +29,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5610-02-1",
-                "name": "Document structure"
+                "name": "Document structure",
+                "published": true
             },
             {
                 "_id": "L-5610-02-2",
-                "name": "Lists, tables, forms"
+                "name": "Lists, tables, forms",
+                "published": true
             },
             {
                 "_id": "L-5610-02-3",
-                "name": "Accessibility basics"
+                "name": "Accessibility basics",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5610-03",
@@ -44,17 +52,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5610-03-1",
-                "name": "Selectors & box model"
+                "name": "Selectors & box model",
+                "published": true
             },
             {
                 "_id": "L-5610-03-2",
-                "name": "Flexbox"
+                "name": "Flexbox",
+                "published": true
             },
             {
                 "_id": "L-5610-03-3",
-                "name": "CSS Grid & responsive design"
+                "name": "CSS Grid & responsive design",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5610-04",
@@ -63,17 +75,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5610-04-1",
-                "name": "Variables & types"
+                "name": "Variables & types",
+                "published": true
             },
             {
                 "_id": "L-5610-04-2",
-                "name": "Functions & scope"
+                "name": "Functions & scope",
+                "published": true
             },
             {
                 "_id": "L-5610-04-3",
-                "name": "Arrays & objects"
+                "name": "Arrays & objects",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5610-05",
@@ -82,17 +98,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5610-05-1",
-                "name": "Arrow functions & spread"
+                "name": "Arrow functions & spread",
+                "published": true
             },
             {
                 "_id": "L-5610-05-2",
-                "name": "Destructuring"
+                "name": "Destructuring",
+                "published": true
             },
             {
                 "_id": "L-5610-05-3",
-                "name": "Modules & promises"
+                "name": "Modules & promises",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5610-06",
@@ -101,17 +121,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5610-06-1",
-                "name": "Components & JSX"
+                "name": "Components & JSX",
+                "published": true
             },
             {
                 "_id": "L-5610-06-2",
-                "name": "Props & state"
+                "name": "Props & state",
+                "published": true
             },
             {
                 "_id": "L-5610-06-3",
-                "name": "Event handling"
+                "name": "Event handling",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5610-07",
@@ -120,17 +144,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5610-07-1",
-                "name": "useState & useEffect"
+                "name": "useState & useEffect",
+                "published": true
             },
             {
                 "_id": "L-5610-07-2",
-                "name": "Custom hooks"
+                "name": "Custom hooks",
+                "published": true
             },
             {
                 "_id": "L-5610-07-3",
-                "name": "Context API"
+                "name": "Context API",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5610-08",
@@ -139,17 +167,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5610-08-1",
-                "name": "App Router"
+                "name": "App Router",
+                "published": true
             },
             {
                 "_id": "L-5610-08-2",
-                "name": "Layouts & dynamic routes"
+                "name": "Layouts & dynamic routes",
+                "published": true
             },
             {
                 "_id": "L-5610-08-3",
-                "name": "Server vs client components"
+                "name": "Server vs client components",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5610-09",
@@ -158,17 +190,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5610-09-1",
-                "name": "REST principles"
+                "name": "REST principles",
+                "published": true
             },
             {
                 "_id": "L-5610-09-2",
-                "name": "Express routing"
+                "name": "Express routing",
+                "published": true
             },
             {
                 "_id": "L-5610-09-3",
-                "name": "Middleware & sessions"
+                "name": "Middleware & sessions",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5610-10",
@@ -177,17 +213,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5610-10-1",
-                "name": "MongoDB & Mongoose"
+                "name": "MongoDB & Mongoose",
+                "published": true
             },
             {
                 "_id": "L-5610-10-2",
-                "name": "Connecting API to DB"
+                "name": "Connecting API to DB",
+                "published": true
             },
             {
                 "_id": "L-5610-10-3",
-                "name": "Deploying to the cloud"
+                "name": "Deploying to the cloud",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5520-01",
@@ -196,17 +236,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5520-01-1",
-                "name": "Platforms & tooling"
+                "name": "Platforms & tooling",
+                "published": true
             },
             {
                 "_id": "L-5520-01-2",
-                "name": "Project setup"
+                "name": "Project setup",
+                "published": true
             },
             {
                 "_id": "L-5520-01-3",
-                "name": "App lifecycle"
+                "name": "App lifecycle",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5520-02",
@@ -215,17 +259,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5520-02-1",
-                "name": "Views & layouts"
+                "name": "Views & layouts",
+                "published": true
             },
             {
                 "_id": "L-5520-02-2",
-                "name": "Styling"
+                "name": "Styling",
+                "published": true
             },
             {
                 "_id": "L-5520-02-3",
-                "name": "Responsive UI"
+                "name": "Responsive UI",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5520-03",
@@ -234,17 +282,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5520-03-1",
-                "name": "Stack navigation"
+                "name": "Stack navigation",
+                "published": true
             },
             {
                 "_id": "L-5520-03-2",
-                "name": "Tabs & drawers"
+                "name": "Tabs & drawers",
+                "published": true
             },
             {
                 "_id": "L-5520-03-3",
-                "name": "Passing params"
+                "name": "Passing params",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5520-04",
@@ -253,17 +305,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5520-04-1",
-                "name": "Component state"
+                "name": "Component state",
+                "published": true
             },
             {
                 "_id": "L-5520-04-2",
-                "name": "Global state"
+                "name": "Global state",
+                "published": true
             },
             {
                 "_id": "L-5520-04-3",
-                "name": "Context & stores"
+                "name": "Context & stores",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5520-05",
@@ -272,17 +328,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5520-05-1",
-                "name": "Rendering lists"
+                "name": "Rendering lists",
+                "published": true
             },
             {
                 "_id": "L-5520-05-2",
-                "name": "Handling input"
+                "name": "Handling input",
+                "published": true
             },
             {
                 "_id": "L-5520-05-3",
-                "name": "Validation"
+                "name": "Validation",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5520-06",
@@ -291,17 +351,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5520-06-1",
-                "name": "Fetch & REST"
+                "name": "Fetch & REST",
+                "published": true
             },
             {
                 "_id": "L-5520-06-2",
-                "name": "Async & promises"
+                "name": "Async & promises",
+                "published": true
             },
             {
                 "_id": "L-5520-06-3",
-                "name": "Error handling"
+                "name": "Error handling",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5520-07",
@@ -310,17 +374,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5520-07-1",
-                "name": "AsyncStorage"
+                "name": "AsyncStorage",
+                "published": true
             },
             {
                 "_id": "L-5520-07-2",
-                "name": "SQLite"
+                "name": "SQLite",
+                "published": true
             },
             {
                 "_id": "L-5520-07-3",
-                "name": "Caching data"
+                "name": "Caching data",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5520-08",
@@ -329,17 +397,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5520-08-1",
-                "name": "Camera & media"
+                "name": "Camera & media",
+                "published": true
             },
             {
                 "_id": "L-5520-08-2",
-                "name": "Geolocation"
+                "name": "Geolocation",
+                "published": true
             },
             {
                 "_id": "L-5520-08-3",
-                "name": "Sensors"
+                "name": "Sensors",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5520-09",
@@ -348,17 +420,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5520-09-1",
-                "name": "Push notifications"
+                "name": "Push notifications",
+                "published": true
             },
             {
                 "_id": "L-5520-09-2",
-                "name": "Background tasks"
+                "name": "Background tasks",
+                "published": true
             },
             {
                 "_id": "L-5520-09-3",
-                "name": "Permissions"
+                "name": "Permissions",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5520-10",
@@ -367,17 +443,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5520-10-1",
-                "name": "Unit testing"
+                "name": "Unit testing",
+                "published": true
             },
             {
                 "_id": "L-5520-10-2",
-                "name": "Debugging"
+                "name": "Debugging",
+                "published": true
             },
             {
                 "_id": "L-5520-10-3",
-                "name": "App store release"
+                "name": "App store release",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5004-01",
@@ -386,17 +466,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5004-01-1",
-                "name": "Classes & objects"
+                "name": "Classes & objects",
+                "published": true
             },
             {
                 "_id": "L-5004-01-2",
-                "name": "Encapsulation"
+                "name": "Encapsulation",
+                "published": true
             },
             {
                 "_id": "L-5004-01-3",
-                "name": "Constructors"
+                "name": "Constructors",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5004-02",
@@ -405,17 +489,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5004-02-1",
-                "name": "Inheritance"
+                "name": "Inheritance",
+                "published": true
             },
             {
                 "_id": "L-5004-02-2",
-                "name": "Method overriding"
+                "name": "Method overriding",
+                "published": true
             },
             {
                 "_id": "L-5004-02-3",
-                "name": "Abstract classes"
+                "name": "Abstract classes",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5004-03",
@@ -424,17 +512,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5004-03-1",
-                "name": "Interfaces"
+                "name": "Interfaces",
+                "published": true
             },
             {
                 "_id": "L-5004-03-2",
-                "name": "Composition vs inheritance"
+                "name": "Composition vs inheritance",
+                "published": true
             },
             {
                 "_id": "L-5004-03-3",
-                "name": "Generics"
+                "name": "Generics",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5004-04",
@@ -443,17 +535,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5004-04-1",
-                "name": "Single responsibility"
+                "name": "Single responsibility",
+                "published": true
             },
             {
                 "_id": "L-5004-04-2",
-                "name": "Open-closed"
+                "name": "Open-closed",
+                "published": true
             },
             {
                 "_id": "L-5004-04-3",
-                "name": "Liskov & DIP"
+                "name": "Liskov & DIP",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5004-05",
@@ -462,17 +558,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5004-05-1",
-                "name": "Factory"
+                "name": "Factory",
+                "published": true
             },
             {
                 "_id": "L-5004-05-2",
-                "name": "Builder"
+                "name": "Builder",
+                "published": true
             },
             {
                 "_id": "L-5004-05-3",
-                "name": "Singleton"
+                "name": "Singleton",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5004-06",
@@ -481,17 +581,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5004-06-1",
-                "name": "Adapter"
+                "name": "Adapter",
+                "published": true
             },
             {
                 "_id": "L-5004-06-2",
-                "name": "Decorator"
+                "name": "Decorator",
+                "published": true
             },
             {
                 "_id": "L-5004-06-3",
-                "name": "Composite"
+                "name": "Composite",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5004-07",
@@ -500,17 +604,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5004-07-1",
-                "name": "Observer"
+                "name": "Observer",
+                "published": true
             },
             {
                 "_id": "L-5004-07-2",
-                "name": "Strategy"
+                "name": "Strategy",
+                "published": true
             },
             {
                 "_id": "L-5004-07-3",
-                "name": "Command"
+                "name": "Command",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5004-08",
@@ -519,17 +627,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5004-08-1",
-                "name": "Unit testing"
+                "name": "Unit testing",
+                "published": true
             },
             {
                 "_id": "L-5004-08-2",
-                "name": "Test-driven development"
+                "name": "Test-driven development",
+                "published": true
             },
             {
                 "_id": "L-5004-08-3",
-                "name": "Refactoring"
+                "name": "Refactoring",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5004-09",
@@ -538,17 +650,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5004-09-1",
-                "name": "Exception handling"
+                "name": "Exception handling",
+                "published": true
             },
             {
                 "_id": "L-5004-09-2",
-                "name": "Defensive programming"
+                "name": "Defensive programming",
+                "published": true
             },
             {
                 "_id": "L-5004-09-3",
-                "name": "Invariants"
+                "name": "Invariants",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5004-10",
@@ -557,17 +673,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5004-10-1",
-                "name": "Requirements to design"
+                "name": "Requirements to design",
+                "published": true
             },
             {
                 "_id": "L-5004-10-2",
-                "name": "UML modeling"
+                "name": "UML modeling",
+                "published": true
             },
             {
                 "_id": "L-5004-10-3",
-                "name": "Design review"
+                "name": "Design review",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5200-01",
@@ -576,17 +696,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5200-01-1",
-                "name": "DBMS overview"
+                "name": "DBMS overview",
+                "published": true
             },
             {
                 "_id": "L-5200-01-2",
-                "name": "Data models"
+                "name": "Data models",
+                "published": true
             },
             {
                 "_id": "L-5200-01-3",
-                "name": "ER modeling"
+                "name": "ER modeling",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5200-02",
@@ -595,17 +719,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5200-02-1",
-                "name": "Relations & keys"
+                "name": "Relations & keys",
+                "published": true
             },
             {
                 "_id": "L-5200-02-2",
-                "name": "Relational algebra"
+                "name": "Relational algebra",
+                "published": true
             },
             {
                 "_id": "L-5200-02-3",
-                "name": "Schema design"
+                "name": "Schema design",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5200-03",
@@ -614,17 +742,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5200-03-1",
-                "name": "SELECT & filtering"
+                "name": "SELECT & filtering",
+                "published": true
             },
             {
                 "_id": "L-5200-03-2",
-                "name": "Joins"
+                "name": "Joins",
+                "published": true
             },
             {
                 "_id": "L-5200-03-3",
-                "name": "Aggregation & grouping"
+                "name": "Aggregation & grouping",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5200-04",
@@ -633,17 +765,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5200-04-1",
-                "name": "Subqueries"
+                "name": "Subqueries",
+                "published": true
             },
             {
                 "_id": "L-5200-04-2",
-                "name": "Views"
+                "name": "Views",
+                "published": true
             },
             {
                 "_id": "L-5200-04-3",
-                "name": "Stored procedures"
+                "name": "Stored procedures",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5200-05",
@@ -652,17 +788,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5200-05-1",
-                "name": "Functional dependencies"
+                "name": "Functional dependencies",
+                "published": true
             },
             {
                 "_id": "L-5200-05-2",
-                "name": "Normal forms"
+                "name": "Normal forms",
+                "published": true
             },
             {
                 "_id": "L-5200-05-3",
-                "name": "Denormalization"
+                "name": "Denormalization",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5200-06",
@@ -671,17 +811,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5200-06-1",
-                "name": "B-trees"
+                "name": "B-trees",
+                "published": true
             },
             {
                 "_id": "L-5200-06-2",
-                "name": "Hash indexes"
+                "name": "Hash indexes",
+                "published": true
             },
             {
                 "_id": "L-5200-06-3",
-                "name": "Query optimization"
+                "name": "Query optimization",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5200-07",
@@ -690,17 +834,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5200-07-1",
-                "name": "ACID properties"
+                "name": "ACID properties",
+                "published": true
             },
             {
                 "_id": "L-5200-07-2",
-                "name": "Concurrency control"
+                "name": "Concurrency control",
+                "published": true
             },
             {
                 "_id": "L-5200-07-3",
-                "name": "Isolation levels"
+                "name": "Isolation levels",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5200-08",
@@ -709,17 +857,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5200-08-1",
-                "name": "Logging"
+                "name": "Logging",
+                "published": true
             },
             {
                 "_id": "L-5200-08-2",
-                "name": "Checkpoints"
+                "name": "Checkpoints",
+                "published": true
             },
             {
                 "_id": "L-5200-08-3",
-                "name": "Backup & restore"
+                "name": "Backup & restore",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5200-09",
@@ -728,17 +880,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5200-09-1",
-                "name": "Key-value & document stores"
+                "name": "Key-value & document stores",
+                "published": true
             },
             {
                 "_id": "L-5200-09-2",
-                "name": "MongoDB"
+                "name": "MongoDB",
+                "published": true
             },
             {
                 "_id": "L-5200-09-3",
-                "name": "CAP theorem"
+                "name": "CAP theorem",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5200-10",
@@ -747,17 +903,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5200-10-1",
-                "name": "Connecting apps to DB"
+                "name": "Connecting apps to DB",
+                "published": true
             },
             {
                 "_id": "L-5200-10-2",
-                "name": "ORMs"
+                "name": "ORMs",
+                "published": true
             },
             {
                 "_id": "L-5200-10-3",
-                "name": "Security & tuning"
+                "name": "Security & tuning",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5800-01",
@@ -766,17 +926,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5800-01-1",
-                "name": "Asymptotic notation"
+                "name": "Asymptotic notation",
+                "published": true
             },
             {
                 "_id": "L-5800-01-2",
-                "name": "Time & space complexity"
+                "name": "Time & space complexity",
+                "published": true
             },
             {
                 "_id": "L-5800-01-3",
-                "name": "Recurrences"
+                "name": "Recurrences",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5800-02",
@@ -785,17 +949,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5800-02-1",
-                "name": "Insertion & merge sort"
+                "name": "Insertion & merge sort",
+                "published": true
             },
             {
                 "_id": "L-5800-02-2",
-                "name": "Quicksort"
+                "name": "Quicksort",
+                "published": true
             },
             {
                 "_id": "L-5800-02-3",
-                "name": "Heapsort"
+                "name": "Heapsort",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5800-03",
@@ -804,17 +972,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5800-03-1",
-                "name": "Master theorem"
+                "name": "Master theorem",
+                "published": true
             },
             {
                 "_id": "L-5800-03-2",
-                "name": "Binary search"
+                "name": "Binary search",
+                "published": true
             },
             {
                 "_id": "L-5800-03-3",
-                "name": "Closest pair"
+                "name": "Closest pair",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5800-04",
@@ -823,17 +995,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5800-04-1",
-                "name": "Interval scheduling"
+                "name": "Interval scheduling",
+                "published": true
             },
             {
                 "_id": "L-5800-04-2",
-                "name": "Huffman coding"
+                "name": "Huffman coding",
+                "published": true
             },
             {
                 "_id": "L-5800-04-3",
-                "name": "MST intro"
+                "name": "MST intro",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5800-05",
@@ -842,17 +1018,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5800-05-1",
-                "name": "Memoization"
+                "name": "Memoization",
+                "published": true
             },
             {
                 "_id": "L-5800-05-2",
-                "name": "Knapsack"
+                "name": "Knapsack",
+                "published": true
             },
             {
                 "_id": "L-5800-05-3",
-                "name": "Longest common subsequence"
+                "name": "Longest common subsequence",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5800-06",
@@ -861,17 +1041,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5800-06-1",
-                "name": "Representations"
+                "name": "Representations",
+                "published": true
             },
             {
                 "_id": "L-5800-06-2",
-                "name": "BFS"
+                "name": "BFS",
+                "published": true
             },
             {
                 "_id": "L-5800-06-3",
-                "name": "DFS"
+                "name": "DFS",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5800-07",
@@ -880,17 +1064,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5800-07-1",
-                "name": "Dijkstra"
+                "name": "Dijkstra",
+                "published": true
             },
             {
                 "_id": "L-5800-07-2",
-                "name": "Bellman-Ford"
+                "name": "Bellman-Ford",
+                "published": true
             },
             {
                 "_id": "L-5800-07-3",
-                "name": "Floyd-Warshall"
+                "name": "Floyd-Warshall",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5800-08",
@@ -899,17 +1087,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5800-08-1",
-                "name": "Kruskal"
+                "name": "Kruskal",
+                "published": true
             },
             {
                 "_id": "L-5800-08-2",
-                "name": "Prim"
+                "name": "Prim",
+                "published": true
             },
             {
                 "_id": "L-5800-08-3",
-                "name": "Union-Find"
+                "name": "Union-Find",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5800-09",
@@ -918,17 +1110,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5800-09-1",
-                "name": "Max flow"
+                "name": "Max flow",
+                "published": true
             },
             {
                 "_id": "L-5800-09-2",
-                "name": "Min cut"
+                "name": "Min cut",
+                "published": true
             },
             {
                 "_id": "L-5800-09-3",
-                "name": "Bipartite matching"
+                "name": "Bipartite matching",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5800-10",
@@ -937,17 +1133,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5800-10-1",
-                "name": "P vs NP"
+                "name": "P vs NP",
+                "published": true
             },
             {
                 "_id": "L-5800-10-2",
-                "name": "Reductions"
+                "name": "Reductions",
+                "published": true
             },
             {
                 "_id": "L-5800-10-3",
-                "name": "Approximation algorithms"
+                "name": "Approximation algorithms",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6620-01",
@@ -956,17 +1156,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6620-01-1",
-                "name": "Service models"
+                "name": "Service models",
+                "published": true
             },
             {
                 "_id": "L-6620-01-2",
-                "name": "Deployment models"
+                "name": "Deployment models",
+                "published": true
             },
             {
                 "_id": "L-6620-01-3",
-                "name": "Cloud economics"
+                "name": "Cloud economics",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6620-02",
@@ -975,17 +1179,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6620-02-1",
-                "name": "Hypervisors"
+                "name": "Hypervisors",
+                "published": true
             },
             {
                 "_id": "L-6620-02-2",
-                "name": "Virtual machines"
+                "name": "Virtual machines",
+                "published": true
             },
             {
                 "_id": "L-6620-02-3",
-                "name": "Resource isolation"
+                "name": "Resource isolation",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6620-03",
@@ -994,17 +1202,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6620-03-1",
-                "name": "Docker basics"
+                "name": "Docker basics",
+                "published": true
             },
             {
                 "_id": "L-6620-03-2",
-                "name": "Images & registries"
+                "name": "Images & registries",
+                "published": true
             },
             {
                 "_id": "L-6620-03-3",
-                "name": "Container networking"
+                "name": "Container networking",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6620-04",
@@ -1013,17 +1225,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6620-04-1",
-                "name": "Kubernetes concepts"
+                "name": "Kubernetes concepts",
+                "published": true
             },
             {
                 "_id": "L-6620-04-2",
-                "name": "Pods & services"
+                "name": "Pods & services",
+                "published": true
             },
             {
                 "_id": "L-6620-04-3",
-                "name": "Scaling & scheduling"
+                "name": "Scaling & scheduling",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6620-05",
@@ -1032,17 +1248,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6620-05-1",
-                "name": "Object storage"
+                "name": "Object storage",
+                "published": true
             },
             {
                 "_id": "L-6620-05-2",
-                "name": "Block & file storage"
+                "name": "Block & file storage",
+                "published": true
             },
             {
                 "_id": "L-6620-05-3",
-                "name": "Data durability"
+                "name": "Data durability",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6620-06",
@@ -1051,17 +1271,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6620-06-1",
-                "name": "VPCs"
+                "name": "VPCs",
+                "published": true
             },
             {
                 "_id": "L-6620-06-2",
-                "name": "Load balancing"
+                "name": "Load balancing",
+                "published": true
             },
             {
                 "_id": "L-6620-06-3",
-                "name": "CDNs"
+                "name": "CDNs",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6620-07",
@@ -1070,17 +1294,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6620-07-1",
-                "name": "Functions as a service"
+                "name": "Functions as a service",
+                "published": true
             },
             {
                 "_id": "L-6620-07-2",
-                "name": "Event-driven design"
+                "name": "Event-driven design",
+                "published": true
             },
             {
                 "_id": "L-6620-07-3",
-                "name": "Cold starts"
+                "name": "Cold starts",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6620-08",
@@ -1089,17 +1317,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6620-08-1",
-                "name": "Managed databases"
+                "name": "Managed databases",
+                "published": true
             },
             {
                 "_id": "L-6620-08-2",
-                "name": "Data pipelines"
+                "name": "Data pipelines",
+                "published": true
             },
             {
                 "_id": "L-6620-08-3",
-                "name": "Caching"
+                "name": "Caching",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6620-09",
@@ -1108,17 +1340,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6620-09-1",
-                "name": "Identity & access"
+                "name": "Identity & access",
+                "published": true
             },
             {
                 "_id": "L-6620-09-2",
-                "name": "Encryption"
+                "name": "Encryption",
+                "published": true
             },
             {
                 "_id": "L-6620-09-3",
-                "name": "Compliance"
+                "name": "Compliance",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6620-10",
@@ -1127,17 +1363,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6620-10-1",
-                "name": "Monitoring"
+                "name": "Monitoring",
+                "published": true
             },
             {
                 "_id": "L-6620-10-2",
-                "name": "Autoscaling"
+                "name": "Autoscaling",
+                "published": true
             },
             {
                 "_id": "L-6620-10-3",
-                "name": "Cost optimization"
+                "name": "Cost optimization",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6510-01",
@@ -1146,17 +1386,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6510-01-1",
-                "name": "Agile & Scrum"
+                "name": "Agile & Scrum",
+                "published": true
             },
             {
                 "_id": "L-6510-01-2",
-                "name": "Kanban"
+                "name": "Kanban",
+                "published": true
             },
             {
                 "_id": "L-6510-01-3",
-                "name": "Requirements"
+                "name": "Requirements",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6510-02",
@@ -1165,17 +1409,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6510-02-1",
-                "name": "Architectural styles"
+                "name": "Architectural styles",
+                "published": true
             },
             {
                 "_id": "L-6510-02-2",
-                "name": "Layered & microservices"
+                "name": "Layered & microservices",
+                "published": true
             },
             {
                 "_id": "L-6510-02-3",
-                "name": "Trade-offs"
+                "name": "Trade-offs",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6510-03",
@@ -1184,17 +1432,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6510-03-1",
-                "name": "Domain modeling"
+                "name": "Domain modeling",
+                "published": true
             },
             {
                 "_id": "L-6510-03-2",
-                "name": "Design patterns"
+                "name": "Design patterns",
+                "published": true
             },
             {
                 "_id": "L-6510-03-3",
-                "name": "API design"
+                "name": "API design",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6510-04",
@@ -1203,17 +1455,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6510-04-1",
-                "name": "Git branching"
+                "name": "Git branching",
+                "published": true
             },
             {
                 "_id": "L-6510-04-2",
-                "name": "Code review"
+                "name": "Code review",
+                "published": true
             },
             {
                 "_id": "L-6510-04-3",
-                "name": "Pair programming"
+                "name": "Pair programming",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6510-05",
@@ -1222,17 +1478,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6510-05-1",
-                "name": "Unit & integration tests"
+                "name": "Unit & integration tests",
+                "published": true
             },
             {
                 "_id": "L-6510-05-2",
-                "name": "Mocking"
+                "name": "Mocking",
+                "published": true
             },
             {
                 "_id": "L-6510-05-3",
-                "name": "Coverage"
+                "name": "Coverage",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6510-06",
@@ -1241,17 +1501,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6510-06-1",
-                "name": "Build pipelines"
+                "name": "Build pipelines",
+                "published": true
             },
             {
                 "_id": "L-6510-06-2",
-                "name": "Automated testing"
+                "name": "Automated testing",
+                "published": true
             },
             {
                 "_id": "L-6510-06-3",
-                "name": "Static analysis"
+                "name": "Static analysis",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6510-07",
@@ -1260,17 +1524,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6510-07-1",
-                "name": "Deployment automation"
+                "name": "Deployment automation",
+                "published": true
             },
             {
                 "_id": "L-6510-07-2",
-                "name": "Feature flags"
+                "name": "Feature flags",
+                "published": true
             },
             {
                 "_id": "L-6510-07-3",
-                "name": "Rollbacks"
+                "name": "Rollbacks",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6510-08",
@@ -1279,17 +1547,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6510-08-1",
-                "name": "Code quality"
+                "name": "Code quality",
+                "published": true
             },
             {
                 "_id": "L-6510-08-2",
-                "name": "Technical debt"
+                "name": "Technical debt",
+                "published": true
             },
             {
                 "_id": "L-6510-08-3",
-                "name": "Refactoring"
+                "name": "Refactoring",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6510-09",
@@ -1298,17 +1570,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6510-09-1",
-                "name": "Secure coding"
+                "name": "Secure coding",
+                "published": true
             },
             {
                 "_id": "L-6510-09-2",
-                "name": "Logging & monitoring"
+                "name": "Logging & monitoring",
+                "published": true
             },
             {
                 "_id": "L-6510-09-3",
-                "name": "Incident response"
+                "name": "Incident response",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6510-10",
@@ -1317,17 +1593,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6510-10-1",
-                "name": "Project planning"
+                "name": "Project planning",
+                "published": true
             },
             {
                 "_id": "L-6510-10-2",
-                "name": "Team execution"
+                "name": "Team execution",
+                "published": true
             },
             {
                 "_id": "L-6510-10-3",
-                "name": "Product demo"
+                "name": "Product demo",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5700-01",
@@ -1336,17 +1616,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5700-01-1",
-                "name": "Protocol layering"
+                "name": "Protocol layering",
+                "published": true
             },
             {
                 "_id": "L-5700-01-2",
-                "name": "Packet switching"
+                "name": "Packet switching",
+                "published": true
             },
             {
                 "_id": "L-5700-01-3",
-                "name": "Network edge & core"
+                "name": "Network edge & core",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5700-02",
@@ -1355,17 +1639,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5700-02-1",
-                "name": "HTTP & web"
+                "name": "HTTP & web",
+                "published": true
             },
             {
                 "_id": "L-5700-02-2",
-                "name": "DNS"
+                "name": "DNS",
+                "published": true
             },
             {
                 "_id": "L-5700-02-3",
-                "name": "Email & P2P"
+                "name": "Email & P2P",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5700-03",
@@ -1374,17 +1662,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5700-03-1",
-                "name": "TCP sockets"
+                "name": "TCP sockets",
+                "published": true
             },
             {
                 "_id": "L-5700-03-2",
-                "name": "UDP sockets"
+                "name": "UDP sockets",
+                "published": true
             },
             {
                 "_id": "L-5700-03-3",
-                "name": "Client-server design"
+                "name": "Client-server design",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5700-04",
@@ -1393,17 +1685,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5700-04-1",
-                "name": "UDP"
+                "name": "UDP",
+                "published": true
             },
             {
                 "_id": "L-5700-04-2",
-                "name": "Reliable data transfer"
+                "name": "Reliable data transfer",
+                "published": true
             },
             {
                 "_id": "L-5700-04-3",
-                "name": "TCP basics"
+                "name": "TCP basics",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5700-05",
@@ -1412,17 +1708,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5700-05-1",
-                "name": "Flow control"
+                "name": "Flow control",
+                "published": true
             },
             {
                 "_id": "L-5700-05-2",
-                "name": "Congestion control"
+                "name": "Congestion control",
+                "published": true
             },
             {
                 "_id": "L-5700-05-3",
-                "name": "Fairness"
+                "name": "Fairness",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5700-06",
@@ -1431,17 +1731,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5700-06-1",
-                "name": "IP addressing"
+                "name": "IP addressing",
+                "published": true
             },
             {
                 "_id": "L-5700-06-2",
-                "name": "Forwarding"
+                "name": "Forwarding",
+                "published": true
             },
             {
                 "_id": "L-5700-06-3",
-                "name": "NAT & DHCP"
+                "name": "NAT & DHCP",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5700-07",
@@ -1450,17 +1754,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5700-07-1",
-                "name": "Link-state routing"
+                "name": "Link-state routing",
+                "published": true
             },
             {
                 "_id": "L-5700-07-2",
-                "name": "Distance-vector"
+                "name": "Distance-vector",
+                "published": true
             },
             {
                 "_id": "L-5700-07-3",
-                "name": "BGP"
+                "name": "BGP",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5700-08",
@@ -1469,17 +1777,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5700-08-1",
-                "name": "Error detection"
+                "name": "Error detection",
+                "published": true
             },
             {
                 "_id": "L-5700-08-2",
-                "name": "Multiple access"
+                "name": "Multiple access",
+                "published": true
             },
             {
                 "_id": "L-5700-08-3",
-                "name": "Switching & VLANs"
+                "name": "Switching & VLANs",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5700-09",
@@ -1488,17 +1800,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5700-09-1",
-                "name": "Wi-Fi"
+                "name": "Wi-Fi",
+                "published": true
             },
             {
                 "_id": "L-5700-09-2",
-                "name": "Cellular"
+                "name": "Cellular",
+                "published": true
             },
             {
                 "_id": "L-5700-09-3",
-                "name": "Mobile IP"
+                "name": "Mobile IP",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5700-10",
@@ -1507,17 +1823,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5700-10-1",
-                "name": "Cryptography basics"
+                "name": "Cryptography basics",
+                "published": true
             },
             {
                 "_id": "L-5700-10-2",
-                "name": "TLS"
+                "name": "TLS",
+                "published": true
             },
             {
                 "_id": "L-5700-10-3",
-                "name": "Firewalls & VPNs"
+                "name": "Firewalls & VPNs",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6140-01",
@@ -1526,17 +1846,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6140-01-1",
-                "name": "Supervised vs unsupervised"
+                "name": "Supervised vs unsupervised",
+                "published": true
             },
             {
                 "_id": "L-6140-01-2",
-                "name": "Probability & linear algebra"
+                "name": "Probability & linear algebra",
+                "published": true
             },
             {
                 "_id": "L-6140-01-3",
-                "name": "Train/test split"
+                "name": "Train/test split",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6140-02",
@@ -1545,17 +1869,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6140-02-1",
-                "name": "Least squares"
+                "name": "Least squares",
+                "published": true
             },
             {
                 "_id": "L-6140-02-2",
-                "name": "Gradient descent"
+                "name": "Gradient descent",
+                "published": true
             },
             {
                 "_id": "L-6140-02-3",
-                "name": "Regularization"
+                "name": "Regularization",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6140-03",
@@ -1564,17 +1892,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6140-03-1",
-                "name": "Classification"
+                "name": "Classification",
+                "published": true
             },
             {
                 "_id": "L-6140-03-2",
-                "name": "Sigmoid & loss"
+                "name": "Sigmoid & loss",
+                "published": true
             },
             {
                 "_id": "L-6140-03-3",
-                "name": "Multiclass"
+                "name": "Multiclass",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6140-04",
@@ -1583,17 +1915,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6140-04-1",
-                "name": "Bias-variance"
+                "name": "Bias-variance",
+                "published": true
             },
             {
                 "_id": "L-6140-04-2",
-                "name": "Cross-validation"
+                "name": "Cross-validation",
+                "published": true
             },
             {
                 "_id": "L-6140-04-3",
-                "name": "Metrics"
+                "name": "Metrics",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6140-05",
@@ -1602,17 +1938,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6140-05-1",
-                "name": "Decision trees"
+                "name": "Decision trees",
+                "published": true
             },
             {
                 "_id": "L-6140-05-2",
-                "name": "Random forests"
+                "name": "Random forests",
+                "published": true
             },
             {
                 "_id": "L-6140-05-3",
-                "name": "Boosting"
+                "name": "Boosting",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6140-06",
@@ -1621,17 +1961,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6140-06-1",
-                "name": "Naive Bayes"
+                "name": "Naive Bayes",
+                "published": true
             },
             {
                 "_id": "L-6140-06-2",
-                "name": "MLE & MAP"
+                "name": "MLE & MAP",
+                "published": true
             },
             {
                 "_id": "L-6140-06-3",
-                "name": "Gaussian models"
+                "name": "Gaussian models",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6140-07",
@@ -1640,17 +1984,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6140-07-1",
-                "name": "Margins"
+                "name": "Margins",
+                "published": true
             },
             {
                 "_id": "L-6140-07-2",
-                "name": "Kernels"
+                "name": "Kernels",
+                "published": true
             },
             {
                 "_id": "L-6140-07-3",
-                "name": "Soft margin"
+                "name": "Soft margin",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6140-08",
@@ -1659,17 +2007,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6140-08-1",
-                "name": "Perceptrons"
+                "name": "Perceptrons",
+                "published": true
             },
             {
                 "_id": "L-6140-08-2",
-                "name": "Backpropagation"
+                "name": "Backpropagation",
+                "published": true
             },
             {
                 "_id": "L-6140-08-3",
-                "name": "Regularization"
+                "name": "Regularization",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6140-09",
@@ -1678,17 +2030,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6140-09-1",
-                "name": "K-means"
+                "name": "K-means",
+                "published": true
             },
             {
                 "_id": "L-6140-09-2",
-                "name": "Hierarchical clustering"
+                "name": "Hierarchical clustering",
+                "published": true
             },
             {
                 "_id": "L-6140-09-3",
-                "name": "PCA"
+                "name": "PCA",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6140-10",
@@ -1697,17 +2053,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6140-10-1",
-                "name": "Feature engineering"
+                "name": "Feature engineering",
+                "published": true
             },
             {
                 "_id": "L-6140-10-2",
-                "name": "Pipelines"
+                "name": "Pipelines",
+                "published": true
             },
             {
                 "_id": "L-6140-10-3",
-                "name": "Deployment"
+                "name": "Deployment",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5100-01",
@@ -1716,17 +2076,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5100-01-1",
-                "name": "Rational agents"
+                "name": "Rational agents",
+                "published": true
             },
             {
                 "_id": "L-5100-01-2",
-                "name": "Environments"
+                "name": "Environments",
+                "published": true
             },
             {
                 "_id": "L-5100-01-3",
-                "name": "Problem formulation"
+                "name": "Problem formulation",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5100-02",
@@ -1735,17 +2099,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5100-02-1",
-                "name": "BFS & DFS"
+                "name": "BFS & DFS",
+                "published": true
             },
             {
                 "_id": "L-5100-02-2",
-                "name": "Uniform-cost search"
+                "name": "Uniform-cost search",
+                "published": true
             },
             {
                 "_id": "L-5100-02-3",
-                "name": "Iterative deepening"
+                "name": "Iterative deepening",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5100-03",
@@ -1754,17 +2122,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5100-03-1",
-                "name": "Heuristics"
+                "name": "Heuristics",
+                "published": true
             },
             {
                 "_id": "L-5100-03-2",
-                "name": "Greedy search"
+                "name": "Greedy search",
+                "published": true
             },
             {
                 "_id": "L-5100-03-3",
-                "name": "A* search"
+                "name": "A* search",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5100-04",
@@ -1773,17 +2145,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5100-04-1",
-                "name": "Hill climbing"
+                "name": "Hill climbing",
+                "published": true
             },
             {
                 "_id": "L-5100-04-2",
-                "name": "Simulated annealing"
+                "name": "Simulated annealing",
+                "published": true
             },
             {
                 "_id": "L-5100-04-3",
-                "name": "Genetic algorithms"
+                "name": "Genetic algorithms",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5100-05",
@@ -1792,17 +2168,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5100-05-1",
-                "name": "Minimax"
+                "name": "Minimax",
+                "published": true
             },
             {
                 "_id": "L-5100-05-2",
-                "name": "Alpha-beta pruning"
+                "name": "Alpha-beta pruning",
+                "published": true
             },
             {
                 "_id": "L-5100-05-3",
-                "name": "Expectimax"
+                "name": "Expectimax",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5100-06",
@@ -1811,17 +2191,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5100-06-1",
-                "name": "CSP formulation"
+                "name": "CSP formulation",
+                "published": true
             },
             {
                 "_id": "L-5100-06-2",
-                "name": "Backtracking"
+                "name": "Backtracking",
+                "published": true
             },
             {
                 "_id": "L-5100-06-3",
-                "name": "Arc consistency"
+                "name": "Arc consistency",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5100-07",
@@ -1830,17 +2214,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5100-07-1",
-                "name": "MDP formulation"
+                "name": "MDP formulation",
+                "published": true
             },
             {
                 "_id": "L-5100-07-2",
-                "name": "Value iteration"
+                "name": "Value iteration",
+                "published": true
             },
             {
                 "_id": "L-5100-07-3",
-                "name": "Policy iteration"
+                "name": "Policy iteration",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5100-08",
@@ -1849,17 +2237,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5100-08-1",
-                "name": "Q-learning"
+                "name": "Q-learning",
+                "published": true
             },
             {
                 "_id": "L-5100-08-2",
-                "name": "Exploration vs exploitation"
+                "name": "Exploration vs exploitation",
+                "published": true
             },
             {
                 "_id": "L-5100-08-3",
-                "name": "Function approximation"
+                "name": "Function approximation",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5100-09",
@@ -1868,17 +2260,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5100-09-1",
-                "name": "Bayes nets"
+                "name": "Bayes nets",
+                "published": true
             },
             {
                 "_id": "L-5100-09-2",
-                "name": "Inference"
+                "name": "Inference",
+                "published": true
             },
             {
                 "_id": "L-5100-09-3",
-                "name": "Hidden Markov Models"
+                "name": "Hidden Markov Models",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-5100-10",
@@ -1887,17 +2283,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-5100-10-1",
-                "name": "Propositional logic"
+                "name": "Propositional logic",
+                "published": true
             },
             {
                 "_id": "L-5100-10-2",
-                "name": "First-order logic"
+                "name": "First-order logic",
+                "published": true
             },
             {
                 "_id": "L-5100-10-3",
-                "name": "Inference & planning"
+                "name": "Inference & planning",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6650-01",
@@ -1906,17 +2306,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6650-01-1",
-                "name": "System models"
+                "name": "System models",
+                "published": true
             },
             {
                 "_id": "L-6650-01-2",
-                "name": "Scalability & quality attributes"
+                "name": "Scalability & quality attributes",
+                "published": true
             },
             {
                 "_id": "L-6650-01-3",
-                "name": "Trade-offs"
+                "name": "Trade-offs",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6650-02",
@@ -1925,17 +2329,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6650-02-1",
-                "name": "Threads"
+                "name": "Threads",
+                "published": true
             },
             {
                 "_id": "L-6650-02-2",
-                "name": "Locks & synchronization"
+                "name": "Locks & synchronization",
+                "published": true
             },
             {
                 "_id": "L-6650-02-3",
-                "name": "Deadlocks"
+                "name": "Deadlocks",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6650-03",
@@ -1944,17 +2352,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6650-03-1",
-                "name": "TCP/UDP sockets"
+                "name": "TCP/UDP sockets",
+                "published": true
             },
             {
                 "_id": "L-6650-03-2",
-                "name": "Client-server"
+                "name": "Client-server",
+                "published": true
             },
             {
                 "_id": "L-6650-03-3",
-                "name": "Serialization"
+                "name": "Serialization",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6650-04",
@@ -1963,17 +2375,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6650-04-1",
-                "name": "RPC"
+                "name": "RPC",
+                "published": true
             },
             {
                 "_id": "L-6650-04-2",
-                "name": "REST & gRPC"
+                "name": "REST & gRPC",
+                "published": true
             },
             {
                 "_id": "L-6650-04-3",
-                "name": "Message formats"
+                "name": "Message formats",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6650-05",
@@ -1982,17 +2398,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6650-05-1",
-                "name": "Consistency models"
+                "name": "Consistency models",
+                "published": true
             },
             {
                 "_id": "L-6650-05-2",
-                "name": "Replication"
+                "name": "Replication",
+                "published": true
             },
             {
                 "_id": "L-6650-05-3",
-                "name": "CAP theorem"
+                "name": "CAP theorem",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6650-06",
@@ -2001,17 +2421,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6650-06-1",
-                "name": "Leader election"
+                "name": "Leader election",
+                "published": true
             },
             {
                 "_id": "L-6650-06-2",
-                "name": "Paxos"
+                "name": "Paxos",
+                "published": true
             },
             {
                 "_id": "L-6650-06-3",
-                "name": "Raft"
+                "name": "Raft",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6650-07",
@@ -2020,17 +2444,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6650-07-1",
-                "name": "Message queues"
+                "name": "Message queues",
+                "published": true
             },
             {
                 "_id": "L-6650-07-2",
-                "name": "Pub/sub"
+                "name": "Pub/sub",
+                "published": true
             },
             {
                 "_id": "L-6650-07-3",
-                "name": "RabbitMQ & Kafka"
+                "name": "RabbitMQ & Kafka",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6650-08",
@@ -2039,17 +2467,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6650-08-1",
-                "name": "Sharding"
+                "name": "Sharding",
+                "published": true
             },
             {
                 "_id": "L-6650-08-2",
-                "name": "Distributed key-value stores"
+                "name": "Distributed key-value stores",
+                "published": true
             },
             {
                 "_id": "L-6650-08-3",
-                "name": "Caching"
+                "name": "Caching",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6650-09",
@@ -2058,17 +2490,21 @@ export default [
         "lessons": [
             {
                 "_id": "L-6650-09-1",
-                "name": "Service decomposition"
+                "name": "Service decomposition",
+                "published": true
             },
             {
                 "_id": "L-6650-09-2",
-                "name": "API gateways"
+                "name": "API gateways",
+                "published": true
             },
             {
                 "_id": "L-6650-09-3",
-                "name": "Service discovery"
+                "name": "Service discovery",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     },
     {
         "_id": "M-6650-10",
@@ -2077,16 +2513,20 @@ export default [
         "lessons": [
             {
                 "_id": "L-6650-10-1",
-                "name": "Containers & orchestration"
+                "name": "Containers & orchestration",
+                "published": true
             },
             {
                 "_id": "L-6650-10-2",
-                "name": "Load balancing"
+                "name": "Load balancing",
+                "published": true
             },
             {
                 "_id": "L-6650-10-3",
-                "name": "Fault tolerance"
+                "name": "Fault tolerance",
+                "published": true
             }
-        ]
+        ],
+        "published": true
     }
 ];
