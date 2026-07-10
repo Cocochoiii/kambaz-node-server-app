@@ -5,9 +5,9 @@ export default [
         "course": "5610",
         "description": "Hands-on assignment applying web foundations & tooling concepts.",
         "points": 100,
-        "dueDate": "2025-01-19",
-        "availableFrom": "2025-01-13",
-        "availableUntil": "2025-01-22"
+        "dueDate": "2026-09-01",
+        "availableFrom": "2026-08-26",
+        "availableUntil": "2026-09-04"
     },
     {
         "_id": "A-5610-02",
@@ -15,9 +15,9 @@ export default [
         "course": "5610",
         "description": "Hands-on assignment applying html & semantic markup concepts.",
         "points": 100,
-        "dueDate": "2025-01-26",
-        "availableFrom": "2025-01-20",
-        "availableUntil": "2025-01-29"
+        "dueDate": "2026-09-24",
+        "availableFrom": "2026-09-18",
+        "availableUntil": "2026-09-27"
     },
     {
         "_id": "A-5610-03",
@@ -25,9 +25,9 @@ export default [
         "course": "5610",
         "description": "Hands-on assignment applying css & layout concepts.",
         "points": 100,
-        "dueDate": "2025-02-02",
-        "availableFrom": "2025-01-27",
-        "availableUntil": "2025-02-05"
+        "dueDate": "2026-10-18",
+        "availableFrom": "2026-10-12",
+        "availableUntil": "2026-10-21"
     },
     {
         "_id": "A-5610-04",
@@ -35,9 +35,9 @@ export default [
         "course": "5610",
         "description": "Hands-on assignment applying javascript fundamentals concepts.",
         "points": 100,
-        "dueDate": "2025-02-09",
-        "availableFrom": "2025-02-03",
-        "availableUntil": "2025-02-12"
+        "dueDate": "2026-11-10",
+        "availableFrom": "2026-11-04",
+        "availableUntil": "2026-11-13"
     },
     {
         "_id": "A-5610-05",
@@ -45,9 +45,9 @@ export default [
         "course": "5610",
         "description": "Hands-on assignment applying modern javascript (es6+) concepts.",
         "points": 100,
-        "dueDate": "2025-02-16",
-        "availableFrom": "2025-02-10",
-        "availableUntil": "2025-02-19"
+        "dueDate": "2026-12-04",
+        "availableFrom": "2026-11-28",
+        "availableUntil": "2026-12-07"
     },
     {
         "_id": "A-5610-06",
@@ -55,9 +55,9 @@ export default [
         "course": "5610",
         "description": "Hands-on assignment applying react fundamentals concepts.",
         "points": 100,
-        "dueDate": "2025-02-23",
-        "availableFrom": "2025-02-17",
-        "availableUntil": "2025-02-26"
+        "dueDate": "2026-12-27",
+        "availableFrom": "2026-12-21",
+        "availableUntil": "2026-12-30"
     },
     {
         "_id": "A-5610-07",
@@ -65,9 +65,9 @@ export default [
         "course": "5610",
         "description": "Hands-on assignment applying react hooks & state concepts.",
         "points": 100,
-        "dueDate": "2025-03-02",
-        "availableFrom": "2025-02-24",
-        "availableUntil": "2025-03-05"
+        "dueDate": "2027-01-20",
+        "availableFrom": "2027-01-14",
+        "availableUntil": "2027-01-23"
     },
     {
         "_id": "A-5610-08",
@@ -75,9 +75,9 @@ export default [
         "course": "5610",
         "description": "Hands-on assignment applying next.js & routing concepts.",
         "points": 100,
-        "dueDate": "2025-03-09",
-        "availableFrom": "2025-03-03",
-        "availableUntil": "2025-03-12"
+        "dueDate": "2027-02-12",
+        "availableFrom": "2027-02-06",
+        "availableUntil": "2027-02-15"
     },
     {
         "_id": "A-5610-09",
@@ -85,9 +85,9 @@ export default [
         "course": "5610",
         "description": "Hands-on assignment applying node & express apis concepts.",
         "points": 100,
-        "dueDate": "2025-03-16",
-        "availableFrom": "2025-03-10",
-        "availableUntil": "2025-03-19"
+        "dueDate": "2027-03-08",
+        "availableFrom": "2027-03-02",
+        "availableUntil": "2027-03-11"
     },
     {
         "_id": "A-5610-10",
@@ -95,9 +95,9 @@ export default [
         "course": "5610",
         "description": "Hands-on assignment applying mongodb & deployment concepts.",
         "points": 150,
-        "dueDate": "2025-03-23",
-        "availableFrom": "2025-03-17",
-        "availableUntil": "2025-03-26"
+        "dueDate": "2027-03-31",
+        "availableFrom": "2027-03-25",
+        "availableUntil": "2027-04-03"
     },
     {
         "_id": "A-5520-01",
@@ -105,9 +105,9 @@ export default [
         "course": "5520",
         "description": "Hands-on assignment applying mobile foundations concepts.",
         "points": 100,
-        "dueDate": "2025-01-19",
-        "availableFrom": "2025-01-13",
-        "availableUntil": "2025-01-22"
+        "dueDate": "2026-09-02",
+        "availableFrom": "2026-08-27",
+        "availableUntil": "2026-09-05"
     },
     {
         "_id": "A-5520-02",
@@ -115,9 +115,9 @@ export default [
         "course": "5520",
         "description": "Hands-on assignment applying ui components & layout concepts.",
         "points": 100,
-        "dueDate": "2025-01-26",
-        "availableFrom": "2025-01-20",
-        "availableUntil": "2025-01-29"
+        "dueDate": "2026-09-25",
+        "availableFrom": "2026-09-19",
+        "availableUntil": "2026-09-28"
     },
     {
         "_id": "A-5520-03",
@@ -125,9 +125,9 @@ export default [
         "course": "5520",
         "description": "Hands-on assignment applying navigation & routing concepts.",
         "points": 100,
-        "dueDate": "2025-02-02",
-        "availableFrom": "2025-01-27",
-        "availableUntil": "2025-02-05"
+        "dueDate": "2026-10-19",
+        "availableFrom": "2026-10-13",
+        "availableUntil": "2026-10-22"
     },
     {
         "_id": "A-5520-04",
@@ -135,9 +135,9 @@ export default [
         "course": "5520",
         "description": "Hands-on assignment applying state & data concepts.",
         "points": 100,
-        "dueDate": "2025-02-09",
-        "availableFrom": "2025-02-03",
-        "availableUntil": "2025-02-12"
+        "dueDate": "2026-11-11",
+        "availableFrom": "2026-11-05",
+        "availableUntil": "2026-11-14"
     },
     {
         "_id": "A-5520-05",
@@ -145,9 +145,9 @@ export default [
         "course": "5520",
         "description": "Hands-on assignment applying lists & forms concepts.",
         "points": 100,
-        "dueDate": "2025-02-16",
-        "availableFrom": "2025-02-10",
-        "availableUntil": "2025-02-19"
+        "dueDate": "2026-12-04",
+        "availableFrom": "2026-11-28",
+        "availableUntil": "2026-12-07"
     },
     {
         "_id": "A-5520-06",
@@ -155,9 +155,9 @@ export default [
         "course": "5520",
         "description": "Hands-on assignment applying networking concepts.",
         "points": 100,
-        "dueDate": "2025-02-23",
-        "availableFrom": "2025-02-17",
-        "availableUntil": "2025-02-26"
+        "dueDate": "2026-12-28",
+        "availableFrom": "2026-12-22",
+        "availableUntil": "2026-12-31"
     },
     {
         "_id": "A-5520-07",
@@ -165,9 +165,9 @@ export default [
         "course": "5520",
         "description": "Hands-on assignment applying local persistence concepts.",
         "points": 100,
-        "dueDate": "2025-03-02",
-        "availableFrom": "2025-02-24",
-        "availableUntil": "2025-03-05"
+        "dueDate": "2027-01-20",
+        "availableFrom": "2027-01-14",
+        "availableUntil": "2027-01-23"
     },
     {
         "_id": "A-5520-08",
@@ -175,9 +175,9 @@ export default [
         "course": "5520",
         "description": "Hands-on assignment applying device apis concepts.",
         "points": 100,
-        "dueDate": "2025-03-09",
-        "availableFrom": "2025-03-03",
-        "availableUntil": "2025-03-12"
+        "dueDate": "2027-02-12",
+        "availableFrom": "2027-02-06",
+        "availableUntil": "2027-02-15"
     },
     {
         "_id": "A-5520-09",
@@ -185,9 +185,9 @@ export default [
         "course": "5520",
         "description": "Hands-on assignment applying notifications & background concepts.",
         "points": 100,
-        "dueDate": "2025-03-16",
-        "availableFrom": "2025-03-10",
-        "availableUntil": "2025-03-19"
+        "dueDate": "2027-03-08",
+        "availableFrom": "2027-03-02",
+        "availableUntil": "2027-03-11"
     },
     {
         "_id": "A-5520-10",
@@ -195,9 +195,9 @@ export default [
         "course": "5520",
         "description": "Hands-on assignment applying testing & release concepts.",
         "points": 150,
-        "dueDate": "2025-03-23",
-        "availableFrom": "2025-03-17",
-        "availableUntil": "2025-03-26"
+        "dueDate": "2027-03-31",
+        "availableFrom": "2027-03-25",
+        "availableUntil": "2027-04-03"
     },
     {
         "_id": "A-5004-01",
@@ -205,9 +205,9 @@ export default [
         "course": "5004",
         "description": "Hands-on assignment applying oop foundations concepts.",
         "points": 100,
-        "dueDate": "2025-01-19",
-        "availableFrom": "2025-01-13",
-        "availableUntil": "2025-01-22"
+        "dueDate": "2026-09-03",
+        "availableFrom": "2026-08-28",
+        "availableUntil": "2026-09-06"
     },
     {
         "_id": "A-5004-02",
@@ -215,9 +215,9 @@ export default [
         "course": "5004",
         "description": "Hands-on assignment applying inheritance & polymorphism concepts.",
         "points": 100,
-        "dueDate": "2025-01-26",
-        "availableFrom": "2025-01-20",
-        "availableUntil": "2025-01-29"
+        "dueDate": "2026-09-26",
+        "availableFrom": "2026-09-20",
+        "availableUntil": "2026-09-29"
     },
     {
         "_id": "A-5004-03",
@@ -225,9 +225,9 @@ export default [
         "course": "5004",
         "description": "Hands-on assignment applying interfaces & abstraction concepts.",
         "points": 100,
-        "dueDate": "2025-02-02",
-        "availableFrom": "2025-01-27",
-        "availableUntil": "2025-02-05"
+        "dueDate": "2026-10-19",
+        "availableFrom": "2026-10-13",
+        "availableUntil": "2026-10-22"
     },
     {
         "_id": "A-5004-04",
@@ -235,9 +235,9 @@ export default [
         "course": "5004",
         "description": "Hands-on assignment applying solid principles concepts.",
         "points": 100,
-        "dueDate": "2025-02-09",
-        "availableFrom": "2025-02-03",
-        "availableUntil": "2025-02-12"
+        "dueDate": "2026-11-12",
+        "availableFrom": "2026-11-06",
+        "availableUntil": "2026-11-15"
     },
     {
         "_id": "A-5004-05",
@@ -245,9 +245,9 @@ export default [
         "course": "5004",
         "description": "Hands-on assignment applying creational patterns concepts.",
         "points": 100,
-        "dueDate": "2025-02-16",
-        "availableFrom": "2025-02-10",
-        "availableUntil": "2025-02-19"
+        "dueDate": "2026-12-05",
+        "availableFrom": "2026-11-29",
+        "availableUntil": "2026-12-08"
     },
     {
         "_id": "A-5004-06",
@@ -255,9 +255,9 @@ export default [
         "course": "5004",
         "description": "Hands-on assignment applying structural patterns concepts.",
         "points": 100,
-        "dueDate": "2025-02-23",
-        "availableFrom": "2025-02-17",
-        "availableUntil": "2025-02-26"
+        "dueDate": "2026-12-28",
+        "availableFrom": "2026-12-22",
+        "availableUntil": "2026-12-31"
     },
     {
         "_id": "A-5004-07",
@@ -265,9 +265,9 @@ export default [
         "course": "5004",
         "description": "Hands-on assignment applying behavioral patterns concepts.",
         "points": 100,
-        "dueDate": "2025-03-02",
-        "availableFrom": "2025-02-24",
-        "availableUntil": "2025-03-05"
+        "dueDate": "2027-01-20",
+        "availableFrom": "2027-01-14",
+        "availableUntil": "2027-01-23"
     },
     {
         "_id": "A-5004-08",
@@ -275,9 +275,9 @@ export default [
         "course": "5004",
         "description": "Hands-on assignment applying testing & refactoring concepts.",
         "points": 100,
-        "dueDate": "2025-03-09",
-        "availableFrom": "2025-03-03",
-        "availableUntil": "2025-03-12"
+        "dueDate": "2027-02-13",
+        "availableFrom": "2027-02-07",
+        "availableUntil": "2027-02-16"
     },
     {
         "_id": "A-5004-09",
@@ -285,9 +285,9 @@ export default [
         "course": "5004",
         "description": "Hands-on assignment applying exceptions & robustness concepts.",
         "points": 100,
-        "dueDate": "2025-03-16",
-        "availableFrom": "2025-03-10",
-        "availableUntil": "2025-03-19"
+        "dueDate": "2027-03-08",
+        "availableFrom": "2027-03-02",
+        "availableUntil": "2027-03-11"
     },
     {
         "_id": "A-5004-10",
@@ -295,9 +295,9 @@ export default [
         "course": "5004",
         "description": "Hands-on assignment applying design case study concepts.",
         "points": 150,
-        "dueDate": "2025-03-23",
-        "availableFrom": "2025-03-17",
-        "availableUntil": "2025-03-26"
+        "dueDate": "2027-03-31",
+        "availableFrom": "2027-03-25",
+        "availableUntil": "2027-04-03"
     },
     {
         "_id": "A-5200-01",
@@ -305,9 +305,9 @@ export default [
         "course": "5200",
         "description": "Hands-on assignment applying data & databases concepts.",
         "points": 100,
-        "dueDate": "2025-01-19",
-        "availableFrom": "2025-01-13",
-        "availableUntil": "2025-01-22"
+        "dueDate": "2026-09-04",
+        "availableFrom": "2026-08-29",
+        "availableUntil": "2026-09-07"
     },
     {
         "_id": "A-5200-02",
@@ -315,9 +315,9 @@ export default [
         "course": "5200",
         "description": "Hands-on assignment applying relational model concepts.",
         "points": 100,
-        "dueDate": "2025-01-26",
-        "availableFrom": "2025-01-20",
-        "availableUntil": "2025-01-29"
+        "dueDate": "2026-09-27",
+        "availableFrom": "2026-09-21",
+        "availableUntil": "2026-09-30"
     },
     {
         "_id": "A-5200-03",
@@ -325,9 +325,9 @@ export default [
         "course": "5200",
         "description": "Hands-on assignment applying sql basics concepts.",
         "points": 100,
-        "dueDate": "2025-02-02",
-        "availableFrom": "2025-01-27",
-        "availableUntil": "2025-02-05"
+        "dueDate": "2026-10-20",
+        "availableFrom": "2026-10-14",
+        "availableUntil": "2026-10-23"
     },
     {
         "_id": "A-5200-04",
@@ -335,9 +335,9 @@ export default [
         "course": "5200",
         "description": "Hands-on assignment applying advanced sql concepts.",
         "points": 100,
-        "dueDate": "2025-02-09",
-        "availableFrom": "2025-02-03",
-        "availableUntil": "2025-02-12"
+        "dueDate": "2026-11-12",
+        "availableFrom": "2026-11-06",
+        "availableUntil": "2026-11-15"
     },
     {
         "_id": "A-5200-05",
@@ -345,9 +345,9 @@ export default [
         "course": "5200",
         "description": "Hands-on assignment applying normalization concepts.",
         "points": 100,
-        "dueDate": "2025-02-16",
-        "availableFrom": "2025-02-10",
-        "availableUntil": "2025-02-19"
+        "dueDate": "2026-12-05",
+        "availableFrom": "2026-11-29",
+        "availableUntil": "2026-12-08"
     },
     {
         "_id": "A-5200-06",
@@ -355,9 +355,9 @@ export default [
         "course": "5200",
         "description": "Hands-on assignment applying indexing & storage concepts.",
         "points": 100,
-        "dueDate": "2025-02-23",
-        "availableFrom": "2025-02-17",
-        "availableUntil": "2025-02-26"
+        "dueDate": "2026-12-29",
+        "availableFrom": "2026-12-23",
+        "availableUntil": "2027-01-01"
     },
     {
         "_id": "A-5200-07",
@@ -365,9 +365,9 @@ export default [
         "course": "5200",
         "description": "Hands-on assignment applying transactions concepts.",
         "points": 100,
-        "dueDate": "2025-03-02",
-        "availableFrom": "2025-02-24",
-        "availableUntil": "2025-03-05"
+        "dueDate": "2027-01-21",
+        "availableFrom": "2027-01-15",
+        "availableUntil": "2027-01-24"
     },
     {
         "_id": "A-5200-08",
@@ -375,9 +375,9 @@ export default [
         "course": "5200",
         "description": "Hands-on assignment applying recovery & reliability concepts.",
         "points": 100,
-        "dueDate": "2025-03-09",
-        "availableFrom": "2025-03-03",
-        "availableUntil": "2025-03-12"
+        "dueDate": "2027-02-13",
+        "availableFrom": "2027-02-07",
+        "availableUntil": "2027-02-16"
     },
     {
         "_id": "A-5200-09",
@@ -385,9 +385,9 @@ export default [
         "course": "5200",
         "description": "Hands-on assignment applying nosql & big data concepts.",
         "points": 100,
-        "dueDate": "2025-03-16",
-        "availableFrom": "2025-03-10",
-        "availableUntil": "2025-03-19"
+        "dueDate": "2027-03-08",
+        "availableFrom": "2027-03-02",
+        "availableUntil": "2027-03-11"
     },
     {
         "_id": "A-5200-10",
@@ -395,9 +395,9 @@ export default [
         "course": "5200",
         "description": "Hands-on assignment applying data applications concepts.",
         "points": 150,
-        "dueDate": "2025-03-23",
-        "availableFrom": "2025-03-17",
-        "availableUntil": "2025-03-26"
+        "dueDate": "2027-03-31",
+        "availableFrom": "2027-03-25",
+        "availableUntil": "2027-04-03"
     },
     {
         "_id": "A-5800-01",
@@ -405,9 +405,9 @@ export default [
         "course": "5800",
         "description": "Hands-on assignment applying algorithm analysis concepts.",
         "points": 100,
-        "dueDate": "2025-01-19",
-        "availableFrom": "2025-01-13",
-        "availableUntil": "2025-01-22"
+        "dueDate": "2026-09-05",
+        "availableFrom": "2026-08-30",
+        "availableUntil": "2026-09-08"
     },
     {
         "_id": "A-5800-02",
@@ -415,9 +415,9 @@ export default [
         "course": "5800",
         "description": "Hands-on assignment applying sorting concepts.",
         "points": 100,
-        "dueDate": "2025-01-26",
-        "availableFrom": "2025-01-20",
-        "availableUntil": "2025-01-29"
+        "dueDate": "2026-09-28",
+        "availableFrom": "2026-09-22",
+        "availableUntil": "2026-10-01"
     },
     {
         "_id": "A-5800-03",
@@ -425,9 +425,9 @@ export default [
         "course": "5800",
         "description": "Hands-on assignment applying divide and conquer concepts.",
         "points": 100,
-        "dueDate": "2025-02-02",
-        "availableFrom": "2025-01-27",
-        "availableUntil": "2025-02-05"
+        "dueDate": "2026-10-21",
+        "availableFrom": "2026-10-15",
+        "availableUntil": "2026-10-24"
     },
     {
         "_id": "A-5800-04",
@@ -435,9 +435,9 @@ export default [
         "course": "5800",
         "description": "Hands-on assignment applying greedy algorithms concepts.",
         "points": 100,
-        "dueDate": "2025-02-09",
-        "availableFrom": "2025-02-03",
-        "availableUntil": "2025-02-12"
+        "dueDate": "2026-11-13",
+        "availableFrom": "2026-11-07",
+        "availableUntil": "2026-11-16"
     },
     {
         "_id": "A-5800-05",
@@ -445,9 +445,9 @@ export default [
         "course": "5800",
         "description": "Hands-on assignment applying dynamic programming concepts.",
         "points": 100,
-        "dueDate": "2025-02-16",
-        "availableFrom": "2025-02-10",
-        "availableUntil": "2025-02-19"
+        "dueDate": "2026-12-06",
+        "availableFrom": "2026-11-30",
+        "availableUntil": "2026-12-09"
     },
     {
         "_id": "A-5800-06",
@@ -455,9 +455,9 @@ export default [
         "course": "5800",
         "description": "Hands-on assignment applying graph basics concepts.",
         "points": 100,
-        "dueDate": "2025-02-23",
-        "availableFrom": "2025-02-17",
-        "availableUntil": "2025-02-26"
+        "dueDate": "2026-12-29",
+        "availableFrom": "2026-12-23",
+        "availableUntil": "2027-01-01"
     },
     {
         "_id": "A-5800-07",
@@ -465,9 +465,9 @@ export default [
         "course": "5800",
         "description": "Hands-on assignment applying shortest paths concepts.",
         "points": 100,
-        "dueDate": "2025-03-02",
-        "availableFrom": "2025-02-24",
-        "availableUntil": "2025-03-05"
+        "dueDate": "2027-01-21",
+        "availableFrom": "2027-01-15",
+        "availableUntil": "2027-01-24"
     },
     {
         "_id": "A-5800-08",
@@ -475,9 +475,9 @@ export default [
         "course": "5800",
         "description": "Hands-on assignment applying minimum spanning trees concepts.",
         "points": 100,
-        "dueDate": "2025-03-09",
-        "availableFrom": "2025-03-03",
-        "availableUntil": "2025-03-12"
+        "dueDate": "2027-02-13",
+        "availableFrom": "2027-02-07",
+        "availableUntil": "2027-02-16"
     },
     {
         "_id": "A-5800-09",
@@ -485,9 +485,9 @@ export default [
         "course": "5800",
         "description": "Hands-on assignment applying network flow concepts.",
         "points": 100,
-        "dueDate": "2025-03-16",
-        "availableFrom": "2025-03-10",
-        "availableUntil": "2025-03-19"
+        "dueDate": "2027-03-08",
+        "availableFrom": "2027-03-02",
+        "availableUntil": "2027-03-11"
     },
     {
         "_id": "A-5800-10",
@@ -495,9 +495,9 @@ export default [
         "course": "5800",
         "description": "Hands-on assignment applying np-completeness concepts.",
         "points": 150,
-        "dueDate": "2025-03-23",
-        "availableFrom": "2025-03-17",
-        "availableUntil": "2025-03-26"
+        "dueDate": "2027-03-31",
+        "availableFrom": "2027-03-25",
+        "availableUntil": "2027-04-03"
     },
     {
         "_id": "A-6620-01",
@@ -505,9 +505,9 @@ export default [
         "course": "6620",
         "description": "Hands-on assignment applying cloud foundations concepts.",
         "points": 100,
-        "dueDate": "2025-01-19",
-        "availableFrom": "2025-01-13",
-        "availableUntil": "2025-01-22"
+        "dueDate": "2026-09-06",
+        "availableFrom": "2026-08-31",
+        "availableUntil": "2026-09-09"
     },
     {
         "_id": "A-6620-02",
@@ -515,9 +515,9 @@ export default [
         "course": "6620",
         "description": "Hands-on assignment applying virtualization concepts.",
         "points": 100,
-        "dueDate": "2025-01-26",
-        "availableFrom": "2025-01-20",
-        "availableUntil": "2025-01-29"
+        "dueDate": "2026-09-29",
+        "availableFrom": "2026-09-23",
+        "availableUntil": "2026-10-02"
     },
     {
         "_id": "A-6620-03",
@@ -525,9 +525,9 @@ export default [
         "course": "6620",
         "description": "Hands-on assignment applying containers concepts.",
         "points": 100,
-        "dueDate": "2025-02-02",
-        "availableFrom": "2025-01-27",
-        "availableUntil": "2025-02-05"
+        "dueDate": "2026-10-22",
+        "availableFrom": "2026-10-16",
+        "availableUntil": "2026-10-25"
     },
     {
         "_id": "A-6620-04",
@@ -535,9 +535,9 @@ export default [
         "course": "6620",
         "description": "Hands-on assignment applying orchestration concepts.",
         "points": 100,
-        "dueDate": "2025-02-09",
-        "availableFrom": "2025-02-03",
-        "availableUntil": "2025-02-12"
+        "dueDate": "2026-11-14",
+        "availableFrom": "2026-11-08",
+        "availableUntil": "2026-11-17"
     },
     {
         "_id": "A-6620-05",
@@ -545,9 +545,9 @@ export default [
         "course": "6620",
         "description": "Hands-on assignment applying storage concepts.",
         "points": 100,
-        "dueDate": "2025-02-16",
-        "availableFrom": "2025-02-10",
-        "availableUntil": "2025-02-19"
+        "dueDate": "2026-12-07",
+        "availableFrom": "2026-12-01",
+        "availableUntil": "2026-12-10"
     },
     {
         "_id": "A-6620-06",
@@ -555,9 +555,9 @@ export default [
         "course": "6620",
         "description": "Hands-on assignment applying cloud networking concepts.",
         "points": 100,
-        "dueDate": "2025-02-23",
-        "availableFrom": "2025-02-17",
-        "availableUntil": "2025-02-26"
+        "dueDate": "2026-12-29",
+        "availableFrom": "2026-12-23",
+        "availableUntil": "2027-01-01"
     },
     {
         "_id": "A-6620-07",
@@ -565,9 +565,9 @@ export default [
         "course": "6620",
         "description": "Hands-on assignment applying serverless concepts.",
         "points": 100,
-        "dueDate": "2025-03-02",
-        "availableFrom": "2025-02-24",
-        "availableUntil": "2025-03-05"
+        "dueDate": "2027-01-21",
+        "availableFrom": "2027-01-15",
+        "availableUntil": "2027-01-24"
     },
     {
         "_id": "A-6620-08",
@@ -575,9 +575,9 @@ export default [
         "course": "6620",
         "description": "Hands-on assignment applying data systems concepts.",
         "points": 100,
-        "dueDate": "2025-03-09",
-        "availableFrom": "2025-03-03",
-        "availableUntil": "2025-03-12"
+        "dueDate": "2027-02-13",
+        "availableFrom": "2027-02-07",
+        "availableUntil": "2027-02-16"
     },
     {
         "_id": "A-6620-09",
@@ -585,9 +585,9 @@ export default [
         "course": "6620",
         "description": "Hands-on assignment applying security & iam concepts.",
         "points": 100,
-        "dueDate": "2025-03-16",
-        "availableFrom": "2025-03-10",
-        "availableUntil": "2025-03-19"
+        "dueDate": "2027-03-08",
+        "availableFrom": "2027-03-02",
+        "availableUntil": "2027-03-11"
     },
     {
         "_id": "A-6620-10",
@@ -595,9 +595,9 @@ export default [
         "course": "6620",
         "description": "Hands-on assignment applying reliability & cost concepts.",
         "points": 150,
-        "dueDate": "2025-03-23",
-        "availableFrom": "2025-03-17",
-        "availableUntil": "2025-03-26"
+        "dueDate": "2027-03-31",
+        "availableFrom": "2027-03-25",
+        "availableUntil": "2027-04-03"
     },
     {
         "_id": "A-6510-01",
@@ -605,9 +605,9 @@ export default [
         "course": "6510",
         "description": "Hands-on assignment applying software process concepts.",
         "points": 100,
-        "dueDate": "2025-01-19",
-        "availableFrom": "2025-01-13",
-        "availableUntil": "2025-01-22"
+        "dueDate": "2026-09-07",
+        "availableFrom": "2026-09-01",
+        "availableUntil": "2026-09-10"
     },
     {
         "_id": "A-6510-02",
@@ -615,9 +615,9 @@ export default [
         "course": "6510",
         "description": "Hands-on assignment applying architecture concepts.",
         "points": 100,
-        "dueDate": "2025-01-26",
-        "availableFrom": "2025-01-20",
-        "availableUntil": "2025-01-29"
+        "dueDate": "2026-09-30",
+        "availableFrom": "2026-09-24",
+        "availableUntil": "2026-10-03"
     },
     {
         "_id": "A-6510-03",
@@ -625,9 +625,9 @@ export default [
         "course": "6510",
         "description": "Hands-on assignment applying design & modeling concepts.",
         "points": 100,
-        "dueDate": "2025-02-02",
-        "availableFrom": "2025-01-27",
-        "availableUntil": "2025-02-05"
+        "dueDate": "2026-10-23",
+        "availableFrom": "2026-10-17",
+        "availableUntil": "2026-10-26"
     },
     {
         "_id": "A-6510-04",
@@ -635,9 +635,9 @@ export default [
         "course": "6510",
         "description": "Hands-on assignment applying version control & collaboration concepts.",
         "points": 100,
-        "dueDate": "2025-02-09",
-        "availableFrom": "2025-02-03",
-        "availableUntil": "2025-02-12"
+        "dueDate": "2026-11-14",
+        "availableFrom": "2026-11-08",
+        "availableUntil": "2026-11-17"
     },
     {
         "_id": "A-6510-05",
@@ -645,9 +645,9 @@ export default [
         "course": "6510",
         "description": "Hands-on assignment applying testing strategy concepts.",
         "points": 100,
-        "dueDate": "2025-02-16",
-        "availableFrom": "2025-02-10",
-        "availableUntil": "2025-02-19"
+        "dueDate": "2026-12-07",
+        "availableFrom": "2026-12-01",
+        "availableUntil": "2026-12-10"
     },
     {
         "_id": "A-6510-06",
@@ -655,9 +655,9 @@ export default [
         "course": "6510",
         "description": "Hands-on assignment applying continuous integration concepts.",
         "points": 100,
-        "dueDate": "2025-02-23",
-        "availableFrom": "2025-02-17",
-        "availableUntil": "2025-02-26"
+        "dueDate": "2026-12-30",
+        "availableFrom": "2026-12-24",
+        "availableUntil": "2027-01-02"
     },
     {
         "_id": "A-6510-07",
@@ -665,9 +665,9 @@ export default [
         "course": "6510",
         "description": "Hands-on assignment applying continuous delivery concepts.",
         "points": 100,
-        "dueDate": "2025-03-02",
-        "availableFrom": "2025-02-24",
-        "availableUntil": "2025-03-05"
+        "dueDate": "2027-01-22",
+        "availableFrom": "2027-01-16",
+        "availableUntil": "2027-01-25"
     },
     {
         "_id": "A-6510-08",
@@ -675,9 +675,9 @@ export default [
         "course": "6510",
         "description": "Hands-on assignment applying quality & metrics concepts.",
         "points": 100,
-        "dueDate": "2025-03-09",
-        "availableFrom": "2025-03-03",
-        "availableUntil": "2025-03-12"
+        "dueDate": "2027-02-13",
+        "availableFrom": "2027-02-07",
+        "availableUntil": "2027-02-16"
     },
     {
         "_id": "A-6510-09",
@@ -685,9 +685,9 @@ export default [
         "course": "6510",
         "description": "Hands-on assignment applying security & reliability concepts.",
         "points": 100,
-        "dueDate": "2025-03-16",
-        "availableFrom": "2025-03-10",
-        "availableUntil": "2025-03-19"
+        "dueDate": "2027-03-08",
+        "availableFrom": "2027-03-02",
+        "availableUntil": "2027-03-11"
     },
     {
         "_id": "A-6510-10",
@@ -695,9 +695,9 @@ export default [
         "course": "6510",
         "description": "Hands-on assignment applying capstone delivery concepts.",
         "points": 150,
-        "dueDate": "2025-03-23",
-        "availableFrom": "2025-03-17",
-        "availableUntil": "2025-03-26"
+        "dueDate": "2027-03-31",
+        "availableFrom": "2027-03-25",
+        "availableUntil": "2027-04-03"
     },
     {
         "_id": "A-5700-01",
@@ -705,9 +705,9 @@ export default [
         "course": "5700",
         "description": "Hands-on assignment applying internet architecture concepts.",
         "points": 100,
-        "dueDate": "2025-01-19",
-        "availableFrom": "2025-01-13",
-        "availableUntil": "2025-01-22"
+        "dueDate": "2026-09-08",
+        "availableFrom": "2026-09-02",
+        "availableUntil": "2026-09-11"
     },
     {
         "_id": "A-5700-02",
@@ -715,9 +715,9 @@ export default [
         "course": "5700",
         "description": "Hands-on assignment applying application layer concepts.",
         "points": 100,
-        "dueDate": "2025-01-26",
-        "availableFrom": "2025-01-20",
-        "availableUntil": "2025-01-29"
+        "dueDate": "2026-10-01",
+        "availableFrom": "2026-09-25",
+        "availableUntil": "2026-10-04"
     },
     {
         "_id": "A-5700-03",
@@ -725,9 +725,9 @@ export default [
         "course": "5700",
         "description": "Hands-on assignment applying socket programming concepts.",
         "points": 100,
-        "dueDate": "2025-02-02",
-        "availableFrom": "2025-01-27",
-        "availableUntil": "2025-02-05"
+        "dueDate": "2026-10-23",
+        "availableFrom": "2026-10-17",
+        "availableUntil": "2026-10-26"
     },
     {
         "_id": "A-5700-04",
@@ -735,9 +735,9 @@ export default [
         "course": "5700",
         "description": "Hands-on assignment applying transport layer concepts.",
         "points": 100,
-        "dueDate": "2025-02-09",
-        "availableFrom": "2025-02-03",
-        "availableUntil": "2025-02-12"
+        "dueDate": "2026-11-15",
+        "availableFrom": "2026-11-09",
+        "availableUntil": "2026-11-18"
     },
     {
         "_id": "A-5700-05",
@@ -745,9 +745,9 @@ export default [
         "course": "5700",
         "description": "Hands-on assignment applying tcp in depth concepts.",
         "points": 100,
-        "dueDate": "2025-02-16",
-        "availableFrom": "2025-02-10",
-        "availableUntil": "2025-02-19"
+        "dueDate": "2026-12-08",
+        "availableFrom": "2026-12-02",
+        "availableUntil": "2026-12-11"
     },
     {
         "_id": "A-5700-06",
@@ -755,9 +755,9 @@ export default [
         "course": "5700",
         "description": "Hands-on assignment applying network layer concepts.",
         "points": 100,
-        "dueDate": "2025-02-23",
-        "availableFrom": "2025-02-17",
-        "availableUntil": "2025-02-26"
+        "dueDate": "2026-12-30",
+        "availableFrom": "2026-12-24",
+        "availableUntil": "2027-01-02"
     },
     {
         "_id": "A-5700-07",
@@ -765,9 +765,9 @@ export default [
         "course": "5700",
         "description": "Hands-on assignment applying routing concepts.",
         "points": 100,
-        "dueDate": "2025-03-02",
-        "availableFrom": "2025-02-24",
-        "availableUntil": "2025-03-05"
+        "dueDate": "2027-01-22",
+        "availableFrom": "2027-01-16",
+        "availableUntil": "2027-01-25"
     },
     {
         "_id": "A-5700-08",
@@ -775,9 +775,9 @@ export default [
         "course": "5700",
         "description": "Hands-on assignment applying link layer concepts.",
         "points": 100,
-        "dueDate": "2025-03-09",
-        "availableFrom": "2025-03-03",
-        "availableUntil": "2025-03-12"
+        "dueDate": "2027-02-14",
+        "availableFrom": "2027-02-08",
+        "availableUntil": "2027-02-17"
     },
     {
         "_id": "A-5700-09",
@@ -785,9 +785,9 @@ export default [
         "course": "5700",
         "description": "Hands-on assignment applying wireless & mobility concepts.",
         "points": 100,
-        "dueDate": "2025-03-16",
-        "availableFrom": "2025-03-10",
-        "availableUntil": "2025-03-19"
+        "dueDate": "2027-03-08",
+        "availableFrom": "2027-03-02",
+        "availableUntil": "2027-03-11"
     },
     {
         "_id": "A-5700-10",
@@ -795,9 +795,9 @@ export default [
         "course": "5700",
         "description": "Hands-on assignment applying network security concepts.",
         "points": 150,
-        "dueDate": "2025-03-23",
-        "availableFrom": "2025-03-17",
-        "availableUntil": "2025-03-26"
+        "dueDate": "2027-03-31",
+        "availableFrom": "2027-03-25",
+        "availableUntil": "2027-04-03"
     },
     {
         "_id": "A-6140-01",
@@ -805,9 +805,9 @@ export default [
         "course": "6140",
         "description": "Hands-on assignment applying ml foundations concepts.",
         "points": 100,
-        "dueDate": "2025-01-19",
-        "availableFrom": "2025-01-13",
-        "availableUntil": "2025-01-22"
+        "dueDate": "2026-09-09",
+        "availableFrom": "2026-09-03",
+        "availableUntil": "2026-09-12"
     },
     {
         "_id": "A-6140-02",
@@ -815,9 +815,9 @@ export default [
         "course": "6140",
         "description": "Hands-on assignment applying linear regression concepts.",
         "points": 100,
-        "dueDate": "2025-01-26",
-        "availableFrom": "2025-01-20",
-        "availableUntil": "2025-01-29"
+        "dueDate": "2026-10-02",
+        "availableFrom": "2026-09-26",
+        "availableUntil": "2026-10-05"
     },
     {
         "_id": "A-6140-03",
@@ -825,9 +825,9 @@ export default [
         "course": "6140",
         "description": "Hands-on assignment applying logistic regression concepts.",
         "points": 100,
-        "dueDate": "2025-02-02",
-        "availableFrom": "2025-01-27",
-        "availableUntil": "2025-02-05"
+        "dueDate": "2026-10-24",
+        "availableFrom": "2026-10-18",
+        "availableUntil": "2026-10-27"
     },
     {
         "_id": "A-6140-04",
@@ -835,9 +835,9 @@ export default [
         "course": "6140",
         "description": "Hands-on assignment applying model evaluation concepts.",
         "points": 100,
-        "dueDate": "2025-02-09",
-        "availableFrom": "2025-02-03",
-        "availableUntil": "2025-02-12"
+        "dueDate": "2026-11-16",
+        "availableFrom": "2026-11-10",
+        "availableUntil": "2026-11-19"
     },
     {
         "_id": "A-6140-05",
@@ -845,9 +845,9 @@ export default [
         "course": "6140",
         "description": "Hands-on assignment applying trees & ensembles concepts.",
         "points": 100,
-        "dueDate": "2025-02-16",
-        "availableFrom": "2025-02-10",
-        "availableUntil": "2025-02-19"
+        "dueDate": "2026-12-08",
+        "availableFrom": "2026-12-02",
+        "availableUntil": "2026-12-11"
     },
     {
         "_id": "A-6140-06",
@@ -855,9 +855,9 @@ export default [
         "course": "6140",
         "description": "Hands-on assignment applying probabilistic models concepts.",
         "points": 100,
-        "dueDate": "2025-02-23",
-        "availableFrom": "2025-02-17",
-        "availableUntil": "2025-02-26"
+        "dueDate": "2026-12-31",
+        "availableFrom": "2026-12-25",
+        "availableUntil": "2027-01-03"
     },
     {
         "_id": "A-6140-07",
@@ -865,9 +865,9 @@ export default [
         "course": "6140",
         "description": "Hands-on assignment applying support vector machines concepts.",
         "points": 100,
-        "dueDate": "2025-03-02",
-        "availableFrom": "2025-02-24",
-        "availableUntil": "2025-03-05"
+        "dueDate": "2027-01-22",
+        "availableFrom": "2027-01-16",
+        "availableUntil": "2027-01-25"
     },
     {
         "_id": "A-6140-08",
@@ -875,9 +875,9 @@ export default [
         "course": "6140",
         "description": "Hands-on assignment applying neural networks concepts.",
         "points": 100,
-        "dueDate": "2025-03-09",
-        "availableFrom": "2025-03-03",
-        "availableUntil": "2025-03-12"
+        "dueDate": "2027-02-14",
+        "availableFrom": "2027-02-08",
+        "availableUntil": "2027-02-17"
     },
     {
         "_id": "A-6140-09",
@@ -885,9 +885,9 @@ export default [
         "course": "6140",
         "description": "Hands-on assignment applying unsupervised learning concepts.",
         "points": 100,
-        "dueDate": "2025-03-16",
-        "availableFrom": "2025-03-10",
-        "availableUntil": "2025-03-19"
+        "dueDate": "2027-03-08",
+        "availableFrom": "2027-03-02",
+        "availableUntil": "2027-03-11"
     },
     {
         "_id": "A-6140-10",
@@ -895,9 +895,9 @@ export default [
         "course": "6140",
         "description": "Hands-on assignment applying applied ml concepts.",
         "points": 150,
-        "dueDate": "2025-03-23",
-        "availableFrom": "2025-03-17",
-        "availableUntil": "2025-03-26"
+        "dueDate": "2027-03-31",
+        "availableFrom": "2027-03-25",
+        "availableUntil": "2027-04-03"
     },
     {
         "_id": "A-5100-01",
@@ -905,9 +905,9 @@ export default [
         "course": "5100",
         "description": "Hands-on assignment applying intro to ai concepts.",
         "points": 100,
-        "dueDate": "2025-01-19",
-        "availableFrom": "2025-01-13",
-        "availableUntil": "2025-01-22"
+        "dueDate": "2026-09-10",
+        "availableFrom": "2026-09-04",
+        "availableUntil": "2026-09-13"
     },
     {
         "_id": "A-5100-02",
@@ -915,9 +915,9 @@ export default [
         "course": "5100",
         "description": "Hands-on assignment applying uninformed search concepts.",
         "points": 100,
-        "dueDate": "2025-01-26",
-        "availableFrom": "2025-01-20",
-        "availableUntil": "2025-01-29"
+        "dueDate": "2026-10-02",
+        "availableFrom": "2026-09-26",
+        "availableUntil": "2026-10-05"
     },
     {
         "_id": "A-5100-03",
@@ -925,9 +925,9 @@ export default [
         "course": "5100",
         "description": "Hands-on assignment applying informed search concepts.",
         "points": 100,
-        "dueDate": "2025-02-02",
-        "availableFrom": "2025-01-27",
-        "availableUntil": "2025-02-05"
+        "dueDate": "2026-10-25",
+        "availableFrom": "2026-10-19",
+        "availableUntil": "2026-10-28"
     },
     {
         "_id": "A-5100-04",
@@ -935,9 +935,9 @@ export default [
         "course": "5100",
         "description": "Hands-on assignment applying local search concepts.",
         "points": 100,
-        "dueDate": "2025-02-09",
-        "availableFrom": "2025-02-03",
-        "availableUntil": "2025-02-12"
+        "dueDate": "2026-11-16",
+        "availableFrom": "2026-11-10",
+        "availableUntil": "2026-11-19"
     },
     {
         "_id": "A-5100-05",
@@ -945,9 +945,9 @@ export default [
         "course": "5100",
         "description": "Hands-on assignment applying adversarial search concepts.",
         "points": 100,
-        "dueDate": "2025-02-16",
-        "availableFrom": "2025-02-10",
-        "availableUntil": "2025-02-19"
+        "dueDate": "2026-12-09",
+        "availableFrom": "2026-12-03",
+        "availableUntil": "2026-12-12"
     },
     {
         "_id": "A-5100-06",
@@ -955,9 +955,9 @@ export default [
         "course": "5100",
         "description": "Hands-on assignment applying constraint satisfaction concepts.",
         "points": 100,
-        "dueDate": "2025-02-23",
-        "availableFrom": "2025-02-17",
-        "availableUntil": "2025-02-26"
+        "dueDate": "2026-12-31",
+        "availableFrom": "2026-12-25",
+        "availableUntil": "2027-01-03"
     },
     {
         "_id": "A-5100-07",
@@ -965,9 +965,9 @@ export default [
         "course": "5100",
         "description": "Hands-on assignment applying markov decision processes concepts.",
         "points": 100,
-        "dueDate": "2025-03-02",
-        "availableFrom": "2025-02-24",
-        "availableUntil": "2025-03-05"
+        "dueDate": "2027-01-23",
+        "availableFrom": "2027-01-17",
+        "availableUntil": "2027-01-26"
     },
     {
         "_id": "A-5100-08",
@@ -975,9 +975,9 @@ export default [
         "course": "5100",
         "description": "Hands-on assignment applying reinforcement learning concepts.",
         "points": 100,
-        "dueDate": "2025-03-09",
-        "availableFrom": "2025-03-03",
-        "availableUntil": "2025-03-12"
+        "dueDate": "2027-02-14",
+        "availableFrom": "2027-02-08",
+        "availableUntil": "2027-02-17"
     },
     {
         "_id": "A-5100-09",
@@ -985,9 +985,9 @@ export default [
         "course": "5100",
         "description": "Hands-on assignment applying probabilistic reasoning concepts.",
         "points": 100,
-        "dueDate": "2025-03-16",
-        "availableFrom": "2025-03-10",
-        "availableUntil": "2025-03-19"
+        "dueDate": "2027-03-09",
+        "availableFrom": "2027-03-03",
+        "availableUntil": "2027-03-12"
     },
     {
         "_id": "A-5100-10",
@@ -995,9 +995,9 @@ export default [
         "course": "5100",
         "description": "Hands-on assignment applying logic & knowledge concepts.",
         "points": 150,
-        "dueDate": "2025-03-23",
-        "availableFrom": "2025-03-17",
-        "availableUntil": "2025-03-26"
+        "dueDate": "2027-03-31",
+        "availableFrom": "2027-03-25",
+        "availableUntil": "2027-04-03"
     },
     {
         "_id": "A-6650-01",
@@ -1005,9 +1005,9 @@ export default [
         "course": "6650",
         "description": "Hands-on assignment applying distributed foundations concepts.",
         "points": 100,
-        "dueDate": "2025-01-19",
-        "availableFrom": "2025-01-13",
-        "availableUntil": "2025-01-22"
+        "dueDate": "2026-09-01",
+        "availableFrom": "2026-08-26",
+        "availableUntil": "2026-09-04"
     },
     {
         "_id": "A-6650-02",
@@ -1015,9 +1015,9 @@ export default [
         "course": "6650",
         "description": "Hands-on assignment applying concurrency concepts.",
         "points": 100,
-        "dueDate": "2025-01-26",
-        "availableFrom": "2025-01-20",
-        "availableUntil": "2025-01-29"
+        "dueDate": "2026-09-24",
+        "availableFrom": "2026-09-18",
+        "availableUntil": "2026-09-27"
     },
     {
         "_id": "A-6650-03",
@@ -1025,9 +1025,9 @@ export default [
         "course": "6650",
         "description": "Hands-on assignment applying networking concepts.",
         "points": 100,
-        "dueDate": "2025-02-02",
-        "availableFrom": "2025-01-27",
-        "availableUntil": "2025-02-05"
+        "dueDate": "2026-10-18",
+        "availableFrom": "2026-10-12",
+        "availableUntil": "2026-10-21"
     },
     {
         "_id": "A-6650-04",
@@ -1035,9 +1035,9 @@ export default [
         "course": "6650",
         "description": "Hands-on assignment applying remote communication concepts.",
         "points": 100,
-        "dueDate": "2025-02-09",
-        "availableFrom": "2025-02-03",
-        "availableUntil": "2025-02-12"
+        "dueDate": "2026-11-10",
+        "availableFrom": "2026-11-04",
+        "availableUntil": "2026-11-13"
     },
     {
         "_id": "A-6650-05",
@@ -1045,9 +1045,9 @@ export default [
         "course": "6650",
         "description": "Hands-on assignment applying consistency concepts.",
         "points": 100,
-        "dueDate": "2025-02-16",
-        "availableFrom": "2025-02-10",
-        "availableUntil": "2025-02-19"
+        "dueDate": "2026-12-04",
+        "availableFrom": "2026-11-28",
+        "availableUntil": "2026-12-07"
     },
     {
         "_id": "A-6650-06",
@@ -1055,9 +1055,9 @@ export default [
         "course": "6650",
         "description": "Hands-on assignment applying consensus concepts.",
         "points": 100,
-        "dueDate": "2025-02-23",
-        "availableFrom": "2025-02-17",
-        "availableUntil": "2025-02-26"
+        "dueDate": "2026-12-27",
+        "availableFrom": "2026-12-21",
+        "availableUntil": "2026-12-30"
     },
     {
         "_id": "A-6650-07",
@@ -1065,9 +1065,9 @@ export default [
         "course": "6650",
         "description": "Hands-on assignment applying messaging concepts.",
         "points": 100,
-        "dueDate": "2025-03-02",
-        "availableFrom": "2025-02-24",
-        "availableUntil": "2025-03-05"
+        "dueDate": "2027-01-20",
+        "availableFrom": "2027-01-14",
+        "availableUntil": "2027-01-23"
     },
     {
         "_id": "A-6650-08",
@@ -1075,9 +1075,9 @@ export default [
         "course": "6650",
         "description": "Hands-on assignment applying storage at scale concepts.",
         "points": 100,
-        "dueDate": "2025-03-09",
-        "availableFrom": "2025-03-03",
-        "availableUntil": "2025-03-12"
+        "dueDate": "2027-02-12",
+        "availableFrom": "2027-02-06",
+        "availableUntil": "2027-02-15"
     },
     {
         "_id": "A-6650-09",
@@ -1085,9 +1085,9 @@ export default [
         "course": "6650",
         "description": "Hands-on assignment applying microservices concepts.",
         "points": 100,
-        "dueDate": "2025-03-16",
-        "availableFrom": "2025-03-10",
-        "availableUntil": "2025-03-19"
+        "dueDate": "2027-03-08",
+        "availableFrom": "2027-03-02",
+        "availableUntil": "2027-03-11"
     },
     {
         "_id": "A-6650-10",
@@ -1095,8 +1095,8 @@ export default [
         "course": "6650",
         "description": "Hands-on assignment applying cloud & reliability concepts.",
         "points": 150,
-        "dueDate": "2025-03-23",
-        "availableFrom": "2025-03-17",
-        "availableUntil": "2025-03-26"
+        "dueDate": "2027-03-31",
+        "availableFrom": "2027-03-25",
+        "availableUntil": "2027-04-03"
     }
 ];

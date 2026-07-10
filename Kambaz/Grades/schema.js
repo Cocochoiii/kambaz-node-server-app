@@ -14,4 +14,3 @@ const schema = new mongoose.Schema(
     { collection: "grades", strict: false }
 );
 export default schema;
-
