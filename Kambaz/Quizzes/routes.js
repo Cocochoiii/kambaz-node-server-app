@@ -8,6 +8,9 @@ export default function QuizRoutes(app) {
         const quiz = { ...req.body, course: req.params.courseId };
         res.json(await dao.createQuiz(quiz));
     });
+    app.get("/api/quizzes/:quizId", async (req, res) => {
+        res.json(await dao.findQuizById(req.params.quizId));
+    });
     app.put("/api/quizzes/:quizId", async (req, res) => {
         res.json(await dao.updateQuiz(req.params.quizId, req.body));
     });

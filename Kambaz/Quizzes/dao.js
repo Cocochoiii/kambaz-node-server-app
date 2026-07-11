@@ -3,6 +3,8 @@ import { v4 as uuidv4 } from "uuid";
 
 export const findQuizzesForCourse = (courseId) => model.find({ course: courseId });
 
+export const findQuizById = (quizId) => model.findById(quizId);
+
 export const createQuiz = (quiz) => {
     const newQuiz = { ...quiz, _id: quiz._id || uuidv4() };
     return model.create(newQuiz);
