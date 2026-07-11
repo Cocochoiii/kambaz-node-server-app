@@ -5,6 +5,7 @@ import session from "express-session";
 import mongoose from "mongoose";
 import seedDatabase from "./Kambaz/Database/seed.js";
 import seedPazza from "./Kambaz/Pazza/seed.js";
+import seedQuizzes from "./Kambaz/Quizzes/seed.js";
 
 import Lab5 from "./Lab5/index.js";
 import UserRoutes from "./Kambaz/Users/routes.js";
@@ -29,6 +30,7 @@ mongoose
         console.log("Connected to MongoDB");
         await seedDatabase();
         await seedPazza();
+        await seedQuizzes();
     })
     .catch((err) => console.error("MongoDB connection error:", err));
 

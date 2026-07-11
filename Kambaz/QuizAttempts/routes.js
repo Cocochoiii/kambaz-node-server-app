@@ -1,35 +1,45 @@
 import * as dao from "./dao.js";
 import * as quizzesDao from "../Quizzes/dao.js";
 
-// Grade an attempt against the quiz's questions (server is authoritative).
+// Grade one question. Multiple choice supports multiple correct options with
+// partial credit; true/false and fill-in-the-blank are all-or-nothing.
+const gradeQuestion = (q, given) => {
+    const pts = Number(q.points) || 0;
+    if (q.type === "TRUE_FALSE") {
+        return typeof given === "boolean" && given === !!q.correctAnswer ? pts : 0;
+    }
+    if (q.type === "FILL_BLANK") {
+        const n = (s) => String(s ?? "").trim().toLowerCase();
+        const ok = given != null && String(given).length > 0 && (q.answers || []).some((a) => n(a) === n(given));
+        return ok ? pts : 0;
+    }
+    // MULTIPLE_CHOICE (single or multiple correct)
+    const correct = (q.choices || []).filter((c) => c.correct).map((c) => c._id);
+    const sel = Array.isArray(given) ? given : given != null ? [given] : [];
+    if (correct.length === 0) return 0;
+    const cc = sel.filter((id) => correct.includes(id)).length;
+    const wc = sel.filter((id) => !correct.includes(id)).length;
+    const frac = Math.max(0, Math.min(1, (cc - wc) / correct.length));
+    return pts * frac;
+};
+
 const gradeAttempt = (quiz, answers) => {
     const byId = new Map((answers || []).map((a) => [a.questionId, a.answer]));
     let score = 0;
-    for (const q of quiz.questions || []) {
-        const given = byId.get(q._id);
-        const pts = Number(q.points) || 0;
-        if (q.type === "TRUE_FALSE") {
-            if (typeof given === "boolean" && given === !!q.correctAnswer) score += pts;
-        } else if (q.type === "FILL_BLANK") {
-            const norm = (s) => String(s ?? "").trim().toLowerCase();
-            if (given != null && (q.answers || []).some((a) => norm(a) === norm(given))) score += pts;
-        } else {
-            // MULTIPLE_CHOICE: single correct choice
-            const correct = (q.choices || []).find((c) => c.correct);
-            if (correct && given === correct._id) score += pts;
-        }
-    }
-    return score;
+    for (const q of quiz.questions || []) score += gradeQuestion(q, byId.get(q._id));
+    return Math.round(score * 100) / 100;
 };
 
 export default function QuizAttemptRoutes(app) {
-    // Current user's attempt summary for a quiz.
+    // Current user's attempts for a quiz (count, last, best, and the full list).
     app.get("/api/quizzes/:quizId/attempts", async (req, res) => {
         const userId = req.query.userId || req.session?.currentUser?._id;
-        if (!userId) return res.json({ count: 0, last: null });
-        const count = await dao.countAttempts(req.params.quizId, userId);
-        const last = await dao.findLastAttempt(req.params.quizId, userId);
-        res.json({ count, last });
+        if (!userId) return res.json({ count: 0, last: null, best: 0, attempts: [] });
+        const all = await dao.findAttemptsForUser(req.params.quizId, userId);
+        const count = all.length;
+        const last = all[count - 1] || null;
+        const best = all.reduce((m, a) => Math.max(m, Number(a.score) || 0), 0);
+        res.json({ count, last, best, attempts: all });
     });
 
     // Submit a new attempt. Server grades and enforces the attempt limit.
@@ -45,7 +55,8 @@ export default function QuizAttemptRoutes(app) {
         const score = gradeAttempt(quiz, answers);
         const attempt = await dao.createAttempt({
             quiz: req.params.quizId, course: quiz.course, user: userId,
-            answers, score, attemptNumber: prior + 1, submittedAt: new Date().toISOString(),
+            answers, score, timeTaken: Number(req.body.timeTaken) || 0,
+            attemptNumber: prior + 1, submittedAt: new Date().toISOString(),
         });
         res.json(attempt);
     });

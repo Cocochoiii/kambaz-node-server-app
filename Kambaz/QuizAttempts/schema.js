@@ -10,6 +10,7 @@ const schema = new mongoose.Schema(
         user: String,
         answers: { type: Array, default: [] },   // [{ questionId, answer }]
         score: { type: Number, default: 0 },
+        timeTaken: { type: Number, default: 0 },   // seconds
         attemptNumber: { type: Number, default: 1 },
         submittedAt: String,
     },

@@ -7,5 +7,8 @@ export const countAttempts = (quizId, userId) =>
 export const findLastAttempt = (quizId, userId) =>
     model.findOne({ quiz: quizId, user: userId }).sort({ attemptNumber: -1 });
 
+export const findAttemptsForUser = (quizId, userId) =>
+    model.find({ quiz: quizId, user: userId }).sort({ attemptNumber: 1 });
+
 export const createAttempt = (attempt) =>
     model.create({ ...attempt, _id: attempt._id || uuidv4() });
