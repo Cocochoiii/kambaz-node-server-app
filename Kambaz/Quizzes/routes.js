@@ -1,3 +1,4 @@
+// REST routes for quizzes: list, read one, create, update, delete.
 import * as dao from "./dao.js";
 
 export default function QuizRoutes(app) {

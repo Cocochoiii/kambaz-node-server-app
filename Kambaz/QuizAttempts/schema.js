@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
-// One student attempt at a quiz. Answers are stored so the student can review
-// their last attempt. score is computed on the server.
+// One student attempt. We save the answers so the student can see the last
+// attempt again. The score is computed on the server.
 const schema = new mongoose.Schema(
     {
         _id: String,

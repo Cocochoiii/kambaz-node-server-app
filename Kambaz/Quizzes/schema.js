@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
-// A quiz. Questions are embedded as plain objects (each with a client-provided
-// _id). strict:false keeps older seed shapes working too.
+// A quiz. Questions are stored inside the quiz as plain objects, each with its
+// own _id. strict:false lets old data still load.
 const schema = new mongoose.Schema(
     {
         _id: String,

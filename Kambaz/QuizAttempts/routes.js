@@ -1,8 +1,8 @@
 import * as dao from "./dao.js";
 import * as quizzesDao from "../Quizzes/dao.js";
 
-// Grade one question. Multiple choice supports multiple correct options with
-// partial credit; true/false and fill-in-the-blank are all-or-nothing.
+// Grade one question. Multiple choice can have many correct options and gives
+// partial credit. True/false and fill in the blank are all or nothing.
 const gradeQuestion = (q, given) => {
     const pts = Number(q.points) || 0;
     if (q.type === "TRUE_FALSE") {

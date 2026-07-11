@@ -1,7 +1,7 @@
 import model from "./model.js";
 
-// Sample quizzes for CS5610 so the list is populated and taking/scoring is
-// demoable. Idempotent: only inserts when the first sample is missing.
+// Add sample quizzes for CS5610 so the list is not empty. Only insert them
+// once, when the first sample is missing.
 const daysFromNow = (n) => {
     const d = new Date();
     d.setDate(d.getDate() + n);
