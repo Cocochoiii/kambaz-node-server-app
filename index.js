@@ -14,6 +14,9 @@ import EnrollmentRoutes from "./Kambaz/Enrollments/routes.js";
 import AnnouncementRoutes from "./Kambaz/Announcements/routes.js";
 import QuizRoutes from "./Kambaz/Quizzes/routes.js";
 import SubmissionRoutes from "./Kambaz/Submissions/routes.js";
+import PazzaFolderRoutes from "./Kambaz/Pazza/Folders/routes.js";
+import PazzaPostRoutes from "./Kambaz/Pazza/Posts/routes.js";
+import PazzaCommentRoutes from "./Kambaz/Pazza/Comments/routes.js";
 
 // Connect to MongoDB (Atlas in production, local by default) then seed if empty.
 const CONNECTION_STRING =
@@ -66,6 +69,9 @@ EnrollmentRoutes(app);
 AnnouncementRoutes(app);
 QuizRoutes(app);
 SubmissionRoutes(app);
+PazzaFolderRoutes(app);
+PazzaPostRoutes(app);
+PazzaCommentRoutes(app);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server listening on ${PORT}`));
