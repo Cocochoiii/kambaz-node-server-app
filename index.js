@@ -4,6 +4,7 @@ import cors from "cors";
 import session from "express-session";
 import mongoose from "mongoose";
 import seedDatabase from "./Kambaz/Database/seed.js";
+import seedPazza from "./Kambaz/Pazza/seed.js";
 
 import Lab5 from "./Lab5/index.js";
 import UserRoutes from "./Kambaz/Users/routes.js";
@@ -26,6 +27,7 @@ mongoose
     .then(async () => {
         console.log("Connected to MongoDB");
         await seedDatabase();
+        await seedPazza();
     })
     .catch((err) => console.error("MongoDB connection error:", err));
 
