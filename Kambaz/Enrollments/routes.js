@@ -11,6 +11,10 @@ export default function EnrollmentRoutes(app) {
         const status = dao.enrollUserInCourse(userId, courseId);
         res.json(status);
     });
+    // The People screen. It lists the users of one course.
+    app.get("/api/courses/:courseId/users", (req, res) => {
+        res.json(dao.findUsersForCourse(req.params.courseId));
+    });
     app.delete("/api/users/:userId/courses/:courseId", (req, res) => {
         let { userId, courseId } = req.params;
         if (userId === "current") {

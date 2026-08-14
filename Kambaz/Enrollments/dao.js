@@ -18,9 +18,10 @@ export function unenrollUserFromCourse(userId, courseId) {
     return true;
 }
 
-export function findCoursesForUser(userId) {
-    const courseIds = Database.enrollments
-        .filter((e) => e.user === userId)
-        .map((e) => e.course);
-    return Database.courses.filter((c) => courseIds.includes(c._id));
+// The People screen needs the users, not the courses.
+export function findUsersForCourse(courseId) {
+    const userIds = Database.enrollments
+        .filter((e) => e.course === courseId)
+        .map((e) => e.user);
+    return Database.users.filter((u) => userIds.includes(u._id));
 }

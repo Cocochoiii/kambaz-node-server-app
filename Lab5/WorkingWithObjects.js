@@ -14,11 +14,11 @@ const moduleObj = {
 };
 
 export default function WorkingWithObjects(app) {
-    // read
+    // Read the assignment.
     app.get("/lab5/assignment", (req, res) => res.json(assignment));
     app.get("/lab5/assignment/title", (req, res) => res.json(assignment.title));
 
-    // update via path
+    // Change one property. The new value is in the path.
     app.get("/lab5/assignment/title/:newTitle", (req, res) => {
         const { newTitle } = req.params;
         assignment.title = newTitle;
@@ -33,11 +33,11 @@ export default function WorkingWithObjects(app) {
         res.json(assignment);
     });
 
-    // module read
+    // Read the module.
     app.get("/lab5/module", (req, res) => res.json(moduleObj));
     app.get("/lab5/module/name", (req, res) => res.json(moduleObj.name));
 
-    // module update via path
+    // Change the module.
     app.get("/lab5/module/name/:newName", (req, res) => {
         moduleObj.name = req.params.newName;
         res.json(moduleObj);

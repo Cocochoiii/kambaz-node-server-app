@@ -6,8 +6,8 @@ import grades from "./grades.js";
 import enrollments from "./enrollments.js";
 import announcements from "./announcements.js";
 import quizzes from "./quizzes.js";
+import meetings from "./meetings.js";
 import gradeCategories from "./gradeCategories.js";
-import gradeStatistics from "./gradeStatistics.js";
 
 const db = {
     courses,
@@ -18,8 +18,8 @@ const db = {
     enrollments,
     announcements,
     quizzes,
+    meetings,
     gradeCategories,
-    gradeStatistics,
 };
 
 export default db;

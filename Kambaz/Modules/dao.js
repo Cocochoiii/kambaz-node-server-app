@@ -18,6 +18,8 @@ export function deleteModule(moduleId) {
 
 export function updateModule(moduleId, moduleUpdates) {
     const m = Database.modules.find((m) => m._id === moduleId);
+    // A missing id used to crash the server. Now it answers 404.
+    if (!m) return null;
     Object.assign(m, moduleUpdates);
     return m;
 }

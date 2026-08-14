@@ -2,7 +2,7 @@ import * as dao from "./dao.js";
 import * as courseDao from "../Courses/dao.js";
 
 export default function UserRoutes(app) {
-    // CRUD (admin-like)
+    // The plain CRUD routes.
     app.post("/api/users", (req, res) => res.json(dao.createUser(req.body)));
     app.get("/api/users", (req, res) => res.json(dao.findAllUsers()));
     app.get("/api/users/:userId", (req, res) => res.json(dao.findUserById(req.params.userId)));
@@ -19,7 +19,7 @@ export default function UserRoutes(app) {
         res.sendStatus(200);
     });
 
-    // auth
+    // Sign up, sign in, profile and sign out.
     app.post("/api/users/signup", (req, res) => {
         const exists = dao.findUserByUsername(req.body.username);
         if (exists) return res.status(400).json({ message: "Username already in use" });
@@ -46,7 +46,7 @@ export default function UserRoutes(app) {
         req.session.destroy(() => res.sendStatus(200));
     });
 
-    // current user's courses
+    // The courses of one user. "current" means the session user.
     app.get("/api/users/:userId/courses", (req, res) => {
         let { userId } = req.params;
         if (userId === "current") {
@@ -58,7 +58,7 @@ export default function UserRoutes(app) {
         res.json(courses);
     });
 
-    // create course owned by current user and auto-enroll
+    // A new course. The server also enrolls the user who made it.
     app.post("/api/users/current/courses", async (req, res) => {
         const currentUser = req.session.currentUser;
         if (!currentUser) return res.sendStatus(401);

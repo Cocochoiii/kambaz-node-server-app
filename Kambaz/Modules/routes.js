@@ -7,6 +7,11 @@ export default function ModuleRoutes(app) {
     });
     app.put("/api/modules/:moduleId", (req, res) => {
         const updated = modulesDao.updateModule(req.params.moduleId, req.body);
+        if (!updated) {
+            return res
+                .status(404)
+                .json({ message: `Unable to update module ${req.params.moduleId}` });
+        }
         res.json(updated);
     });
 }

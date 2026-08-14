@@ -27,6 +27,8 @@ export function deleteCourse(courseId) {
 
 export function updateCourse(courseId, courseUpdates) {
     const c = Database.courses.find((c) => c._id === courseId);
+    // A missing id used to crash the server. Now it answers 404.
+    if (!c) return null;
     Object.assign(c, courseUpdates);
     return c;
 }

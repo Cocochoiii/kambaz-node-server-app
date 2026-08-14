@@ -11,11 +11,13 @@ import AssignmentRoutes from "./Kambaz/Assignments/routes.js";
 import EnrollmentRoutes from "./Kambaz/Enrollments/routes.js";
 import AnnouncementRoutes from "./Kambaz/Announcements/routes.js";
 import QuizRoutes from "./Kambaz/Quizzes/routes.js";
+import MeetingRoutes from "./Kambaz/Meetings/routes.js";
 import GradeRoutes from "./Kambaz/Grades/routes.js";
 
 const app = express();
 
-// CORS must run before sessions and routes. Allow the client origin and cookies.
+// CORS goes before the session and the routes.
+// It lets the client send cookies.
 app.use(
     cors({
         origin: process.env.CLIENT_URL || "http://localhost:3000",
@@ -25,8 +27,10 @@ app.use(
 
 app.use(express.json());
 
-// Session. Use secure cross-site cookies only in production (https).
-// In local dev keep plain cookies so login works over http://localhost.
+// The session. Secure cookies only in production, because it needs https.
+// At home plain cookies work over http://localhost.
+// I do not name the cookie domain. The browser uses this host.
+// Naming it by hand is easy to get wrong, and login breaks.
 const sessionOptions = {
     secret: process.env.SESSION_SECRET || "kambaz",
     resave: false,
@@ -39,10 +43,12 @@ if (isProduction) {
     sessionOptions.cookie = {
         sameSite: "none",
         secure: true,
-        domain: process.env.SERVER_URL?.replace(/^https?:\/\//, ""),
     };
 }
 app.use(session(sessionOptions));
+
+// A greeting at the root. I open the URL to test the deployment.
+app.get("/", (req, res) => res.send("Welcome to Full Stack Development!"));
 
 Lab5(app);
 UserRoutes(app);
@@ -52,6 +58,7 @@ AssignmentRoutes(app);
 EnrollmentRoutes(app);
 AnnouncementRoutes(app);
 QuizRoutes(app);
+MeetingRoutes(app);
 GradeRoutes(app);
 
 const PORT = process.env.PORT || 4000;
