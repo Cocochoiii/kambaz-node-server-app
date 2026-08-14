@@ -20,7 +20,7 @@ see `Welcome to Full Stack Development!`.
 
 ## Environment variables
 
-At home the defaults work, so no `.env` file is needed. Copy
+At home the defaults work, so I do not need a `.env` file. Copy
 `.env.example` to `.env` if you want to change them.
 
 | Key | What it is for |
@@ -59,7 +59,7 @@ Those two need https, so I only turn them on in production.
 
 The PUT and the DELETE answer 404 when the id is not there.
 
-`/lab5/todos/create` must be registered before `/lab5/todos/:id`. If not,
+I must register `/lab5/todos/create` before `/lab5/todos/:id`. If not,
 express reads `create` as an id.
 
 ## Kambaz API
@@ -106,6 +106,14 @@ list hangs off the course, and the id is enough to change one item.
 | `POST /api/courses/:courseId/grades` | save one score |
 | `PUT /api/courses/:courseId/grades/release` | show the grades to the students |
 | `GET /api/courses/:courseId/gradeCategories` | the weights of the categories |
+| `GET /api/users/:userId/messages` | my inbox |
+| `POST /api/messages` | send one. The sender is the session user |
+| `PUT /api/messages/:messageId` | mark one as read |
+| `DELETE /api/messages/:messageId` | remove one |
+| `GET /api/users/:userId/calendar` | every date of my courses, in one list |
+
+The Calendar has no data of its own. It reads the assignments, the meetings
+and the announcements of my courses and returns one sorted list.
 
 The data lives in memory, in `Kambaz/Database`. A change stays as long as
 the server runs. A restart brings the first data back.

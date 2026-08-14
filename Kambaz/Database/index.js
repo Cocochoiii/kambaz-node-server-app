@@ -7,6 +7,7 @@ import enrollments from "./enrollments.js";
 import announcements from "./announcements.js";
 import quizzes from "./quizzes.js";
 import meetings from "./meetings.js";
+import messages from "./messages.js";
 import gradeCategories from "./gradeCategories.js";
 
 const db = {
@@ -19,6 +20,7 @@ const db = {
     announcements,
     quizzes,
     meetings,
+    messages,
     gradeCategories,
 };
 
