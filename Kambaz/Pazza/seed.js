@@ -8,7 +8,7 @@ import courses from "../Database/courses.js";
 import users from "../Database/users.js";
 import enrollments from "../Database/enrollments.js";
 
-// The dates are counted back from today.
+// I count every date back from today.
 // So Today, Yesterday and Last Week always hold posts on demo day.
 function daysAgo(days, hour) {
     const date = new Date();
@@ -161,7 +161,7 @@ function buildCourse(courseId, posts, comments) {
     });
 }
 
-// I fill Pazza for a course only when that course has no posts yet.
+// I fill Pazza for a course only when it has no posts yet.
 // So anything I write during the demo survives a restart.
 export default async function seedPazza() {
     const posts = [];
