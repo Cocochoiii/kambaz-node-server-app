@@ -12,6 +12,19 @@ export const createUser = (user) => {
 
 export const findAllUsers = () => users;
 
+// The Users screen filters by role, or by a part of a name.
+export const findUsersByRole = (role) =>
+    users.filter((u) => u.role === role);
+
+export const findUsersByPartialName = (name) => {
+    const wanted = name.toLowerCase();
+    return users.filter((u) => {
+        const first = u.firstName ? u.firstName.toLowerCase() : "";
+        const last = u.lastName ? u.lastName.toLowerCase() : "";
+        return first.includes(wanted) || last.includes(wanted);
+    });
+};
+
 export const findUserById = (userId) =>
     users.find((u) => u._id === userId);
 

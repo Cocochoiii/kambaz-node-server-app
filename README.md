@@ -111,6 +111,11 @@ list hangs off the course, and the id is enough to change one item.
 | `PUT /api/messages/:messageId` | mark one as read |
 | `DELETE /api/messages/:messageId` | remove one |
 | `GET /api/users/:userId/calendar` | every date of my courses, in one list |
+| `GET /api/users` | every user. `?role=` and `?name=` filter the list |
+| `POST /api/users` | add a user |
+| `GET /api/users/:userId` | one user |
+| `DELETE /api/users/:userId` | remove a user and their enrollments |
+| `PUT /api/announcements/:announcementId` | change an announcement |
 
 The Calendar has no data of its own. It reads the assignments, the meetings
 and the announcements of my courses and returns one sorted list.

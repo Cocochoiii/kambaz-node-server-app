@@ -18,6 +18,12 @@ export function unenrollUserFromCourse(userId, courseId) {
     return true;
 }
 
+// A deleted user leaves no enrollments behind.
+export function deleteEnrollmentsForUser(userId) {
+    Database.enrollments = Database.enrollments.filter((e) => e.user !== userId);
+    return true;
+}
+
 // The People screen needs the users, not the courses.
 export function findUsersForCourse(courseId) {
     const userIds = Database.enrollments

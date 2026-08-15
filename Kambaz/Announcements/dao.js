@@ -9,6 +9,13 @@ export function createAnnouncement(announcement) {
     Database.announcements = [...Database.announcements, newAnnouncement];
     return newAnnouncement;
 }
+export function updateAnnouncement(announcementId, updates) {
+    const a = Database.announcements.find((a) => a._id === announcementId);
+    if (!a) return null;
+    Object.assign(a, updates);
+    return a;
+}
+
 export function deleteAnnouncement(announcementId) {
     Database.announcements = Database.announcements.filter((a) => a._id !== announcementId);
     return true;

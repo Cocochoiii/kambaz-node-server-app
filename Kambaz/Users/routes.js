@@ -1,10 +1,17 @@
 import * as dao from "./dao.js";
 import * as courseDao from "../Courses/dao.js";
+import * as enrollmentsDao from "../Enrollments/dao.js";
 
 export default function UserRoutes(app) {
     // The plain CRUD routes.
     app.post("/api/users", (req, res) => res.json(dao.createUser(req.body)));
-    app.get("/api/users", (req, res) => res.json(dao.findAllUsers()));
+    app.get("/api/users", (req, res) => {
+        // The Users screen sends one filter at a time.
+        const { role, name } = req.query;
+        if (role) return res.json(dao.findUsersByRole(role));
+        if (name) return res.json(dao.findUsersByPartialName(name));
+        res.json(dao.findAllUsers());
+    });
     app.get("/api/users/:userId", (req, res) => res.json(dao.findUserById(req.params.userId)));
     app.put("/api/users/:userId", (req, res) => {
         dao.updateUser(req.params.userId, req.body);
@@ -15,6 +22,7 @@ export default function UserRoutes(app) {
         res.json(updated);
     });
     app.delete("/api/users/:userId", (req, res) => {
+        enrollmentsDao.deleteEnrollmentsForUser(req.params.userId);
         dao.deleteUser(req.params.userId);
         res.sendStatus(200);
     });
