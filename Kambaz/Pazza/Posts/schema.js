@@ -1,23 +1,27 @@
 import mongoose from "mongoose";
 
-// A Pazza post (question or note) inside one course.
+// One Pazza post. It is a question or a note.
+// postTo says who may read it. "all" means the whole class.
+// viewers holds every user id that opened the post once.
 const schema = new mongoose.Schema(
     {
         _id: String,
         course: String,
-        type: String,        // "question" or "note"
+        type: { type: String, enum: ["question", "note"], default: "question" },
         author: String,
         authorName: String,
-        authorRole: String,  // e.g. STUDENT, TA, FACULTY
-        postTo: String,      // "all" or "individual"
+        authorRole: String,
+        postTo: { type: String, enum: ["all", "individual"], default: "all" },
         recipients: [String],
         folders: [String],
         summary: String,
-        details: String,     // rich text (HTML)
-        pinned: Boolean,
+        details: String,
+        pinned: { type: Boolean, default: false },
         viewers: [String],
         createdAt: String,
+        updatedAt: String,
     },
-    { collection: "pazza_posts", strict: false }
+    { collection: "pazza_posts" }
 );
+
 export default schema;

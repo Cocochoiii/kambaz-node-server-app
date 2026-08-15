@@ -1,8 +1,14 @@
 import mongoose from "mongoose";
 
-// A Pazza folder scoped to one course (e.g. hw1, project, office_hours).
+// One Pazza folder. It belongs to a single course.
+// The name is what the user sees, like hw1 or office_hours.
 const schema = new mongoose.Schema(
-    { _id: String, course: String, name: String },
-    { collection: "pazza_folders", strict: false }
+    {
+        _id: String,
+        course: String,
+        name: String,
+    },
+    { collection: "pazza_folders" }
 );
+
 export default schema;

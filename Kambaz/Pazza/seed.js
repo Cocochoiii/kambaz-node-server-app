@@ -1,9 +1,11 @@
 import { v4 as uuidv4 } from "uuid";
 import postModel from "./Posts/model.js";
 import commentModel from "./Comments/model.js";
+import * as foldersDao from "./Folders/dao.js";
 import courses from "../Database/courses.js";
 
-// Authors (real users; used across courses for author names).
+// The people who write the sample posts.
+// Every one of them is a real user in my users seed.
 const SS = { author: "678", authorName: "Stephen Strange", authorRole: "FACULTY" };
 const IM = { author: "1000", authorName: "Tony Stark", authorRole: "FACULTY" };
 const BW = { author: "345", authorName: "Bruce Wayne", authorRole: "TA" };
@@ -15,175 +17,247 @@ const TH = { author: "901", authorName: "Thor Odinson", authorRole: "STUDENT" };
 const CK = { author: "902", authorName: "Clark Kent", authorRole: "STUDENT" };
 const BA = { author: "904", authorName: "Barry Allen", authorRole: "STUDENT" };
 
-// createdAt relative to "now" so posts fall into Today / Yesterday / Last Week /
-// weekly groups. Re-seed (drop pazza_posts + pazza_comments) near a demo.
-const daysAgo = (n, hour = 10) => {
-    const d = new Date();
-    d.setDate(d.getDate() - n);
-    d.setHours(hour, (n * 7) % 60, 0, 0);
-    return d.toISOString();
-};
+// The dates are counted back from today.
+// So the sidebar always shows a Today group and a Yesterday group.
+function daysAgo(days, hour = 10) {
+    const date = new Date();
+    date.setDate(date.getDate() - days);
+    date.setHours(hour, (days * 7) % 60, 0, 0);
+    return date.toISOString();
+}
 
-// Build push-helpers bound to one course and the shared arrays.
-const factory = (COURSE, posts, comments) => {
-    const post = (offset, who, type, folders, summary, details, opts = {}) => {
+// Small builders bound to one course. They push into shared arrays.
+function factory(courseId, posts, comments) {
+    const post = (days, who, type, folders, summary, details, options = {}) => {
         const _id = uuidv4();
+        const createdAt = daysAgo(days, options.hour || 10);
         posts.push({
-            _id, course: COURSE, type, ...who,
-            postTo: opts.postTo || "all", recipients: opts.recipients || [],
-            folders, summary, details, pinned: opts.pinned || false,
-            viewers: offset >= 14 ? ["123", "678", "1000"] : [],
-            createdAt: daysAgo(offset, opts.hour || 10),
+            _id,
+            course: courseId,
+            type,
+            ...who,
+            postTo: options.postTo || "all",
+            recipients: options.recipients || [],
+            folders,
+            summary,
+            details,
+            pinned: options.pinned === true,
+            // An old post already has readers. A new one is still unread.
+            viewers: days >= 14 ? ["123", "678", "1000"] : [],
+            createdAt,
+            updatedAt: createdAt,
         });
         return _id;
     };
-    const answer = (postId, who, text, offset, endorsed = false) =>
-        comments.push({ _id: uuidv4(), course: COURSE, post: postId, kind: "answer", endorsed, ...who, text, createdAt: daysAgo(offset, 12) });
-    const discussion = (postId, who, text, offset, resolved = false) => {
+
+    const answer = (postId, who, text, days) => {
+        const createdAt = daysAgo(days, 12);
+        comments.push({
+            _id: uuidv4(), course: courseId, post: postId, kind: "answer",
+            ...who, text, resolved: false, createdAt, updatedAt: createdAt,
+        });
+    };
+
+    const discussion = (postId, who, text, days, resolved = false) => {
         const _id = uuidv4();
-        comments.push({ _id, course: COURSE, post: postId, kind: "discussion", resolved, ...who, text, createdAt: daysAgo(offset, 13) });
+        const createdAt = daysAgo(days, 13);
+        comments.push({
+            _id, course: courseId, post: postId, kind: "discussion",
+            ...who, text, resolved, createdAt, updatedAt: createdAt,
+        });
         return _id;
     };
-    const reply = (postId, parent, who, text, offset) =>
-        comments.push({ _id: uuidv4(), course: COURSE, post: postId, kind: "reply", parent, ...who, text, createdAt: daysAgo(offset, 14) });
+
+    const reply = (postId, parent, who, text, days) => {
+        const createdAt = daysAgo(days, 14);
+        comments.push({
+            _id: uuidv4(), course: courseId, post: postId, kind: "reply", parent,
+            ...who, text, resolved: false, createdAt, updatedAt: createdAt,
+        });
+    };
+
     return { post, answer, discussion, reply };
-};
+}
 
-// Detailed, web-development themed content for CS5610.
-const buildRich = (f) => {
+// The web development course gets posts about this course.
+function buildWebDev(f) {
     let id;
+
     // Today
-    id = f.post(0, CO, "question", ["hw2"], "Netlify build fails with 'npm ci' after adding react-quill",
-        `<p>My local build works but Netlify fails on <strong>npm ci</strong> with a lockfile mismatch right after I ran <code>npm i react-quill</code>. How do I fix the deploy?</p>`);
-    f.answer(id, SS, `<p>Run <strong>npm install</strong> locally to sync <code>package-lock.json</code>, commit it, then push. On Netlify use <strong>Clear cache and deploy</strong>.</p>`, 0, true);
-    f.discussion(id, NR, `<p>Same here — worked after I committed the updated lock file.</p>`, 0, true);
+    id = f.post(0, CO, "question", ["hw2"],
+        "Netlify build fails on npm ci after I added a rich text editor",
+        "<p>My local build works. Netlify stops on <strong>npm ci</strong> with a lock file mismatch. How do I fix the deploy?</p>");
+    f.answer(id, SS, "<p>Run <strong>npm install</strong> at home to sync <code>package-lock.json</code>. Commit it and push. Then use <strong>Clear cache and deploy</strong> on Netlify.</p>", 0);
+    f.discussion(id, NR, "<p>Same here. It worked after I committed the new lock file.</p>", 0, true);
 
-    id = f.post(0, NR, "question", ["project"], "Where do I put the Mongo Atlas connection string on Render?",
-        `<p>Should <code>MONGO_CONNECTION_STRING</code> go in Environment Variables or Secret Files on Render?</p>`);
-    f.answer(id, CO, `<p>Environment Variables tab worked for me.</p>`, 0);
-    f.answer(id, IM, `<p>Yes — Environment Variables, no quotes and no trailing slash. Don't use Secret Files for this.</p>`, 0);
-    { const d = f.discussion(id, PP, `<p>Do we also need to whitelist Render's IP in Atlas Network Access?</p>`, 0, false);
-      f.reply(id, d, IM, `<p>Allow 0.0.0.0/0 for the course project, or add Render's static egress IPs.</p>`, 0); }
+    id = f.post(0, NR, "question", ["project"],
+        "Where does the Mongo Atlas address go on Render?",
+        "<p>Should the connection string go in Environment Variables or in Secret Files?</p>");
+    f.answer(id, CO, "<p>Environment Variables worked for me.</p>", 0);
+    f.answer(id, IM, "<p>Yes, Environment Variables. No quotes and no slash at the end. Secret Files are for other things.</p>", 0);
+    const atlasThread = f.discussion(id, PP, "<p>Do we also open Network Access in Atlas?</p>", 0, false);
+    f.reply(id, atlasThread, IM, "<p>Allow 0.0.0.0/0 for this course project.</p>", 0);
 
-    f.post(0, SS, "note", ["office_hours"], "Extra office hours today 3–4pm before the A6 deadline",
-        `<p>I'll hold extra office hours <strong>today 3–4pm</strong> on Zoom for A6 deploy issues (Render / Netlify / Atlas). Drop in with your error message.</p>`);
-    f.post(0, PP, "question", ["hw2"], "Difference between findCoursesForUser and fetchAllCourses?",
-        `<p>When do we call each one? I think it's faculty vs student dashboard but not sure.</p>`);
+    f.post(0, SS, "note", ["office_hours"],
+        "Extra office hours today from 3 to 4 before the deadline",
+        "<p>I hold extra office hours <strong>today 3 to 4pm</strong> on Zoom. Bring your deploy errors.</p>");
+
+    f.post(0, PP, "question", ["hw2"],
+        "When do I call findCoursesForUser and when fetchAllCourses?",
+        "<p>I think one is for faculty and one is for a student. I am not sure.</p>");
 
     // Yesterday
-    id = f.post(1, WM, "question", ["hw1"], "Session cookie not set after login on the deployed site",
-        `<p>Login works locally but on Netlify the session doesn't persist. Is it a cookie setting?</p>`);
-    f.answer(id, SS, `<p>Set <strong>SERVER_ENV=production</strong> so cookies are Secure + SameSite=None, and make sure <strong>CLIENT_URL</strong> matches your Netlify URL for CORS credentials.</p>`, 1, true);
-    f.discussion(id, CO, `<p>Setting SERVER_ENV=production fixed it for me too.</p>`, 1, true);
+    id = f.post(1, WM, "question", ["hw1"],
+        "The session cookie is not set on the deployed site",
+        "<p>Login works at home. On Netlify the session is gone. Is this a cookie setting?</p>");
+    f.answer(id, SS, "<p>Set <strong>SERVER_ENV=production</strong>. Then the cookie is Secure with SameSite none. Also point <strong>CLIENT_URL</strong> at your Netlify address.</p>", 1);
+    f.discussion(id, CO, "<p>That fixed it for me too.</p>", 1, true);
 
-    id = f.post(1, TH, "question", ["project"], "Can our project team have 3 people?",
-        `<p>Is a team of 3 allowed for the final project?</p>`);
-    f.answer(id, IM, `<p>Teams of 2–3 are fine. Use one repo and list all members in the README.</p>`, 1);
-    f.post(1, SS, "note", ["logistics"], "A6 due Friday 11:59pm — deploy BOTH client and server",
-        `<p>Reminder: A6 is due <strong>Friday</strong>. Make sure both the Netlify client and the Render server are deployed and talking to each other.</p>`);
+    id = f.post(1, TH, "question", ["project"], "Can a project team have three people?",
+        "<p>Is a team of three allowed for the final project?</p>");
+    f.answer(id, IM, "<p>Two or three is fine. Use one repo and list every member in the README.</p>", 1);
 
-    // ~ Last week
-    id = f.post(7, CK, "question", ["hw3"], "Redux state resets on refresh — is that expected?",
-        `<p>My Redux store clears when I refresh. Bug or expected?</p>`);
-    f.answer(id, NR, `<p>Redux is in-memory, so it resets on refresh unless you persist it. For the A-series we don't persist.</p>`, 7);
-    id = f.post(8, BA, "question", ["hw2"], "How do I protect a faculty-only route?",
-        `<p>What's the right way to stop students from opening an instructor-only page?</p>`);
-    f.answer(id, SS, `<p>Read the current user's role from the session; redirect students. Guard on the client <em>and</em> check on the server.</p>`, 8);
+    f.post(1, SS, "note", ["logistics"],
+        "The assignment is due Friday. Deploy both the client and the server",
+        "<p>Please deploy the Netlify client and the Render server. Then check that they talk to each other.</p>");
+
+    // Last week
+    id = f.post(7, CK, "question", ["hw3"], "My Redux state resets on refresh. Is that normal?",
+        "<p>The store clears when I reload the page. Bug or expected?</p>");
+    f.answer(id, NR, "<p>Redux lives in memory, so a reload clears it. We do not save it in these assignments.</p>", 7);
+
+    id = f.post(8, BA, "question", ["hw2"], "How do I protect a faculty only screen?",
+        "<p>What stops a student from opening an instructor page?</p>");
+    f.answer(id, SS, "<p>Read the role of the current user from the session. Send a student away. Check on the client and on the server.</p>", 8);
+
     id = f.post(9, CO, "question", ["project"], "Netlify shows 404 when I refresh a nested route",
-        `<p>Direct links / refresh on nested routes 404 on Netlify. Local dev is fine.</p>`);
-    f.answer(id, IM, `<p>Add a redirect rule so all paths serve index (SPA fallback).</p>`, 9);
-    f.post(10, NR, "note", ["other"], "Sharing a clean .env.example for the project",
-        `<p>Posting the env var names we need so nobody forgets one: <code>MONGO_CONNECTION_STRING</code>, <code>SESSION_SECRET</code>, <code>CLIENT_URL</code>, <code>SERVER_URL</code>, <code>NEXT_PUBLIC_HTTP_SERVER</code>.</p>`);
-    id = f.post(11, PP, "question", ["exam"], "Is the exam open-book?", `<p>Are we allowed notes during Exam 1?</p>`);
-    f.answer(id, SS, `<p>Open-notes, no collaboration. Full details are in the pinned exam post.</p>`, 11);
-    id = f.post(11, WM, "question", ["hw1"], "CORS error: 'No Access-Control-Allow-Origin'",
-        `<p>Getting a CORS error calling my server from the client. What am I missing?</p>`);
-    f.answer(id, BW, `<p>The server must set CORS <code>origin</code> to your client URL with <code>credentials: true</code>. Localhost gets blocked if origin is only the Netlify URL.</p>`, 11);
+        "<p>A direct link to a nested route gives 404. At home it is fine.</p>");
+    f.answer(id, IM, "<p>Add a redirect rule so every path serves the index page.</p>", 9);
 
-    // ~ 2 weeks ago
-    f.post(12, IM, "note", ["exam"], "Exam 1 logistics & sample questions posted",
-        `<p><strong>Exam 1</strong> is in two weeks. Scope: HTML/CSS/JS, React/Next.js, Node/Express, MongoDB.</p><ul><li>Open-notes, individual</li><li>50 minutes in class</li><li>Sample questions linked on Canvas</li></ul>`, { pinned: true });
-    id = f.post(14, TH, "question", ["hw3"], "Why does useEffect run twice in dev?",
-        `<p>My effect logs twice on mount in development. Is something wrong?</p>`);
-    f.answer(id, CO, `<p>React 18 StrictMode double-invokes effects in <em>development only</em>; production runs it once.</p>`, 14);
-    id = f.post(15, CK, "question", ["project"], "How do I seed data only when the collection is empty?",
-        `<p>Want to load starter data once without duplicating on every restart.</p>`);
-    f.answer(id, IM, `<p>Check <code>count === 0</code> before <code>insertMany</code>, and run it on startup after connecting.</p>`, 15);
-    id = f.post(16, BA, "question", ["hw2"], "Difference between server and client environment variables?",
-        `<p>Some env vars seem visible in the browser and some don't. Why?</p>`);
-    f.answer(id, SS, `<p>In Next.js, only variables prefixed with <strong>NEXT_PUBLIC_</strong> are exposed to the browser. Everything else stays server-side.</p>`, 16);
-    f.post(17, BW, "note", ["office_hours"], "TA office hours moved to Thursday 2–4pm",
-        `<p>Heads up: my office hours are now <strong>Thursday 2–4pm</strong> this week.</p>`);
-    id = f.post(18, NR, "question", ["logistics"], "What's the late policy for assignments?", `<p>How many late days do we get?</p>`);
-    f.answer(id, SS, `<p>See the syllabus — 10% per day, up to 3 days late.</p>`, 18);
+    f.post(10, NR, "note", ["other"], "A clean list of the environment variables we need",
+        "<p>Here are the names so nobody forgets one. <code>DATABASE_CONNECTION_STRING</code>, <code>SESSION_SECRET</code>, <code>CLIENT_URL</code>, <code>NEXT_PUBLIC_REMOTE_SERVER</code>.</p>");
 
-    // ~ 3 weeks ago
-    id = f.post(21, PP, "question", ["hw1"], "How should I structure a Next.js App Router project?",
-        `<p>New to the App Router — how do you organize routes and components?</p>`);
-    f.answer(id, IM, `<p>Use the <code>app/</code> directory, group routes with <code>(folders)</code>, and colocate components near the routes that use them.</p>`, 21);
-    id = f.post(22, WM, "question", ["hw1"], "npm install fails with peer dependency errors",
-        `<p>Fresh clone, <code>npm install</code> throws peer dependency warnings/errors.</p>`);
-    f.answer(id, BW, `<p>Make sure your Node version matches the project; then retry. If it persists, delete node_modules and the lock and reinstall.</p>`, 22);
-    f.post(23, TH, "note", ["other"], "Helpful MDN links for CSS flexbox",
-        `<p>These MDN pages on flexbox and the box model helped me a lot for A2 — sharing in case they help others.</p>`);
-    id = f.post(24, CO, "question", ["logistics"], "Requesting a short extension (private to instructors)",
-        `<p>Hi instructors — I was sick this week and may need a short extension on the project milestone. Thank you for understanding.</p>`,
-        { postTo: "individual", recipients: ["INSTRUCTORS"] });
-    f.answer(id, SS, `<p>Thanks for letting us know. Email us your documentation and we'll arrange something.</p>`, 24);
-    f.post(25, CK, "question", ["hw3"], "Best way to share state between components?",
-        `<p>Two sibling components need the same data. Lift state up or use Redux?</p>`);
-    f.post(26, SS, "note", ["logistics"], "Welcome to CS5610 — read this first",
-        `<p>Welcome! A few notes to get started:</p><ul><li>Weekly homework, one term project, one exam</li><li>Office hours: see the pinned schedule</li><li><strong>Piazza etiquette:</strong> search before posting, pick a folder, and mark follow-ups resolved when done</li></ul>`, { pinned: true });
-    f.post(26, BA, "question", ["office_hours"], "Can I get Git help during office hours?",
-        `<p>Struggling with merge conflicts — can I bring this to OH?</p>`);
-};
+    id = f.post(11, PP, "question", ["exam"], "Is the exam open book?",
+        "<p>Are we allowed to use notes during the exam?</p>");
+    f.answer(id, SS, "<p>Open notes and no group work. The pinned exam post has the details.</p>", 11);
 
-// Generic, subject-agnostic content for every other course.
-const buildGeneric = (f, course) => {
-    let id;
-    f.post(26, SS, "note", ["logistics"], "Welcome — course logistics & how to use Piazza",
-        `<p>Welcome to <strong>${course.name || course.number || "the course"}</strong>! Please post questions here instead of email so everyone benefits.</p><ul><li>Weekly assignments, one project, one exam</li><li>Office hours are posted below</li><li><strong>Etiquette:</strong> search first, pick a folder, and mark follow-ups resolved</li></ul>`,
+    id = f.post(11, WM, "question", ["hw1"], "I get a CORS error from my own server",
+        "<p>The browser says there is no Access Control Allow Origin header. What did I miss?</p>");
+    f.answer(id, BW, "<p>The server sets CORS origin to your client address with credentials true. Localhost is blocked when only the Netlify address is listed.</p>", 11);
+
+    // Two weeks back
+    f.post(12, IM, "note", ["exam"], "Exam logistics and sample questions are posted",
+        "<p>The exam covers HTML, CSS, JavaScript, React, Node and MongoDB.</p><ul><li>Open notes and on your own</li><li>Fifty minutes in class</li><li>Sample questions are on Canvas</li></ul>",
         { pinned: true });
-    f.post(20, IM, "note", ["exam"], "Exam 1 date & format",
-        `<p>Exam 1 is in about two weeks, in class. Open-notes, individual, 50 minutes. A review sheet is on Canvas.</p>`);
+
+    id = f.post(14, TH, "question", ["hw3"], "Why does useEffect run twice while I develop?",
+        "<p>My effect logs twice on mount. Is something wrong?</p>");
+    f.answer(id, CO, "<p>Strict Mode runs an effect twice in development only. Production runs it once.</p>", 14);
+
+    id = f.post(15, CK, "question", ["project"], "How do I seed data only when a collection is empty?",
+        "<p>I want to load sample rows once and not again on every restart.</p>");
+    f.answer(id, IM, "<p>Count the rows first. Insert only when the count is zero. Run it after the connection opens.</p>", 15);
+
+    id = f.post(16, BA, "question", ["hw2"], "What is the difference between server and client variables?",
+        "<p>Some variables show up in the browser and some do not. Why?</p>");
+    f.answer(id, SS, "<p>Only a name that starts with <strong>NEXT_PUBLIC_</strong> reaches the browser. The rest stay on the server.</p>", 16);
+
+    f.post(17, BW, "note", ["office_hours"], "TA office hours move to Thursday 2 to 4",
+        "<p>My office hours are now <strong>Thursday 2 to 4pm</strong> this week.</p>");
+
+    id = f.post(18, NR, "question", ["logistics"], "What is the late policy?",
+        "<p>How many late days do we get?</p>");
+    f.answer(id, SS, "<p>The syllabus says ten percent per day for up to three days.</p>", 18);
+
+    // Three weeks back
+    id = f.post(21, PP, "question", ["hw1"], "How should I lay out an App Router project?",
+        "<p>I am new to the App Router. How do you organize routes and components?</p>");
+    f.answer(id, IM, "<p>Use the app folder. Group routes with round brackets. Keep a component near the route that uses it.</p>", 21);
+
+    id = f.post(22, WM, "question", ["hw1"], "npm install fails with peer dependency errors",
+        "<p>A fresh clone throws peer dependency errors on install.</p>");
+    f.answer(id, BW, "<p>Match your Node version to the project first. If it stays, delete node_modules and the lock file and install again.</p>", 22);
+
+    f.post(23, TH, "note", ["other"], "Some MDN pages that helped me with flexbox",
+        "<p>The MDN pages on flexbox and the box model helped me a lot. I share them here.</p>");
+
+    id = f.post(24, CO, "question", ["logistics"], "Asking for a short extension, instructors only",
+        "<p>Hello. I was sick this week and may need a short extension on the milestone. Thank you.</p>",
+        { postTo: "individual", recipients: ["INSTRUCTORS"] });
+    f.answer(id, SS, "<p>Thank you for telling us. Send us your paperwork and we will work it out.</p>", 24);
+
+    f.post(25, CK, "question", ["hw3"], "What is the best way to share state between components?",
+        "<p>Two sibling components need the same data. Do I lift state up or use Redux?</p>");
+
+    f.post(26, SS, "note", ["logistics"], "Welcome to the course. Please read this first",
+        "<p>Welcome. A few notes to get you started.</p><ul><li>Weekly homework, one project and one exam</li><li>Office hours are in the pinned schedule</li><li>Search before you post, pick a folder, and mark a followup resolved when it is done</li></ul>",
+        { pinned: true });
+
+    f.post(26, BA, "question", ["office_hours"], "Can I get Git help during office hours?",
+        "<p>I keep hitting merge conflicts. Can I bring this to office hours?</p>");
+}
+
+// Every other course gets the same short set of posts.
+function buildGeneric(f, course) {
+    let id;
+    const title = course.name || course.number || "this course";
+
+    f.post(26, SS, "note", ["logistics"], "Welcome. Course logistics and how we use Pazza",
+        `<p>Welcome to <strong>${title}</strong>. Please post here instead of email so everyone can read the answer.</p><ul><li>Weekly assignments, one project and one exam</li><li>Office hours are posted below</li><li>Search first, pick a folder, and mark a followup resolved</li></ul>`,
+        { pinned: true });
+
+    f.post(20, IM, "note", ["exam"], "Exam date and format",
+        "<p>The exam is in about two weeks and it is in class. Open notes, on your own, fifty minutes.</p>");
 
     id = f.post(0, CO, "question", ["logistics"], "When are office hours this week?",
-        `<p>Could someone confirm the office hour times this week?</p>`);
-    f.answer(id, BW, `<p>TA office hours are Tue/Thu 2–4pm; instructor office hours are Wed 1–2pm.</p>`, 0);
+        "<p>Could someone confirm the office hour times this week?</p>");
+    f.answer(id, BW, "<p>TA hours are Tuesday and Thursday 2 to 4pm. Instructor hours are Wednesday 1 to 2pm.</p>", 0);
 
     id = f.post(1, PP, "question", ["project"], "Looking for a project teammate",
-        `<p>Anyone still looking for a project partner? Happy to share ideas.</p>`);
-    f.answer(id, NR, `<p>I'm looking too — I'll message you.</p>`, 1);
+        "<p>Is anyone still looking for a partner? I am happy to share ideas.</p>");
+    f.answer(id, NR, "<p>I am looking too. I will message you.</p>", 1);
 
-    id = f.post(7, NR, "question", ["hw2"], "Is there an extension for Assignment 2?",
-        `<p>With the exam coming up, is a short extension possible for Assignment 2?</p>`);
-    f.answer(id, SS, `<p>We can extend by 48 hours. The updated due date is on Canvas.</p>`, 7);
-    f.discussion(id, CO, `<p>Thanks — the extra time really helps.</p>`, 7, true);
+    id = f.post(7, NR, "question", ["hw2"], "Is there an extension for the second assignment?",
+        "<p>The exam is close. Is a short extension possible?</p>");
+    f.answer(id, SS, "<p>We can add two days. The new date is on Canvas.</p>", 7);
+    f.discussion(id, CO, "<p>Thank you. The extra time helps a lot.</p>", 7, true);
 
-    id = f.post(10, CO, "question", ["hw1"], "Where do we submit Assignment 1?",
-        `<p>Do we submit on Canvas or Gradescope?</p>`);
-    f.answer(id, PP, `<p>Gradescope — the link is under the Assignments page.</p>`, 10, true);
+    id = f.post(10, CO, "question", ["hw1"], "Where do we hand in the first assignment?",
+        "<p>Do we submit on Canvas or somewhere else?</p>");
+    f.answer(id, PP, "<p>The link is on the Assignments screen of the course.</p>", 10);
 
     f.post(15, PP, "question", ["exam"], "Is the exam cumulative?",
-        `<p>Will Exam 1 cover everything so far or just the recent material?</p>`);
-};
+        "<p>Does the exam cover everything so far or only the recent weeks?</p>");
+}
 
-// Seed each course that has no Pazza posts yet.
+// I fill Pazza for a course only when that course has no posts yet.
+// So my own posts survive every restart.
 export default async function seedPazza() {
     const posts = [];
     const comments = [];
 
-    if ((await postModel.countDocuments({ course: "5610" })) === 0) {
-        buildRich(factory("5610", posts, comments));
-    }
-    for (const c of courses) {
-        if (c._id === "5610") continue;
-        if ((await postModel.countDocuments({ course: c._id })) === 0) {
-            buildGeneric(factory(c._id, posts, comments), c);
+    for (const course of courses) {
+        await foldersDao.seedDefaultFolders(course._id);
+
+        const count = await postModel.countDocuments({ course: course._id });
+        if (count > 0) {
+            continue;
+        }
+        const f = factory(course._id, posts, comments);
+        if (course._id === "5610") {
+            buildWebDev(f);
+        } else {
+            buildGeneric(f, course);
         }
     }
 
-    if (posts.length) await postModel.insertMany(posts);
-    if (comments.length) await commentModel.insertMany(comments);
-    if (posts.length) console.log(`Seeded Pazza: ${posts.length} posts, ${comments.length} comments`);
+    if (posts.length > 0) {
+        await postModel.insertMany(posts);
+    }
+    if (comments.length > 0) {
+        await commentModel.insertMany(comments);
+    }
+    if (posts.length > 0) {
+        console.log(`Seeded Pazza: ${posts.length} posts, ${comments.length} comments`);
+    }
 }

@@ -1,4 +1,7 @@
 import mongoose from "mongoose";
 import schema from "./schema.js";
 
-export default mongoose.model("UserModel", schema);
+// The model gives me find, create, updateOne and deleteOne.
+// Other schemas point at this name, UserModel, with ref.
+const model = mongoose.model("UserModel", schema);
+export default model;

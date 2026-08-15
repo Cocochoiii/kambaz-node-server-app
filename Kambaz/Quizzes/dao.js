@@ -1,17 +1,32 @@
 import model from "./model.js";
 import { v4 as uuidv4 } from "uuid";
 
-export const findQuizzesForCourse = (courseId) => model.find({ course: courseId });
+// The quiz CRUD. A quiz always belongs to one course.
 
-export const createQuiz = (quiz) => {
-    const newQuiz = { ...quiz, _id: quiz._id || uuidv4() };
-    return model.create(newQuiz);
-};
+export function findQuizzesForCourse(courseId) {
+    return model.find({ course: courseId });
+}
 
-export const updateQuiz = async (quizId, updates) => {
-    const { _id, ...rest } = updates;
-    await model.updateOne({ _id: quizId }, { $set: rest });
+export function findQuizById(quizId) {
     return model.findById(quizId);
-};
+}
 
-export const deleteQuiz = (quizId) => model.deleteOne({ _id: quizId });
+export function createQuiz(quiz) {
+    const newQuiz = { ...quiz, _id: uuidv4() };
+    return model.create(newQuiz);
+}
+
+// I drop _id and __v first. Mongo does not let me change them.
+export function updateQuiz(quizId, quizUpdates) {
+    const { _id, __v, ...updates } = quizUpdates;
+    return model.updateOne({ _id: quizId }, { $set: updates });
+}
+
+export function deleteQuiz(quizId) {
+    return model.deleteOne({ _id: quizId });
+}
+
+// When a course is deleted, its quizzes are deleted too.
+export function deleteQuizzesForCourse(courseId) {
+    return model.deleteMany({ course: courseId });
+}

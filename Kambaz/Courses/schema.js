@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 
-const schema = new mongoose.Schema(
+// The shape of one course document.
+// The dates stay Strings. The course form uses date inputs.
+const courseSchema = new mongoose.Schema(
     {
         _id: String,
         name: String,
@@ -9,12 +11,12 @@ const schema = new mongoose.Schema(
         endDate: String,
         department: String,
         credits: Number,
+        term: String,
+        semester: String,
         description: String,
         image: String,
-        color: String,
-        author: String,
         published: Boolean,
     },
-    { collection: "courses", strict: false }
+    { collection: "courses" }
 );
-export default schema;
+export default courseSchema;
