@@ -1,27 +1,27 @@
 import model from "./model.js";
-import enrollmentModel from "../Enrollments/model.js";
 import { v4 as uuidv4 } from "uuid";
 
-export const findAllCourses = () => model.find();
+// The course CRUD, written with the mongoose model.
 
-export const findCoursesForEnrolledUser = async (userId) => {
-    const enrollments = await enrollmentModel.find({ user: userId });
-    const courseIds = enrollments.map((e) => e.course);
-    return model.find({ _id: { $in: courseIds } });
-};
+export function findAllCourses() {
+    return model.find();
+}
 
-export const createCourse = (course) => {
-    const newCourse = { ...course, _id: course._id || uuidv4() };
-    return model.create(newCourse);
-};
-
-export const deleteCourse = async (courseId) => {
-    await enrollmentModel.deleteMany({ course: courseId });
-    return model.deleteOne({ _id: courseId });
-};
-
-export const updateCourse = async (courseId, courseUpdates) => {
-    const { _id, ...rest } = courseUpdates;
-    await model.updateOne({ _id: courseId }, { $set: rest });
+export function findCourseById(courseId) {
     return model.findById(courseId);
-};
+}
+
+export function createCourse(course) {
+    const newCourse = { ...course, _id: uuidv4() };
+    return model.create(newCourse);
+}
+
+export function deleteCourse(courseId) {
+    return model.deleteOne({ _id: courseId });
+}
+
+// I drop _id and __v first. Mongo does not let me change them.
+export function updateCourse(courseId, courseUpdates) {
+    const { _id, __v, ...updates } = courseUpdates;
+    return model.updateOne({ _id: courseId }, { $set: updates });
+}

@@ -6,7 +6,7 @@ let todos = [
 ];
 
 export default function WorkingWithArrays(app) {
-    // GET all (with optional ?completed=true|false)
+    // Get all the todos. ?completed=true filters the list.
     app.get("/lab5/todos", (req, res) => {
         const { completed } = req.query;
         if (completed === undefined) return res.json(todos);
@@ -14,14 +14,15 @@ export default function WorkingWithArrays(app) {
         return res.json(todos.filter((t) => t.completed === completedBool));
     });
 
-    // CREATE (legacy GET) - must be before "/:id" so "create" is not read as an id
+    // Create, the old way. It must come before "/:id".
+    // If not, express reads "create" as an id.
     app.get("/lab5/todos/create", (req, res) => {
         const newTodo = { id: Date.now(), title: "New Task", completed: false };
         todos.push(newTodo);
         res.json(todos);
     });
 
-    // GET by id
+    // Get one todo by its id.
     app.get("/lab5/todos/:id", (req, res) => {
         const todo = todos.find((t) => t.id === parseInt(req.params.id));
         res.json(todo);
@@ -32,7 +33,7 @@ export default function WorkingWithArrays(app) {
         res.json(newTodo);
     });
 
-    // DELETE (legacy GET + proper DELETE)
+    // Delete. The old GET way and the real DELETE.
     app.get("/lab5/todos/:id/delete", (req, res) => {
         const idx = todos.findIndex((t) => t.id === parseInt(req.params.id));
         if (idx >= 0) todos.splice(idx, 1);
@@ -46,7 +47,7 @@ export default function WorkingWithArrays(app) {
         res.sendStatus(200);
     });
 
-    // UPDATE title (legacy GET) and PUT (full/partial)
+    // Update. The old GET way and the real PUT.
     app.get("/lab5/todos/:id/title/:title", (req, res) => {
         const todo = todos.find((t) => t.id === parseInt(req.params.id));
         if (todo) todo.title = req.params.title;
@@ -61,7 +62,7 @@ export default function WorkingWithArrays(app) {
         res.sendStatus(200);
     });
 
-    // extra on-your-own routes
+    // The extra routes from On Your Own.
     app.get("/lab5/todos/:id/description/:description", (req, res) => {
         const todo = todos.find((t) => t.id === parseInt(req.params.id));
         if (todo) todo.description = req.params.description;

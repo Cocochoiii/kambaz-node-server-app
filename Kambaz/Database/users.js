@@ -292,5 +292,19 @@ export default [
         "section": "S101",
         "lastActivity": "2025-09-24",
         "totalActivity": "20:00:00"
+    },
+    {
+        "_id": "2000",
+        "username": "admin",
+        "password": "admin123",
+        "firstName": "Ada",
+        "lastName": "Admin",
+        "email": "admin@kambaz.com",
+        "dob": "1980-12-10",
+        "role": "ADMIN",
+        "loginId": "002000000A",
+        "section": "S101",
+        "lastActivity": "2025-09-24",
+        "totalActivity": "22:10:00"
     }
 ];

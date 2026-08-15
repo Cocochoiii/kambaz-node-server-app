@@ -1,17 +1,10 @@
 import model from "./model.js";
-import { v4 as uuidv4 } from "uuid";
 
-export const findQuizzesForCourse = (courseId) => model.find({ course: courseId });
+export function findQuizzesForCourse(courseId) {
+    return model.find({ course: courseId });
+}
 
-export const createQuiz = (quiz) => {
-    const newQuiz = { ...quiz, _id: quiz._id || uuidv4() };
-    return model.create(newQuiz);
-};
-
-export const updateQuiz = async (quizId, updates) => {
-    const { _id, ...rest } = updates;
-    await model.updateOne({ _id: quizId }, { $set: rest });
-    return model.findById(quizId);
-};
-
-export const deleteQuiz = (quizId) => model.deleteOne({ _id: quizId });
+// When a course is deleted, its quizzes are deleted too.
+export function deleteQuizzesForCourse(courseId) {
+    return model.deleteMany({ course: courseId });
+}

@@ -1,13 +1,18 @@
 import mongoose from "mongoose";
 
+// One course has many quizzes. The screen only reads them.
 const schema = new mongoose.Schema(
     {
         _id: String,
+        course: { type: String, ref: "CourseModel" },
+        category: String,
         title: String,
-        course: String,
         points: Number,
-        published: Boolean,
+        score: Number,
+        dueDate: String,
+        status: String,
+        questions: Number,
     },
-    { collection: "quizzes", strict: false }
+    { collection: "quizzes" }
 );
 export default schema;
