@@ -1,18 +1,38 @@
 import * as dao from "./dao.js";
 
 export default function AssignmentRoutes(app) {
-    app.get("/api/courses/:courseId/assignments", async (req, res) => {
-        res.json(await dao.findAssignmentsForCourse(req.params.courseId));
-    });
-    app.post("/api/courses/:courseId/assignments", async (req, res) => {
-        const assignment = { ...req.body, course: req.params.courseId };
-        res.json(await dao.createAssignment(assignment));
-    });
-    app.put("/api/assignments/:assignmentId", async (req, res) => {
-        res.json(await dao.updateAssignment(req.params.assignmentId, req.body));
-    });
-    app.delete("/api/assignments/:assignmentId", async (req, res) => {
-        await dao.deleteAssignment(req.params.assignmentId);
+    const findAssignmentsForCourse = async (req, res) => {
+        const { courseId } = req.params;
+        const assignments = await dao.findAssignmentsForCourse(courseId);
+        res.json(assignments);
+    };
+
+    const createAssignmentForCourse = async (req, res) => {
+        const { courseId } = req.params;
+        const assignment = { ...req.body, course: courseId };
+        const newAssignment = await dao.createAssignment(assignment);
+        res.json(newAssignment);
+    };
+
+    const updateAssignment = async (req, res) => {
+        const { assignmentId } = req.params;
+        await dao.updateAssignment(assignmentId, req.body);
+        const updated = await dao.findAssignmentById(assignmentId);
+        if (!updated) {
+            res.status(404).json({ message: `Unable to update assignment ${assignmentId}` });
+            return;
+        }
+        res.json(updated);
+    };
+
+    const deleteAssignment = async (req, res) => {
+        const { assignmentId } = req.params;
+        await dao.deleteAssignment(assignmentId);
         res.sendStatus(200);
-    });
+    };
+
+    app.get("/api/courses/:courseId/assignments", findAssignmentsForCourse);
+    app.post("/api/courses/:courseId/assignments", createAssignmentForCourse);
+    app.put("/api/assignments/:assignmentId", updateAssignment);
+    app.delete("/api/assignments/:assignmentId", deleteAssignment);
 }

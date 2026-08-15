@@ -1,21 +1,23 @@
 import mongoose from "mongoose";
 
-// A quiz. Questions are stored inside the quiz as plain objects, each with its
-// own _id. strict:false lets old data still load.
+// One course has many quizzes. A quiz keeps its questions inside it,
+// so one row holds the whole quiz. questions is Mixed, because my old
+// seed rows only store a count there, and I want to keep them.
 const schema = new mongoose.Schema(
     {
         _id: String,
+        course: { type: String, ref: "CourseModel" },
         title: { type: String, default: "New Quiz" },
-        course: String,
         description: { type: String, default: "" },
-        quizType: { type: String, default: "Graded Quiz" },        // Graded Quiz | Practice Quiz | Graded Survey | Ungraded Survey
-        assignmentGroup: { type: String, default: "Quizzes" },      // Quizzes | Exams | Assignments | Project
-        points: { type: Number, default: 0 },                       // sum of question points
+        quizType: { type: String, default: "Graded Quiz" },
+        assignmentGroup: { type: String, default: "Quizzes" },
+        points: { type: Number, default: 0 },
         shuffleAnswers: { type: Boolean, default: true },
-        timeLimit: { type: Number, default: 20 },                   // minutes
+        hasTimeLimit: { type: Boolean, default: true },
+        timeLimit: { type: Number, default: 20 },
         multipleAttempts: { type: Boolean, default: false },
         howManyAttempts: { type: Number, default: 1 },
-        showCorrectAnswers: { type: String, default: "" },
+        showCorrectAnswers: { type: Boolean, default: false },
         accessCode: { type: String, default: "" },
         oneQuestionAtATime: { type: Boolean, default: true },
         webcamRequired: { type: Boolean, default: false },
@@ -24,8 +26,12 @@ const schema = new mongoose.Schema(
         availableDate: String,
         untilDate: String,
         published: { type: Boolean, default: false },
-        questions: { type: Array, default: [] },                    // [{ _id, type, title, points, question, choices|correctAnswer|answers }]
+        questions: { type: mongoose.Schema.Types.Mixed, default: [] },
+        // The old seed rows also carry these three fields.
+        category: String,
+        score: Number,
+        status: String,
     },
-    { collection: "quizzes", strict: false }
+    { collection: "quizzes" }
 );
 export default schema;

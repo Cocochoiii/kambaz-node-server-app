@@ -1,17 +1,32 @@
 import model from "./model.js";
 import { v4 as uuidv4 } from "uuid";
 
-export const findAssignmentsForCourse = (courseId) => model.find({ course: courseId });
+// The assignment CRUD. An assignment always belongs to one course.
 
-export const createAssignment = (assignment) => {
-    const newAssignment = { ...assignment, _id: assignment._id || uuidv4() };
-    return model.create(newAssignment);
-};
+export function findAssignmentsForCourse(courseId) {
+    return model.find({ course: courseId });
+}
 
-export const updateAssignment = async (assignmentId, updates) => {
-    const { _id, ...rest } = updates;
-    await model.updateOne({ _id: assignmentId }, { $set: rest });
+export function findAssignmentById(assignmentId) {
     return model.findById(assignmentId);
-};
+}
 
-export const deleteAssignment = (assignmentId) => model.deleteOne({ _id: assignmentId });
+export function createAssignment(assignment) {
+    const newAssignment = { ...assignment, _id: uuidv4() };
+    return model.create(newAssignment);
+}
+
+// I drop _id and __v first. Mongo does not let me change them.
+export function updateAssignment(assignmentId, assignmentUpdates) {
+    const { _id, __v, ...updates } = assignmentUpdates;
+    return model.updateOne({ _id: assignmentId }, { $set: updates });
+}
+
+export function deleteAssignment(assignmentId) {
+    return model.deleteOne({ _id: assignmentId });
+}
+
+// When a course is deleted, its assignments are deleted too.
+export function deleteAssignmentsForCourse(courseId) {
+    return model.deleteMany({ course: courseId });
+}

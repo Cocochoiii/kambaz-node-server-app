@@ -1,3 +1,5 @@
 import mongoose from "mongoose";
 import schema from "./schema.js";
-export default mongoose.model("QuizAttemptModel", schema);
+
+const model = mongoose.model("QuizAttemptModel", schema);
+export default model;

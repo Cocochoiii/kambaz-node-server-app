@@ -1,22 +1,42 @@
 import model from "./model.js";
-import courseModel from "../Courses/model.js";
-import { v4 as uuidv4 } from "uuid";
 
-export const enrollUserInCourse = async (userId, courseId) => {
-    const exists = await model.findOne({ user: userId, course: courseId });
-    if (!exists) {
-        await model.create({ _id: uuidv4(), user: userId, course: courseId });
+// Enrollments join users and courses.
+// populate changes a key into the real document.
+
+export async function findCoursesForUser(userId) {
+    const enrollments = await model.find({ user: userId }).populate("course");
+    // A deleted course leaves an empty link. I drop those rows.
+    return enrollments
+        .map((enrollment) => enrollment.course)
+        .filter((course) => course);
+}
+
+export async function findUsersForCourse(courseId) {
+    const enrollments = await model.find({ course: courseId }).populate("user");
+    return enrollments
+        .map((enrollment) => enrollment.user)
+        .filter((user) => user);
+}
+
+// One user joins one course only once. So I look before I insert.
+export async function enrollUserInCourse(user, course) {
+    const found = await model.findOne({ user: user, course: course });
+    if (found) {
+        return found;
     }
-    return true;
-};
+    const newEnrollment = { user, course, _id: `${user}-${course}` };
+    return model.create(newEnrollment);
+}
 
-export const unenrollUserFromCourse = (userId, courseId) =>
-    model.deleteOne({ user: userId, course: courseId });
+export function unenrollUserFromCourse(user, course) {
+    return model.deleteOne({ user: user, course: course });
+}
 
-export const findCoursesForUser = async (userId) => {
-    const enrollments = await model.find({ user: userId });
-    const courseIds = enrollments.map((e) => e.course);
-    return courseModel.find({ _id: { $in: courseIds } });
-};
+// When a course or a user is deleted, its rows are deleted too.
+export function deleteEnrollmentsForCourse(courseId) {
+    return model.deleteMany({ course: courseId });
+}
 
-export const findEnrollmentsForCourse = (courseId) => model.find({ course: courseId });
+export function deleteEnrollmentsForUser(userId) {
+    return model.deleteMany({ user: userId });
+}
